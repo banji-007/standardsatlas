@@ -41,7 +41,7 @@ interface DraftDocument {
 
 async function fetchFeed(): Promise<RssItem[]> {
   const res = await fetch(FEED_URL, {
-    headers: { 'User-Agent': 'standardsatlas-bot/1.0 (https://standardsatlas.org)' },
+    headers: { 'User-Agent': 'securitystandardsmap-bot/1.0 (https://securitystandardsmap.org)' },
   });
   if (!res.ok) throw new Error(`Feed fetch failed: ${res.status} ${res.statusText}`);
   const xml = await res.text();

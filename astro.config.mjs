@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://standardsatlas.org',
+  site: 'https://securitystandardsmap.org',
   integrations: [
     react(),
     sitemap(),

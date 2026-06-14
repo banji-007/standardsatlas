@@ -15,10 +15,10 @@ const {
   ogType = 'website',
 } = Astro.props;
 
-const siteUrl = 'https://standardsatlas.org';
-const fullTitle = title === 'PCI Standards Atlas'
+const siteUrl = 'https://securitystandardsmap.org';
+const fullTitle = title === 'PCI Security Standards Map'
   ? title
-  : `${title} — PCI Standards Atlas`;
+  : `${title} — PCI Security Standards Map`;
 ---
 
 <html lang="en">
@@ -36,7 +36,7 @@ const fullTitle = title === 'PCI Standards Atlas'
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content="PCI Standards Atlas" />
+    <meta property="og:site_name" content="PCI Security Standards Map" />
 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -47,7 +47,7 @@ const fullTitle = title === 'PCI Standards Atlas'
       url: canonicalUrl,
       publisher: {
         '@type': 'Organization',
-        name: 'PCI Standards Atlas',
+        name: 'PCI Security Standards Map',
         url: siteUrl,
       },
     })} />
@@ -58,7 +58,7 @@ const fullTitle = title === 'PCI Standards Atlas'
   <body>
     <header>
       <nav class="site-nav">
-        <a href="/" class="site-name">PCI Standards Atlas</a>
+        <a href="/" class="site-name">PCI Security Standards Map</a>
         <div class="nav-links">
           <a href="/timeline">Timeline</a>
         </div>
@@ -83,7 +83,7 @@ const fullTitle = title === 'PCI Standards Atlas'
           PCI, PCI DSS, and related marks are trademarks of PCI Security Standards Council LLC.
         </p>
         <p>
-          <a href="https://github.com/standardsatlas/standardsatlas">Source on GitHub</a>
+          <a href="https://github.com/banji-007/standardsatlas">Source on GitHub</a>
           &middot;
           Code: MIT &middot; Data: CC BY 4.0
         </p>

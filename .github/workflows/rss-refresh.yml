@@ -43,8 +43,8 @@ jobs:
       - name: Commit updated data
         if: env.HAS_CHANGES == 'true'
         run: |
-          git config user.name  "standardsatlas-bot"
-          git config user.email "bot@standardsatlas.org"
+          git config user.name  "securitystandardsmap-bot"
+          git config user.email "bot@securitystandardsmap.org"
           git add src/content/standards/ public/change-feed.json public/change-feed.xml || true
           git commit -m "chore: RSS refresh $(date -u +%Y-%m-%d)"
           git push
