@@ -1,71 +1,72 @@
-- id: pa-dss-superseded-by-secure-software
-  type: supersede
-  from: pa-dss
-  to:
-    - secure-software
-    - secure-slc
-  state: complete
-  effective_date: 2022-10-28
-  description: "PA-DSS retired; replaced by the Secure Software Standard and Secure SLC"
-  source_url: https://www.pcisecuritystandards.org/standards/pa-dss/
-  verified: true
+relationships:
+  - id: pa-dss-superseded-by-secure-software
+    type: supersede
+    from: pa-dss
+    to:
+      - secure-software
+      - secure-slc
+    state: complete
+    effective_date: 2022-10-28
+    description: "PA-DSS retired; replaced by the Secure Software Standard and Secure SLC"
+    source_url: https://www.pcisecuritystandards.org/standards/pa-dss/
+    verified: true
 
-- id: spoc-converges-into-mpoc
-  type: converge
-  from: spoc
-  to: mpoc
-  state: in-progress
-  effective_date: 2026-05-01
-  description: "SPoC sunset period 1 May to 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
-  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
-  verified: true
+  - id: spoc-converges-into-mpoc
+    type: converge
+    from: spoc
+    to: mpoc
+    state: in-progress
+    effective_date: 2026-05-01
+    description: "SPoC sunset period 1 May to 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+    verified: true
 
-- id: cpoc-converges-into-mpoc
-  type: converge
-  from: cpoc
-  to: mpoc
-  state: in-progress
-  effective_date: 2026-05-01
-  description: "CPoC sunset period 1 May to 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
-  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
-  verified: true
+  - id: cpoc-converges-into-mpoc
+    type: converge
+    from: cpoc
+    to: mpoc
+    state: in-progress
+    effective_date: 2026-05-01
+    description: "CPoC sunset period 1 May to 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+    verified: true
 
-- id: pin-converges-into-kmo
-  type: converge
-  from: pin-security
-  to: kmo
-  state: planned
-  effective_date: null
-  description: "PIN Security key-management requirements to be consolidated into KMO (expected H2 2026)"
-  source_url: https://www.pcisecuritystandards.org/blog/
-  verified: false
+  - id: pin-converges-into-kmo
+    type: converge
+    from: pin-security
+    to: kmo
+    state: planned
+    effective_date: null
+    description: "PIN Security key-management requirements to be consolidated into KMO (expected H2 2026)"
+    source_url: https://www.pcisecuritystandards.org/blog/
+    verified: false
 
-- id: p2pe-key-management-into-kmo
-  type: associate
-  from: p2pe
-  to: kmo
-  state: planned
-  effective_date: null
-  description: "P2PE key-management requirements to be consolidated into KMO (expected H2 2026); P2PE encryption and assessment requirements remain in P2PE"
-  source_url: https://www.pcisecuritystandards.org/standards/kmo
-  verified: false
+  - id: p2pe-key-management-into-kmo
+    type: associate
+    from: p2pe
+    to: kmo
+    state: planned
+    effective_date: null
+    description: "P2PE key-management requirements to be consolidated into KMO (expected H2 2026); P2PE encryption and assessment requirements remain in P2PE"
+    source_url: https://www.pcisecuritystandards.org/standards/kmo
+    verified: false
 
-- id: 3ds-sdk-integrates-into-secure-software
-  type: associate
-  from: 3ds-sdk
-  to: secure-software
-  state: complete
-  effective_date: 2026-01-15
-  description: "EMVCo 3DS SDKs now eligible for assessment under PCI Secure Software Standard v2.0 (released Jan 2026); 3DS SDK standard entering sunset Oct 2026"
-  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_3DS_SDK_Sunset_Bulletin.pdf
-  verified: true
+  - id: 3ds-sdk-integrates-into-secure-software
+    type: associate
+    from: 3ds-sdk
+    to: secure-software
+    state: complete
+    effective_date: 2026-01-15
+    description: "EMVCo 3DS SDKs now eligible for assessment under PCI Secure Software Standard v2.0 (released Jan 2026); 3DS SDK standard entering sunset Oct 2026"
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_3DS_SDK_Sunset_Bulletin.pdf
+    verified: true
 
-- id: 3ds-core-aligns-with-pci-dss
-  type: associate
-  from: 3ds-core
-  to: pci-dss
-  state: planned
-  effective_date: null
-  description: "3DS Core potential alignment with PCI DSS (proposed)"
-  source_url: https://www.pcisecuritystandards.org/standards/3ds/
-  verified: false
+  - id: 3ds-core-aligns-with-pci-dss
+    type: associate
+    from: 3ds-core
+    to: pci-dss
+    state: planned
+    effective_date: null
+    description: "3DS Core potential alignment with PCI DSS (proposed)"
+    source_url: https://www.pcisecuritystandards.org/standards/3ds/
+    verified: false

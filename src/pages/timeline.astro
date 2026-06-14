@@ -19,11 +19,13 @@ let relationships: Relationship[] = [];
 let externalBodies: ExternalBody[] = [];
 
 try {
-  relationships = yaml.load(readFileSync(relPath, 'utf8')) as Relationship[] ?? [];
+  const raw = yaml.load(readFileSync(relPath, 'utf8')) as { relationships?: Relationship[] } | null;
+  relationships = raw?.relationships ?? [];
 } catch { /* file may not exist yet */ }
 
 try {
-  externalBodies = yaml.load(readFileSync(extPath, 'utf8')) as ExternalBody[] ?? [];
+  const raw = yaml.load(readFileSync(extPath, 'utf8')) as { external_bodies?: ExternalBody[] } | null;
+  externalBodies = raw?.external_bodies ?? [];
 } catch { /* file may not exist yet */ }
 
 const allEvents = standards.flatMap(entry => {
@@ -56,15 +58,22 @@ const graphNodes = [
       id: entry.id,
       label: entry.data.name,
       status: entry.data.status,
-      type: 'standard',
+      type: 'standard' as const,
       sourceUrl: entry.data.source_url,
+      docCount: entry.data.documents.length,
+      documents: entry.data.documents.slice(0, 10).map(d => ({
+        slug: d.slug,
+        title: d.title.length > 40 ? d.title.slice(0, 37) + '...' : d.title,
+        type: d.type,
+        sourceUrl: d.source_url ?? null,
+      })),
     },
   })),
   ...externalBodies.map(eb => ({
     data: {
       id: eb.slug,
       label: eb.name,
-      type: 'external',
+      type: 'external' as const,
       sourceUrl: eb.url ?? '',
     },
   })),

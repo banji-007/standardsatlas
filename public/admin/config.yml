@@ -1,0 +1,204 @@
+backend:
+  name: github
+  repo: banji-007/standardsatlas
+  branch: main
+  # Sveltia's hosted auth proxy — no server needed.
+  # Register your GitHub OAuth App at https://github.com/settings/applications/new
+  # and set the callback URL to https://sveltia-cms-auth.workers.dev/callback
+  base_url: https://sveltia-cms-auth.workers.dev
+
+# Uncomment to use local backend during development (requires: npx @sveltia/cms-backend-proxy)
+# local_backend: true
+
+publish_mode: editorial_workflow
+
+# No media uploads needed; all assets are external URLs.
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+
+  # ── Standards ─────────────────────────────────────────────────────────────
+  - name: standards
+    label: Standards
+    label_singular: Standard
+    folder: src/content/standards
+    create: false
+    extension: yaml
+    format: yaml
+    identifier_field: slug
+    fields:
+      - label: Slug
+        name: slug
+        widget: string
+        hint: "URL-safe identifier matching the filename, e.g. pci-dss"
+      - label: Name
+        name: name
+        widget: string
+      - label: Status
+        name: status
+        widget: select
+        options:
+          - { label: "Active", value: active }
+          - { label: "Under Review", value: under-review }
+          - { label: "Sunset Scheduled", value: sunset-scheduled }
+          - { label: "Retired", value: retired }
+          - { label: "Forthcoming", value: forthcoming }
+      - label: Source URL
+        name: source_url
+        widget: string
+        hint: "Official PCI SSC page, e.g. https://www.pcisecuritystandards.org/standards/pcidss/"
+      - label: Verified
+        name: verified
+        widget: boolean
+        default: false
+      - label: Last Verified
+        name: last_verified
+        widget: datetime
+        required: false
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: Current Version
+        name: current_version
+        widget: string
+        required: false
+      - label: Notes
+        name: notes
+        widget: text
+        required: false
+
+      - label: Versions
+        name: versions
+        widget: list
+        required: false
+        fields:
+          - { label: Version, name: version, widget: string }
+          - label: Published
+            name: published
+            widget: datetime
+            required: false
+            default: ""
+            date_format: "YYYY-MM-DD"
+            time_format: false
+          - label: Retired
+            name: retired
+            widget: datetime
+            required: false
+            default: ""
+            date_format: "YYYY-MM-DD"
+            time_format: false
+          - label: Status
+            name: status
+            widget: select
+            options:
+              - { label: "Active", value: active }
+              - { label: "Sunset Scheduled", value: sunset-scheduled }
+              - { label: "Retired", value: retired }
+          - label: Source URL
+            name: source_url
+            widget: string
+            required: false
+            hint: "Canonical document library URL in ?category=&document= form"
+          - label: Verified
+            name: verified
+            widget: boolean
+            default: false
+
+      - label: Documents
+        name: documents
+        widget: list
+        required: false
+        fields:
+          - { label: Slug, name: slug, widget: string }
+          - { label: Title, name: title, widget: string }
+          - label: Type
+            name: type
+            widget: select
+            options:
+              - { label: Standard, value: standard }
+              - { label: Guidance, value: guidance }
+              - { label: FAQ, value: faq }
+              - { label: Template, value: template }
+              - { label: SAQ, value: saq }
+              - { label: Report, value: report }
+              - { label: Bulletin, value: bulletin }
+              - { label: Supplemental, value: supplemental }
+              - { label: Program Guide, value: program-guide }
+          - label: Published
+            name: published
+            widget: datetime
+            required: false
+            default: ""
+            date_format: "YYYY-MM-DD"
+            time_format: false
+          - label: Applies to Version
+            name: applies_to_version
+            widget: string
+            required: false
+          - label: Source URL
+            name: source_url
+            widget: string
+            required: false
+            hint: "Canonical document library URL in ?category=&document= form, or null if unknown"
+          - label: Verified
+            name: verified
+            widget: boolean
+            default: false
+
+  # ── Relationships ──────────────────────────────────────────────────────────
+  - name: relationships
+    label: Relationships
+    files:
+      - label: Relationship Edges
+        name: edges
+        file: data/relationships.yaml
+        fields:
+          - label: Relationships
+            name: relationships
+            widget: list
+            fields:
+              - { label: ID, name: id, widget: string, hint: "kebab-case unique identifier" }
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - { label: Associate, value: associate }
+                  - { label: Supersede, value: supersede }
+                  - { label: Converge, value: converge }
+              - { label: "From (standard slug)", name: from, widget: string }
+              - { label: "To (standard slug)", name: to, widget: string, hint: "Single slug or comma-separated list" }
+              - label: State
+                name: state
+                widget: select
+                options:
+                  - { label: Planned, value: planned }
+                  - { label: In Progress, value: in-progress }
+                  - { label: Complete, value: complete }
+              - label: Effective Date
+                name: effective_date
+                widget: datetime
+                required: false
+                default: ""
+                date_format: "YYYY-MM-DD"
+                time_format: false
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Source URL, name: source_url, widget: string, hint: "Official PCI SSC source for this relationship" }
+              - { label: Verified, name: verified, widget: boolean, default: false }
+
+  # ── External Bodies ────────────────────────────────────────────────────────
+  - name: external_bodies
+    label: External Bodies
+    files:
+      - label: External Bodies
+        name: bodies
+        file: data/external-bodies.yaml
+        fields:
+          - label: External Bodies
+            name: external_bodies
+            widget: list
+            fields:
+              - { label: Slug, name: slug, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: URL, name: url, widget: string, required: false }
+              - { label: Verified, name: verified, widget: boolean, default: false }

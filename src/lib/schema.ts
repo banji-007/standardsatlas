@@ -31,7 +31,7 @@ export const VersionSchema = z.object({
   published: z.coerce.date().nullable(),
   retired: z.coerce.date().nullable(),
   status: VersionStatusSchema,
-  source_url: z.string().url(),
+  source_url: z.string().url().nullable().default(null),
   verified: z.boolean(),
 });
 
@@ -41,7 +41,7 @@ export const DocumentSchema = z.object({
   type: DocumentTypeSchema,
   published: z.coerce.date().nullable(),
   applies_to_version: z.string().nullable().default(null),
-  source_url: z.string().url(),
+  source_url: z.string().url().nullable().default(null),
   verified: z.boolean(),
 });
 

@@ -86,10 +86,11 @@ function validateStandardFile(path: string, filename: string) {
 
 function validateRelationships(path: string) {
   if (!existsSync(path)) return;
-  const raw = yaml.load(readFileSync(path, 'utf8')) as unknown[];
+  const parsed = yaml.load(readFileSync(path, 'utf8')) as { relationships?: unknown[] } | null;
+  const raw = parsed?.relationships;
 
   if (!Array.isArray(raw)) {
-    err('relationships.yaml: expected an array at the root');
+    err('relationships.yaml: expected "relationships" array at root');
     return;
   }
 
@@ -119,10 +120,11 @@ function validateRelationships(path: string) {
 
 function validateExternalBodies(path: string) {
   if (!existsSync(path)) return;
-  const raw = yaml.load(readFileSync(path, 'utf8')) as unknown[];
+  const parsed = yaml.load(readFileSync(path, 'utf8')) as { external_bodies?: unknown[] } | null;
+  const raw = parsed?.external_bodies;
 
   if (!Array.isArray(raw)) {
-    err('external-bodies.yaml: expected an array at the root');
+    err('external-bodies.yaml: expected "external_bodies" array at root');
     return;
   }
 

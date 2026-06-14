@@ -10,7 +10,7 @@ const CONCURRENCY = 8;
 
 const urls = new Map<string, string>();
 
-function collect(url: string, context: string) {
+function collect(url: string | null | undefined, context: string) {
   if (url && !urls.has(url)) urls.set(url, context);
 }
 
@@ -25,21 +25,23 @@ if (existsSync(CONTENT_DIR)) {
 
 const relPath = join(DATA_DIR, 'relationships.yaml');
 if (existsSync(relPath)) {
-  const rels = yaml.load(readFileSync(relPath, 'utf8')) as Relationship[];
-  for (const r of rels ?? []) collect(r.source_url, `relationships[${r.id}]`);
+  const raw = yaml.load(readFileSync(relPath, 'utf8')) as { relationships?: Relationship[] } | null;
+  for (const r of raw?.relationships ?? []) collect(r.source_url, `relationships[${r.id}]`);
 }
 
-async function checkUrl(url: string): Promise<{ ok: boolean; status: number | string }> {
+async function checkUrl(url: string): Promise<{ ok: boolean; status: number | string; redirected: boolean }> {
+  const opts = (method: string) => ({
+    method,
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+    headers: { 'User-Agent': 'securitystandardsmap-linkcheck/1.0' },
+    redirect: 'follow' as const,
+  });
   try {
-    const res = await fetch(url, {
-      method: 'HEAD',
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-      headers: { 'User-Agent': 'securitystandardsmap-linkcheck/1.0' },
-      redirect: 'follow',
-    });
-    return { ok: res.ok || res.status === 405, status: res.status };
+    let res = await fetch(url, opts('HEAD'));
+    if (res.status === 405) res = await fetch(url, opts('GET'));
+    return { ok: res.ok, status: res.status, redirected: res.redirected };
   } catch {
-    return { ok: false, status: 'timeout/error' };
+    return { ok: false, status: 'timeout/error', redirected: false };
   }
 }
 
@@ -48,6 +50,7 @@ async function run() {
   console.log(`Checking ${entries.length} source URLs (concurrency ${CONCURRENCY})...`);
 
   const broken: { url: string; context: string; status: number | string }[] = [];
+  const redirected: { url: string; context: string }[] = [];
   let checked = 0;
 
   for (let i = 0; i < entries.length; i += CONCURRENCY) {
@@ -57,15 +60,24 @@ async function run() {
         const result = await checkUrl(url);
         checked++;
         if (!result.ok) {
-          process.stdout.write(`  FAIL [${result.status}] ${url} (${context})\n`);
+          process.stdout.write(`  FAIL  [${result.status}] ${url}  (${context})\n`);
+        } else if (result.redirected) {
+          process.stdout.write(`  REDIR [${result.status}] ${url}  (${context})\n`);
         }
         return { url, context, ...result };
       }),
     );
     broken.push(...results.filter(r => !r.ok).map(r => ({ url: r.url, context: r.context, status: r.status })));
+    redirected.push(...results.filter(r => r.ok && r.redirected).map(r => ({ url: r.url, context: r.context })));
   }
 
-  console.log(`\n${checked} URLs checked. ${broken.length} broken.`);
+  console.log(`\n${checked} URLs checked. ${broken.length} broken, ${redirected.length} redirected.`);
+
+  if (redirected.length > 0) {
+    console.warn('\nRedirected URLs (consider updating to canonical form):');
+    for (const r of redirected) console.warn(`  ${r.url}  (${r.context})`);
+  }
+
   if (broken.length > 0) {
     console.error('\nBroken source URLs:');
     for (const b of broken) console.error(`  [${b.status}] ${b.url}  (${b.context})`);

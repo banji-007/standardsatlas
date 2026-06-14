@@ -100,7 +100,9 @@ const timelineEvents = [
               <td>{formatDate(v.published)}</td>
               <td>{formatDate(v.retired)}</td>
               <td>
-                <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                {v.source_url
+                  ? <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                  : <span class="source-link no-source" title="No verified source URL">–</span>}
                 {!v.verified && <span class="unverified"> provisional</span>}
               </td>
             </tr>
@@ -131,7 +133,9 @@ const timelineEvents = [
               <td>{formatDate(doc.published)}</td>
               {hasVersionRefs && <td class="mono">{doc.applies_to_version ?? '—'}</td>}
               <td>
-                <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                {doc.source_url
+                  ? <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                  : <span class="source-link no-source" title="No verified source URL">–</span>}
                 {!doc.verified && <span class="unverified"> provisional</span>}
               </td>
             </tr>
@@ -182,6 +186,8 @@ const timelineEvents = [
   }
 
   .verified-date { font-family: var(--font-mono); }
+
+  .no-source { color: var(--color-text-muted); cursor: default; }
 
   .unverified {
     font-family: var(--font-mono);
