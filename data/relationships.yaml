@@ -40,6 +40,16 @@
   source_url: https://www.pcisecuritystandards.org/blog/
   verified: false
 
+- id: p2pe-key-management-into-kmo
+  type: associate
+  from: p2pe
+  to: kmo
+  state: planned
+  effective_date: null
+  description: "P2PE key-management requirements to be consolidated into KMO (expected H2 2026); P2PE encryption and assessment requirements remain in P2PE"
+  source_url: https://www.pcisecuritystandards.org/standards/kmo
+  verified: false
+
 - id: 3ds-sdk-integrates-into-secure-software
   type: associate
   from: 3ds-sdk
