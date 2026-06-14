@@ -1,3 +1,6 @@
+packages: []
+
+# pnpm 11+: allowBuilds replaces onlyBuiltDependencies in package.json
 allowBuilds:
   esbuild: true
   sharp: true
