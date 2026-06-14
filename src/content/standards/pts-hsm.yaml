@@ -2,31 +2,33 @@ slug: pts-hsm
 name: PTS Hardware Security Module (HSM)
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/pts/
-verified: false
-last_verified: null
+verified: true
+last_verified: "2026-06-14"
 current_version: "5.0"
 notes: >-
-  v5.0 published 18 May 2026 (provisional — confirm against the PTS HSM standard page). Separate from PTS POI; covers
-  hardware security modules used in payment environments.
+  v5.0 published 18 May 2026. Separate from PTS POI; covers hardware security
+  modules used in payment environments. Per March 2026 PCI SSC bulletin,
+  v3.0 device approval expiry extended to April 2028 and v4.0 expiry extended
+  to April 2033.
 versions:
   - version: "5.0"
     published: "2026-05-18"
     retired: null
     status: active
     source_url: https://www.pcisecuritystandards.org/standards/pts/
-    verified: false
+    verified: true
   - version: "4.0"
     published: null
     retired: null
     status: active
-    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
-    verified: false
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/03/UPDATED2-Extension-of-Expiration-of-the-PCI-PTS-HSM-v4v3.pdf
+    verified: true
   - version: "3.0"
     published: null
     retired: null
     status: active
-    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
-    verified: false
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/03/UPDATED2-Extension-of-Expiration-of-the-PCI-PTS-HSM-v4v3.pdf
+    verified: true
   - version: "2.0"
     published: null
     retired: "2022-04-19"

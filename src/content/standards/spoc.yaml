@@ -2,20 +2,21 @@ slug: spoc
 name: Software-Based PIN on COTS (SPoC)
 status: sunset-scheduled
 source_url: https://www.pcisecuritystandards.org/standards/spoc
-verified: false
-last_verified: null
-current_version: null
+verified: true
+last_verified: "2026-06-14"
+current_version: "1.1"
 notes: >-
-  Sunset period announced 01 May 2026. No new SPoC submissions accepted after
-  31 October 2026. Existing listings remain valid through their normal lifecycle.
-  Converging into PCI MPoC. Source: PCI SSC Bulletin May 2026.
+  SPoC v1.1 published June 25, 2020. Sunset period announced 01 May 2026.
+  No new SPoC submissions accepted after 31 October 2026. Existing listings
+  remain valid through their normal lifecycle. Converging into PCI MPoC.
+  Source: PCI SSC Bulletin May 2026.
 versions:
-  - version: "1.x"
-    published: "2020-06-01"
+  - version: "1.1"
+    published: "2020-06-25"
     retired: "2026-10-31"
     status: sunset-scheduled
     source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
-    verified: false
+    verified: true
 documents:
   - slug: spoc_faq
     title: SPoC Technical FAQs

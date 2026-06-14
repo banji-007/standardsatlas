@@ -1,15 +1,14 @@
 slug: kmo
 name: Key Management Operations (KMO)
-status: forthcoming
-source_url: https://www.pcisecuritystandards.org/blog/
-verified: false
-last_verified: null
+status: under-review
+source_url: https://blog.pcisecuritystandards.org/request-for-comments-pci-key-management-operations-kmo-v1.0-standard
+verified: true
+last_verified: "2026-06-14"
 current_version: null
-notes: >
-  KMO is in development and expected to publish in the second half of 2026.
-  It will consolidate key-management requirements from PCI PIN and P2PE.
-  Included here as a forthcoming entity sourced only to public announcements and RFC notices.
-  No NDA-gated draft content is used.
+notes: >-
+  KMO v1.0 is under active development. The second RFC period closed January 9, 2026.
+  Expected to publish in the second half of 2026. Will consolidate key-management
+  requirements from PCI PIN and P2PE. No NDA-gated draft content is used.
 
 versions: []
 documents: []

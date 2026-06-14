@@ -2,8 +2,8 @@ slug: pts-poi
 name: PTS Point of Interaction (POI)
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/ptspoi
-verified: false
-last_verified: null
+verified: true
+last_verified: "2026-06-14"
 current_version: "7.0"
 notes: >-
   PTS POI device approvals run on per-version expiry schedules; "retired" dates
@@ -11,11 +11,11 @@ notes: >-
   the retirement of the document itself. v6 expiry was extended June 17, 2025.
 versions:
   - version: "7.0"
-    published: null
+    published: "2025-05-29"
     retired: null
     status: active
-    source_url: https://www.pcisecuritystandards.org/document_library/
-    verified: false
+    source_url: https://blog.pcisecuritystandards.org/just-published-pts-poi-v7-0
+    verified: true
   - version: "6.0"
     published: null
     retired: null

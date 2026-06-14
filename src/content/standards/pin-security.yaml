@@ -2,18 +2,26 @@ slug: pin-security
 name: PIN Security Requirements
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/pinsecurity
-verified: false
-last_verified: null
-current_version: "3.0"
+verified: true
+last_verified: "2026-06-14"
+current_version: "3.1"
 notes: >-
-  v3.0 published August 2018. A revision with updated testing procedures was
-  published March 2021 (confirm whether this constitutes v3.1 or a v3.0 revision).
+  v3.1 published March 2021, confirmed by the PCI SSC Summary of Changes document.
+  v3.0 published August 2018 (initial release). Consolidation of PIN key-management
+  requirements into KMO is planned but has no firm date; v3.1 remains the current
+  authoritative version.
 versions:
-  - version: "3.0"
-    published: "2018-08-01"
+  - version: "3.1"
+    published: "2021-03-11"
     retired: null
     status: active
-    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    source_url: https://www.pcisecuritystandards.org/documents/PIN_Security_Rqrmts_Modifications_v3.1_-_Summary_of_Changes.pdf
+    verified: true
+  - version: "3.0"
+    published: "2018-08-01"
+    retired: "2021-03-11"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/standards/pinsecurity
     verified: false
 documents:
   - slug: pcipinpin_rocrtp
@@ -69,16 +77,16 @@ documents:
     title: PIN Security Requirements and Testing Procedures
     type: standard
     published: "2021-03-11"
-    applies_to_version: null
+    applies_to_version: "3.1"
     source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin__sec_req_pdf
-    verified: false
+    verified: true
   - slug: pcipinpin_sec_mod_test
     title: "PIN Security Requirements Modifications and Testing Procedures: Summary of Changes"
     type: guidance
     published: "2021-03-11"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin_sec_mod_test
-    verified: false
+    applies_to_version: "3.1"
+    source_url: https://www.pcisecuritystandards.org/documents/PIN_Security_Rqrmts_Modifications_v3.1_-_Summary_of_Changes.pdf
+    verified: true
   - slug: pcipincrypt_ky_blocks
     title: Cryptographic Key Blocks Information Supplement
     type: guidance
