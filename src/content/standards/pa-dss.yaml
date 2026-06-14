@@ -1,6 +1,6 @@
 slug: pa-dss
-name: pa-dss
-status: active
+name: Payment Application Data Security Standard (PA-DSS)
+status: retired
 source_url: https://www.pcisecuritystandards.org/standards/padss
 verified: false
 last_verified: null
