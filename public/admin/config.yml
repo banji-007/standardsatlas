@@ -2,9 +2,7 @@ backend:
   name: github
   repo: banji-007/standardsatlas
   branch: main
-  # After deploying oauth-worker, replace this with your Worker URL.
-  # Format: https://standardsatlas-oauth.<your-cf-subdomain>.workers.dev
-  base_url: https://standardsatlas-oauth.PLACEHOLDER.workers.dev
+  base_url: https://standardsatlas-oauth.banjibabalola007.workers.dev
 
 publish_mode: editorial_workflow
 
