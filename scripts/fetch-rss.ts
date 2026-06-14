@@ -54,7 +54,7 @@ async function fetchFeed(): Promise<RssItem[]> {
 function extractSlugFromLink(link: string): string {
   try {
     const url = new URL(link.trim());
-    // PCI SSC links use ?document=<slug> query param — prefer that
+    // PCI SSC links use ?document=<slug> query param; prefer that over path-based slugs
     const docParam = url.searchParams.get('document');
     if (docParam) return docParam;
     const parts = url.pathname.split('/').filter(Boolean);
@@ -203,7 +203,7 @@ async function main() {
     }
   }
 
-  console.log(`\nDone. Created: ${created}, Updated: ${updated}${DRY_RUN ? ' (dry run — no files written)' : ''}`);
+  console.log(`\nDone. Created: ${created}, Updated: ${updated}${DRY_RUN ? ' (dry run, no files written)' : ''}`);
 }
 
 main().catch(err => {

@@ -45,20 +45,6 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpci_pts_pin_tech_faqs
     verified: false
-  - slug: qpa-pro-gde
-    title: QPA Program Guide
-    type: guidance
-    published: "2025-05-19"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-pro-gde
-    verified: false
-  - slug: qpa-qua-req
-    title: QPA Qualification Requirements
-    type: guidance
-    published: "2025-03-26"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-qua-req
-    verified: false
   - slug: pin_req_18_3
     title: PIN Security Rqmt 18-3 Key Blocks Information Supplement
     type: guidance

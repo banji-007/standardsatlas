@@ -6,7 +6,7 @@ verified: true
 last_verified: "2026-06-14"
 current_version: "1.1"
 notes: >-
-  MPoC is the consolidation target for SPoC and CPoC, which sunset May–Oct 2026. v1.0 published November 2022; v1.1
+  MPoC is the consolidation target for SPoC and CPoC, which sunset May to Oct 2026. v1.0 published November 2022; v1.1
   published 26 November 2024.
 versions:
   - version: "1.1"

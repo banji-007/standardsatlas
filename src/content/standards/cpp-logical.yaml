@@ -28,20 +28,6 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_aoc_logical
     verified: false
-  - slug: cpsa_qual
-    title: CPSA Qualification Requirements
-    type: guidance
-    published: "2024-03-28"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_qual
-    verified: false
-  - slug: cpsa_prog_guide
-    title: CPSA Program Guide
-    type: guidance
-    published: "2024-03-28"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_prog_guide
-    verified: false
   - slug: roc_reporting_template_logical_v3
     title: Card Production ROC Reporting Template - Logical
     type: template

@@ -55,6 +55,7 @@ export default function TimelineIsland({ events, groups }: Props) {
         orientation: { axis: 'top' as const },
         height: '100%',
         groupOrder: 'content' as const,
+        margin: { item: { vertical: 6 } },
       };
 
       timeline = new Timeline(
@@ -74,7 +75,7 @@ export default function TimelineIsland({ events, groups }: Props) {
     <div
       ref={containerRef}
       style={{ height: '100%', width: '100%' }}
-      aria-label="Interactive timeline — use scroll and drag to navigate"
+      aria-label="Interactive timeline; use scroll and drag to navigate"
     />
   );
 }

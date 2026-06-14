@@ -181,34 +181,6 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-vra-v2
     verified: false
-  - slug: p2pe_case_study_solution
-    title: PCI P2PE Case Study – Bluefin and PriceSmart
-    type: guidance
-    published: "2017-08-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_case_study_solution
-    verified: false
-  - slug: p2pe_case_study_solution_cardconnect
-    title: PCI P2PE Case Study - CardConnect and Northwestern University
-    type: guidance
-    published: "2017-03-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_case_study_solution_cardconnect
-    verified: false
-  - slug: p2pe-case-study-2
-    title: PCI P2PE Case Study - IPS and Paul Smith
-    type: guidance
-    published: "2015-08-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-case-study-2
-    verified: false
-  - slug: p2pe-case-study
-    title: PCI P2PE Case Study - Bluefin and Hillman
-    type: guidance
-    published: "2015-06-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-case-study
-    verified: false
   - slug: p2pe-interim-assessment-for-solutions
     title: P2PE Interim Assessment for Solutions
     type: guidance

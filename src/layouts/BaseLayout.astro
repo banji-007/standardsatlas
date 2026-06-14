@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'An independent, citeable reference to the PCI security standards landscape — every current standard, its version lineage, status, supporting guidance, and sunset dates.',
+  description = 'An independent, citeable reference to the PCI security standards landscape: every current standard, its version lineage, status, supporting guidance, and sunset dates.',
   canonicalUrl = Astro.url.href,
   ogType = 'website',
 } = Astro.props;
@@ -18,7 +18,7 @@ const {
 const siteUrl = 'https://securitystandardsmap.org';
 const fullTitle = title === 'PCI Security Standards Map'
   ? title
-  : `${title} — PCI Security Standards Map`;
+  : `${title} | PCI Security Standards Map`;
 ---
 
 <html lang="en">

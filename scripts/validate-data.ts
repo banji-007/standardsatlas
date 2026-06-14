@@ -32,7 +32,7 @@ function validateStandardFile(path: string, filename: string) {
 
   if (!result.success) {
     for (const issue of result.error.issues) {
-      err(`${filename}: ${issue.path.join('.')} — ${issue.message}`);
+      err(`${filename}: ${issue.path.join('.')}: ${issue.message}`);
     }
     return;
   }
@@ -70,7 +70,7 @@ function validateStandardFile(path: string, filename: string) {
 
   // verified: false at top level means the whole record needs review
   if (!s.verified) {
-    warn(`${filename}: top-level verified: false — needs manual review`);
+    warn(`${filename}: top-level verified: false; needs manual review`);
   }
 
   const unverifiedVersions = s.versions.filter(v => !v.verified).length;
@@ -106,12 +106,12 @@ function validateRelationships(path: string) {
 
     const r = result.data;
     if (!standardSlugs.has(r.from)) {
-      warn(`relationships.yaml: edge "${r.id}" from "${r.from}" — no matching standard file`);
+      warn(`relationships.yaml: edge "${r.id}" from "${r.from}"; no matching standard file`);
     }
     const targets = Array.isArray(r.to) ? r.to : [r.to];
     for (const t of targets) {
       if (!standardSlugs.has(t)) {
-        warn(`relationships.yaml: edge "${r.id}" to "${t}" — no matching standard file`);
+        warn(`relationships.yaml: edge "${r.id}" to "${t}"; no matching standard file`);
       }
     }
   }

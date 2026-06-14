@@ -8,7 +8,7 @@ export const CATEGORY_TO_SLUG: Record<string, string> = {
   'SPoC': 'spoc',
   'CPoC': 'cpoc',
   'TSP': 'tsp',
-  // Ambiguous categories — resolved by title in resolveStandardSlug()
+  // Ambiguous categories; resolved by title in resolveStandardSlug()
   // 'Software Security': -> secure-software or secure-slc
   // 'PTS': -> pts-poi or pts-hsm
   // '3DS': -> 3ds-core or 3ds-sdk

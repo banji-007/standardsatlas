@@ -58,20 +58,6 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_rt
     verified: false
-  - slug: 3ds_core_qual
-    title: 3DS Core Qualification Requirements
-    type: guidance
-    published: "2017-11-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_qual
-    verified: false
-  - slug: 3ds_core
-    title: 3DS Core Assessor Program Guide
-    type: guidance
-    published: "2017-11-01"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core
-    verified: false
   - slug: 3ds_standard
     title: PCI 3DS Core Security Standard
     type: standard

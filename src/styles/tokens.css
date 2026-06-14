@@ -1,4 +1,4 @@
-/* Single token source — all rendering layers derive from here.
+/* Single token source. All rendering layers derive from here.
    Cytoscape canvas styles are generated from src/lib/tokens.ts (same values). */
 
 :root {
@@ -9,11 +9,11 @@
   --color-text-muted: #555555;
   --color-border: #e0e0de;
 
-  /* Accent — slate teal */
+  /* Accent: slate teal */
   --color-accent: #2a7a8a;
   --color-accent-hover: #236878;
 
-  /* Status — Okabe-Ito categorical palette (colorblind-safe) */
+  /* Status: Okabe-Ito categorical palette (colorblind-safe) */
   --color-active: #009E73;
   --color-under-review: #E69F00;
   --color-forthcoming: #E69F00;
@@ -54,7 +54,7 @@
   --color-border: #2e2e2e;
   --color-accent: #4db8cb;
   --color-accent-hover: #66c9d9;
-  /* Status colors remain the same — they meet contrast on both backgrounds */
+  /* Status colors remain the same; they meet contrast on both backgrounds */
 }
 
 @media (prefers-reduced-motion: reduce) {

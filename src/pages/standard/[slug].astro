@@ -20,6 +20,8 @@ const hasProvisional =
   standard.versions.some(v => !v.verified) ||
   standard.documents.some(d => !d.verified);
 
+const hasVersionRefs = standard.documents.some(d => d.applies_to_version);
+
 function formatDate(d: Date | null): string {
   if (!d) return '—';
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -31,14 +33,14 @@ const timelineEvents = [
     v.retired ? { id: `${entry.id}-${v.version}-ret`, content: `v${v.version} retired`, start: v.retired, group: standard.name, className: 'status-retired' } : null,
   ]).filter(Boolean),
   ...standard.documents.flatMap(d =>
-    d.published ? [{ id: `doc-${d.slug}`, content: d.title, start: d.published, group: `${standard.name} – Documents`, className: `doc-${d.type}` }] : []
+    d.published ? [{ id: `doc-${d.slug}`, content: d.title, start: d.published, group: `${standard.name}: Documents`, className: `doc-${d.type}` }] : []
   ),
 ];
 ---
 
 <BaseLayout
   title={standard.name}
-  description={`${standard.name} — status, version history, supporting documents, and sunset dates. PCI Security Standards Map.`}
+  description={`${standard.name}: status, version history, supporting documents, and sunset dates. PCI Security Standards Map.`}
   canonicalUrl={`https://securitystandardsmap.org/standard/${entry.id}`}
   ogType="article"
 >
@@ -117,7 +119,7 @@ const timelineEvents = [
             <th>Title</th>
             <th>Type</th>
             <th>Published</th>
-            <th>Applies to</th>
+            {hasVersionRefs && <th>Applies to</th>}
             <th>Source</th>
           </tr>
         </thead>
@@ -127,7 +129,7 @@ const timelineEvents = [
               <td>{doc.title}</td>
               <td class="mono">{doc.type}</td>
               <td>{formatDate(doc.published)}</td>
-              <td class="mono">{doc.applies_to_version ?? '—'}</td>
+              {hasVersionRefs && <td class="mono">{doc.applies_to_version ?? '—'}</td>}
               <td>
                 <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
                 {!doc.verified && <span class="unverified"> provisional</span>}
@@ -139,12 +141,14 @@ const timelineEvents = [
     </section>
   )}
 
-  <section class="section" id="timeline">
-    <h2>Timeline</h2>
-    <div id="timeline-container" style="height: 180px;">
-      <TimelineIsland events={timelineEvents} client:visible />
-    </div>
-  </section>
+  {timelineEvents.length > 0 && (
+    <section class="section" id="timeline">
+      <h2>Timeline</h2>
+      <div id="timeline-container" style="height: 220px;">
+        <TimelineIsland events={timelineEvents} client:visible />
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <style>

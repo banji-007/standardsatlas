@@ -34,7 +34,7 @@ jobs:
       - name: Emit change feed
         run: |
           if git diff --quiet; then
-            echo "No changes — skipping commit and deploy"
+            echo "No changes; skipping commit and deploy"
             echo "HAS_CHANGES=false" >> $GITHUB_ENV
           else
             echo "HAS_CHANGES=true" >> $GITHUB_ENV

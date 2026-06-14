@@ -109,13 +109,6 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_aov
     verified: false
-  - slug: sec_sware-qual_req_ssfa
-    title: Qualification Requirements for SSF Assessors
-    type: guidance
-    published: "2022-12-07"
-    applies_to_version: null
-    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware-qual_req_ssfa
-    verified: false
   - slug: sec_sware_gloss
     title: SSF Glossary of Terms, Abbreviations, and Acronyms
     type: guidance

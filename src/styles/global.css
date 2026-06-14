@@ -1,7 +1,7 @@
 @import './tokens.css';
 @import 'vis-timeline/styles/vis-timeline-graph2d.min.css';
 
-/* IBM Plex fonts — self-hosted via fontsource (no third-party CDN) */
+/* IBM Plex fonts, self-hosted via fontsource (no third-party CDN) */
 @import '@fontsource-variable/ibm-plex-sans';
 @import '@fontsource-variable/ibm-plex-sans/wght-italic.css';
 @import '@fontsource/ibm-plex-mono/400.css';
@@ -146,7 +146,7 @@ code, .mono {
   border-top: 1px solid var(--color-border);
 }
 
-/* vis-timeline overrides — keep consistent with token palette */
+/* vis-timeline overrides, kept consistent with token palette */
 .vis-timeline {
   border-color: var(--color-border) !important;
   font-family: var(--font-ui) !important;

@@ -17,7 +17,7 @@ const lastVerified = standards
     <h1>PCI Security Standards Map</h1>
     <p class="lead">
       An independent, citeable reference to the PCI security standards landscape.
-      Every current standard, its version lineage, status, supporting guidance, and sunset dates —
+      Every current standard, its version lineage, status, supporting guidance, and sunset dates;
       sourced to the official PCI SSC site.
     </p>
     <div class="hero-meta">
@@ -58,7 +58,7 @@ const lastVerified = standards
             <td>
               {entry.data.verified
                 ? <span title={entry.data.last_verified?.toISOString()}>✓</span>
-                : <span class="unverified" title="Provisional — not yet manually verified">provisional</span>
+                : <span class="unverified" title="Provisional; not yet manually verified">provisional</span>
               }
             </td>
           </tr>

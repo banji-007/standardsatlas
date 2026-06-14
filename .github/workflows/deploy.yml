@@ -30,6 +30,10 @@ jobs:
       - name: Validate data
         run: pnpm validate
 
+      - name: Check source URLs
+        run: pnpm check-links
+        continue-on-error: true
+
       - name: Build
         run: pnpm build
 

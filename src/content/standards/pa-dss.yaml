@@ -86,14 +86,6 @@ documents:
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=dss_rov_reporting_template_changes
     verified: false
-  - slug: qsa_validation_requi_v2
-    title: PA-QSA Qualification Requirements
-    type: guidance
-    published: "2014-02-03"
-    applies_to_version: null
-    source_url: >-
-      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=qsa_validation_requi_v2
-    verified: false
   - slug: dss_feedback_2012_doc
     title: Summary of PCI DSS and PA-DSS Feedback 2012
     type: guidance

@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "fetch-rss": "tsx scripts/fetch-rss.ts",
-    "validate": "tsx scripts/validate-data.ts"
+    "validate": "tsx scripts/validate-data.ts",
+    "check-links": "tsx scripts/check-links.ts"
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",
