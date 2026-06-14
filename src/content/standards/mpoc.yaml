@@ -1,0 +1,101 @@
+slug: mpoc
+name: Mobile Payments on COTS (MPoC)
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/mpoc/
+verified: true
+last_verified: "2026-06-14"
+current_version: "1.1"
+notes: >-
+  MPoC is the consolidation target for SPoC and CPoC, which sunset May–Oct 2026. v1.0 published November 2022; v1.1
+  published 26 November 2024.
+versions:
+  - version: "1.1"
+    published: "2024-11-26"
+    retired: null
+    status: active
+    source_url: https://blog.pcisecuritystandards.org/pci-mpoc-v1-1-now-available
+    verified: true
+  - version: "1.0"
+    published: "2022-11-01"
+    retired: null
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/standards/mpoc/
+    verified: true
+documents:
+  - slug: mpoc_am_aov_int_rep-v1
+    title: MPoC Integration Report
+    type: guidance
+    published: "2026-05-20"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_am_aov_int_rep-v1
+    verified: false
+  - slug: mpoc_guidance
+    title: PCI MPoC Guidance
+    type: guidance
+    published: "2025-11-19"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_guidance
+    verified: false
+  - slug: mpoc_faq
+    title: Mobile Payments on COTS (MPoC®) Technical FAQs
+    type: faq
+    published: "2025-10-09"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_faq
+    verified: false
+  - slug: mpoc_am_aov_v1.1
+    title: MPoC Service AOV
+    type: guidance
+    published: "2025-02-26"
+    applies_to_version: "1.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_am_aov_v1.1
+    verified: false
+  - slug: mpoc_solu_aov_v1.1
+    title: MPoC Solution AOV
+    type: guidance
+    published: "2025-02-26"
+    applies_to_version: "1.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_solu_aov_v1.1
+    verified: false
+  - slug: mpoc_soft_aov_v1.1
+    title: MPoC Software AOV
+    type: guidance
+    published: "2025-02-26"
+    applies_to_version: "1.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_soft_aov_v1.1
+    verified: false
+  - slug: mpoc_pg_v1.1
+    title: Mobile Payments on COTS (MPoC®) Program Guide
+    type: guidance
+    published: "2025-01-29"
+    applies_to_version: "1.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_pg_v1.1
+    verified: false
+  - slug: mpocsectest
+    title: Mobile Payments on COTS (MPoC®) Summary of Changes
+    type: standard
+    published: "2024-12-24"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpocsectest
+    verified: false
+  - slug: mpoc_v1-1
+    title: MPoC v1.1 Standard
+    type: standard
+    published: "2024-11-26"
+    applies_to_version: "1.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/
+    verified: false
+  - slug: mpoc_am_aov_v1
+    title: MPoC A&M Service AOV
+    type: guidance
+    published: "2023-06-12"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_am_aov_v1
+    verified: false
+  - slug: p2pe-vra-v2
+    title: MPoC Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=p2pe-vra-v2
+    verified: false

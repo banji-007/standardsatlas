@@ -1,0 +1,51 @@
+slug: 3ds-sdk
+name: 3ds-sdk
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/3dssdk
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: 3ds_sdk_faq
+    title: 3DS SDK v1.x Technical FAQs
+    type: faq
+    published: "2022-08-24"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk_faq
+    verified: false
+  - slug: 3ds_core
+    title: 3DS SDK Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core
+    verified: false
+  - slug: 3ds_sdk_attestation_of_validation
+    title: PCI 3DS SDK Attestation of Validation
+    type: template
+    published: "2019-02-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk_attestation_of_validation
+    verified: false
+  - slug: 3ds_sdk_rov_reporting_template
+    title: PCI 3DS SDK ROV Reporting Template
+    type: template
+    published: "2019-02-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk_rov_reporting_template
+    verified: false
+  - slug: 3ds_sdk
+    title: PCI 3DS SDK Security Standard
+    type: standard
+    published: "2018-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk
+    verified: false
+  - slug: 3ds_sdk_soc
+    title: PCI 3DS SDK Summary of Changes
+    type: guidance
+    published: "2018-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk_soc
+    verified: false

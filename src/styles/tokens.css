@@ -1,0 +1,65 @@
+/* Single token source — all rendering layers derive from here.
+   Cytoscape canvas styles are generated from src/lib/tokens.ts (same values). */
+
+:root {
+  /* Surface */
+  --color-bg: #f8f8f6;
+  --color-bg-subtle: #f0f0ee;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555555;
+  --color-border: #e0e0de;
+
+  /* Accent — slate teal */
+  --color-accent: #2a7a8a;
+  --color-accent-hover: #236878;
+
+  /* Status — Okabe-Ito categorical palette (colorblind-safe) */
+  --color-active: #009E73;
+  --color-under-review: #E69F00;
+  --color-forthcoming: #E69F00;
+  --color-sunset-scheduled: #D55E00;
+  --color-retired: #767676;
+
+  /* Typography */
+  --font-ui: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Layout */
+  --content-width: 72rem;
+  --radius: 3px;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --easing: ease-out;
+}
+
+[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-bg-subtle: #222222;
+  --color-text: #f0f0ee;
+  --color-text-muted: #aaaaaa;
+  --color-border: #2e2e2e;
+  --color-accent: #4db8cb;
+  --color-accent-hover: #66c9d9;
+  /* Status colors remain the same — they meet contrast on both backgrounds */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}

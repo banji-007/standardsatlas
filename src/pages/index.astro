@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { statusGlyph, statusLabel } from '../lib/tokens';
+
+const standards = await getCollection('standards');
+standards.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const activeCount = standards.filter(s => s.data.status === 'active').length;
+const lastVerified = standards
+  .flatMap(s => s.data.last_verified ? [s.data.last_verified] : [])
+  .sort((a, b) => b.getTime() - a.getTime())[0];
+---
+
+<BaseLayout title="PCI Standards Atlas">
+  <div class="hero">
+    <h1>PCI Standards Atlas</h1>
+    <p class="lead">
+      An independent, citeable reference to the PCI security standards landscape.
+      Every current standard, its version lineage, status, supporting guidance, and sunset dates —
+      sourced to the official PCI SSC site.
+    </p>
+    <div class="hero-meta">
+      <span>{standards.length} standards tracked</span>
+      <span>{activeCount} currently active</span>
+      {lastVerified && (
+        <span>Last verified <time datetime={lastVerified.toISOString()}>{lastVerified.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></span>
+      )}
+    </div>
+    <div class="hero-actions">
+      <a href="/timeline" class="btn-primary">View cross-family timeline</a>
+    </div>
+  </div>
+
+  <section class="standards-list">
+    <h2>Standards</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Standard</th>
+          <th>Status</th>
+          <th>Current version</th>
+          <th>Verified</th>
+        </tr>
+      </thead>
+      <tbody>
+        {standards.map(entry => (
+          <tr>
+            <td>
+              <a href={`/standard/${entry.id}`}>{entry.data.name}</a>
+            </td>
+            <td>
+              <span class="status-badge" data-status={entry.data.status}>
+                {statusGlyph[entry.data.status]} {statusLabel[entry.data.status]}
+              </span>
+            </td>
+            <td class="mono">{entry.data.current_version ?? '—'}</td>
+            <td>
+              {entry.data.verified
+                ? <span title={entry.data.last_verified?.toISOString()}>✓</span>
+                : <span class="unverified" title="Provisional — not yet manually verified">provisional</span>
+              }
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-12) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    max-width: 48rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-meta span::before { content: '· '; }
+  .hero-meta span:first-child::before { content: ''; }
+
+  .hero-actions { display: flex; gap: var(--space-3); }
+
+  .btn-primary {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: background var(--duration-fast) var(--easing);
+  }
+
+  .btn-primary:hover { background: var(--color-accent-hover); color: #fff; }
+
+  .standards-list { margin-top: var(--space-8); }
+
+  .unverified {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-under-review);
+  }
+</style>

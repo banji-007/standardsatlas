@@ -1,0 +1,427 @@
+slug: pci-dss
+name: PCI DSS
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/pci-dss/
+verified: true
+last_verified: "2026-06-14"
+current_version: 4.0.1
+notes: >-
+  Future-dated requirements from v4.0 became mandatory 31 March 2025. FAQ 1328 is the canonical reference for current
+  version.
+versions:
+  - version: 4.0.1
+    published: "2024-06-01"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/standards/pci-dss/
+    verified: true
+  - version: "4.0"
+    published: "2022-03-31"
+    retired: "2024-12-31"
+    status: retired
+    source_url: https://blog.pcisecuritystandards.org/pci-dss-v4-0-1-now-available
+    verified: true
+  - version: 3.2.1
+    published: "2018-05-01"
+    retired: "2024-03-31"
+    status: retired
+    source_url: https://blog.pcisecuritystandards.org/retirement-of-pci-dss-v3-2-1
+    verified: true
+documents:
+  - slug: guidance_comp_ctrls
+    title: Guidance for Compensating Controls and the Customized Approach
+    type: guidance
+    published: "2026-06-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=guidance_comp_ctrls
+    verified: false
+  - slug: vuln_mgmt_infographic
+    title: Vulnerability Management Infographic
+    type: guidance
+    published: "2025-05-28"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=vuln_mgmt_infographic
+    verified: false
+  - slug: pci_dss_saq_instr_guide_v4.0.1
+    title: SAQ Instructions and Guidelines
+    type: saq
+    published: "2025-04-22"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=pci_dss_saq_instr_guide_v4.0.1
+    verified: false
+  - slug: guidance_pci_dss_req_643_1161
+    title: Guidance for PCI DSS Requirements 6.4.3 and 11.6.1
+    type: guidance
+    published: "2025-04-22"
+    applies_to_version: "1161"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=guidance_pci_dss_req_643_1161
+    verified: false
+  - slug: pci_ssc_quick_reference_guide_x
+    title: PCI DSS Quick Reference Guide
+    type: guidance
+    published: "2025-01-30"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_ssc_quick_reference_guide_x
+    verified: false
+  - slug: aoc_saq_a_4.0.1
+    title: AOC SAQ A
+    type: saq
+    published: "2025-01-30"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_a_4.0.1
+    verified: false
+  - slug: saq_a_4.0.1
+    title: SAQ A
+    type: saq
+    published: "2025-01-30"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_a_4.0.1
+    verified: false
+  - slug: prioritized_approach_pci_dss_4_0.1
+    title: Prioritized Approach for PCI DSS
+    type: guidance
+    published: "2025-01-29"
+    applies_to_version: "0.1"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=prioritized_approach_pci_dss_4_0.1
+    verified: false
+  - slug: prioritized_approach_pci_dss_version4_0
+    title: Prioritized Approach Tool
+    type: guidance
+    published: "2025-01-29"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=prioritized_approach_pci_dss_version4_0
+    verified: false
+  - slug: saq_d_service_provider_4.0.1
+    title: SAQ D Service Provider
+    type: saq
+    published: "2025-01-16"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_d_service_provider_4.0.1
+    verified: false
+  - slug: dss_roc_reporting_template
+    title: ROC Template
+    type: template
+    published: "2025-01-16"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_roc_reporting_template
+    verified: false
+  - slug: aoc_saq_d_sp_4.01
+    title: AOC SAQ D - Service Providers
+    type: saq
+    published: "2024-12-02"
+    applies_to_version: "4.01"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_d_sp_4.01
+    verified: false
+  - slug: saq_p2pe_hw_4.0.1
+    title: SAQ P2PE
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_p2pe_hw_4.0.1
+    verified: false
+  - slug: saq_spoc_hw_4.0.1
+    title: SAQ SPoC
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_spoc_hw_4.0.1
+    verified: false
+  - slug: aoc_saq_spoc_4
+    title: AOC SAQ SPoC
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_spoc_4
+    verified: false
+  - slug: aoc_saq_c_4.0.1
+    title: AOC SAQ C
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_c_4.0.1
+    verified: false
+  - slug: aoc_saq_b_ip_4.0.1
+    title: AOC SAQ B-IP
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_b_ip_4.0.1
+    verified: false
+  - slug: aoc_saq_b_4.0.1
+    title: AOC SAQ B
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_b_4.0.1
+    verified: false
+  - slug: aoc_saq_c_vt_4.01
+    title: AOC SAQ C-VT
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: "4.01"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_c_vt_4.01
+    verified: false
+  - slug: aoc_saq_d_merchants_4.01
+    title: AOC SAQ D - Merchants
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: "4.01"
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_d_merchants_4.01
+    verified: false
+  - slug: aoc_saq_p2pe_4.0.1
+    title: AOC SAQ P2PE
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_p2pe_4.0.1
+    verified: false
+  - slug: saq_d_merchant_4.0.1
+    title: SAQ D Merchant
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_d_merchant_4.0.1
+    verified: false
+  - slug: saq_a-ep_4.0.1
+    title: SAQ A-EP
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_a-ep_4.0.1
+    verified: false
+  - slug: saq_b_4.0.1
+    title: SAQ B
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_b_4.0.1
+    verified: false
+  - slug: saq_b-ip_4.0.1
+    title: SAQ B-IP
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_b-ip_4.0.1
+    verified: false
+  - slug: saq_c_4.0.1
+    title: SAQ C
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_c_4.0.1
+    verified: false
+  - slug: saq_c-vt_4.0.1
+    title: SAQ C-VT
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=saq_c-vt_4.0.1
+    verified: false
+  - slug: aoc_saq_a_ep_4.0.1
+    title: AOC SAQ A-EP
+    type: saq
+    published: "2024-10-11"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_saq_a_ep_4.0.1
+    verified: false
+  - slug: desv_v3_reporting_template
+    title: Supplemental ROC Template - Designated Entities
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=desv_v3_reporting_template
+    verified: false
+  - slug: aoc_extra_form_sp_rptemplates
+    title: AOC for ROC - Service Providers Extra Form - Part 2g
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=aoc_extra_form_sp_rptemplates
+    verified: false
+  - slug: desv_aoc_v4
+    title: Supplemental AOC - Designated Entities
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=desv_aoc_v4
+    verified: false
+  - slug: dss_st_ca
+    title: "Sample Templates: Customized Approach"
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_st_ca
+    verified: false
+  - slug: dss_roc_reporting_template_for_v4_faq
+    title: FAQs for use with ROC Template
+    type: faq
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_roc_reporting_template_for_v4_faq
+    verified: false
+  - slug: pci_dss_aoc_service_providers
+    title: PCI DSS AOC - Service Providers
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_aoc_service_providers
+    verified: false
+  - slug: pci_dss_aoc_merchants
+    title: PCI DSS AOC - Merchants
+    type: template
+    published: "2024-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_aoc_merchants
+    verified: false
+  - slug: pci_dss_summary_of_changes
+    title: PCI DSS Summary of Changes
+    type: standard
+    published: "2024-08-24"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_summary_of_changes
+    verified: false
+  - slug: pci_asv_resource_guide
+    title: ASV Resource Guide
+    type: guidance
+    published: "2024-07-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_asv_resource_guide
+    verified: false
+  - slug: pci_dss
+    title: PCI DSS
+    type: standard
+    published: "2024-06-11"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss
+    verified: false
+  - slug: pci-dss_v4-0-1
+    title: PCI DSS v4.0.1
+    type: standard
+    published: "2024-06-01"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/
+    verified: true
+  - slug: pci-dss-v4-0-1-roc-reporting-template
+    title: ROC Reporting Template for PCI DSS v4.0.1
+    type: template
+    published: "2024-06-01"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/
+    verified: false
+  - slug: pci-dss-v4-0-1-saq-a
+    title: SAQ A for PCI DSS v4.0.1
+    type: saq
+    published: "2024-06-01"
+    applies_to_version: 4.0.1
+    source_url: https://www.pcisecuritystandards.org/document_library/
+    verified: false
+  - slug: dss_tra_af
+    title: "Sample Template: TRA for Activity Frequency"
+    type: template
+    published: "2023-11-27"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_tra_af
+    verified: false
+  - slug: pci_dss_v4_guidance
+    title: TRA Guidance
+    type: guidance
+    published: "2023-11-27"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_v4_guidance
+    verified: false
+  - slug: aoc_extra_form_sp
+    title: AOC for SAQ D - Service Providers Extra Form - Part 2g
+    type: saq
+    published: "2023-08-30"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=aoc_extra_form_sp
+    verified: false
+  - slug: dss_roc_extra_comp_contr
+    title: Extra Compensating Controls Worksheet
+    type: template
+    published: "2023-04-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_roc_extra_comp_contr
+    verified: false
+  - slug: dss4aag
+    title: PCI DSS v4.0 At a Glance
+    type: guidance
+    published: "2022-12-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss4aag
+    verified: false
+  - slug: faq_desv_v3
+    title: FAQs for Designated Entities Supplemental Validation
+    type: faq
+    published: "2022-06-14"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=faq_desv_v3
+    verified: false
+  - slug: prioritized_approach_pci_dss_version3_1
+    title: Prioritized Approach Tool
+    type: guidance
+    published: "2018-06-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=prioritized_approach_pci_dss_version3_1
+    verified: false
+  - slug: pci_dss_prioritized_approach_v3_summary_of_changes
+    title: Prioritized Approach Summary of Changes
+    type: guidance
+    published: "2016-05-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_prioritized_approach_v3_summary_of_changes
+    verified: false
+  - slug: pci_glossary
+    title: Glossary of Terms, Abbreviations, and Acronyms
+    type: guidance
+    published: "2016-04-28"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_glossary
+    verified: false
+  - slug: pci_dss_v3_desv
+    title: PCI DSS Designated Entities Supplemental Validation
+    type: standard
+    published: "2015-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_v3_desv
+    verified: false
+  - slug: understanding_the_saqs_for_pci_dss_3
+    title: Understanding SAQs for PCI DSS
+    type: saq
+    published: "2015-04-27"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=saqs&document=understanding_the_saqs_for_pci_dss_3
+    verified: false
+  - slug: dss_roc_reporting_template_changes_v3_to_v3-1
+    title: ROC Reporting Template for use with PCI DSS v3.0 - Summary of Changes
+    type: template
+    published: "2014-07-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=dss_roc_reporting_template_changes_v3_to_v3-1
+    verified: false
+  - slug: pci_dss_change_highlights
+    title: PCI DSS and PA-DSS Version 3.0 Change Highlights
+    type: guidance
+    published: "2013-08-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss_change_highlights
+    verified: false
+  - slug: qsa_roc_reporting_faq
+    title: FAQs for use with ROC Reporting Instructions for PCI DSS
+    type: template
+    published: "2011-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=qsa_roc_reporting_faq
+    verified: false
+  - slug: navigating_pci_dss
+    title: Navigating the PCI DSS
+    type: guidance
+    published: "2010-10-28"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=navigating_pci_dss
+    verified: false

@@ -1,0 +1,40 @@
+slug: tsp
+name: tsp
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/tsp
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: pci_tsp_rroc_template
+    title: TSP ROC Reporting Template
+    type: template
+    published: "2016-02-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=token_service_provider&document=pci_tsp_rroc_template
+    verified: false
+  - slug: pci_tsp_aoc
+    title: TSP AOC
+    type: template
+    published: "2016-02-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=token_service_provider&document=pci_tsp_aoc
+    verified: false
+  - slug: pci_tsp_requirements_faq
+    title: Frequently Asked Questions for PCI TSP Security Requirements
+    type: faq
+    published: "2015-12-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=token_service_provider&document=pci_tsp_requirements_faq
+    verified: false
+  - slug: pci_tsp_requirements
+    title: PCI TSP Security Requirements
+    type: standard
+    published: "2015-12-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=token_service_provider&document=pci_tsp_requirements
+    verified: false

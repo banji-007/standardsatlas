@@ -1,0 +1,132 @@
+slug: pa-dss
+name: pa-dss
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/padss
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: pa-dss_vendor_release_agreement
+    title: PA-DSS Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa-dss_vendor_release_agreement
+    verified: false
+  - slug: pa_dss_faq
+    title: FAQs for PA-DSS Transition
+    type: guidance
+    published: "2016-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa_dss_faq
+    verified: false
+  - slug: rov_reporting_template_for_v3_faq
+    title: FAQs for use with PA-DSS ROV Reporting Template
+    type: guidance
+    published: "2016-06-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=rov_reporting_template_for_v3_faq
+    verified: false
+  - slug: pa_dss_pg
+    title: PA-DSS Program Guide
+    type: guidance
+    published: "2016-05-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa_dss_pg
+    verified: false
+  - slug: pa-dss_aov
+    title: PA-DSS Attestation of Validation
+    type: guidance
+    published: "2016-05-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa-dss_aov
+    verified: false
+  - slug: pa-dss_rov_instructions_v2
+    title: PA-DSS ROV Reporting Template
+    type: guidance
+    published: "2016-05-15"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa-dss_rov_instructions_v2
+    verified: false
+  - slug: pci_pa-dss_v31_summary_of_changes
+    title: PA-DSS Summary of Changes
+    type: guidance
+    published: "2016-05-15"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pci_pa-dss_v31_summary_of_changes
+    verified: false
+  - slug: pci_pa_dss_program_guide
+    title: PA-DSS
+    type: guidance
+    published: "2016-05-15"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pci_pa_dss_program_guide
+    verified: false
+  - slug: dss_rov_reporting_template_changes
+    title: ROV Reporting Template for use with PA-DSS v3.0 - Summary of Changes
+    type: guidance
+    published: "2014-07-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=dss_rov_reporting_template_changes
+    verified: false
+  - slug: qsa_validation_requi_v2
+    title: PA-QSA Qualification Requirements
+    type: guidance
+    published: "2014-02-03"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=qsa_validation_requi_v2
+    verified: false
+  - slug: dss_feedback_2012_doc
+    title: Summary of PCI DSS and PA-DSS Feedback 2012
+    type: guidance
+    published: "2012-09-01"
+    applies_to_version: "2012"
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=dss_feedback_2012_doc
+    verified: false
+  - slug: pa-dss_rov_faq
+    title: FAQs for use with PA-DSS ROV Reporting Instructions
+    type: guidance
+    published: "2012-03-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=pa-dss_rov_faq
+    verified: false
+  - slug: padss_v2_transition_faq
+    title: Frequently Asked Questions for Transition
+    type: guidance
+    published: "2012-01-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=padss_v2_transition_faq
+    verified: false
+  - slug: mobile-faqs
+    title: PA-DSS and Mobile Applications FAQs
+    type: guidance
+    published: "2011-06-22"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=mobile-faqs
+    verified: false
+  - slug: applications-eligible-for-padss-validation-supp
+    title: Which Applications are Eligible for PA-DSS Validation
+    type: guidance
+    published: "2011-06-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=applications-eligible-for-padss-validation-supp
+    verified: false
+  - slug: qsa_validation_requirements_principal_associate_supplement
+    title: Supplement for Principal-Associate Qualified Security Assessors
+    type: guidance
+    published: "2009-01-04"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=qsa_validation_requirements_principal_associate_supplement
+    verified: false

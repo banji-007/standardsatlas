@@ -1,0 +1,93 @@
+slug: pin-security
+name: pin-security
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/pinsecurity
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: pcipinpin_rocrtp
+    title: PIN ROC Reporting Template
+    type: template
+    published: "2026-02-03"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin_rocrtp
+    verified: false
+  - slug: pcipinpinat-oc
+    title: PIN Attestation of Compliance (AOC)
+    type: template
+    published: "2026-02-03"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpinat-oc
+    verified: false
+  - slug: pcipinpci_pts_pin_tech_faqs
+    title: PTS PIN Technical Frequently Asked Questions
+    type: faq
+    published: "2025-08-25"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpci_pts_pin_tech_faqs
+    verified: false
+  - slug: qpa-pro-gde
+    title: QPA Program Guide
+    type: guidance
+    published: "2025-05-19"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-pro-gde
+    verified: false
+  - slug: qpa-qua-req
+    title: QPA Qualification Requirements
+    type: guidance
+    published: "2025-03-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-qua-req
+    verified: false
+  - slug: pin_req_18_3
+    title: PIN Security Rqmt 18-3 Key Blocks Information Supplement
+    type: guidance
+    published: "2022-07-13"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pin_req_18_3
+    verified: false
+  - slug: pin_isopin
+    title: Implementing ISO Format 4 PIN Blocks Information Supplement
+    type: guidance
+    published: "2021-08-02"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pin_isopin
+    verified: false
+  - slug: pcipinpin__sec_req_pdf
+    title: PIN Security Requirements and Testing Procedures
+    type: standard
+    published: "2021-03-11"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin__sec_req_pdf
+    verified: false
+  - slug: pcipinpin_sec_mod_test
+    title: "PIN Security Requirements Modifications and Testing Procedures: Summary of Changes"
+    type: guidance
+    published: "2021-03-11"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin_sec_mod_test
+    verified: false
+  - slug: pcipincrypt_ky_blocks
+    title: Cryptographic Key Blocks Information Supplement
+    type: guidance
+    published: "2017-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipincrypt_ky_blocks
+    verified: false
+  - slug: pcipinpin_security_requirements
+    title: PIN Security Requirements
+    type: standard
+    published: "2014-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpin_security_requirements
+    verified: false
+  - slug: pcipinpci_ssc_mod_sosc
+    title: "PIN Security Requirements Modifications: Summary of Changes"
+    type: guidance
+    published: "2014-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpci_ssc_mod_sosc
+    verified: false

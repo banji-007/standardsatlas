@@ -1,0 +1,44 @@
+slug: cpoc
+name: cpoc
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/cpoc
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: cpoc_prog_guide
+    title: Contactless Payments on COTS (CPoC™) Technical FAQs
+    type: faq
+    published: "2025-09-12"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=cpoc&document=cpoc_prog_guide
+    verified: false
+  - slug: cpocsectest
+    title: Contactless Payments on COTS (CPoC™) Security and Test Requirements
+    type: standard
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=cpoc&document=cpocsectest
+    verified: false
+  - slug: cpoc_aov
+    title: CPoC AOV
+    type: guidance
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=cpoc&document=cpoc_aov
+    verified: false
+  - slug: cpoc_faq
+    title: CPoC Program Guide
+    type: guidance
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=cpoc&document=cpoc_faq
+    verified: false
+  - slug: cpoc_vend_agr
+    title: CPoC Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=cpoc&document=cpoc_vend_agr
+    verified: false

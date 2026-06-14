@@ -1,0 +1,248 @@
+slug: p2pe
+name: p2pe
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/p2pe
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: p2pe-technical-faq=3x
+    title: P2PE v3.x Technical FAQs
+    type: standard
+    published: "2026-01-29"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-technical-faq=3x
+    verified: false
+  - slug: p2pe_solution_aov
+    title: Solution P-ROV Template
+    type: template
+    published: "2025-07-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_solution_aov
+    verified: false
+  - slug: p2p2_mmst
+    title: Merchant-Managed Solution P-ROV Template
+    type: template
+    published: "2025-07-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2p2_mmst
+    verified: false
+  - slug: p2p2_enc_mgt
+    title: Encryption Management Services P-ROV Template
+    type: template
+    published: "2025-07-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2p2_enc_mgt
+    verified: false
+  - slug: p2pe_app_template
+    title: Application P-ROV Template
+    type: template
+    published: "2025-07-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_app_template
+    verified: false
+  - slug: p2p2_key_mgt
+    title: Key Management Services P-ROV Template
+    type: template
+    published: "2025-07-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2p2_key_mgt
+    verified: false
+  - slug: p2pe_summary_changes
+    title: P2PE Summary of Changes
+    type: standard
+    published: "2025-06-30"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_summary_changes
+    verified: false
+  - slug: p2pe_solution_requirements
+    title: P2PE Standard
+    type: standard
+    published: "2025-06-30"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_solution_requirements
+    verified: false
+  - slug: p2pe_cis
+    title: P2PE Change Impact Template
+    type: guidance
+    published: "2024-09-02"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_cis
+    verified: false
+  - slug: p2pe_aov_temp
+    title: P2PE Product AOV
+    type: guidance
+    published: "2024-09-02"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_aov_temp
+    verified: false
+  - slug: p2pe-faq-val-pro-merch
+    title: Frequently Asked Questions (FAQs) for Validation Processes for Merchant-Managed Solutions
+    type: faq
+    published: "2022-02-24"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-faq-val-pro-merch
+    verified: false
+  - slug: p2pe-sol-inv
+    title: P2PE Solution Inventory Template
+    type: guidance
+    published: "2021-04-21"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-sol-inv
+    verified: false
+  - slug: p2pe-program_guide_v2
+    title: P2PE Program Guide
+    type: guidance
+    published: "2020-12-16"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-program_guide_v2
+    verified: false
+  - slug: p2pe-glance
+    title: PCI P2PE At-a-Glance
+    type: guidance
+    published: "2020-09-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-glance
+    verified: false
+  - slug: p2pe-merchant-flyer
+    title: PCI P2PE Merchant Overview
+    type: guidance
+    published: "2020-09-17"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-merchant-flyer
+    verified: false
+  - slug: p2pe-ass-guid
+    title: Assessment Guidance for Non-listed Encryption Solutions
+    type: guidance
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-ass-guid
+    verified: false
+  - slug: p2pe-ass-guid-faq
+    title: "FAQs: Assessment Guidance for Non-listed Encryption Solutions"
+    type: faq
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-ass-guid-faq
+    verified: false
+  - slug: p2pe_component_aov
+    title: P2PE Component P-ROV Template
+    type: template
+    published: "2020-03-12"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_component_aov
+    verified: false
+  - slug: p2pe-pim
+    title: PIM Template
+    type: guidance
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-pim
+    verified: false
+  - slug: p2pe-glossary
+    title: P2PE Glossary
+    type: guidance
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-glossary
+    verified: false
+  - slug: p2pe-sol-aov
+    title: Solution AOV
+    type: template
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-sol-aov
+    verified: false
+  - slug: p2pe-comp-aov
+    title: Component AOV
+    type: template
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-comp-aov
+    verified: false
+  - slug: p2pe-app-aov
+    title: Application AOV
+    type: template
+    published: "2019-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-app-aov
+    verified: false
+  - slug: p2pe-vra-v2
+    title: P2PE Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-vra-v2
+    verified: false
+  - slug: p2pe_case_study_solution
+    title: PCI P2PE Case Study – Bluefin and PriceSmart
+    type: guidance
+    published: "2017-08-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_case_study_solution
+    verified: false
+  - slug: p2pe_case_study_solution_cardconnect
+    title: PCI P2PE Case Study - CardConnect and Northwestern University
+    type: guidance
+    published: "2017-03-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe_case_study_solution_cardconnect
+    verified: false
+  - slug: p2pe-case-study-2
+    title: PCI P2PE Case Study - IPS and Paul Smith
+    type: guidance
+    published: "2015-08-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-case-study-2
+    verified: false
+  - slug: p2pe-case-study
+    title: PCI P2PE Case Study - Bluefin and Hillman
+    type: guidance
+    published: "2015-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-case-study
+    verified: false
+  - slug: p2pe-interim-assessment-for-solutions
+    title: P2PE Interim Assessment for Solutions
+    type: guidance
+    published: "2014-08-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-interim-assessment-for-solutions
+    verified: false
+  - slug: p2pe-technical-faq
+    title: P2PE Technical FAQs
+    type: faq
+    published: "2014-07-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-technical-faq
+    verified: false
+  - slug: p2pe-designated-changes-to-solutions
+    title: P2PE Designated Changes to Solutions
+    type: guidance
+    published: "2014-03-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-designated-changes-to-solutions
+    verified: false
+  - slug: p2pe-solutions-requirements-testing
+    title: P2PE Hardware/Hybrid Solution Requirements and Testing Procedures
+    type: standard
+    published: "2013-07-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-solutions-requirements-testing
+    verified: false
+  - slug: p2pe-hardware
+    title: P2PE Hardware/Hardware Solution Requirements and Testing Procedures
+    type: standard
+    published: "2013-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-hardware
+    verified: false
+  - slug: p2pe-hardware-changes-v1
+    title: P2PE Summary of Changes from Initial Release
+    type: standard
+    published: "2012-04-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=p2pe&document=p2pe-hardware-changes-v1
+    verified: false

@@ -1,0 +1,53 @@
+name: Daily RSS refresh
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC daily
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Fetch RSS feed
+        run: pnpm fetch-rss
+
+      - name: Emit change feed
+        run: |
+          if git diff --quiet; then
+            echo "No changes — skipping commit and deploy"
+            echo "HAS_CHANGES=false" >> $GITHUB_ENV
+          else
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+          fi
+
+      - name: Commit updated data
+        if: env.HAS_CHANGES == 'true'
+        run: |
+          git config user.name  "standardsatlas-bot"
+          git config user.email "bot@standardsatlas.org"
+          git add src/content/standards/ public/change-feed.json public/change-feed.xml || true
+          git commit -m "chore: RSS refresh $(date -u +%Y-%m-%d)"
+          git push
+
+      # Cloudflare Pages picks up the push and rebuilds automatically.
+      # The deploy job above handles explicit deploys on push to main.

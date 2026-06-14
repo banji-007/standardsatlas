@@ -1,0 +1,142 @@
+slug: pts-poi
+name: pts-poi
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/ptspoi
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: pts_approval_guide
+    title: Device Testing and Approval Program Guide
+    type: guidance
+    published: "2026-05-18"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pts_approval_guide
+    verified: false
+  - slug: pci_pts_faqs
+    title: PTS POI Technical Frequently Asked Questions
+    type: faq
+    published: "2026-05-12"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_pts_faqs
+    verified: false
+  - slug: point_of_interaction_(poi)
+    title: Point of Interaction (POI)
+    type: guidance
+    published: "2025-05-29"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=point_of_interaction_(poi)
+    verified: false
+  - slug: pci_pts_poi_sr_2
+    title: Point of Interaction (POI) Modular Security Requirements
+    type: standard
+    published: "2025-05-29"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_pts_poi_sr_2
+    verified: false
+  - slug: pci-pts-summary
+    title: Point of Interaction (POI) Modular Security Requirements Summary of Changes
+    type: guidance
+    published: "2025-05-29"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci-pts-summary
+    verified: false
+  - slug: pci-pts-change-form
+    title: PTS Administrative Change Request Form
+    type: template
+    published: "2024-04-03"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci-pts-change-form
+    verified: false
+  - slug: pci-att-val
+    title: PTS Attestation of Validation Form
+    type: template
+    published: "2024-04-03"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci-att-val
+    verified: false
+  - slug: pci-dev-att
+    title: PTS Device Attestation
+    type: template
+    published: "2024-04-03"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci-dev-att
+    verified: false
+  - slug: pts_vendor_release_agreement
+    title: PTS Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pts_vendor_release_agreement
+    verified: false
+  - slug: pci-pts-poi-vq
+    title: Point of Interaction (POI) Modular Evaluation Vendor Questionnaire
+    type: guidance
+    published: "2018-03-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci-pts-poi-vq
+    verified: false
+  - slug: pci_ped_general_faqs
+    title: General Frequently Asked Questions
+    type: faq
+    published: "2013-05-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_ped_general_faqs
+    verified: false
+  - slug: pci_ped_technical_faqs
+    title: PTS PED & EPP Technical FAQs
+    type: faq
+    published: "2010-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_ped_technical_faqs
+    verified: false
+  - slug: upt
+    title: Unattended Payment Terminal (UPT) Security Requirements
+    type: standard
+    published: "2009-04-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=upt
+    verified: false
+  - slug: unattended_payment_terminals_(upt)
+    title: Unattended Payment Terminals (UPT)
+    type: guidance
+    published: "2009-04-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=unattended_payment_terminals_(upt)
+    verified: false
+  - slug: ped_v2_1_form
+    title: POS PIN Entry Device Form
+    type: standard
+    published: "2009-01-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=ped_v2_1_form
+    verified: false
+  - slug: pos_pin_entry_device_(ped)
+    title: POS PIN Entry Device (PED)
+    type: guidance
+    published: "2009-01-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pos_pin_entry_device_(ped)
+    verified: false
+  - slug: encrypting_pin_pad_(epp)
+    title: Encrypting PIN Pad (EPP)
+    type: guidance
+    published: "2009-01-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=encrypting_pin_pad_(epp)
+    verified: false
+  - slug: ped_v2_0_questionnaire
+    title: POS PIN Entry Device (PED) Questionnaire
+    type: guidance
+    published: "2007-07-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=ped_v2_0_questionnaire
+    verified: false
+  - slug: pos_pin_ed
+    title: POS PIN Entry Device Security Requirements
+    type: standard
+    published: "2006-11-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pos_pin_ed
+    verified: false

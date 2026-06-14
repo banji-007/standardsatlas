@@ -1,0 +1,72 @@
+slug: 3ds-core
+name: 3ds-core
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/3dscore
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: 3ds_matrix
+    title: PCI 3DS Data Matrix
+    type: standard
+    published: "2026-01-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_matrix
+    verified: false
+  - slug: 3ds_core_faq
+    title: 3DS Core v1.x Technical FAQs
+    type: faq
+    published: "2023-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_faq
+    verified: false
+  - slug: 2ds_faq
+    title: Overview of PCI 3DS Core Security Standard
+    type: faq
+    published: "2019-10-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=2ds_faq
+    verified: false
+  - slug: 3ds_sdk
+    title: PCI 3DS Software Development Kit Program Guide
+    type: guidance
+    published: "2018-07-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_sdk
+    verified: false
+  - slug: 3ds_core_att
+    title: PCI 3DS Core Attestation of Compliance
+    type: template
+    published: "2017-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_att
+    verified: false
+  - slug: 3ds_core_rt
+    title: PCI 3DS Core ROC Reporting Template
+    type: template
+    published: "2017-12-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_rt
+    verified: false
+  - slug: 3ds_core_qual
+    title: 3DS Core Qualification Requirements
+    type: guidance
+    published: "2017-11-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_qual
+    verified: false
+  - slug: 3ds_core
+    title: 3DS Core Assessor Program Guide
+    type: guidance
+    published: "2017-11-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core
+    verified: false
+  - slug: 3ds_standard
+    title: PCI 3DS Core Security Standard
+    type: standard
+    published: "2017-10-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_standard
+    verified: false

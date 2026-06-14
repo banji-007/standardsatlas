@@ -1,0 +1,72 @@
+slug: spoc
+name: spoc
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/spoc
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: spoc_faq
+    title: SPoC Technical FAQs
+    type: faq
+    published: "2025-09-12"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=spoc_faq
+    verified: false
+  - slug: spoc_prog_guide
+    title: SPoC Program Guide
+    type: guidance
+    published: "2021-05-20"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=spoc_prog_guide
+    verified: false
+  - slug: spoc_uns_os
+    title: SPoC Unsupported OS Annex
+    type: standard
+    published: "2021-05-20"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=spoc_uns_os
+    verified: false
+  - slug: spoc_aov
+    title: SPoC AOV
+    type: guidance
+    published: "2021-05-20"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=spoc_aov
+    verified: false
+  - slug: pin_cots_msr
+    title: SPoC MSR Annex
+    type: standard
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=pin_cots_msr
+    verified: false
+  - slug: pin_cots_sec_req
+    title: Software-Based PIN Entry on COTS Security Requirements
+    type: standard
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=pin_cots_sec_req
+    verified: false
+  - slug: pin_cots_sum
+    title: SPoC Summary of Changes
+    type: standard
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=pin_cots_sum
+    verified: false
+  - slug: pin_cots_tst_req
+    title: Software-Based PIN Entry on COTS Test Requirements
+    type: standard
+    published: "2020-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=pin_cots_tst_req
+    verified: false
+  - slug: spoc_vendor_release_agreement
+    title: SPoC Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=spoc&document=spoc_vendor_release_agreement
+    verified: false

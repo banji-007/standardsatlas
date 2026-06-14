@@ -1,0 +1,136 @@
+slug: secure-software
+name: secure-software
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/securesoftware
+verified: false
+last_verified: null
+current_version: null
+versions: []
+documents:
+  - slug: sec_sware_faqs_v2
+    title: Secure Software v2.x Technical FAQs
+    type: standard
+    published: "2026-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_faqs_v2
+    verified: false
+  - slug: sec_sware_faqs
+    title: Secure Software v1.x Technical FAQs
+    type: standard
+    published: "2026-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_faqs
+    verified: false
+  - slug: sec_sware_aov_v2
+    title: Secure Software Attestation of Validation Template
+    type: template
+    published: "2026-02-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_aov_v2
+    verified: false
+  - slug: sec_sware_rov_rep_template_v2
+    title: Secure Software Report on Validation Template
+    type: template
+    published: "2026-02-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_rov_rep_template_v2
+    verified: false
+  - slug: secure_software_change_impact_template
+    title: Secure Software Change Impact Template
+    type: template
+    published: "2026-02-10"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=secure_software_change_impact_template
+    verified: false
+  - slug: sec_sware_reqs_procs
+    title: Secure Software Standard
+    type: standard
+    published: "2026-01-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_reqs_procs
+    verified: false
+  - slug: sec_sware_sai
+    title: Secure Software Standard – Sensitive Asset Identification
+    type: standard
+    published: "2026-01-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_sai
+    verified: false
+  - slug: sec_sware_stdch
+    title: Secure Software Standard Summary of Changes
+    type: standard
+    published: "2026-01-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_stdch
+    verified: false
+  - slug: sec_sware_pg
+    title: Secure Software Program Guide
+    type: guidance
+    published: "2026-01-15"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_pg
+    verified: false
+  - slug: sec_sware_rov_rep_template
+    title: Secure Software Report on Validation (ROV) Template
+    type: template
+    published: "2023-04-14"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_rov_rep_template
+    verified: false
+  - slug: sec_sware_aov
+    title: Secure Software Attestation of Validation (AOV)
+    type: template
+    published: "2023-04-14"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_aov
+    verified: false
+  - slug: sec_sware-qual_req_ssfa
+    title: Qualification Requirements for SSF Assessors
+    type: guidance
+    published: "2022-12-07"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware-qual_req_ssfa
+    verified: false
+  - slug: sec_sware_gloss
+    title: SSF Glossary of Terms, Abbreviations, and Acronyms
+    type: guidance
+    published: "2022-12-07"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_gloss
+    verified: false
+  - slug: faq_ssf_1_2
+    title: FAQs for SSF v1.2
+    type: faq
+    published: "2022-12-07"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=faq_ssf_1_2
+    verified: false
+  - slug: sec_sware_trans_padss_to_ssf
+    title: Transitioning from PA-DSS to the PCI Software Security Framework
+    type: guidance
+    published: "2021-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_trans_padss_to_ssf
+    verified: false
+  - slug: faq_ssf_1_1
+    title: FAQs for SSF v1.1
+    type: faq
+    published: "2021-08-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=faq_ssf_1_1
+    verified: false
+  - slug: ssf_vend_agr
+    title: Software Security Framework Vendor Release Agreement
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=ssf_vend_agr
+    verified: false
+  - slug: sec_sware_faag
+    title: Software Security Framework At-a-Glance
+    type: guidance
+    published: "2019-09-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_faag
+    verified: false

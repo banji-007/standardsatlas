@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { statusGlyph, statusLabel } from '../../lib/tokens';
+import TimelineIsland from '../../components/islands/TimelineIsland';
+
+export async function getStaticPaths() {
+  const standards = await getCollection('standards');
+  return standards.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data: standard } = entry;
+
+const hasProvisional =
+  !standard.verified ||
+  standard.versions.some(v => !v.verified) ||
+  standard.documents.some(d => !d.verified);
+
+function formatDate(d: Date | null): string {
+  if (!d) return '—';
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+const timelineEvents = [
+  ...standard.versions.flatMap(v => [
+    v.published ? { id: `${entry.id}-${v.version}-pub`, content: `v${v.version} published`, start: v.published, group: standard.name, className: `status-${v.status}` } : null,
+    v.retired ? { id: `${entry.id}-${v.version}-ret`, content: `v${v.version} retired`, start: v.retired, group: standard.name, className: 'status-retired' } : null,
+  ]).filter(Boolean),
+  ...standard.documents.flatMap(d =>
+    d.published ? [{ id: `doc-${d.slug}`, content: d.title, start: d.published, group: `${standard.name} – Documents`, className: `doc-${d.type}` }] : []
+  ),
+];
+---
+
+<BaseLayout
+  title={standard.name}
+  description={`${standard.name} — status, version history, supporting documents, and sunset dates. PCI Standards Atlas.`}
+  canonicalUrl={`https://standardsatlas.org/standard/${entry.id}`}
+  ogType="article"
+>
+  {hasProvisional && (
+    <div class="provisional-notice" role="note">
+      <span aria-hidden="true">⏳</span>
+      <span>Some data on this page has not yet been manually verified against official sources. Fields marked "provisional" should be confirmed before citing.</span>
+    </div>
+  )}
+
+  <div class="standard-header">
+    <div class="header-main">
+      <h1>{standard.name}</h1>
+      <span class="status-badge" data-status={standard.status}>
+        {statusGlyph[standard.status]} {statusLabel[standard.status]}
+      </span>
+    </div>
+    <div class="header-meta">
+      {standard.current_version && (
+        <span>Current version: <code>{standard.current_version}</code></span>
+      )}
+      <span>
+        Source: <a href={standard.source_url} class="source-link" rel="noopener noreferrer" target="_blank">
+          pcisecuritystandards.org ↗
+        </a>
+      </span>
+      {standard.last_verified && (
+        <span class="verified-date">
+          Last verified: <time datetime={standard.last_verified.toISOString()}>{formatDate(standard.last_verified)}</time>
+        </span>
+      )}
+    </div>
+    {standard.notes && <p class="standard-notes">{standard.notes}</p>}
+  </div>
+
+  {standard.versions.length > 0 && (
+    <section class="section" id="versions">
+      <h2>Version history</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Status</th>
+            <th>Published</th>
+            <th>Retired</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standard.versions.map(v => (
+            <tr>
+              <td class="mono">{v.version}</td>
+              <td>
+                <span class="status-badge" data-status={v.status}>
+                  {statusGlyph[v.status]} {statusLabel[v.status]}
+                </span>
+              </td>
+              <td>{formatDate(v.published)}</td>
+              <td>{formatDate(v.retired)}</td>
+              <td>
+                <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                {!v.verified && <span class="unverified"> provisional</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  )}
+
+  {standard.documents.length > 0 && (
+    <section class="section" id="documents">
+      <h2>Supporting documents</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Published</th>
+            <th>Applies to</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standard.documents.map(doc => (
+            <tr>
+              <td>{doc.title}</td>
+              <td class="mono">{doc.type}</td>
+              <td>{formatDate(doc.published)}</td>
+              <td class="mono">{doc.applies_to_version ?? '—'}</td>
+              <td>
+                <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                {!doc.verified && <span class="unverified"> provisional</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  )}
+
+  <section class="section" id="timeline">
+    <h2>Timeline</h2>
+    <div id="timeline-container" style="height: 180px;">
+      <TimelineIsland events={timelineEvents} client:visible />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .standard-header {
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-main {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+  }
+
+  .header-main h1 { margin-bottom: 0; }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .standard-notes {
+    margin-top: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .verified-date { font-family: var(--font-mono); }
+
+  .unverified {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-under-review);
+  }
+</style>

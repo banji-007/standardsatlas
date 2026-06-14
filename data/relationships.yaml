@@ -1,0 +1,61 @@
+- id: pa-dss-superseded-by-secure-software
+  type: supersede
+  from: pa-dss
+  to:
+    - secure-software
+    - secure-slc
+  state: complete
+  effective_date: 2022-10-28
+  description: "PA-DSS retired; replaced by the Secure Software Standard and Secure SLC"
+  source_url: https://www.pcisecuritystandards.org/standards/pa-dss/
+  verified: true
+
+- id: spoc-converges-into-mpoc
+  type: converge
+  from: spoc
+  to: mpoc
+  state: in-progress
+  effective_date: 2026-05-01
+  description: "SPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted"
+  source_url: https://www.pcisecuritystandards.org/standards/spoc/
+  verified: false
+
+- id: cpoc-converges-into-mpoc
+  type: converge
+  from: cpoc
+  to: mpoc
+  state: in-progress
+  effective_date: 2026-05-01
+  description: "CPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted"
+  source_url: https://www.pcisecuritystandards.org/standards/cpoc/
+  verified: false
+
+- id: pin-converges-into-kmo
+  type: converge
+  from: pin-security
+  to: kmo
+  state: planned
+  effective_date: null
+  description: "PIN Security key-management requirements to be consolidated into KMO (expected H2 2026)"
+  source_url: https://www.pcisecuritystandards.org/blog/
+  verified: false
+
+- id: 3ds-sdk-integrates-into-secure-software
+  type: associate
+  from: 3ds-sdk
+  to: secure-software
+  state: planned
+  effective_date: null
+  description: "3DS SDK requirements planned to integrate into the Secure Software Standard"
+  source_url: https://www.pcisecuritystandards.org/standards/3ds/
+  verified: false
+
+- id: 3ds-core-aligns-with-pci-dss
+  type: associate
+  from: 3ds-core
+  to: pci-dss
+  state: planned
+  effective_date: null
+  description: "3DS Core potential alignment with PCI DSS (proposed)"
+  source_url: https://www.pcisecuritystandards.org/standards/3ds/
+  verified: false

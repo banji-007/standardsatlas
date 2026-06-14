@@ -1,0 +1,9 @@
+- slug: emvco
+  name: EMVCo
+  url: https://www.emvco.com
+  verified: true
+
+- slug: iso
+  name: ISO (International Organization for Standardization)
+  url: https://www.iso.org
+  verified: true

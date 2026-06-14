@@ -1,0 +1,147 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = 'An independent, citeable reference to the PCI security standards landscape — every current standard, its version lineage, status, supporting guidance, and sunset dates.',
+  canonicalUrl = Astro.url.href,
+  ogType = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://standardsatlas.org';
+const fullTitle = title === 'PCI Standards Atlas'
+  ? title
+  : `${title} — PCI Standards Atlas`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="PCI Standards Atlas" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: fullTitle,
+      description,
+      url: canonicalUrl,
+      publisher: {
+        '@type': 'Organization',
+        name: 'PCI Standards Atlas',
+        url: siteUrl,
+      },
+    })} />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header>
+      <nav class="site-nav">
+        <a href="/" class="site-name">PCI Standards Atlas</a>
+        <div class="nav-links">
+          <a href="/timeline">Timeline</a>
+        </div>
+        <button
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+          onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? '' : 'dark'"
+        >
+          ◑
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p>
+          Independent project, not affiliated with or endorsed by PCI SSC.
+          PCI, PCI DSS, and related marks are trademarks of PCI Security Standards Council LLC.
+        </p>
+        <p>
+          <a href="https://github.com/standardsatlas/standardsatlas">Source on GitHub</a>
+          &middot;
+          Code: MIT &middot; Data: CC BY 4.0
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-4);
+    max-width: var(--content-width);
+    margin-inline: auto;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-name {
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-4);
+    font-size: 0.9375rem;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-1) var(--space-2);
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1;
+    transition: border-color var(--duration-fast) var(--easing);
+  }
+
+  .theme-toggle:hover { border-color: var(--color-accent); }
+
+  footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .footer-inner {
+    max-width: var(--content-width);
+    margin-inline: auto;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer-inner p { margin-bottom: var(--space-2); }
+</style>

@@ -1,0 +1,59 @@
+slug: pts-hsm
+name: PTS Hardware Security Module (HSM)
+status: active
+source_url: https://www.pcisecuritystandards.org/standards/pts/
+verified: false
+last_verified: null
+current_version: "5.0"
+notes: >-
+  v5.0 published 18 May 2026 (provisional — confirm against the PTS HSM standard page). Separate from PTS POI; covers
+  hardware security modules used in payment environments.
+versions:
+  - version: "5.0"
+    published: "2026-05-18"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/standards/pts/
+    verified: false
+  - version: "4.0"
+    published: null
+    retired: null
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/standards/pts/
+    verified: false
+documents:
+  - slug: hardware_security_module_(hsm)
+    title: Hardware Security Module (HSM)
+    type: guidance
+    published: "2026-05-18"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=hardware_security_module_(hsm)
+    verified: false
+  - slug: pci_hsm_security_requirements
+    title: Hardware Security Module (HSM) Modular Security Requirements
+    type: standard
+    published: "2026-05-18"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_hsm_security_requirements
+    verified: false
+  - slug: hsm_security_requirements_mods
+    title: "HSM Security Requirements Modifications: Summary of Changes"
+    type: guidance
+    published: "2026-05-18"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=hsm_security_requirements_mods
+    verified: false
+  - slug: pci_pts_hsm_technical_faqs
+    title: PTS HSM Technical Frequently Asked Questions
+    type: faq
+    published: "2026-05-18"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=pci_pts_hsm_technical_faqs
+    verified: false
+  - slug: hsm-eval-vendor
+    title: HSM Evaluation Vendor Questionnaire
+    type: guidance
+    published: "2016-06-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pts&document=hsm-eval-vendor
+    verified: false
