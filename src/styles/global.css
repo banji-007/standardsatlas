@@ -75,11 +75,24 @@ code, .mono {
   border: 1px solid currentColor;
 }
 
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  background: currentColor;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
 .status-badge[data-status="active"]           { color: var(--color-active); }
 .status-badge[data-status="under-review"]     { color: var(--color-under-review); }
 .status-badge[data-status="forthcoming"]      { color: var(--color-forthcoming); }
 .status-badge[data-status="sunset-scheduled"] { color: var(--color-sunset-scheduled); }
 .status-badge[data-status="retired"]          { color: var(--color-retired); }
+
+.status-badge[data-status="sunset-scheduled"]::before { border-radius: 2px; transform: rotate(45deg); }
+.status-badge[data-status="retired"]::before          { border-radius: 2px; }
 
 /* Provisional notice */
 .provisional-notice {

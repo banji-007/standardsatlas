@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { statusGlyph, statusLabel } from '../lib/tokens';
+import { statusLabel } from '../lib/tokens';
 
 const standards = await getCollection('standards');
 standards.sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -51,7 +51,7 @@ const lastVerified = standards
             </td>
             <td>
               <span class="status-badge" data-status={entry.data.status}>
-                {statusGlyph[entry.data.status]} {statusLabel[entry.data.status]}
+                {statusLabel[entry.data.status]}
               </span>
             </td>
             <td class="mono">{entry.data.current_version ?? '—'}</td>

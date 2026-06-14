@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { statusGlyph, statusLabel } from '../../lib/tokens';
+import { statusLabel } from '../../lib/tokens';
 import TimelineIsland from '../../components/islands/TimelineIsland';
 
 export async function getStaticPaths() {
@@ -44,7 +44,6 @@ const timelineEvents = [
 >
   {hasProvisional && (
     <div class="provisional-notice" role="note">
-      <span aria-hidden="true">⏳</span>
       <span>Some data on this page has not yet been manually verified against official sources. Fields marked "provisional" should be confirmed before citing.</span>
     </div>
   )}
@@ -53,7 +52,7 @@ const timelineEvents = [
     <div class="header-main">
       <h1>{standard.name}</h1>
       <span class="status-badge" data-status={standard.status}>
-        {statusGlyph[standard.status]} {statusLabel[standard.status]}
+        {statusLabel[standard.status]}
       </span>
     </div>
     <div class="header-meta">
@@ -93,7 +92,7 @@ const timelineEvents = [
               <td class="mono">{v.version}</td>
               <td>
                 <span class="status-badge" data-status={v.status}>
-                  {statusGlyph[v.status]} {statusLabel[v.status]}
+                  {statusLabel[v.status]}
                 </span>
               </td>
               <td>{formatDate(v.published)}</td>

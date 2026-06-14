@@ -24,13 +24,6 @@ export const tokens = {
   },
 } as const;
 
-export const statusGlyph: Record<Status, string> = {
-  active: '●',
-  'under-review': '⏳',
-  forthcoming: '⏳',
-  'sunset-scheduled': '⚠',
-  retired: '✕',
-};
 
 export const statusLabel: Record<Status, string> = {
   active: 'Active',
