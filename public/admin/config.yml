@@ -2,10 +2,8 @@ backend:
   name: github
   repo: banji-007/standardsatlas
   branch: main
-  # Sveltia's hosted auth proxy — no server needed.
-  # Register your GitHub OAuth App at https://github.com/settings/applications/new
-  # and set the callback URL to https://sveltia-cms-auth.workers.dev/callback
   base_url: https://sveltia-cms-auth.workers.dev
+  app_id: Ov23liupm59UH5NBP4Si
 
 # Uncomment to use local backend during development (requires: npx @sveltia/cms-backend-proxy)
 # local_backend: true
