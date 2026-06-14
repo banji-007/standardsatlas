@@ -1,11 +1,22 @@
 slug: cpoc
 name: Contactless Payments on COTS (CPoC)
-status: active
+status: sunset-scheduled
 source_url: https://www.pcisecuritystandards.org/standards/cpoc
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "1.0"
+notes: >-
+  Released December 4, 2019. Sunset period announced 01 May 2026. No new CPoC
+  submissions accepted after 31 October 2026. Existing listings remain valid
+  through their normal lifecycle. Converging into PCI MPoC.
+  Source: PCI SSC Bulletin May 2026.
+versions:
+  - version: "1.0"
+    published: "2019-12-04"
+    retired: "2026-10-31"
+    status: sunset-scheduled
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+    verified: false
 documents:
   - slug: cpoc_prog_guide
     title: Contactless Payments on COTS (CPoC™) Technical FAQs

@@ -4,8 +4,42 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/ptspoi
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "7.0"
+notes: >-
+  PTS POI device approvals run on per-version expiry schedules; "retired" dates
+  below reflect expiry of device approvals under each requirements version, not
+  the retirement of the document itself. v6 expiry was extended June 17, 2025.
+versions:
+  - version: "7.0"
+    published: null
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/document_library/
+    verified: false
+  - version: "6.0"
+    published: null
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "5.0"
+    published: null
+    retired: null
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "4.0"
+    published: null
+    retired: null
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "3.0"
+    published: null
+    retired: "2020-02-03"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
 documents:
   - slug: pts_approval_guide
     title: Device Testing and Approval Program Guide

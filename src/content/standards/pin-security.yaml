@@ -4,8 +4,17 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/pinsecurity
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "3.0"
+notes: >-
+  v3.0 published August 2018. A revision with updated testing procedures was
+  published March 2021 (confirm whether this constitutes v3.1 or a v3.0 revision).
+versions:
+  - version: "3.0"
+    published: "2018-08-01"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
 documents:
   - slug: pcipinpin_rocrtp
     title: PIN ROC Reporting Template

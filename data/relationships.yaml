@@ -16,9 +16,9 @@
   to: mpoc
   state: in-progress
   effective_date: 2026-05-01
-  description: "SPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted"
-  source_url: https://www.pcisecuritystandards.org/standards/spoc/
-  verified: false
+  description: "SPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
+  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+  verified: true
 
 - id: cpoc-converges-into-mpoc
   type: converge
@@ -26,9 +26,9 @@
   to: mpoc
   state: in-progress
   effective_date: 2026-05-01
-  description: "CPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted"
-  source_url: https://www.pcisecuritystandards.org/standards/cpoc/
-  verified: false
+  description: "CPoC sunset period 1 May – 31 Oct 2026; no new submissions accepted after 31 Oct 2026; existing listings valid through normal lifecycle"
+  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+  verified: true
 
 - id: pin-converges-into-kmo
   type: converge
@@ -44,11 +44,11 @@
   type: associate
   from: 3ds-sdk
   to: secure-software
-  state: planned
-  effective_date: null
-  description: "3DS SDK requirements planned to integrate into the Secure Software Standard"
-  source_url: https://www.pcisecuritystandards.org/standards/3ds/
-  verified: false
+  state: complete
+  effective_date: 2026-01-15
+  description: "EMVCo 3DS SDKs now eligible for assessment under PCI Secure Software Standard v2.0 (released Jan 2026); 3DS SDK standard entering sunset Oct 2026"
+  source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_3DS_SDK_Sunset_Bulletin.pdf
+  verified: true
 
 - id: 3ds-core-aligns-with-pci-dss
   type: associate

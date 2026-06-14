@@ -4,8 +4,17 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/3dscore
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "1.0"
+notes: >-
+  3DS Core v1.x per FAQ title (Sep 2023). 3DS Data Matrix updated to v1.2 in
+  Jan 2026. The 3DS SDK sunset (Oct 2026) explicitly does not affect 3DS Core.
+versions:
+  - version: "1.0"
+    published: "2017-10-01"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_standard
+    verified: false
 documents:
   - slug: 3ds_matrix
     title: PCI 3DS Data Matrix

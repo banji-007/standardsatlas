@@ -4,8 +4,19 @@ status: retired
 source_url: https://www.pcisecuritystandards.org/standards/padss
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "3.1"
+notes: >-
+  PA-DSS retirement announced February 2021 and confirmed in PCI SSC news RSS.
+  Standard is listed as Retired in PCI SSC navigation. Superseded by PCI Secure
+  Software Standard and Secure SLC. Retirement date requires verification against
+  official PCI SSC announcement.
+versions:
+  - version: "3.1"
+    published: null
+    retired: "2022-10-28"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/standards/padss
+    verified: false
 documents:
   - slug: pa-dss_vendor_release_agreement
     title: PA-DSS Vendor Release Agreement

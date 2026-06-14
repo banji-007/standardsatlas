@@ -4,8 +4,32 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/securesoftware
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "2.0"
+versions:
+  - version: "2.0"
+    published: "2026-01-15"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_3DS_SDK_Sunset_Bulletin.pdf
+    verified: false
+  - version: "1.2"
+    published: "2022-12-07"
+    retired: "2026-01-15"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "1.1"
+    published: null
+    retired: "2022-12-07"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "1.0"
+    published: "2019-09-01"
+    retired: null
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=document
+    verified: false
 documents:
   - slug: sec_sware_faqs_v2
     title: Secure Software v2.x Technical FAQs

@@ -4,8 +4,20 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/secureslc
 verified: false
 last_verified: null
-current_version: null
-versions: []
+current_version: "1.1"
+versions:
+  - version: "1.1"
+    published: "2021-02-18"
+    retired: null
+    status: active
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
+  - version: "1.0"
+    published: null
+    retired: "2021-02-18"
+    status: retired
+    source_url: https://www.pcisecuritystandards.org/rssfeed/?type=news
+    verified: false
 documents:
   - slug: sec_slc_roc_aoc
     title: Secure SLC Attestation of Compliance (AOC)
