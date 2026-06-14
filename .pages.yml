@@ -4,7 +4,6 @@ content:
   - name: standards
     label: Standards
     path: src/content/standards
-    filename: "{fields.slug}"
     view:
       fields: [name, status, current_version, verified]
     fields:
@@ -14,39 +13,37 @@ content:
         label: Status
         type: select
         options:
-          values:
-            - { value: active, label: Active }
-            - { value: under-review, label: Under Review }
-            - { value: sunset-scheduled, label: Sunset Scheduled }
-            - { value: retired, label: Retired }
-            - { value: forthcoming, label: Forthcoming }
+          - { value: active, label: Active }
+          - { value: under-review, label: Under Review }
+          - { value: sunset-scheduled, label: Sunset Scheduled }
+          - { value: retired, label: Retired }
+          - { value: forthcoming, label: Forthcoming }
       - { name: source_url, label: Source URL, type: string }
       - { name: verified, label: Verified, type: boolean }
-      - { name: last_verified, label: Last Verified, type: date, required: false }
-      - { name: current_version, label: Current Version, type: string, required: false }
-      - { name: notes, label: Notes, type: text, required: false }
+      - { name: last_verified, label: Last Verified, type: date }
+      - { name: current_version, label: Current Version, type: string }
+      - { name: notes, label: Notes, type: text }
       - name: versions
         label: Versions
-        type: array
-        required: false
+        type: object
+        list: true
         fields:
           - { name: version, label: Version, type: string }
-          - { name: published, label: Published, type: date, required: false }
-          - { name: retired, label: Retired, type: date, required: false }
+          - { name: published, label: Published, type: date }
+          - { name: retired, label: Retired, type: date }
           - name: status
             label: Status
             type: select
             options:
-              values:
-                - { value: active, label: Active }
-                - { value: sunset-scheduled, label: Sunset Scheduled }
-                - { value: retired, label: Retired }
-          - { name: source_url, label: Source URL, type: string, required: false }
+              - { value: active, label: Active }
+              - { value: sunset-scheduled, label: Sunset Scheduled }
+              - { value: retired, label: Retired }
+          - { name: source_url, label: Source URL, type: string }
           - { name: verified, label: Verified, type: boolean }
       - name: documents
         label: Documents
-        type: array
-        required: false
+        type: object
+        list: true
         fields:
           - { name: slug, label: Slug, type: string }
           - { name: title, label: Title, type: string }
@@ -54,19 +51,18 @@ content:
             label: Type
             type: select
             options:
-              values:
-                - { value: standard, label: Standard }
-                - { value: guidance, label: Guidance }
-                - { value: faq, label: FAQ }
-                - { value: template, label: Template }
-                - { value: saq, label: SAQ }
-                - { value: report, label: Report }
-                - { value: bulletin, label: Bulletin }
-                - { value: supplemental, label: Supplemental }
-                - { value: program-guide, label: Program Guide }
-          - { name: published, label: Published, type: date, required: false }
-          - { name: applies_to_version, label: Applies to Version, type: string, required: false }
-          - { name: source_url, label: Source URL, type: string, required: false }
+              - { value: standard, label: Standard }
+              - { value: guidance, label: Guidance }
+              - { value: faq, label: FAQ }
+              - { value: template, label: Template }
+              - { value: saq, label: SAQ }
+              - { value: report, label: Report }
+              - { value: bulletin, label: Bulletin }
+              - { value: supplemental, label: Supplemental }
+              - { value: program-guide, label: Program Guide }
+          - { name: published, label: Published, type: date }
+          - { name: applies_to_version, label: Applies to Version, type: string }
+          - { name: source_url, label: Source URL, type: string }
           - { name: verified, label: Verified, type: boolean }
 
   # ── Relationships (single file) ────────────────────────────────────────────
@@ -76,29 +72,28 @@ content:
     fields:
       - name: relationships
         label: Relationship Edges
-        type: array
+        type: object
+        list: true
         fields:
           - { name: id, label: ID, type: string }
           - name: type
             label: Type
             type: select
             options:
-              values:
-                - { value: associate, label: Associate }
-                - { value: supersede, label: Supersede }
-                - { value: converge, label: Converge }
+              - { value: associate, label: Associate }
+              - { value: supersede, label: Supersede }
+              - { value: converge, label: Converge }
           - { name: from, label: "From (standard slug)", type: string }
           - { name: to, label: "To (standard slug)", type: string }
           - name: state
             label: State
             type: select
             options:
-              values:
-                - { value: planned, label: Planned }
-                - { value: in-progress, label: In Progress }
-                - { value: complete, label: Complete }
-          - { name: effective_date, label: Effective Date, type: date, required: false }
-          - { name: description, label: Description, type: text, required: false }
+              - { value: planned, label: Planned }
+              - { value: in-progress, label: In Progress }
+              - { value: complete, label: Complete }
+          - { name: effective_date, label: Effective Date, type: date }
+          - { name: description, label: Description, type: text }
           - { name: source_url, label: Source URL, type: string }
           - { name: verified, label: Verified, type: boolean }
 
@@ -109,9 +104,10 @@ content:
     fields:
       - name: external_bodies
         label: Bodies
-        type: array
+        type: object
+        list: true
         fields:
           - { name: slug, label: Slug, type: string }
           - { name: name, label: Name, type: string }
-          - { name: url, label: URL, type: string, required: false }
+          - { name: url, label: URL, type: string }
           - { name: verified, label: Verified, type: boolean }
