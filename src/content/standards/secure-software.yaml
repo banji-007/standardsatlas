@@ -123,6 +123,13 @@ documents:
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=faq_ssf_1_2
     verified: false
+  - slug: sec_sware-qual_req_ssfa
+    title: Qualification Requirements for SSF Assessors
+    type: guidance
+    published: "2022-12-07"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware-qual_req_ssfa
+    verified: false
   - slug: sec_sware_trans_padss_to_ssf
     title: Transitioning from PA-DSS to the PCI Software Security Framework
     type: guidance

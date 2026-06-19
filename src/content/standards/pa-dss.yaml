@@ -6,9 +6,8 @@ verified: true
 last_verified: "2026-06-14"
 current_version: "3.1"
 notes: >-
-  PA-DSS v3.1 retired October 28, 2022. Confirmed on page 5 of the PCI DSS
-  v3.2.1 to v4.0 Summary of Changes. Superseded by PCI Secure Software Standard
-  and Secure SLC. v3.1 was the final version published; no v3.2 exists.
+  PA-DSS v3.1 retired October 28, 2022. Confirmed on page 5 of the PCI DSS v3.2.1 to v4.0 Summary of Changes. Superseded
+  by PCI Secure Software Standard and Secure SLC. v3.1 was the final version published; no v3.2 exists.
 versions:
   - version: "3.1"
     published: null
@@ -85,6 +84,14 @@ documents:
     applies_to_version: null
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=dss_rov_reporting_template_changes
+    verified: false
+  - slug: qsa_validation_requi_v2
+    title: PA-QSA Qualification Requirements
+    type: guidance
+    published: "2014-02-03"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=pa-dss_pa-qsa_(archived)&document=qsa_validation_requi_v2
     verified: false
   - slug: dss_feedback_2012_doc
     title: Summary of PCI DSS and PA-DSS Feedback 2012

@@ -6,8 +6,8 @@ verified: false
 last_verified: null
 current_version: "1.0"
 notes: >-
-  3DS Core v1.x per FAQ title (Sep 2023). 3DS Data Matrix updated to v1.2 in
-  Jan 2026. The 3DS SDK sunset (Oct 2026) explicitly does not affect 3DS Core.
+  3DS Core v1.x per FAQ title (Sep 2023). 3DS Data Matrix updated to v1.2 in Jan 2026. The 3DS SDK sunset (Oct 2026)
+  explicitly does not affect 3DS Core.
 versions:
   - version: "1.0"
     published: "2017-10-01"
@@ -57,6 +57,20 @@ documents:
     published: "2017-12-01"
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_rt
+    verified: false
+  - slug: 3ds_core_qual
+    title: 3DS Core Qualification Requirements
+    type: guidance
+    published: "2017-11-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core_qual
+    verified: false
+  - slug: 3ds_core
+    title: 3DS Core Assessor Program Guide
+    type: guidance
+    published: "2017-11-01"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=3ds&document=3ds_core
     verified: false
   - slug: 3ds_standard
     title: PCI 3DS Core Security Standard

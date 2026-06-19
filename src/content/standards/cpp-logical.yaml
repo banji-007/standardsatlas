@@ -10,7 +10,8 @@ versions:
     published: "2022-01-13"
     retired: null
     status: active
-    source_url: https://www.pcisecuritystandards.org/about_us/press_releases/pci-security-standards-council-updates-card-production-and-provisioning-security-standard/
+    source_url: >-
+      https://www.pcisecuritystandards.org/about_us/press_releases/pci-security-standards-council-updates-card-production-and-provisioning-security-standard/
     verified: true
 documents:
   - slug: pci_card_production_technical_faqs
@@ -27,6 +28,20 @@ documents:
     published: "2025-12-22"
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_aoc_logical
+    verified: false
+  - slug: cpsa_qual
+    title: CPSA Qualification Requirements
+    type: guidance
+    published: "2024-03-28"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_qual
+    verified: false
+  - slug: cpsa_prog_guide
+    title: CPSA Program Guide
+    type: guidance
+    published: "2024-03-28"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=cpsa_prog_guide
     verified: false
   - slug: roc_reporting_template_logical_v3
     title: Card Production ROC Reporting Template - Logical

@@ -6,10 +6,9 @@ verified: true
 last_verified: "2026-06-14"
 current_version: "3.1"
 notes: >-
-  v3.1 published March 2021, confirmed by the PCI SSC Summary of Changes document.
-  v3.0 published August 2018 (initial release). Consolidation of PIN key-management
-  requirements into KMO is planned but has no firm date; v3.1 remains the current
-  authoritative version.
+  v3.1 published March 2021, confirmed by the PCI SSC Summary of Changes document. v3.0 published August 2018 (initial
+  release). Consolidation of PIN key-management requirements into KMO is planned but has no firm date; v3.1 remains the
+  current authoritative version.
 versions:
   - version: "3.1"
     published: "2021-03-11"
@@ -44,6 +43,20 @@ documents:
     published: "2025-08-25"
     applies_to_version: null
     source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=pcipinpci_pts_pin_tech_faqs
+    verified: false
+  - slug: qpa-pro-gde
+    title: QPA Program Guide
+    type: guidance
+    published: "2025-05-19"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-pro-gde
+    verified: false
+  - slug: qpa-qua-req
+    title: QPA Qualification Requirements
+    type: guidance
+    published: "2025-03-26"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pci_pin&document=qpa-qua-req
     verified: false
   - slug: pin_req_18_3
     title: PIN Security Rqmt 18-3 Key Blocks Information Supplement
