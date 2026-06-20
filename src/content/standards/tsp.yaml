@@ -5,6 +5,7 @@ source_url: https://www.pcisecuritystandards.org/standards/tsp
 verified: false
 last_verified: null
 current_version: "1.0"
+notes: "Review: published version appears to be 1.0. Confirm no newer revision exists before verifying."
 versions:
   - version: "1.0"
     published: "2015-12-01"

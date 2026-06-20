@@ -4,18 +4,18 @@ status: sunset-scheduled
 source_url: https://www.pcisecuritystandards.org/standards/3dssdk
 verified: false
 last_verified: null
-current_version: "1.0"
+current_version: "1.1"
 notes: >-
   Sunset period announced 01 May 2026. No new 3DS SDK submissions accepted after
   31 October 2026. SDKs including EMVCo 3DS SDKs are now eligible for assessment
   under PCI Secure Software Standard v2.0 (released Jan 2026). This sunset does
   not affect the PCI 3DS Core Standard. Source: PCI SSC Bulletin May 2026.
 versions:
-  - version: "1.0"
-    published: "2018-12-01"
+  - version: "1.1"
+    published: null
     retired: "2026-10-31"
     status: sunset-scheduled
-    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_3DS_SDK_Sunset_Bulletin.pdf
+    source_url: https://www.pcisecuritystandards.org/about_us/press_releases/pr_12132018
     verified: false
 documents:
   - slug: 3ds_sdk_faq

@@ -2,19 +2,21 @@ slug: pa-dss
 name: Payment Application Data Security Standard (PA-DSS)
 status: retired
 source_url: https://www.pcisecuritystandards.org/standards/padss
-verified: true
+verified: false
 last_verified: "2026-06-14"
 current_version: "3.1"
 notes: >-
-  PA-DSS v3.1 retired October 28, 2022. Confirmed on page 5 of the PCI DSS v3.2.1 to v4.0 Summary of Changes. Superseded
-  by PCI Secure Software Standard and Secure SLC. v3.1 was the final version published; no v3.2 exists.
+  Review: the final PA-DSS version is generally cited as 3.2, not 3.1.
+  Confirm the correct final version against the PCI SSC document library
+  before re-verifying. Previous note: PA-DSS retired October 28, 2022;
+  superseded by PCI Secure Software Standard and Secure SLC.
 versions:
   - version: "3.1"
     published: null
     retired: "2022-10-28"
     status: retired
     source_url: https://listings.pcisecuritystandards.org/documents/PCI-DSS-v3-2-1-to-v4-0-Summary-of-Changes-r1.pdf
-    verified: true
+    verified: false
 documents:
   - slug: pa-dss_vendor_release_agreement
     title: PA-DSS Vendor Release Agreement

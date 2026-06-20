@@ -5,6 +5,7 @@ source_url: https://www.pcisecuritystandards.org/standards/cppphysical
 verified: false
 last_verified: null
 current_version: "3.0.1"
+notes: "Review: official record is v3.0 (January 2022) and a 3.0.1 errata is unconfirmed. Check the document library and reconcile with Logical, which is set to 3.0."
 versions:
   - version: "3.0.1"
     published: "2022-06-30"

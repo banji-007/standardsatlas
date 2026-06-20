@@ -15,7 +15,7 @@ versions:
     published: "2019-12-04"
     retired: "2026-10-31"
     status: sunset-scheduled
-    source_url: https://www.pcisecuritystandards.org/wp-content/uploads/2026/05/PCI_SPoC_and_PCI_CPoC_Sunset_Bulletin.pdf
+    source_url: https://www.pcisecuritystandards.org/standards/contactless-payments-on-cots-cpoc/
     verified: false
 documents:
   - slug: cpoc_prog_guide
