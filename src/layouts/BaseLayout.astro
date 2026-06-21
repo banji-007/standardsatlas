@@ -16,9 +16,9 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://securitystandardsmap.org';
-const fullTitle = title === 'PCI Security Standards Map'
-  ? title
-  : `${title} | PCI Security Standards Map`;
+const siteName = 'Security Standards Map';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const path = Astro.url.pathname;
 ---
 
 <html lang="en">
@@ -36,10 +36,10 @@ const fullTitle = title === 'PCI Security Standards Map'
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content="PCI Security Standards Map" />
+    <meta property="og:site_name" content={siteName} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Dataset',
       name: fullTitle,
@@ -47,7 +47,7 @@ const fullTitle = title === 'PCI Security Standards Map'
       url: canonicalUrl,
       publisher: {
         '@type': 'Organization',
-        name: 'PCI Security Standards Map',
+        name: siteName,
         url: siteUrl,
       },
     })} />
@@ -56,19 +56,35 @@ const fullTitle = title === 'PCI Security Standards Map'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <header>
+    <header class="site-header">
       <nav class="site-nav">
-        <a href="/" class="site-name">PCI Security Standards Map</a>
-        <div class="nav-links">
-          <a href="/timeline">Timeline</a>
+        <a href="/" class="site-name" aria-label={siteName}>Security Standards Map</a>
+        <div class="nav-tabs" role="navigation" aria-label="Site sections">
+          <a
+            href="/"
+            class:list={['nav-tab', { 'nav-tab--active': path === '/' }]}
+            aria-current={path === '/' ? 'page' : undefined}
+          >Standards</a>
+          <a
+            href="/timeline"
+            class:list={['nav-tab', { 'nav-tab--active': path.startsWith('/timeline') }]}
+            aria-current={path.startsWith('/timeline') ? 'page' : undefined}
+          >Timeline</a>
         </div>
-        <button
-          class="theme-toggle"
-          aria-label="Toggle dark mode"
-          onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? '' : 'dark'"
-        >
-          ◑
-        </button>
+        <div class="nav-end">
+          <a
+            href="https://github.com/banji-007/standardsatlas"
+            class="nav-source"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="Source on GitHub"
+          >Source</a>
+          <button
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+            onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? '' : 'dark'"
+          >◑</button>
+        </div>
       </nav>
     </header>
 
@@ -93,47 +109,105 @@ const fullTitle = title === 'PCI Security Standards Map'
 </html>
 
 <style>
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    padding: var(--space-4);
-    max-width: var(--content-width);
-    margin-inline: auto;
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(241, 236, 225, 0.97);
     border-bottom: 1px solid var(--color-border);
   }
 
+  [data-theme="dark"] .site-header {
+    background: rgba(28, 24, 20, 0.97);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    max-width: var(--content-width);
+    margin-inline: auto;
+  }
+
   .site-name {
-    font-weight: 600;
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.0625rem;
     text-decoration: none;
     color: var(--color-text);
     margin-right: auto;
+    white-space: nowrap;
   }
 
-  .nav-links {
+  .site-name:hover { color: var(--color-accent); }
+
+  /* Segmented nav tabs */
+  .nav-tabs {
     display: flex;
-    gap: var(--space-4);
-    font-size: 0.9375rem;
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 3px;
+    gap: 2px;
   }
+
+  .nav-tab {
+    padding: 0.2rem 0.875rem;
+    border-radius: calc(var(--radius-lg) - 3px);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast) var(--easing), background var(--duration-fast) var(--easing);
+    white-space: nowrap;
+  }
+
+  .nav-tab:hover { color: var(--color-text); }
+
+  .nav-tab--active {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(43, 34, 21, 0.08);
+  }
+
+  .nav-tab--active:hover { color: var(--color-text); }
+
+  .nav-end {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .nav-source {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--easing);
+  }
+
+  .nav-source:hover { color: var(--color-accent); }
 
   .theme-toggle {
     background: none;
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
-    padding: var(--space-1) var(--space-2);
+    padding: 0.1875rem 0.375rem;
     cursor: pointer;
     color: var(--color-text-muted);
     font-size: 1rem;
     line-height: 1;
-    transition: border-color var(--duration-fast) var(--easing);
+    transition: border-color var(--duration-fast) var(--easing), color var(--duration-fast) var(--easing);
   }
 
-  .theme-toggle:hover { border-color: var(--color-accent); }
+  .theme-toggle:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
   footer {
     border-top: 1px solid var(--color-border);
     padding: var(--space-8) var(--space-4);
+    margin-top: auto;
   }
 
   .footer-inner {
@@ -144,4 +218,9 @@ const fullTitle = title === 'PCI Security Standards Map'
   }
 
   .footer-inner p { margin-bottom: var(--space-2); }
+
+  @media (max-width: 480px) {
+    .nav-tabs { display: none; }
+    .nav-source { display: none; }
+  }
 </style>

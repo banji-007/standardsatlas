@@ -1,11 +1,17 @@
 @import './tokens.css';
 @import 'vis-timeline/styles/vis-timeline-graph2d.min.css';
 
-/* IBM Plex fonts, self-hosted via fontsource (no third-party CDN) */
+/* Self-hosted fonts (no third-party CDN) */
 @import '@fontsource-variable/ibm-plex-sans';
 @import '@fontsource-variable/ibm-plex-sans/wght-italic.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/600.css';
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/400-italic.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/500-italic.css';
+@import '@fontsource/newsreader/600.css';
+@import '@fontsource/newsreader/600-italic.css';
 
 /* Reset and base */
 *, *::before, *::after {
@@ -38,13 +44,14 @@ main {
 
 /* Typography */
 h1, h2, h3, h4 {
+  font-family: var(--font-display);
   line-height: 1.25;
   margin-block: 0 var(--space-4);
 }
 
-h1 { font-size: 1.75rem; font-weight: 600; }
-h2 { font-size: 1.25rem; font-weight: 600; }
-h3 { font-size: 1.1rem; font-weight: 600; }
+h1 { font-size: 2rem; font-weight: 500; }
+h2 { font-size: 1.375rem; font-weight: 500; }
+h3 { font-size: 1.125rem; font-weight: 500; }
 
 p { margin-block: 0 var(--space-4); }
 p:last-child { margin-bottom: 0; }
@@ -70,16 +77,17 @@ code, .mono {
   gap: var(--space-1);
   font-size: 0.8125rem;
   font-weight: 500;
-  padding: 0.125rem var(--space-2);
-  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  padding: 0.1875rem var(--space-2);
+  border-radius: 999px;
   border: 1px solid currentColor;
 }
 
 .status-badge::before {
   content: '';
   display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
+  width: 0.45em;
+  height: 0.45em;
   background: currentColor;
   flex-shrink: 0;
   border-radius: 50%;
@@ -94,14 +102,21 @@ code, .mono {
 .status-badge[data-status="sunset-scheduled"]::before { border-radius: 2px; transform: rotate(45deg); }
 .status-badge[data-status="retired"]::before          { border-radius: 2px; }
 
+/* Tinted badge backgrounds */
+.status-badge[data-status="active"]           { background: color-mix(in srgb, var(--color-active) 8%, transparent); border-color: color-mix(in srgb, var(--color-active) 25%, transparent); }
+.status-badge[data-status="under-review"]     { background: color-mix(in srgb, var(--color-under-review) 8%, transparent); border-color: color-mix(in srgb, var(--color-under-review) 25%, transparent); }
+.status-badge[data-status="forthcoming"]      { background: color-mix(in srgb, var(--color-forthcoming) 8%, transparent); border-color: color-mix(in srgb, var(--color-forthcoming) 25%, transparent); }
+.status-badge[data-status="sunset-scheduled"] { background: color-mix(in srgb, var(--color-sunset-scheduled) 8%, transparent); border-color: color-mix(in srgb, var(--color-sunset-scheduled) 25%, transparent); }
+.status-badge[data-status="retired"]          { background: color-mix(in srgb, var(--color-retired) 8%, transparent); border-color: color-mix(in srgb, var(--color-retired) 25%, transparent); }
+
 /* Provisional notice */
 .provisional-notice {
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background: color-mix(in srgb, var(--color-under-review) 10%, var(--color-bg));
-  border: 1px solid color-mix(in srgb, var(--color-under-review) 40%, transparent);
+  background: color-mix(in srgb, var(--color-under-review) 8%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-under-review) 30%, transparent);
   border-radius: var(--radius);
   font-size: 0.875rem;
   margin-bottom: var(--space-6);
@@ -128,7 +143,8 @@ code, .mono {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-muted);
-  border-bottom-color: var(--color-text-muted);
+  border-bottom-color: var(--color-border-strong);
+  font-family: var(--font-ui);
 }
 
 .data-table td.mono { font-family: var(--font-mono); }
@@ -146,7 +162,19 @@ code, .mono {
   border-top: 1px solid var(--color-border);
 }
 
-/* vis-timeline overrides, kept consistent with token palette */
+/* Version chip (monospace data pill) */
+.version-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  white-space: nowrap;
+}
+
+/* vis-timeline overrides */
 .vis-timeline {
   border-color: var(--color-border) !important;
   font-family: var(--font-ui) !important;

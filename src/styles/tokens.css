@@ -1,26 +1,35 @@
 /* Single token source. All rendering layers derive from here.
-   Cytoscape canvas styles are generated from src/lib/tokens.ts (same values). */
+   Graph canvas styles are generated from src/lib/tokens.ts (same values). */
 
 :root {
-  /* Surface */
-  --color-bg: #f8f8f6;
-  --color-bg-subtle: #f0f0ee;
-  --color-text: #1a1a1a;
-  --color-text-muted: #555555;
-  --color-border: #e0e0de;
+  /* Surfaces: warm parchment */
+  --color-bg: #f1ece1;
+  --color-bg-subtle: #fffdf8;
 
-  /* Accent: slate teal */
-  --color-accent: #2a7a8a;
-  --color-accent-hover: #236878;
+  /* Text: warm brown scale, all meeting WCAG AA on --color-bg */
+  --color-text: #2b2215;
+  --color-text-muted: #5c5148;   /* 6.6:1 on #f1ece1 */
 
-  /* Status: Okabe-Ito categorical palette (colorblind-safe) */
-  --color-active: #009E73;
-  --color-under-review: #E69F00;
-  --color-forthcoming: #E69F00;
-  --color-sunset-scheduled: #D55E00;
-  --color-retired: #767676;
+  /* Accent: deep teal */
+  --color-accent: #1f5f5b;
+  --color-accent-hover: #165550;
+
+  /* Borders: warm tan */
+  --color-border: #dcd2bb;
+  --color-border-strong: #c8bda3;
+
+  /* Status: accessible as text on --color-bg, and as node fills with white labels.
+     Values are intentionally darker than the Okabe-Ito source hues so that:
+     - text on cream background meets 4.5:1 AA
+     - white label text on these fills meets 4.5:1 AA */
+  --color-active: #006b4f;            /* 5.9:1 on cream */
+  --color-under-review: #8a5c00;      /* 5.0:1 on cream */
+  --color-forthcoming: #8a5c00;
+  --color-sunset-scheduled: #9a3d00;  /* 6.0:1 on cream */
+  --color-retired: #565656;           /* 6.4:1 on cream */
 
   /* Typography */
+  --font-display: 'Newsreader', Georgia, serif;
   --font-ui: 'IBM Plex Sans Variable', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --font-size-base: 1rem;
@@ -38,7 +47,8 @@
 
   /* Layout */
   --content-width: 72rem;
-  --radius: 3px;
+  --radius: 4px;
+  --radius-lg: 8px;
 
   /* Motion */
   --duration-fast: 120ms;
@@ -47,14 +57,20 @@
 }
 
 [data-theme="dark"] {
-  --color-bg: #1a1a1a;
-  --color-bg-subtle: #222222;
-  --color-text: #f0f0ee;
-  --color-text-muted: #aaaaaa;
-  --color-border: #2e2e2e;
-  --color-accent: #4db8cb;
-  --color-accent-hover: #66c9d9;
-  /* Status colors remain the same; they meet contrast on both backgrounds */
+  --color-bg: #1c1814;
+  --color-bg-subtle: #252019;
+  --color-text: #f2ede3;
+  --color-text-muted: #c4b8a8;   /* 9.8:1 on #1c1814 */
+  --color-accent: #3d9e99;
+  --color-accent-hover: #5ab2ad;
+  --color-border: #3a3028;
+  --color-border-strong: #504538;
+  /* Status colors lightened for legibility on dark background */
+  --color-active: #22c497;
+  --color-under-review: #f0b020;
+  --color-forthcoming: #f0b020;
+  --color-sunset-scheduled: #f07030;
+  --color-retired: #a0a0a0;
 }
 
 @media (prefers-reduced-motion: reduce) {
