@@ -1,5 +1,9 @@
 @import './tokens.css';
-@import 'vis-timeline/styles/vis-timeline-graph2d.min.css';
+
+/* Newsreader display font (self-hosted) */
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/600.css';
 
 /* IBM Plex fonts, self-hosted via fontsource (no third-party CDN) */
 @import '@fontsource-variable/ibm-plex-sans';
@@ -24,16 +28,14 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
 }
 
-main {
-  flex: 1;
-  width: 100%;
-  max-width: var(--content-width);
-  margin-inline: auto;
-  padding: var(--space-8) var(--space-4);
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: #d8d0c0;
+  border-radius: 8px;
+  border: 2px solid var(--color-bg);
 }
 
 /* Typography */
@@ -42,7 +44,7 @@ h1, h2, h3, h4 {
   margin-block: 0 var(--space-4);
 }
 
-h1 { font-size: 1.75rem; font-weight: 600; }
+h1 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; }
 h2 { font-size: 1.25rem; font-weight: 600; }
 h3 { font-size: 1.1rem; font-weight: 600; }
 
@@ -55,7 +57,6 @@ a {
   text-underline-offset: 2px;
   transition: color var(--duration-fast) var(--easing);
 }
-
 a:hover { color: var(--color-accent-hover); }
 
 code, .mono {
@@ -63,36 +64,21 @@ code, .mono {
   font-size: 0.875em;
 }
 
-/* Status badges */
+/* Status badges — pill with background */
 .status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  padding: 0.125rem var(--space-2);
-  border-radius: var(--radius);
-  border: 1px solid currentColor;
-}
-
-.status-badge::before {
-  content: '';
   display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  background: currentColor;
-  flex-shrink: 0;
-  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3em 0.65em;
+  border-radius: 7px;
+  white-space: nowrap;
 }
 
-.status-badge[data-status="active"]           { color: var(--color-active); }
-.status-badge[data-status="under-review"]     { color: var(--color-under-review); }
-.status-badge[data-status="forthcoming"]      { color: var(--color-forthcoming); }
-.status-badge[data-status="sunset-scheduled"] { color: var(--color-sunset-scheduled); }
-.status-badge[data-status="retired"]          { color: var(--color-retired); }
-
-.status-badge[data-status="sunset-scheduled"]::before { border-radius: 2px; transform: rotate(45deg); }
-.status-badge[data-status="retired"]::before          { border-radius: 2px; }
+.status-badge[data-status="active"]           { color: var(--color-active);           background: var(--color-active-bg); }
+.status-badge[data-status="under-review"]     { color: var(--color-under-review);     background: var(--color-under-review-bg); }
+.status-badge[data-status="forthcoming"]      { color: var(--color-forthcoming);      background: var(--color-forthcoming-bg); }
+.status-badge[data-status="sunset-scheduled"] { color: var(--color-sunset-scheduled); background: var(--color-sunset-scheduled-bg); }
+.status-badge[data-status="retired"]          { color: var(--color-retired);          background: var(--color-retired-bg); }
 
 /* Provisional notice */
 .provisional-notice {
@@ -100,8 +86,8 @@ code, .mono {
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background: color-mix(in srgb, var(--color-under-review) 10%, var(--color-bg));
-  border: 1px solid color-mix(in srgb, var(--color-under-review) 40%, transparent);
+  background: color-mix(in srgb, var(--color-sunset-scheduled) 10%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-sunset-scheduled) 40%, transparent);
   border-radius: var(--radius);
   font-size: 0.875rem;
   margin-bottom: var(--space-6);
@@ -127,17 +113,14 @@ code, .mono {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-text-muted);
-  border-bottom-color: var(--color-text-muted);
+  color: var(--color-text-faint);
+  border-bottom-color: var(--color-border);
 }
 
 .data-table td.mono { font-family: var(--font-mono); }
 
 /* Source link */
-.source-link {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-}
+.source-link { font-size: 0.8125rem; color: var(--color-text-muted); }
 
 /* Section separator */
 .section {
@@ -146,29 +129,21 @@ code, .mono {
   border-top: 1px solid var(--color-border);
 }
 
-/* vis-timeline overrides, kept consistent with token palette */
-.vis-timeline {
-  border-color: var(--color-border) !important;
-  font-family: var(--font-ui) !important;
-  background: var(--color-bg) !important;
+/* Detail page content wrapper */
+.page-content {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4);
 }
 
-.vis-label {
-  font-size: 0.8125rem !important;
-  color: var(--color-text) !important;
+/* Drawer slide-in animation */
+@keyframes drawerIn {
+  from { transform: translateX(28px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
 }
 
-.vis-item {
-  border-radius: var(--radius) !important;
-  font-size: 0.8125rem !important;
-}
-
-/* Responsive: graph is opt-in on narrow viewports */
-@media (max-width: 768px) {
-  .graph-section { display: none; }
-  .graph-toggle { display: block; }
-}
-
-@media (min-width: 769px) {
-  .graph-toggle { display: none; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

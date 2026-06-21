@@ -9,5 +9,9 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
-
+  vite: {
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react-dom/client'],
+    },
+  },
 });

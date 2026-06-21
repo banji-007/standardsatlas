@@ -1,167 +1,215 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { statusLabel } from '../../lib/tokens';
-import TimelineIsland from '../../components/islands/TimelineIsland';
+import { getCollection } from 'astro:content';
+import type { Standard } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const standards = await getCollection('standards');
   return standards.map(entry => ({
     params: { slug: entry.id },
-    props: { entry },
+    props: { slug: entry.id, data: entry.data as Standard },
   }));
 }
 
-const { entry } = Astro.props;
-const { data: standard } = entry;
+interface Props { slug: string; data: Standard; }
+const { slug, data: standard } = Astro.props as Props;
 
 const hasProvisional =
   !standard.verified ||
   standard.versions.some(v => !v.verified) ||
   standard.documents.some(d => !d.verified);
 
-const hasVersionRefs = standard.documents.some(d => d.applies_to_version);
-
 function formatDate(d: Date | null): string {
   if (!d) return '—';
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
-const timelineEvents = [
-  ...standard.versions.flatMap(v => [
-    v.published ? { id: `${entry.id}-${v.version}-pub`, content: `v${v.version} published`, start: v.published, group: standard.name, className: `status-${v.status}` } : null,
-    v.retired ? { id: `${entry.id}-${v.version}-ret`, content: `v${v.version} retired`, start: v.retired, group: standard.name, className: 'status-retired' } : null,
-  ]).filter(Boolean),
-  ...standard.documents.flatMap(d =>
-    d.published ? [{ id: `doc-${d.slug}`, content: d.title, start: d.published, group: `${standard.name}: Documents`, className: `doc-${d.type}` }] : []
-  ),
-];
+const SM: Record<string, { label: string; c: string; bg: string }> = {
+  'active':           { label: 'Active',           c: '#1f7a4d', bg: '#e7f3ec' },
+  'under-review':     { label: 'Under review',     c: '#3a4f9e', bg: '#e9ecfb' },
+  'sunset-scheduled': { label: 'Sunset scheduled', c: '#9a6512', bg: '#fbf0db' },
+  'retired':          { label: 'Retired',          c: '#6b6760', bg: '#ece9e3' },
+  'forthcoming':      { label: 'Forthcoming',      c: '#2f6f9e', bg: '#e6f0f7' },
+};
+const sm = SM[standard.status] ?? SM['active'];
+
+const DT: Record<string, { label: string; c: string; bg: string }> = {
+  'standard': { label: 'Standard', c: '#1f5f5b', bg: '#e6f0ef' },
+  'guidance': { label: 'Guidance', c: '#3a4f9e', bg: '#e9ecfb' },
+  'faq':      { label: 'FAQ',      c: '#7a4f8e', bg: '#f1ebf4' },
+  'saq':      { label: 'SAQ',      c: '#8a6512', bg: '#f6ecd8' },
+  'template': { label: 'Template', c: '#6b6760', bg: '#ece9e3' },
+  'supplemental': { label: 'Supplemental', c: '#6b6760', bg: '#ece9e3' },
+  'bulletin': { label: 'Bulletin', c: '#9a6512', bg: '#fbf0db' },
+  'report':   { label: 'Report',   c: '#6b6760', bg: '#ece9e3' },
+  'program-guide': { label: 'Program guide', c: '#3a4f9e', bg: '#e9ecfb' },
+};
+
+type VTag = { t: string; c: string; bg: string };
+const vTagMap: { [k: string]: VTag } = {
+  'active':           { t: 'current', c: '#1f7a4d', bg: '#e7f3ec' },
+  'sunset-scheduled': { t: 'sunset',  c: '#9a6512', bg: '#fbf0db' },
+  'retired':          { t: 'retired', c: '#6b6760', bg: '#ece9e3' },
+};
+const defaultVTag: VTag = { t: 'active', c: '#1f7a4d', bg: '#e7f3ec' };
+
+const versionRows = standard.versions
+  .slice()
+  .sort((a, b) => String(b.published ?? '0').localeCompare(String(a.published ?? '0')))
+  .map((v, i, arr) => {
+    const isCur = v.status === 'active';
+    const tag = vTagMap[v.status] ?? defaultVTag;
+    const dotBg = isCur ? '#2a9d63' : '#fff';
+    const dotBorder = isCur ? '#2a9d63' : '#cfc6b4';
+    const pubLabel = v.published
+      ? v.published.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+      : 'TBD';
+    const retiredLabel = v.retired
+      ? 'Retired ' + v.retired.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+      : null;
+    const noteText = retiredLabel ?? (isCur ? 'Current version' : '');
+    return { v, i, isLast: i === arr.length - 1, isCur, tag, dotBg, dotBorder, pubLabel, noteText };
+  });
+
+// Group documents by type
+const docGroups: { [k: string]: typeof standard.documents } = {};
+standard.documents.forEach(d => { (docGroups[d.type] = docGroups[d.type] || []).push(d); });
+const docGroupOrder = ['standard','guidance','faq','saq','template','supplemental','bulletin','report','program-guide'];
 ---
 
 <BaseLayout
   title={standard.name}
   description={`${standard.name}: status, version history, supporting documents, and sunset dates. PCI Security Standards Map.`}
-  canonicalUrl={`https://securitystandardsmap.org/standard/${entry.id}`}
+  canonicalUrl={`https://securitystandardsmap.org/standard/${slug}`}
   ogType="article"
 >
-  {hasProvisional && (
-    <div class="provisional-notice" role="note">
-      <span>Some data on this page has not yet been manually verified against official sources. Fields marked "provisional" should be confirmed before citing.</span>
-    </div>
-  )}
+  <div class="page-content">
 
-  <div class="standard-header">
-    <div class="header-main">
-      <h1>{standard.name}</h1>
-      <span class="status-badge" data-status={standard.status}>
-        {statusLabel[standard.status]}
-      </span>
-    </div>
-    <div class="header-meta">
-      {standard.current_version && (
-        <span>Current version: <code>{standard.current_version}</code></span>
-      )}
-      <span>
-        Source: <a href={standard.source_url} class="source-link" rel="noopener noreferrer" target="_blank">
-          pcisecuritystandards.org ↗
-        </a>
-      </span>
-      {standard.last_verified && (
-        <span class="verified-date">
-          Last verified: <time datetime={standard.last_verified.toISOString()}>{formatDate(standard.last_verified)}</time>
-        </span>
-      )}
-    </div>
-    {standard.notes && <p class="standard-notes">{standard.notes}</p>}
-  </div>
-
-  {standard.versions.length > 0 && (
-    <section class="section" id="versions">
-      <h2>Version history</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Version</th>
-            <th>Status</th>
-            <th>Published</th>
-            <th>Retired</th>
-            <th>Source</th>
-          </tr>
-        </thead>
-        <tbody>
-          {standard.versions.map(v => (
-            <tr>
-              <td class="mono">{v.version}</td>
-              <td>
-                <span class="status-badge" data-status={v.status}>
-                  {statusLabel[v.status]}
-                </span>
-              </td>
-              <td>{formatDate(v.published)}</td>
-              <td>{formatDate(v.retired)}</td>
-              <td>
-                {v.source_url
-                  ? <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
-                  : <span class="source-link no-source" title="No verified source URL">–</span>}
-                {!v.verified && <span class="unverified"> provisional</span>}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  )}
-
-  {standard.documents.length > 0 && (
-    <section class="section" id="documents">
-      <h2>Supporting documents</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Published</th>
-            {hasVersionRefs && <th>Applies to</th>}
-            <th>Source</th>
-          </tr>
-        </thead>
-        <tbody>
-          {standard.documents.map(doc => (
-            <tr>
-              <td>{doc.title}</td>
-              <td class="mono">{doc.type}</td>
-              <td>{formatDate(doc.published)}</td>
-              {hasVersionRefs && <td class="mono">{doc.applies_to_version ?? '—'}</td>}
-              <td>
-                {doc.source_url
-                  ? <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
-                  : <span class="source-link no-source" title="No verified source URL">–</span>}
-                {!doc.verified && <span class="unverified"> provisional</span>}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  )}
-
-  {timelineEvents.length > 0 && (
-    <section class="section" id="timeline">
-      <h2>Timeline</h2>
-      <div id="timeline-container" style="height: 220px;">
-        <TimelineIsland events={timelineEvents} client:visible />
+    {hasProvisional && (
+      <div class="provisional-notice" role="note">
+        <span>Some data on this page has not yet been manually verified against official sources. Fields marked "provisional" should be confirmed before citing.</span>
       </div>
-    </section>
-  )}
+    )}
+
+    <!-- Back link -->
+    <a href="/" class="back-link">← All standards</a>
+
+    <!-- Header -->
+    <div class="std-header">
+      <div class="std-header-top">
+        <h1 class="std-name">{standard.name}</h1>
+        <span class="status-pill" style={`color: ${sm.c}; background: ${sm.bg};`}>{sm.label}</span>
+      </div>
+      <div class="std-meta">
+        {standard.current_version && <span>Current version: <code>{standard.current_version}</code></span>}
+        <span>Source: <a href={standard.source_url} class="ext-link" rel="noopener noreferrer" target="_blank">pcisecuritystandards.org ↗</a></span>
+        {standard.last_verified && (
+          <span>Last verified: <time class="mono" datetime={standard.last_verified.toISOString()}>{formatDate(standard.last_verified)}</time></span>
+        )}
+      </div>
+      {standard.notes && <p class="std-notes">{standard.notes}</p>}
+    </div>
+
+    <!-- Facts grid -->
+    <div class="facts-grid">
+      <div class="fact"><div class="fact-label">Current version</div><div class="fact-value mono">{standard.current_version ? `v${standard.current_version}` : 'In development'}</div></div>
+      <div class="fact"><div class="fact-label">Verification</div><div class="fact-value" style={`color: ${standard.verified ? '#1f7a4d' : '#a08f6a'};`}>{standard.verified ? '✓ Verified' : 'Provisional'}</div></div>
+      <div class="fact"><div class="fact-label">Last verified</div><div class="fact-value">{standard.last_verified ? formatDate(standard.last_verified) : '—'}</div></div>
+      <div class="fact"><div class="fact-label">Documents</div><div class="fact-value mono">{standard.documents.length}</div></div>
+    </div>
+
+    <!-- Version lineage -->
+    {standard.versions.length > 0 && (
+      <section class="section" id="versions">
+        <h2>Version lineage</h2>
+        <div class="version-list">
+          {versionRows.map(({ v, isLast, tag, dotBg, dotBorder, pubLabel, noteText }) => (
+            <div class="version-row">
+              <div class="version-rail">
+                <div class="version-dot" style={`background: ${dotBg}; border-color: ${dotBorder};`}></div>
+                {!isLast && <div class="version-line"></div>}
+              </div>
+              <div class="version-body">
+                <div class="version-head">
+                  <span class="mono version-num">v{v.version}</span>
+                  <span class="mono version-date">{pubLabel}</span>
+                  <span class="version-tag" style={`color: ${tag.c}; background: ${tag.bg};`}>{tag.t}</span>
+                  {!v.verified && <span class="provisional-tag">provisional</span>}
+                </div>
+                <div class="version-note">
+                  {noteText}
+                  {v.source_url && <a href={v.source_url} class="ext-link" target="_blank" rel="noopener noreferrer"> ↗</a>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Supporting documents -->
+    {standard.documents.length > 0 && (
+      <section class="section" id="documents">
+        <h2>Supporting documents <span class="doc-count">{standard.documents.length}</span></h2>
+        {docGroupOrder.filter(t => docGroups[t]).map(type => {
+          const gm = DT[type] ?? { label: type, c: '#6b6760', bg: '#ece9e3' };
+          return (
+            <div class="doc-group">
+              <div class="doc-group-header">
+                <span class="doc-type-tag" style={`color: ${gm.c}; background: ${gm.bg};`}>{gm.label}</span>
+                <span class="mono doc-group-count">{docGroups[type].length}</span>
+              </div>
+              <div class="doc-list">
+                {docGroups[type].slice().sort((a, b) => String(b.published ?? '0').localeCompare(String(a.published ?? '0'))).map(doc => (
+                  <a href={doc.source_url ?? '#'} target="_blank" rel="noopener noreferrer" class="doc-row">
+                    <span class="doc-check" style={`color: ${doc.verified ? '#1f7a4d' : '#cabfa9'};`}>{doc.verified ? '✓' : '·'}</span>
+                    <span class="doc-title">{doc.title}</span>
+                    <span class="mono doc-date">{doc.published ? doc.published.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) : '—'}</span>
+                    {!doc.verified && <span class="provisional-tag">provisional</span>}
+                    <span class="doc-arrow">↗</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </section>
+    )}
+
+    <!-- Source footer -->
+    <div class="source-footer">
+      <a href={standard.source_url} target="_blank" rel="noopener noreferrer" class="source-btn">
+        View official standard page ↗
+      </a>
+    </div>
+
+  </div>
 </BaseLayout>
 
 <style>
-  .standard-header {
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid var(--color-border);
+  .page-content {
+    max-width: 73.75rem;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-8);
   }
 
-  .header-main {
+  .back-link {
+    display: inline-block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+    transition: color var(--duration-fast) var(--easing);
+  }
+  .back-link:hover { color: var(--color-accent); }
+
+  .std-header {
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+
+  .std-header-top {
     display: flex;
     align-items: baseline;
     gap: var(--space-4);
@@ -169,29 +217,212 @@ const timelineEvents = [
     margin-bottom: var(--space-3);
   }
 
-  .header-main h1 { margin-bottom: 0; }
+  .std-name {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
 
-  .header-meta {
+  .status-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3em 0.7em;
+    border-radius: 7px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .std-meta {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-4);
     font-size: 0.875rem;
     color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
   }
 
-  .standard-notes {
-    margin-top: var(--space-4);
-    color: var(--color-text-muted);
+  .std-notes {
     font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 52rem;
+    margin: var(--space-4) 0 0;
   }
 
-  .verified-date { font-family: var(--font-mono); }
+  .ext-link { color: var(--color-accent); }
 
-  .no-source { color: var(--color-text-muted); cursor: default; }
+  /* Facts grid */
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--color-border-subtle);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 11px;
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+  }
 
-  .unverified {
+  @media (max-width: 640px) {
+    .facts-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .fact { background: var(--color-bg-card); padding: 13px 16px; }
+
+  .fact-label {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--color-under-review);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a08f6a;
+    margin-bottom: 5px;
   }
+
+  .fact-value { font-size: 0.875rem; color: var(--color-text); }
+  .fact-value.mono { font-family: var(--font-mono); font-size: 0.875rem; }
+
+  /* Version list */
+  .version-list { padding-left: 4px; }
+
+  .version-row {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 18px;
+  }
+
+  .version-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .version-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #cfc6b4;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .version-line {
+    width: 2px;
+    flex: 1;
+    background: var(--color-border-subtle);
+    margin-top: 4px;
+    min-height: 12px;
+  }
+
+  .version-body { padding-top: 1px; min-width: 0; }
+
+  .version-head {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+  }
+
+  .version-num { font-size: 0.84375rem; font-weight: 500; color: var(--color-text); }
+  .version-date { font-size: 0.71875rem; color: #a08f6a; }
+
+  .version-tag {
+    font-size: 0.59375rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 5px;
+  }
+
+  .version-note { font-size: 0.78125rem; color: var(--color-text-muted); line-height: 1.45; }
+
+  .provisional-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-sunset-scheduled);
+  }
+
+  /* Document groups */
+  h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-4); }
+
+  .doc-count {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-faint);
+    font-weight: 400;
+    margin-left: var(--space-2);
+  }
+
+  .doc-group { margin-bottom: var(--space-6); }
+
+  .doc-group-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: 9px;
+  }
+
+  .doc-type-tag {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 6px;
+  }
+
+  .doc-group-count { font-size: 0.65625rem; color: #b3aa99; }
+
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #ece4d4;
+    border: 1px solid #ece4d4;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  .doc-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-bg-card);
+    padding: 10px 13px;
+    text-decoration: none;
+    transition: background var(--duration-fast) var(--easing);
+  }
+
+  .doc-row:hover { background: #fffdf8; }
+
+  .doc-check { flex-shrink: 0; width: 15px; text-align: center; font-size: 0.6875rem; }
+
+  .doc-title { flex: 1; font-size: 0.78125rem; color: #3f3a31; line-height: 1.35; min-width: 0; }
+
+  .doc-date { font-size: 0.65625rem; color: #b3aa99; white-space: nowrap; }
+
+  .doc-arrow { color: #bdb4a2; font-size: 0.6875rem; }
+
+  /* Source footer */
+  .source-footer { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--color-border); }
+
+  .source-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    border: 1px solid #cfe0dd;
+    background: #eef5f4;
+    padding: 9px 15px;
+    border-radius: 9px;
+    transition: background var(--duration-fast) var(--easing);
+  }
+  .source-btn:hover { background: #e4f0ef; color: var(--color-accent); }
 </style>

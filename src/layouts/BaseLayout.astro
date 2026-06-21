@@ -6,6 +6,8 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
+  /** When true the header is omitted — the island provides its own. */
+  fullPage?: boolean;
 }
 
 const {
@@ -13,6 +15,7 @@ const {
   description = 'An independent, citeable reference to the PCI security standards landscape: every current standard, its version lineage, status, supporting guidance, and sunset dates.',
   canonicalUrl = Astro.url.href,
   ogType = 'website',
+  fullPage = false,
 } = Astro.props;
 
 const siteUrl = 'https://securitystandardsmap.org';
@@ -26,6 +29,15 @@ const fullTitle = title === 'PCI Security Standards Map'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    {import.meta.env.DEV && (
+      <script is:inline type="module">
+        import RefreshRuntime from "/@react-refresh";
+        RefreshRuntime.injectIntoGlobalHook(window);
+        window.$RefreshReg$ = () => {};
+        window.$RefreshSig$ = () => (type) => type;
+        window.__vite_plugin_react_preamble_installed__ = true;
+      </script>
+    )}
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -39,7 +51,7 @@ const fullTitle = title === 'PCI Security Standards Map'
     <meta property="og:site_name" content="PCI Security Standards Map" />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Dataset',
       name: fullTitle,
@@ -56,92 +68,156 @@ const fullTitle = title === 'PCI Security Standards Map'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <header>
-      <nav class="site-nav">
-        <a href="/" class="site-name">PCI Security Standards Map</a>
-        <div class="nav-links">
-          <a href="/timeline">Timeline</a>
+    {!fullPage && (
+      <header class="site-header">
+        <div class="site-header-inner">
+          <a href="/" class="site-brand" aria-label="PCI Security Standards Map home">
+            <div class="logo-icon" aria-hidden="true">
+              <div class="logo-ring">
+                <div class="logo-dot"></div>
+              </div>
+            </div>
+            <span class="site-name">Security Standards Map</span>
+          </a>
+          <nav class="site-nav" aria-label="Site sections">
+            <a href="/" class="nav-tab">Catalog</a>
+            <a href="/?view=timeline" class="nav-tab">Timeline</a>
+            <a href="/?view=transitions" class="nav-tab">Transitions</a>
+          </nav>
+          <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
         </div>
-        <button
-          class="theme-toggle"
-          aria-label="Toggle dark mode"
-          onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? '' : 'dark'"
-        >
-          ◑
-        </button>
-      </nav>
-    </header>
+      </header>
+    )}
 
-    <main>
+    <main class:list={[{ 'page-main': !fullPage }]}>
       <slot />
     </main>
 
-    <footer>
-      <div class="footer-inner">
-        <p>
+    {!fullPage && (
+      <footer class="site-footer">
+        <div class="site-footer-inner">
           Independent project, not affiliated with or endorsed by PCI SSC.
           PCI, PCI DSS, and related marks are trademarks of PCI Security Standards Council LLC.
-        </p>
-        <p>
-          <a href="https://github.com/banji-007/standardsatlas">Source on GitHub</a>
-          &middot;
-          Code: MIT &middot; Data: CC BY 4.0
-        </p>
-      </div>
-    </footer>
+          Data: CC BY 4.0 &middot; Code: MIT.
+        </div>
+      </footer>
+    )}
   </body>
 </html>
 
 <style>
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    padding: var(--space-4);
-    max-width: var(--content-width);
-    margin-inline: auto;
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(241, 236, 225, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .site-name {
-    font-weight: 600;
-    font-size: 1rem;
+  .site-header-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 13px 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .site-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
     text-decoration: none;
     color: var(--color-text);
-    margin-right: auto;
+    flex-shrink: 0;
   }
 
-  .nav-links {
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--color-accent);
     display: flex;
-    gap: var(--space-4);
-    font-size: 0.9375rem;
+    align-items: center;
+    justify-content: center;
+    flex: none;
   }
 
-  .theme-toggle {
-    background: none;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    padding: var(--space-1) var(--space-2);
+  .logo-ring {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(251, 247, 238, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbf7ee;
+  }
+
+  .site-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .site-nav {
+    margin-left: auto;
+    display: flex;
+    gap: 3px;
+    background: #e6dfd0;
+    padding: 4px;
+    border-radius: 11px;
+  }
+
+  .nav-tab {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
     cursor: pointer;
-    color: var(--color-text-muted);
-    font-size: 1rem;
-    line-height: 1;
-    transition: border-color var(--duration-fast) var(--easing);
+    background: transparent;
+    color: #6b655b;
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--easing);
   }
 
-  .theme-toggle:hover { border-color: var(--color-accent); }
+  .nav-tab:hover { color: var(--color-text); background: rgba(251,247,238,0.5); }
 
-  footer {
+  .github-link {
+    font-size: 12.5px;
+    color: #6b655b;
+    text-decoration: none;
+    border-bottom: 1px solid #d3cbbb;
+    padding-bottom: 1px;
+    flex-shrink: 0;
+  }
+
+  .github-link:hover { color: var(--color-text); border-color: var(--color-text); }
+
+  .page-main {
+    min-height: calc(100dvh - 60px);
+  }
+
+  .site-footer {
     border-top: 1px solid var(--color-border);
-    padding: var(--space-8) var(--space-4);
   }
 
-  .footer-inner {
+  .site-footer-inner {
     max-width: var(--content-width);
-    margin-inline: auto;
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
+    margin: 0 auto;
+    padding: 20px 28px 50px;
+    font-size: 12px;
+    color: #a08f6a;
+    line-height: 1.6;
   }
-
-  .footer-inner p { margin-bottom: var(--space-2); }
 </style>

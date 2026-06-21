@@ -1,27 +1,45 @@
 /* Single token source. All rendering layers derive from here.
-   Cytoscape canvas styles are generated from src/lib/tokens.ts (same values). */
+   Cytoscape styles are generated from src/lib/tokens.ts (same values). */
 
 :root {
-  /* Surface */
-  --color-bg: #f8f8f6;
-  --color-bg-subtle: #f0f0ee;
-  --color-text: #1a1a1a;
-  --color-text-muted: #555555;
-  --color-border: #e0e0de;
+  /* Surface — warm parchment */
+  --color-bg: #f1ece1;
+  --color-bg-subtle: #efe9dd;
+  --color-bg-card: #fbf7ee;
+  --color-text: #211e19;
+  --color-text-muted: #6b655b;
+  --color-text-faint: #8a8377;
+  --color-border: #e0d9cb;
+  --color-border-subtle: #e7e0d2;
 
-  /* Accent: slate teal */
-  --color-accent: #2a7a8a;
-  --color-accent-hover: #236878;
+  /* Accent: forest teal */
+  --color-accent: #1f5f5b;
+  --color-accent-hover: #174d4a;
 
-  /* Status: Okabe-Ito categorical palette (colorblind-safe) */
-  --color-active: #009E73;
-  --color-under-review: #E69F00;
-  --color-forthcoming: #E69F00;
-  --color-sunset-scheduled: #D55E00;
-  --color-retired: #767676;
+  /* Status: text / background / dot */
+  --color-active: #1f7a4d;
+  --color-active-bg: #e7f3ec;
+  --color-active-dot: #2a9d63;
+
+  --color-under-review: #3a4f9e;
+  --color-under-review-bg: #e9ecfb;
+  --color-under-review-dot: #5a6fd0;
+
+  --color-sunset-scheduled: #9a6512;
+  --color-sunset-scheduled-bg: #fbf0db;
+  --color-sunset-scheduled-dot: #d39314;
+
+  --color-retired: #6b6760;
+  --color-retired-bg: #ece9e3;
+  --color-retired-dot: #9a948b;
+
+  --color-forthcoming: #2f6f9e;
+  --color-forthcoming-bg: #e6f0f7;
+  --color-forthcoming-dot: #4a8fc0;
 
   /* Typography */
-  --font-ui: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --font-size-base: 1rem;
   --line-height-base: 1.6;
@@ -37,24 +55,16 @@
   --space-16: 4rem;
 
   /* Layout */
-  --content-width: 72rem;
-  --radius: 3px;
+  --content-width: 73.75rem; /* 1180px */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 13px;
+  --radius-xl: 16px;
 
   /* Motion */
-  --duration-fast: 120ms;
+  --duration-fast: 150ms;
   --duration-base: 200ms;
   --easing: ease-out;
-}
-
-[data-theme="dark"] {
-  --color-bg: #1a1a1a;
-  --color-bg-subtle: #222222;
-  --color-text: #f0f0ee;
-  --color-text-muted: #aaaaaa;
-  --color-border: #2e2e2e;
-  --color-accent: #4db8cb;
-  --color-accent-hover: #66c9d9;
-  /* Status colors remain the same; they meet contrast on both backgrounds */
 }
 
 @media (prefers-reduced-motion: reduce) {
