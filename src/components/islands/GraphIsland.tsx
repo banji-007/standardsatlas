@@ -46,26 +46,11 @@ interface SelectedNode {
   expanded: boolean;
 }
 
-function resolveTokens() {
-  const isDark =
-    typeof document !== 'undefined' &&
-    document.documentElement.dataset.theme === 'dark';
-  return {
-    bg: isDark ? tokens.color.bgDark : tokens.color.bg,
-    bgSubtle: isDark ? tokens.color.bgSubtleDark : tokens.color.bgSubtle,
-    text: isDark ? tokens.color.textDark : tokens.color.text,
-    textMuted: isDark ? tokens.color.textMutedDark : tokens.color.textMuted,
-    border: isDark ? tokens.color.borderDark : tokens.color.border,
-    accent: isDark ? tokens.color.accentDark : tokens.color.accent,
-    status: isDark ? tokens.statusDark : tokens.status,
-  };
-}
-
-function edgeColor(type: string, t: ReturnType<typeof resolveTokens>) {
-  if (type === 'supersede') return t.status['sunset-scheduled'];
-  if (type === 'converge') return t.status['under-review'];
-  return t.accent;
-}
+const edgeColors: Record<string, string> = {
+  supersede: tokens.status['sunset-scheduled'],
+  converge: tokens.status['under-review'],
+  associate: tokens.color.accent,
+};
 
 const edgeDash: Record<string, number[] | undefined> = {
   planned: [6, 4],
@@ -77,8 +62,8 @@ function graphLabel(name: string): string {
   const acronym = name.match(/\(([A-Z0-9][^)]{0,12})\)$/);
   if (acronym) return acronym[1];
   const noPrefix = name.replace(/^PCI /, '');
-  if (noPrefix.length <= 24) return noPrefix;
-  return noPrefix.slice(0, 22) + '...';
+  if (noPrefix.length <= 28) return noPrefix;
+  return noPrefix.slice(0, 25) + '...';
 }
 
 export default function GraphIsland({ nodes, edges }: Props) {
@@ -113,6 +98,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
 
   const hasIsolated = labeledIsolated.length > 0;
 
+  // prefers-reduced-motion setup
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -122,6 +108,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+  // Cytoscape init
   useEffect(() => {
     if (!containerRef.current) return;
     let cy: any = null;
@@ -130,7 +117,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
 
     const scheduleMinimapUpdate = () => {
       if (minimapTimer) clearTimeout(minimapTimer);
-      minimapTimer = setTimeout(drawMinimap, 100);
+      minimapTimer = setTimeout(drawMinimap, 120);
     };
 
     const drawMinimap = () => {
@@ -138,7 +125,6 @@ export default function GraphIsland({ nodes, edges }: Props) {
       if (!canvas || !cy) return;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
-      const t = resolveTokens();
 
       const W = canvas.width;
       const H = canvas.height;
@@ -150,10 +136,10 @@ export default function GraphIsland({ nodes, edges }: Props) {
       let gx1 = Infinity, gy1 = Infinity, gx2 = -Infinity, gy2 = -Infinity;
       allNodes.forEach((n: any) => {
         const p = n.position();
-        gx1 = Math.min(gx1, p.x - 60);
-        gy1 = Math.min(gy1, p.y - 28);
-        gx2 = Math.max(gx2, p.x + 60);
-        gy2 = Math.max(gy2, p.y + 28);
+        gx1 = Math.min(gx1, p.x - 70);
+        gy1 = Math.min(gy1, p.y - 30);
+        gx2 = Math.max(gx2, p.x + 70);
+        gy2 = Math.max(gy2, p.y + 30);
       });
 
       const bbW = gx2 - gx1 || 1;
@@ -168,8 +154,9 @@ export default function GraphIsland({ nodes, edges }: Props) {
       const toMX = (gx: number) => ox + (gx - gx1) * scale;
       const toMY = (gy: number) => oy + (gy - gy1) * scale;
 
-      ctx.strokeStyle = t.border;
-      ctx.lineWidth = 0.75;
+      // Draw relationship edges (skip doc-edges)
+      ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+      ctx.lineWidth = 0.5;
       cy.edges().not('.doc-edge').forEach((e: any) => {
         const sp = e.source().position();
         const tp = e.target().position();
@@ -179,37 +166,38 @@ export default function GraphIsland({ nodes, edges }: Props) {
         ctx.stroke();
       });
 
+      // Draw nodes
       allNodes.forEach((n: any) => {
         const p = n.position();
         const mx = toMX(p.x);
         const my = toMY(p.y);
         if (n.hasClass('doc-satellite')) {
-          ctx.fillStyle = t.border;
+          ctx.fillStyle = tokens.color.border;
           ctx.beginPath();
           ctx.arc(mx, my, 2, 0, Math.PI * 2);
           ctx.fill();
         } else {
           const st = n.data('status') as Status | undefined;
-          ctx.fillStyle = st && t.status[st] ? t.status[st] : t.accent;
+          ctx.fillStyle = st && tokens.status[st] ? tokens.status[st] : tokens.color.accent;
           ctx.beginPath();
           ctx.arc(mx, my, 4, 0, Math.PI * 2);
           ctx.fill();
         }
       });
 
+      // Viewport rectangle
       const ext = cy.extent();
       const vx = toMX(ext.x1);
       const vy = toMY(ext.y1);
       const vw = ext.w * scale;
       const vh = ext.h * scale;
-      ctx.strokeStyle = t.accent;
+      ctx.strokeStyle = tokens.color.accent;
       ctx.lineWidth = 1.5;
       ctx.strokeRect(vx, vy, Math.max(vw, 4), Math.max(vh, 4));
     };
 
     import('cytoscape').then(({ default: cytoscape }) => {
       if (!containerRef.current) return;
-      const t = resolveTokens();
 
       const stylesheet = [
         {
@@ -217,7 +205,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
           style: {
             'background-color': (ele: any) => {
               const status = ele.data('status') as Status | undefined;
-              return status ? t.status[status] : t.accent;
+              return status ? tokens.status[status] : tokens.color.accent;
             },
             'label': 'data(label)',
             'color': '#fff',
@@ -225,74 +213,73 @@ export default function GraphIsland({ nodes, edges }: Props) {
             'text-halign': 'center' as const,
             'font-size': '11px',
             'font-family': tokens.font.ui,
-            'width': '130px',
-            'height': '56px',
-            'shape': 'ellipse' as const,
+            'width': '140px',
+            'height': '52px',
+            'shape': 'round-rectangle' as const,
             'text-wrap': 'wrap' as const,
-            'text-max-width': '118px',
+            'text-max-width': '130px',
           },
         },
         {
           selector: 'node[type="external"]',
           style: {
-            'background-color': t.bg,
-            'border-color': t.border,
-            'border-width': '1.5px',
+            'background-color': tokens.color.border,
+            'border-color': tokens.color.text,
+            'border-width': '1px',
             'label': 'data(label)',
-            'color': t.textMuted,
+            'color': tokens.color.text,
             'text-valign': 'center' as const,
             'text-halign': 'center' as const,
-            'font-size': '10px',
+            'font-size': '11px',
             'font-family': tokens.font.ui,
-            'width': '72px',
-            'height': '28px',
+            'width': '80px',
+            'height': '30px',
             'shape': 'ellipse' as const,
           },
         },
         {
           selector: 'node.doc-satellite',
           style: {
-            'background-color': t.bgSubtle,
-            'border-color': t.border,
+            'background-color': tokens.color.bg,
+            'border-color': tokens.color.border,
             'border-width': '1px',
             'label': 'data(label)',
-            'color': t.text,
+            'color': tokens.color.text,
             'text-valign': 'center' as const,
             'text-halign': 'center' as const,
             'font-size': '9px',
             'font-family': tokens.font.ui,
-            'width': '110px',
-            'height': '36px',
+            'width': '120px',
+            'height': '40px',
             'shape': 'round-rectangle' as const,
             'text-wrap': 'wrap' as const,
-            'text-max-width': '102px',
+            'text-max-width': '112px',
           },
         },
         {
           selector: 'node.isolated',
-          style: { 'opacity': 0.65 },
+          style: { 'opacity': 0.75 },
         },
         {
           selector: ':selected',
           style: {
-            'border-width': '2.5px',
-            'border-color': t.accent,
-            'border-style': 'solid' as const,
+            'border-width': '2px',
+            'border-color': tokens.color.accent,
           },
         },
         {
           selector: 'edge',
           style: {
             'width': 2,
-            'line-color': (ele: any) => edgeColor(ele.data('type'), t),
+            'line-color': (ele: any) => edgeColors[ele.data('type')] ?? tokens.color.border,
             'line-dash-pattern': (ele: any) => edgeDash[ele.data('state')] ?? [],
             'target-arrow-shape': 'triangle' as const,
-            'target-arrow-color': (ele: any) => edgeColor(ele.data('type'), t),
+            'target-arrow-color': (ele: any) => edgeColors[ele.data('type')] ?? tokens.color.border,
             'curve-style': 'bezier' as const,
             'label': 'data(type)',
             'font-size': '10px',
             'font-family': tokens.font.ui,
-            'color': t.textMuted,
+            'color': tokens.color.text,
             'text-rotation': 'autorotate' as const,
             'text-margin-y': '-8px',
           },
@@ -301,11 +288,11 @@ export default function GraphIsland({ nodes, edges }: Props) {
           selector: 'edge.doc-edge',
           style: {
             'width': 1,
-            'line-color': t.border,
+            'line-color': tokens.color.border,
             'line-dash-pattern': [3, 3] as number[],
             'target-arrow-shape': 'none' as const,
             'curve-style': 'straight' as const,
-            'opacity': 0.45,
+            'opacity': 0.5,
             'label': '',
           },
         },
@@ -319,28 +306,33 @@ export default function GraphIsland({ nodes, edges }: Props) {
           name: 'cose',
           animate: false,
           nodeDimensionsIncludeLabels: true,
-          nodeRepulsion: () => 90000,
-          idealEdgeLength: () => 260,
-          nodeOverlap: 24,
+          nodeRepulsion: () => 50000,
+          idealEdgeLength: () => 220,
+          nodeOverlap: 20,
           fit: true,
-          padding: 56,
+          padding: 48,
         },
       });
 
       cyRef.current = cy;
 
+      // Zoom level readout (debounced)
       cy.on('zoom', () => {
         if (zoomTimer) clearTimeout(zoomTimer);
-        zoomTimer = setTimeout(() => setZoomPct(Math.round(cy.zoom() * 100)), 60);
+        zoomTimer = setTimeout(() => {
+          setZoomPct(Math.round(cy.zoom() * 100));
+        }, 60);
       });
 
       cy.on('zoom pan add remove', scheduleMinimapUpdate);
 
+      // Tap edge: open source
       cy.on('tap', 'edge', (e: any) => {
         const url = e.target.data('sourceUrl');
         if (url) window.open(url, '_blank', 'noopener,noreferrer');
       });
 
+      // Tap standard node: select and show panel
       cy.on('tap', 'node[type="standard"]', (e: any) => {
         const node = e.target;
         setSelectedNode({
@@ -352,16 +344,19 @@ export default function GraphIsland({ nodes, edges }: Props) {
         e.stopPropagation();
       });
 
+      // Tap doc satellite: open its source URL
       cy.on('tap', 'node.doc-satellite', (e: any) => {
         const url = e.target.data('sourceUrl');
         if (url) window.open(url, '_blank', 'noopener,noreferrer');
         e.stopPropagation();
       });
 
+      // Tap background: deselect
       cy.on('tap', (e: any) => {
         if (e.target === cy) setSelectedNode(null);
       });
 
+      // Expand/collapse document satellites
       const toggleExpandNode = (nodeId: string) => {
         const node = cy.getElementById(nodeId);
         if (!node.length) return;
@@ -393,8 +388,8 @@ export default function GraphIsland({ nodes, edges }: Props) {
                 sourceUrl: doc.sourceUrl,
               },
               position: {
-                x: pos.x + 180 * Math.cos(angle),
-                y: pos.y + 120 * Math.sin(angle),
+                x: pos.x + 190 * Math.cos(angle),
+                y: pos.y + 130 * Math.sin(angle),
               },
             });
             docEdges.push({
@@ -415,7 +410,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
           if (!prefersReducedMotionRef.current) {
             const added = cy.nodes(`.doc-of-${nodeId}`);
             added.style({ opacity: 0 });
-            added.animate({ style: { opacity: 1 } }, { duration: 220 });
+            added.animate({ style: { opacity: 1 } }, { duration: 250 });
           }
 
           node.data('expanded', true);
@@ -426,9 +421,11 @@ export default function GraphIsland({ nodes, edges }: Props) {
       };
 
       toggleExpandRef.current = toggleExpandNode;
+
       setTimeout(drawMinimap, 150);
     });
 
+    // Minimap click: pan graph to that region
     const canvas = minimapRef.current;
     if (canvas) {
       canvas.addEventListener('click', (e: MouseEvent) => {
@@ -455,6 +452,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
     };
   }, []);
 
+  // Add/remove isolated nodes
   useEffect(() => {
     const cy = cyRef.current as any;
     if (!cy) return;
@@ -468,14 +466,14 @@ export default function GraphIsland({ nodes, edges }: Props) {
         const row = Math.floor(i / cols);
         const col = i % cols;
         cy.getElementById(node.data.id).position({
-          x: (bb.x1 as number) + col * 170,
-          y: (bb.y2 as number) + 130 + row * 100,
+          x: (bb.x1 as number) + col * 180,
+          y: (bb.y2 as number) + 140 + row * 110,
         });
       });
-      cy.fit(undefined, 56);
+      cy.fit(undefined, 48);
     } else {
       cy.remove('.isolated');
-      cy.fit(undefined, 56);
+      cy.fit(undefined, 48);
     }
   }, [showIsolated]);
 
@@ -503,8 +501,8 @@ export default function GraphIsland({ nodes, edges }: Props) {
     if (!node.length) return;
     cy.animate({
       center: { eles: node },
-      zoom: Math.max(cy.zoom(), 1.2),
-      duration: prefersReducedMotionRef.current ? 0 : 280,
+      zoom: Math.max(cy.zoom(), 1),
+      duration: prefersReducedMotionRef.current ? 0 : 300,
       easing: 'ease-in-out-cubic',
     });
     cy.nodes().deselect();
@@ -523,19 +521,17 @@ export default function GraphIsland({ nodes, edges }: Props) {
 
   const zoomIn = () => { const cy = cyRef.current as any; if (cy) cy.zoom(Math.min(cy.zoom() * 1.3, 5)); };
   const zoomOut = () => { const cy = cyRef.current as any; if (cy) cy.zoom(Math.max(cy.zoom() / 1.3, 0.1)); };
-  const fitGraph = () => { const cy = cyRef.current as any; if (cy) cy.fit(undefined, 56); };
-
-  const t = resolveTokens();
+  const fitGraph = () => { const cy = cyRef.current as any; if (cy) cy.fit(undefined, 48); };
 
   const btn: React.CSSProperties = {
-    background: t.bg,
-    border: `1px solid ${t.border}`,
-    borderRadius: '4px',
+    background: 'var(--color-bg)',
+    border: '1px solid var(--color-border)',
+    borderRadius: 'var(--radius)',
     padding: '3px 8px',
     cursor: 'pointer',
-    color: t.accent,
+    color: 'var(--color-accent)',
     fontSize: '0.8125rem',
-    fontFamily: tokens.font.ui,
+    fontFamily: 'var(--font-ui)',
     lineHeight: '1.4',
   };
 
@@ -543,8 +539,8 @@ export default function GraphIsland({ nodes, edges }: Props) {
 
   return (
     <div
-      style={{ position: 'relative', height: '100%', width: '100%', background: t.bg }}
-      aria-label="Relationship graph. Tap nodes to select, tap edges to open source references."
+      style={{ position: 'relative', height: '100%', width: '100%' }}
+      aria-label="Relationship graph; tap nodes to select, tap edges to open source references"
     >
       {/* Search */}
       <div style={{ ...abs, top: 8, left: 8 }}>
@@ -558,34 +554,28 @@ export default function GraphIsland({ nodes, edges }: Props) {
             aria-label="Search standards in graph"
             style={{
               ...btn,
-              color: t.text,
-              padding: '4px 10px',
-              width: '192px',
+              color: 'var(--color-text)',
+              padding: '4px 8px',
+              width: '180px',
             }}
           />
           {searchResults.length > 0 && searchQuery && (
-            <div
-              role="listbox"
-              aria-label="Search results"
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                width: '224px',
-                background: t.bg,
-                border: `1px solid ${t.border}`,
-                borderRadius: '4px',
-                boxShadow: '0 4px 12px rgba(43, 34, 21, 0.10)',
-                zIndex: 30,
-                maxHeight: '200px',
-                overflowY: 'auto',
-              }}
-            >
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              width: '220px',
+              background: 'var(--color-bg)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+              zIndex: 30,
+              maxHeight: '200px',
+              overflowY: 'auto',
+            }}>
               {searchResults.map(r => (
                 <button
                   key={r.id}
-                  role="option"
-                  aria-selected={false}
                   onMouseDown={() => selectResult(r.id)}
                   style={{
                     display: 'block',
@@ -593,12 +583,12 @@ export default function GraphIsland({ nodes, edges }: Props) {
                     textAlign: 'left',
                     background: 'none',
                     border: 'none',
-                    borderBottom: `1px solid ${t.border}`,
-                    padding: '7px 10px',
+                    borderBottom: '1px solid var(--color-border)',
+                    padding: '6px 8px',
                     cursor: 'pointer',
                     fontSize: '0.8125rem',
-                    fontFamily: tokens.font.ui,
-                    color: t.text,
+                    fontFamily: 'var(--font-ui)',
+                    color: 'var(--color-text)',
                   }}
                 >
                   {r.label}
@@ -618,48 +608,47 @@ export default function GraphIsland({ nodes, edges }: Props) {
         </div>
       )}
 
-      {/* Selected node panel */}
+      {/* Selected node action panel */}
       {selectedNode && (
         <div style={{
           ...abs,
           top: 46,
           left: '50%',
           transform: 'translateX(-50%)',
-          background: t.bg,
-          border: `1px solid ${t.border}`,
-          borderRadius: '4px',
-          padding: '5px 12px',
+          background: 'var(--color-bg)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius)',
+          padding: '4px 10px',
           display: 'flex',
           gap: '8px',
           alignItems: 'center',
           fontSize: '0.8125rem',
-          fontFamily: tokens.font.ui,
+          fontFamily: 'var(--font-ui)',
           whiteSpace: 'nowrap',
           maxWidth: 'calc(100% - 32px)',
-          boxShadow: '0 2px 8px rgba(43, 34, 21, 0.08)',
         }}>
-          <span style={{ fontWeight: 500, color: t.text, overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '160px' }}>
+          <span style={{ fontWeight: 500, color: 'var(--color-text)', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '160px' }}>
             {selectedNode.label}
           </span>
           {selectedNode.docCount > 0 && (
             <button
               onClick={() => toggleExpandRef.current?.(selectedNode.id)}
               style={{ ...btn, padding: '2px 6px' }}
-              title={selectedNode.expanded ? 'Collapse documents' : `Expand ${selectedNode.docCount} documents around this node`}
+              title={selectedNode.expanded ? 'Collapse documents' : 'Expand documents around this node'}
             >
-              {selectedNode.expanded ? '- docs' : `+ ${selectedNode.docCount} docs`}
+              {selectedNode.expanded ? '− docs' : `+ ${selectedNode.docCount} docs`}
             </button>
           )}
           <a
             href={`/standard/${selectedNode.id}`}
-            style={{ color: t.accent, textDecoration: 'none', fontSize: '0.8125rem', fontFamily: tokens.font.ui }}
+            style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '0.8125rem', fontFamily: 'var(--font-ui)' }}
           >
             Open ↗
           </a>
           <button
             onClick={() => setSelectedNode(null)}
             aria-label="Dismiss"
-            style={{ ...btn, padding: '2px 5px', color: t.textMuted }}
+            style={{ ...btn, padding: '2px 5px', color: 'var(--color-text-muted)' }}
           >
             ×
           </button>
@@ -668,8 +657,8 @@ export default function GraphIsland({ nodes, edges }: Props) {
 
       {/* Zoom controls */}
       <div style={{ ...abs, bottom: 8, right: 8, display: 'flex', gap: '3px', alignItems: 'center' }}>
-        <button onClick={zoomOut} style={btn} aria-label="Zoom out">-</button>
-        <span style={{ ...btn, cursor: 'default', minWidth: '44px', textAlign: 'center', color: t.textMuted }}>
+        <button onClick={zoomOut} style={btn} aria-label="Zoom out">−</button>
+        <span style={{ ...btn, cursor: 'default', minWidth: '44px', textAlign: 'center', color: 'var(--color-text-muted)' }}>
           {zoomPct}%
         </span>
         <button onClick={zoomIn} style={btn} aria-label="Zoom in">+</button>
@@ -681,15 +670,7 @@ export default function GraphIsland({ nodes, edges }: Props) {
         ref={minimapRef}
         width={160}
         height={100}
-        style={{
-          ...abs,
-          bottom: 8,
-          left: 8,
-          border: `1px solid ${t.border}`,
-          borderRadius: '4px',
-          background: t.bg,
-          cursor: 'crosshair',
-        }}
+        style={{ ...abs, bottom: 8, left: 8, border: '1px solid var(--color-border)', borderRadius: '3px', background: 'var(--color-bg)', cursor: 'crosshair' }}
         aria-label="Graph minimap; click to pan"
         title="Click to pan to that area"
       />

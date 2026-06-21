@@ -23,6 +23,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-# design reference files (source-of-truth is claude.ai/design)
-.design-ref/

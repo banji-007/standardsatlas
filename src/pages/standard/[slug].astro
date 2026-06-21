@@ -1,13 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { statusLabel } from '../../lib/tokens';
 import TimelineIsland from '../../components/islands/TimelineIsland';
-
-interface Props {
-  entry: CollectionEntry<'standards'>;
-}
 
 export async function getStaticPaths() {
   const standards = await getCollection('standards');
@@ -45,7 +40,7 @@ const timelineEvents = [
 
 <BaseLayout
   title={standard.name}
-  description={`${standard.name}: status, version history, supporting documents, and sunset dates. Security Standards Map.`}
+  description={`${standard.name}: status, version history, supporting documents, and sunset dates. PCI Security Standards Map.`}
   canonicalUrl={`https://securitystandardsmap.org/standard/${entry.id}`}
   ogType="article"
 >
@@ -64,21 +59,16 @@ const timelineEvents = [
     </div>
     <div class="header-meta">
       {standard.current_version && (
-        <span class="meta-item">
-          Current version:
-          <span class="mono">{standard.current_version}</span>
-        </span>
+        <span>Current version: <code>{standard.current_version}</code></span>
       )}
-      <span class="meta-item">
-        Source:
-        <a href={standard.source_url} class="source-link" rel="noopener noreferrer" target="_blank">
+      <span>
+        Source: <a href={standard.source_url} class="source-link" rel="noopener noreferrer" target="_blank">
           pcisecuritystandards.org ↗
         </a>
       </span>
       {standard.last_verified && (
-        <span class="meta-item verified-date">
-          Verified:
-          <time datetime={standard.last_verified.toISOString()}>{formatDate(standard.last_verified)}</time>
+        <span class="verified-date">
+          Last verified: <time datetime={standard.last_verified.toISOString()}>{formatDate(standard.last_verified)}</time>
         </span>
       )}
     </div>
@@ -111,9 +101,9 @@ const timelineEvents = [
               <td>{formatDate(v.retired)}</td>
               <td>
                 {v.source_url
-                  ? <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">pcisecuritystandards.org ↗</a>
-                  : <span class="no-source">&ndash;</span>}
-                {!v.verified && <span class="unverified">provisional</span>}
+                  ? <a href={v.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                  : <span class="source-link no-source" title="No verified source URL">–</span>}
+                {!v.verified && <span class="unverified"> provisional</span>}
               </td>
             </tr>
           ))}
@@ -144,9 +134,9 @@ const timelineEvents = [
               {hasVersionRefs && <td class="mono">{doc.applies_to_version ?? '—'}</td>}
               <td>
                 {doc.source_url
-                  ? <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">pcisecuritystandards.org ↗</a>
-                  : <span class="no-source">&ndash;</span>}
-                {!doc.verified && <span class="unverified">provisional</span>}
+                  ? <a href={doc.source_url} class="source-link" rel="noopener noreferrer" target="_blank">↗</a>
+                  : <span class="source-link no-source" title="No verified source URL">–</span>}
+                {!doc.verified && <span class="unverified"> provisional</span>}
               </td>
             </tr>
           ))}
@@ -189,27 +179,19 @@ const timelineEvents = [
     color: var(--color-text-muted);
   }
 
-  .meta-item { display: inline-flex; align-items: baseline; gap: 0.3em; }
-
   .standard-notes {
     margin-top: var(--space-4);
     color: var(--color-text-muted);
     font-size: 0.9375rem;
-    max-width: 48rem;
   }
 
   .verified-date { font-family: var(--font-mono); }
 
-  .no-source { color: var(--color-text-muted); }
+  .no-source { color: var(--color-text-muted); cursor: default; }
 
   .unverified {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     color: var(--color-under-review);
-    margin-left: 0.25em;
-    padding: 0.1rem 0.3rem;
-    border: 1px solid color-mix(in srgb, var(--color-under-review) 30%, transparent);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--color-under-review) 8%, transparent);
   }
 </style>

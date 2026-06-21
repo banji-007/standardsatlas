@@ -19,7 +19,6 @@
     "@astrojs/sitemap": "^3.0.0",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
-    "@fontsource/newsreader": "^5.2.10",
     "astro": "^6.4.6",
     "cytoscape": "^3.30.0",
     "js-yaml": "^4.1.0",
@@ -37,9 +36,6 @@
     "typescript": "^5.7.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
   }
 }
