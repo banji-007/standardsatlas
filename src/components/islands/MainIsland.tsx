@@ -56,11 +56,11 @@ const GRAPH_LABEL: Record<string, string> = {
   'secure-slc':      'Secure SLC',
   'pts-poi':         'PTS POI',
   'pts-hsm':         'PTS HSM',
-  'pin-security':    'PIN',
-  'cpp-logical':     'CPP (L)',
-  'cpp-physical':    'CPP (P)',
-  '3ds-core':        '3DS Core',
-  '3ds-sdk':         '3DS SDK',
+  'pin-security':    'PIN Security',
+  'cpp-logical':     'CPP Logical',
+  'cpp-physical':    'CPP Physical',
+  '3ds-core':        'PCI 3DS Core',
+  '3ds-sdk':         'PCI 3DS SDK',
   'mpoc':            'MPoC',
   'spoc':            'SPoC',
   'cpoc':            'CPoC',
@@ -484,7 +484,7 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
                   onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
                 >
                   <div style={{ width: 172, flexShrink: 0, paddingRight: 14, overflow: 'hidden' }}>
-                    <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 14.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.name}</div>
+                    <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 14.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{GRAPH_LABEL[s.slug] ?? s.name}</div>
                     <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '.04em', color: '#a8a195', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.status.replace(/-/g, ' ')}</div>
                   </div>
                   <div style={{ position: 'relative', flex: 1, marginRight: 24, height: '100%' }}>
