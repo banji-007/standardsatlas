@@ -7,7 +7,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import yaml from 'js-yaml';
-import { StandardSchema, RelationshipSchema, ExternalBodySchema, FaqsFileSchema, VersionCandidatesFileSchema } from '../src/lib/schema';
+import { StandardSchema, RelationshipSchema, ExternalBodySchema, FaqsFileSchema, VersionCandidatesFileSchema, ReviewQueueFileSchema } from '../src/lib/schema';
 import { ZodError } from 'zod';
 
 const CONTENT_DIR = resolve('src/content/standards');
@@ -167,6 +167,20 @@ function validateFaqs(path: string) {
   process.stdout.write(`  faqs.yaml: ${faqs.length} entries ✓\n`);
 }
 
+function validateReviewQueue(path: string) {
+  if (!existsSync(path)) return;
+  const data = yaml.load(readFileSync(path, 'utf8')) as unknown;
+  const result = ReviewQueueFileSchema.safeParse(data);
+  if (!result.success) {
+    for (const issue of result.error.issues) {
+      err(`review-queue.yaml: ${issue.path.join('.')}: ${issue.message}`);
+    }
+    return;
+  }
+  const { low_count, medium_count } = result.data;
+  process.stdout.write(`  review-queue.yaml: ${low_count} low, ${medium_count} medium ✓\n`);
+}
+
 // Run
 console.log('Validating standards …');
 if (existsSync(CONTENT_DIR)) {
@@ -193,6 +207,9 @@ validateFaqs(join(DATA_DIR, 'faqs.yaml'));
 
 console.log('\nValidating version candidates …');
 validateVersionCandidates(join(DATA_DIR, 'version-candidates.yaml'));
+
+console.log('\nValidating review queue …');
+validateReviewQueue(join(DATA_DIR, 'review-queue.yaml'));
 
 console.log(`\n${errors} error(s), ${warnings} warning(s)`);
 if (errors > 0) process.exit(1);

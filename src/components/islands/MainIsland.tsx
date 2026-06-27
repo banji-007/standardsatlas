@@ -199,10 +199,12 @@ function HeroSection({ total, active, sunset, docs, lastVerified }: { total: num
 }
 
 // --- RadarStrip ---
-interface RadarEvent { slug: string; name: string; type: string; date: string; note: string; }
+// link is optional; when set, clicking the card navigates to that URL instead of opening a drawer.
+interface RadarEvent { slug: string; name: string; type: string; date: string; note: string; link?: string; }
 
 const EV_META: Record<string, { c: string; bg: string }> = {
-  'New version':  { c: '#1f5f5b', bg: '#e6f0ef' }, 'New FAQ':     { c: '#7a4f8e', bg: '#f1ebf4' },
+  'New version':  { c: '#1f5f5b', bg: '#e6f0ef' },
+  'FAQ updates':  { c: '#7a4f8e', bg: '#f1ebf4' },
   'New guidance': { c: '#3a4f9e', bg: '#e9ecfb' }, 'New bulletin':{ c: '#9a6512', bg: '#fbf0db' },
   'Sunset':       { c: '#9a6512', bg: '#fbf0db' }, 'Convergence': { c: '#b5562f', bg: '#f7e7df' },
   'Superseded':   { c: '#6b6760', bg: '#ece9e3' }, 'Alignment':   { c: '#3a4f9e', bg: '#e9ecfb' },
@@ -220,9 +222,11 @@ function buildRadar(standards: StdData[], relationships: RelData[]): RadarEvent[
       if (v.retired && v.status === 'sunset-scheduled') events.push({ slug: s.slug, name: s.name, type: 'Sunset', date: v.retired, note: `v${v.version} scheduled to sunset.` });
     });
     if (s.status === 'under-review') events.push({ slug: s.slug, name: s.name, type: 'Under review', date: s.last_verified || '', note: 'Standard under active development and review.' });
-    const nd = s.documents.filter(d => d.published && d.published >= cutoff).sort((a, b) => String(b.published).localeCompare(String(a.published)))[0];
+    // FAQs are excluded here; they are aggregated below to avoid flooding the radar.
+    const nd = s.documents.filter(d => d.published && d.published >= cutoff && d.type !== 'faq')
+      .sort((a, b) => String(b.published).localeCompare(String(a.published)))[0];
     if (nd?.published) {
-      const t = nd.type === 'faq' ? 'New FAQ' : nd.type === 'guidance' ? 'New guidance' : nd.type === 'bulletin' ? 'New bulletin' : null;
+      const t = nd.type === 'guidance' ? 'New guidance' : nd.type === 'bulletin' ? 'New bulletin' : null;
       if (t) events.push({ slug: s.slug, name: s.name, type: t, date: nd.published, note: nd.title.slice(0, 82) + (nd.title.length > 82 ? '…' : '') });
     }
   });
@@ -232,6 +236,22 @@ function buildRadar(standards: StdData[], relationships: RelData[]): RadarEvent[
     const t = r.type === 'converge' ? 'Convergence' : r.type === 'supersede' ? 'Superseded' : 'Alignment';
     events.push({ slug: r.from, name: standards.find(s => s.slug === r.from)?.name ?? r.from, type: t, date: r.effective_date, note: r.description ? r.description.split(/;|\.\s/)[0] + '.' : '' });
   });
+
+  // Aggregate all recent FAQ documents across standards into a single card.
+  const recentFaqs = standards.flatMap(s =>
+    s.documents.filter(d => d.type === 'faq' && d.published && d.published >= cutoff)
+  );
+  if (recentFaqs.length > 0) {
+    const latest = recentFaqs.slice().sort((a, b) => String(b.published).localeCompare(String(a.published)))[0]!;
+    events.push({
+      slug: '_faqs',
+      name: 'FAQ activity',
+      type: 'FAQ updates',
+      date: latest.published!,
+      note: `${recentFaqs.length} FAQ${recentFaqs.length > 1 ? 's' : ''} updated in this period.`,
+      link: '/faqs',
+    });
+  }
 
   const seen = new Set<string>();
   return events.filter(e => e.date >= cutoff).sort((a, b) => b.date.localeCompare(a.date))
@@ -248,8 +268,9 @@ function RadarStrip({ standards, relationships, onSelect }: { standards: StdData
   const card = (e: RadarEvent) => {
     const m = EV_META[e.type] || { c: '#6b6760', bg: '#ece9e3' };
     const up = monthsAway(e.date) > 0;
+    const handleClick = () => { if (e.link) window.location.assign(e.link); else onSelect(e.slug); };
     return (
-      <button key={e.slug + e.type + e.date} onClick={() => onSelect(e.slug)} style={{ flexShrink: 0, width: 214, minHeight: 112, scrollSnapAlign: 'start', textAlign: 'left', background: '#fffdf8', border: `1px solid ${up ? '#cfe0dd' : '#efe6d3'}`, borderRadius: 12, padding: '13px 15px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 7, fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+      <button key={e.slug + e.type + e.date} onClick={handleClick} style={{ flexShrink: 0, width: 214, minHeight: 112, scrollSnapAlign: 'start', textAlign: 'left', background: '#fffdf8', border: `1px solid ${up ? '#cfe0dd' : '#efe6d3'}`, borderRadius: 12, padding: '13px 15px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 7, fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '.05em', textTransform: 'uppercase', color: m.c, background: m.bg, padding: '4px 9px', borderRadius: 6, whiteSpace: 'nowrap' }}>{e.type}</span>
           <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: '#a08f6a' }}>{fmt(e.date)}</span>
@@ -393,7 +414,8 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
 }) {
   const now = new Date();
   const todayX = ((now.getFullYear() + now.getMonth() / 12) - 2016) / 12 * 100;
-  const presentDocTypes = Object.keys(DT).filter(t => standards.some(s => s.documents.some(d => d.type === t))).sort((a, b) => DT[a].order - DT[b].order);
+  // FAQs are shown in their own collapsed section per standard, not as timeline dots.
+  const presentDocTypes = Object.keys(DT).filter(t => t !== 'faq' && standards.some(s => s.documents.some(d => d.type === t))).sort((a, b) => DT[a].order - DT[b].order);
   const docTypeSet = new Set(docTypes === null ? presentDocTypes : docTypes);
   const tlOrder: Record<string, number> = { active: 0, 'sunset-scheduled': 1, 'under-review': 2, forthcoming: 3, retired: 4 };
   const rowH = showDocs ? 60 : 46, vCenter = showDocs ? 17 : 23;

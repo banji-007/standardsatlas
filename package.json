@@ -14,7 +14,8 @@
     "fetch-faqs": "tsx scripts/fetch-faqs.ts",
     "validate": "tsx scripts/validate-data.ts",
     "check-links": "tsx scripts/check-links.ts",
-    "check-versions": "tsx scripts/check-versions.ts"
+    "check-versions": "tsx scripts/check-versions.ts",
+    "generate-review-queue": "tsx scripts/generate-review-queue.ts"
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",

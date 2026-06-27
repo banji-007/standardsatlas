@@ -1,0 +1,470 @@
+generated: "2026-06-27T12:42:33.250Z"
+low_count: 0
+medium_count: 56
+items:
+  - entity_type: faq
+    id: "1050"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1050 'I make ATMs, what do I need to do for PTS?' uses mapping_method 'disambiguated'; standard assignment
+        [pts-poi] may need review. Action: verify the standard mapping and update mapping_method to 'direct' if
+        confirmed. Source: https://www.pcisecuritystandards.org/faqs/1050/
+  - entity_type: faq
+    id: "1154"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1154 'For PCI DSS, can sensitive account data be stored before authorization...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1154/
+  - entity_type: faq
+    id: "1300"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1300 'How does PCI DSS apply to payment terminals?' uses mapping_method 'disambiguated'; standard
+        assignment [pci-dss, pts-poi] may need review. Action: verify the standard mapping and update mapping_method to
+        'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1300/
+  - entity_type: faq
+    id: "1301"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1301 'How should payment terminals be considered during a PCI DSS assessment...' uses mapping_method
+        'disambiguated'; standard assignment [p2pe, pci-dss, pts-poi] may need review. Action: verify the standard
+        mapping and update mapping_method to 'direct' if confirmed. Source:
+        https://www.pcisecuritystandards.org/faqs/1301/
+  - entity_type: faq
+    id: "1302"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1302 'How does use of an expired PTS device affect my PCI DSS compliance?' uses mapping_method 'inferred';
+        standard assignment [pci-dss] may need review. Action: verify the standard mapping and update mapping_method to
+        'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1302/
+  - entity_type: faq
+    id: "1319"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1319 'Are merchants allowed to request card-verification codes/values from c...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1319/
+  - entity_type: faq
+    id: "1322"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1322 'What are the expiry dates for PTS POI device approvals?' uses mapping_method 'disambiguated';
+        standard assignment [pci-dss, pts-poi] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1322/
+  - entity_type: faq
+    id: "1328"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1328 'Where can I find the current version of PCI DSS?' uses mapping_method 'inferred'; standard assignment
+        [pci-dss] may need review. Action: verify the standard mapping and update mapping_method to 'direct' if
+        confirmed. Source: https://www.pcisecuritystandards.org/faqs/1328/
+  - entity_type: faq
+    id: "1434"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1434 'How do PCI PTS-approved POI device expiry dates affect a PCI-listed P2...' uses mapping_method
+        'disambiguated'; standard assignment [p2pe, pts-poi] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1434/
+  - entity_type: faq
+    id: "1464"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1464 'Does the use of expired PTS POI devices meet eligibility criteria for ...' uses mapping_method
+        'disambiguated'; standard assignment [pci-dss, pts-poi] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1464/
+  - entity_type: faq
+    id: "1467"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1467 'Can organizations use alternative password management methods to meet ...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1467/
+  - entity_type: faq
+    id: "1468"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1468 'Can I have the same assessor company or individual assessor perform a ...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1468/
+  - entity_type: faq
+    id: "1474"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1474 'Can PCI-listed P2PE v2 components be used as part of a P2PE v3 solutio...' uses mapping_method
+        'inferred'; standard assignment [p2pe] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1474/
+  - entity_type: faq
+    id: "1475"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1475 'Can PCI-listed P2PE v3 components be used as part of a P2PE v2 solutio...' uses mapping_method
+        'inferred'; standard assignment [p2pe] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1475/
+  - entity_type: faq
+    id: "1476"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1476 'Which P2PE Program Guide version do I use?' uses mapping_method 'inferred'; standard assignment
+        [p2pe] may need review. Action: verify the standard mapping and update mapping_method to 'direct' if confirmed.
+        Source: https://www.pcisecuritystandards.org/faqs/1476/
+  - entity_type: faq
+    id: "1477"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1477 'Are software vendors wishing to undergo validation to the PCI Secure S...' uses mapping_method
+        'disambiguated'; standard assignment [secure-slc, secure-software] may need review. Action: verify the standard
+        mapping and update mapping_method to 'direct' if confirmed. Source:
+        https://www.pcisecuritystandards.org/faqs/1477/
+  - entity_type: faq
+    id: "1487"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1487 'Can a 3DS entity outsource the hosting and management of its HSMs to a...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1487/
+  - entity_type: faq
+    id: "1488"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1488 'What types of 3DS components are in scope for Requirement P2-7 in the ...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1488/
+  - entity_type: faq
+    id: "1489"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1489 'Is an EMVCo Letter of Approval required prior to conducting a PCI 3DS ...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1489/
+  - entity_type: faq
+    id: "1490"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1490 'Can a PCI 3DS Assessment result in a finding of "Compliant" if some re...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1490/
+  - entity_type: faq
+    id: "1493"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1493 'What is the PCI 3DS (3D Secure) Core Security Standard?' uses mapping_method 'disambiguated';
+        standard assignment [3ds-core] may need review. Action: verify the standard mapping and update mapping_method to
+        'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1493/
+  - entity_type: faq
+    id: "1538"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1538 'What is the process to initiate a software evaluation to the PCI Secur...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1538/
+  - entity_type: faq
+    id: "1539"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1539 'Who is qualified to perform assessments to the PCI Secure Software Sta...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1539/
+  - entity_type: faq
+    id: "1540"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1540 'What software is eligible for validation to the PCI Secure Software St...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1540/
+  - entity_type: faq
+    id: "1541"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1541 'When must validated payment software be revalidated?' uses mapping_method 'disambiguated'; standard
+        assignment [secure-software] may need review. Action: verify the standard mapping and update mapping_method to
+        'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1541/
+  - entity_type: faq
+    id: "1542"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1542 'What is the process for PCI Secure SLC Qualification?' uses mapping_method 'disambiguated'; standard
+        assignment [secure-slc] may need review. Action: verify the standard mapping and update mapping_method to
+        'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1542/
+  - entity_type: faq
+    id: "1543"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1543 'Who is qualified to perform assessments to the PCI Secure SLC Standard...' uses mapping_method
+        'disambiguated'; standard assignment [secure-slc] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1543/
+  - entity_type: faq
+    id: "1544"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1544 'Does PCI SSC provide a list of software vendors whose software develop...' uses mapping_method
+        'disambiguated'; standard assignment [secure-slc] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1544/
+  - entity_type: faq
+    id: "1545"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1545 'Are there prerequisite PCI SSC program requirements to meet before qua...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1545/
+  - entity_type: faq
+    id: "1546"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1546 'Can multiple changes for a Secure Software listing be submitted within...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1546/
+  - entity_type: faq
+    id: "1547"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1547 'Are currently listed PA-DSS payment applications required to be revali...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1547/
+  - entity_type: faq
+    id: "1548"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1548 'Are Secure Software Assessors or Secure Software Lifecycle Assessors r...' uses mapping_method
+        'disambiguated'; standard assignment [secure-slc, secure-software] may need review. Action: verify the standard
+        mapping and update mapping_method to 'direct' if confirmed. Source:
+        https://www.pcisecuritystandards.org/faqs/1548/
+  - entity_type: faq
+    id: "1549"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1549 'Is software-as-a-service (SaaS) eligible for Secure Software Standard ...' uses mapping_method
+        'disambiguated'; standard assignment [secure-software] may need review. Action: verify the standard mapping and
+        update mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1549/
+  - entity_type: faq
+    id: "1576"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1576 'What evidence is a TPSP expected to provide to customers to demonstrat...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1576/
+  - entity_type: faq
+    id: "1577"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1577 'What does “console access” mean for PCI DSS Requirements 8.4.1 and 8.4...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1577/
+  - entity_type: faq
+    id: "1578"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1578 'Can service providers use eligibility criteria from a merchant Self-As...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1578/
+  - entity_type: faq
+    id: "1581"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1581 'How does PCI DSS Requirement 6.4.3 apply to 3DS scripts called from a ...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1581/
+  - entity_type: faq
+    id: "1589"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1589 'Is the cardholder in scope for PCI DSS?' uses mapping_method 'inferred'; standard assignment
+        [pci-dss] may need review. Action: verify the standard mapping and update mapping_method to 'direct' if
+        confirmed. Source: https://www.pcisecuritystandards.org/faqs/1589/
+  - entity_type: faq
+    id: "1590"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1590 'Do PCI DSS Requirements 8.3.9 and 8.3.10.1 apply to all system compone...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1590/
+  - entity_type: faq
+    id: "1592"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1592 'Are providers of third-party scripts for e-commerce environments consi...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1592/
+  - entity_type: faq
+    id: "1593"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1593 'How should PCI DSS v4.x requirements noted as superseded by another re...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1593/
+  - entity_type: faq
+    id: "1595"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1595 'Are passkeys synced across devices, implemented according to the FIDO2...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1595/
+  - entity_type: faq
+    id: "1596"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1596 'Is phishing-resistant authentication alone acceptable as multi-factor ...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1596/
+  - entity_type: faq
+    id: "1598"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1598 'Are Approved Scanning Vendors and Qualified Security Assessors conside...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1598/
+  - entity_type: faq
+    id: "1601"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1601 'What is the impact if an entity uses a third-party service provider (T...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1601/
+  - entity_type: faq
+    id: "1603"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1603 'Are authentication values from a 3DS transaction considered sensitive ...' uses mapping_method
+        'disambiguated'; standard assignment [3ds-core] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1603/
+  - entity_type: faq
+    id: "1604"
+    band: medium
+    reasons:
+      - >-
+        FAQ #1604 'Do ASV scans in SAQ A apply to merchants with webpages that redirect t...' uses mapping_method
+        'inferred'; standard assignment [pci-dss] may need review. Action: verify the standard mapping and update
+        mapping_method to 'direct' if confirmed. Source: https://www.pcisecuritystandards.org/faqs/1604/
+  - entity_type: standard
+    id: 3ds-core
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/3dscore
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/3dscore
+  - entity_type: standard
+    id: 3ds-sdk
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/3dssdk
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/3dssdk
+  - entity_type: standard
+    id: cpoc
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/cpoc
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/cpoc
+  - entity_type: standard
+    id: cpp-physical
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/cppphysical
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/cppphysical
+  - entity_type: standard
+    id: p2pe
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/p2pe
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/p2pe
+  - entity_type: standard
+    id: pa-dss
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/padss
+  - entity_type: standard
+    id: secure-slc
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/secureslc
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/secureslc
+  - entity_type: standard
+    id: secure-software
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/securesoftware
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/securesoftware
+  - entity_type: standard
+    id: tsp
+    band: medium
+    reasons:
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/tsp
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/tsp

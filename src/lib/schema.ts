@@ -97,6 +97,24 @@ export const VersionCandidatesFileSchema = z.object({
 
 export type VersionCandidate = z.infer<typeof VersionCandidateSchema>;
 
+export const ReviewQueueBandSchema = z.enum(['low', 'medium']);
+
+export const ReviewQueueItemSchema = z.object({
+  entity_type: z.enum(['standard', 'faq', 'version-candidate']),
+  id: z.string(),
+  band: ReviewQueueBandSchema,
+  reasons: z.array(z.string()),
+});
+
+export const ReviewQueueFileSchema = z.object({
+  generated: z.string(),
+  low_count: z.number().int(),
+  medium_count: z.number().int(),
+  items: z.array(ReviewQueueItemSchema),
+});
+
+export type ReviewQueueItem = z.infer<typeof ReviewQueueItemSchema>;
+
 export const RelationshipTypeSchema = z.enum(['associate', 'supersede', 'converge']);
 export const RelationshipStateSchema = z.enum(['planned', 'in-progress', 'complete']);
 
