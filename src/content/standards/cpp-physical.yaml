@@ -2,17 +2,16 @@ slug: cpp-physical
 name: Card Production and Provisioning — Physical Security Requirements
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/cppphysical
-verified: false
-last_verified: null
+verified: true
+last_verified: "2026-06-27"
 current_version: "3.0.1"
-notes: "Review: official record is v3.0 (January 2022) and a 3.0.1 errata is unconfirmed. Check the document library and reconcile with Logical, which is set to 3.0."
 versions:
   - version: "3.0.1"
     published: "2022-06-30"
     retired: null
     status: active
     source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production_physical_security_requirements_v3.0.1
-    verified: false
+    verified: true
 documents:
   - slug: roc_reporting_template_physical_v3
     title: Card Production AOC SOC - Physical
@@ -63,10 +62,10 @@ documents:
     title: Card Production and Provisioning Physical Security Requirements
     type: standard
     published: "2022-06-30"
-    applies_to_version: 3.0.1
+    applies_to_version: "3.0.1"
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production_physical_security_requirements_v3.0.1
-    verified: false
+    verified: true
   - slug: pci_card_production_physical_security_requirements
     title: Card Production Physical Security Requirements
     type: standard

@@ -3,13 +3,20 @@ name: Card Production and Provisioning — Logical Security Requirements
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/cpplogical
 verified: true
-last_verified: "2026-06-14"
-current_version: "3.0"
+last_verified: "2026-06-27"
+current_version: "3.0.1"
 versions:
-  - version: "3.0"
-    published: "2022-01-13"
+  - version: "3.0.1"
+    published: "2022-06-30"
     retired: null
     status: active
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production__prov_logical_security_requirements
+    verified: true
+  - version: "3.0"
+    published: "2022-01-13"
+    retired: "2022-06-30"
+    status: retired
     source_url: >-
       https://www.pcisecuritystandards.org/about_us/press_releases/pci-security-standards-council-updates-card-production-and-provisioning-security-standard/
     verified: true
@@ -71,7 +78,7 @@ documents:
     title: Card Production and Provisioning Logical Security Requirements
     type: standard
     published: "2022-06-30"
-    applies_to_version: null
+    applies_to_version: "3.0.1"
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production__prov_logical_security_requirements
     verified: false
