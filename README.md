@@ -1,43 +1,78 @@
-# Astro Starter Kit: Minimal
+# PCI Security Standards Map
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+An interactive reference map of the 17 PCI Security Standards Council standard families, their versions, relationships, and supporting documents. Built with Astro and deployed to Cloudflare Pages.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Governing rule
 
-## 🚀 Project Structure
+**Sourced or it does not ship.** Every standard, version, document, and relationship edge must carry a `source_url` pointing to an official PCI SSC page and `verified: true` before it is presented as authoritative. Entries with `verified: false` render visibly differently and must never be cited as confirmed.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+  content/standards/   # One YAML file per standard family (17 total)
+  components/islands/  # React islands: main map, graph, timeline, FAQs
+  lib/
+    schema.ts          # Zod schemas -- authoritative data contract
+    tokens.ts          # Design tokens mirrored for Cytoscape
+  styles/
+    tokens.css         # Single source of design tokens
+  pages/
+    index.astro        # Main map page
+    faqs.astro         # FAQ browser
+
+data/
+  relationships.yaml       # Cross-standard relationship edges
+  external-bodies.yaml     # External standards referenced (ISO, NIST, etc.)
+  faqs.yaml                # FAQ entries fetched from PCI SSC RSS
+  version-candidates.yaml  # Possible version changes detected by CI
+  review-queue.yaml        # Confidence review queue (generated; never edit)
+
+scripts/
+  fetch-rss.ts             # Pull new documents from PCI SSC RSS
+  fetch-faqs.ts            # Pull FAQ entries from PCI SSC RSS
+  check-versions.ts        # Detect possible new versions in incoming docs
+  generate-review-queue.ts # Compute confidence bands for all entities
+  validate-data.ts         # Schema-validate all data files
+  check-links.ts           # Verify source_url reachability
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+pnpm install
+pnpm dev          # localhost:4321
+pnpm build
+pnpm preview
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Data scripts
 
-## 🧞 Commands
+```sh
+pnpm validate               # Schema-validate all data files (run before every commit touching data)
+pnpm fetch-rss              # Pull latest documents from PCI SSC RSS feed
+pnpm fetch-rss --dry-run    # Preview what the RSS pipeline would update
+pnpm fetch-faqs             # Pull FAQ entries from PCI SSC RSS feed
+pnpm check-versions         # Write data/version-candidates.yaml
+pnpm generate-review-queue  # Write data/review-queue.yaml (confidence bands)
+pnpm check-links            # Verify all source_url values are reachable
+```
 
-All commands are run from the root of the project, from a terminal:
+## CI
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+`.github/workflows/rss-refresh.yml` runs daily at 06:00 UTC: fetch RSS, fetch FAQs, check versions, generate review queue, commit any changes. Cloudflare Pages rebuilds automatically on push to `main`.
 
-## 👀 Want to learn more?
+`.github/workflows/deploy.yml` runs on every push to `main`: validate data, build, deploy to Cloudflare Pages.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Adding or updating a standard
+
+1. Edit or create `src/content/standards/<slug>.yaml`.
+2. Follow the Zod schema in `src/lib/schema.ts`.
+3. Set `source_url` to the official PCI SSC page and `verified: true` only after manual confirmation.
+4. Run `pnpm validate` -- fix any errors before committing.
+
+## Scope
+
+In scope (v1): PCI DSS, P2PE, Secure Software, Secure SLC, PTS POI, PTS HSM, PIN Security, CPP Logical, CPP Physical, PCI 3DS Core, PCI 3DS SDK, MPoC, SPoC, CPoC, TSP, PA-DSS, KMO.
+
+Out of scope (v1): QSA/ASV/ISA/PFI/CPSA/QPA program material, case studies, and documents whose only RSS category is "Programs and Certification".
