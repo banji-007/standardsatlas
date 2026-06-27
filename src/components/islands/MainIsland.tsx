@@ -414,9 +414,9 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
 }) {
   const now = new Date();
   const todayX = ((now.getFullYear() + now.getMonth() / 12) - 2016) / 12 * 100;
-  // FAQs are shown in their own collapsed section per standard, not as timeline dots.
-  const presentDocTypes = Object.keys(DT).filter(t => t !== 'faq' && standards.some(s => s.documents.some(d => d.type === t))).sort((a, b) => DT[a].order - DT[b].order);
-  const docTypeSet = new Set(docTypes === null ? presentDocTypes : docTypes);
+  const presentDocTypes = Object.keys(DT).filter(t => standards.some(s => s.documents.some(d => d.type === t))).sort((a, b) => DT[a].order - DT[b].order);
+  const defaultDocTypes = presentDocTypes.filter(t => t !== 'faq');
+  const docTypeSet = new Set(docTypes === null ? defaultDocTypes : docTypes);
   const tlOrder: Record<string, number> = { active: 0, 'sunset-scheduled': 1, 'under-review': 2, forthcoming: 3, retired: 4 };
   const rowH = showDocs ? 60 : 46, vCenter = showDocs ? 17 : 23;
   const YEARS = [2016, 2018, 2020, 2022, 2024, 2026, 2028];
@@ -436,7 +436,7 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
       ds.forEach(d => { const k = Math.round(d.x / 1.4); (buckets[k] = buckets[k] || []).push(d); });
       Object.values(buckets).forEach(arr => {
         const bx = arr.reduce((a, d) => a + d.x, 0) / arr.length;
-        arr.forEach((d, idx) => { const m = DT[d.type] || { c: '#9a8fb0' }; docMarkers.push({ position: 'absolute', left: `${bx}%`, top: `${rowH - 9 - idx * 4.4}px`, width: 4, height: 4, borderRadius: '50%', background: m.c, opacity: 0.78, transform: 'translateX(-50%)' }); });
+        arr.forEach((d, idx) => { const m = DT[d.type] || { c: '#9a8fb0' }; const isFaq = d.type === 'faq'; docMarkers.push({ position: 'absolute', left: `${bx}%`, top: `${rowH - 9 - idx * 4.4}px`, width: isFaq ? 3 : 4, height: isFaq ? 3 : 4, borderRadius: '50%', background: m.c, opacity: isFaq ? 0.45 : 0.78, transform: 'translateX(-50%)' }); });
       });
     }
     const sorted = pts.slice().sort((a, b) => a.x - b.x);
@@ -470,7 +470,7 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
                 const on = docTypeSet.has(t), m = DT[t];
                 const cnt = standards.reduce((a, s) => a + s.documents.filter(d => d.type === t).length, 0);
                 return (
-                  <button key={t} onClick={() => { const cur = docTypes === null ? presentDocTypes.slice() : docTypes.slice(); setDocTypes(cur.includes(t) ? cur.filter(x => x !== t) : cur.concat(t)); }} style={{ padding: '5px 11px', borderRadius: 18, border: `1px solid ${on ? m.c : '#ddd5c5'}`, background: on ? m.bg : '#fbf7ee', color: on ? m.c : '#a8a195', fontSize: 11.5, fontWeight: on ? 600 : 500, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+                  <button key={t} onClick={() => { const cur = docTypes === null ? defaultDocTypes.slice() : docTypes.slice(); setDocTypes(cur.includes(t) ? cur.filter(x => x !== t) : cur.concat(t)); }} style={{ padding: '5px 11px', borderRadius: 18, border: `1px solid ${on ? m.c : '#ddd5c5'}`, background: on ? m.bg : '#fbf7ee', color: on ? m.c : '#a8a195', fontSize: 11.5, fontWeight: on ? 600 : 500, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
                     {m.label} {cnt}
                   </button>
                 );
@@ -484,7 +484,8 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
         <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginBottom: 16, fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: '#8a8377' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 11, height: 11, borderRadius: '50%', background: '#fff', border: `2px solid ${ACCENT}`, display: 'inline-block' }} />version release</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 9, height: 9, background: '#d39314', display: 'inline-block', transform: 'rotate(45deg)' }} />sunset / retired</span>
-          {showDocs && <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: '#9a8fb0', display: 'inline-block' }} />supporting document</span>}
+          {showDocs && presentDocTypes.some(t => t !== 'faq' && docTypeSet.has(t)) && <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: '#9a8fb0', display: 'inline-block' }} />supporting document</span>}
+          {showDocs && docTypeSet.has('faq') && <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 5, height: 5, borderRadius: '50%', background: DT['faq'].c, opacity: 0.55, display: 'inline-block' }} />FAQ update</span>}
           <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 2, height: 13, background: ACCENT, display: 'inline-block' }} />today</span>
         </div>
         <div style={{ border: '1px solid #e0d9cb', borderRadius: 14, background: '#fbf7ee', padding: 20, overflowX: 'auto', ...(tlFull ? { flex: 1, overflowY: 'auto' } : {}) }}>
