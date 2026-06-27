@@ -58,6 +58,45 @@ export const StandardSchema = z.object({
   documents: z.array(DocumentSchema).default([]),
 });
 
+export const FaqMappingMethodSchema = z.enum(['direct', 'disambiguated', 'inferred', 'general', 'excluded']);
+
+export const FaqEntrySchema = z.object({
+  number: z.number().int().positive(),
+  title: z.string(),
+  updated: z.string().nullable(),
+  standards: z.array(z.string()).default([]),
+  mapping_method: FaqMappingMethodSchema,
+  source_url: z.string().url(),
+  verified: z.boolean(),
+});
+
+export const FaqsFileSchema = z.object({
+  faqs: z.array(FaqEntrySchema),
+});
+
+export type FaqEntry = z.infer<typeof FaqEntrySchema>;
+
+export const VersionCandidateReasonSchema = z.enum(['version-newer', 'bulletin-retirement']);
+
+export const VersionCandidateSchema = z.object({
+  slug: z.string(),
+  standard_name: z.string(),
+  current_version: z.string().nullable(),
+  detected_version: z.string().nullable(),
+  detected_date: z.string().nullable(),
+  document_slug: z.string(),
+  document_title: z.string(),
+  source_url: z.string(),
+  reason: VersionCandidateReasonSchema,
+});
+
+export const VersionCandidatesFileSchema = z.object({
+  generated: z.string(),
+  candidates: z.array(VersionCandidateSchema),
+});
+
+export type VersionCandidate = z.infer<typeof VersionCandidateSchema>;
+
 export const RelationshipTypeSchema = z.enum(['associate', 'supersede', 'converge']);
 export const RelationshipStateSchema = z.enum(['planned', 'in-progress', 'complete']);
 

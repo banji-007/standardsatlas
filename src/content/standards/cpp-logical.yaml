@@ -51,6 +51,14 @@ documents:
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=card_production&document=roc_reporting_template_logical_v3
     verified: false
+  - slug: req_pol
+    title: Assessor Requalification Policy
+    type: guidance
+    published: "2023-08-02"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=programs&document=req_pol
+    verified: false
   - slug: pci_card_production_summary_changes
     title: Card Production Summary of Changes
     type: guidance
@@ -74,4 +82,12 @@ documents:
     applies_to_version: null
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production_logical_security_requirements
+    verified: false
+  - slug: code_of_prof_resp
+    title: Code of Professional Responsibility
+    type: guidance
+    published: "2014-12-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=programs&document=code_of_prof_resp
     verified: false

@@ -1,0 +1,2409 @@
+faqs:
+  - number: 1003
+    title: Where is the PCI Security Standards Council Located
+    updated: "2012-04-04T19:37:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1003/
+    verified: false
+  - number: 1004
+    title: Does the PCI Security Standards Council enforce compliance?
+    updated: "2012-04-27T17:48:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1004/
+    verified: false
+  - number: 1009
+    title: In case of a suspected breach, should the PCI Security Standards Council be contacted directly?
+    updated: "2012-04-04T22:06:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1009/
+    verified: false
+  - number: 1011
+    title: >-
+      Once my business has been determined to be compliant by a QSA, would I or the QSA need to communicate this fact to
+      the PCI Security Standards Council?
+    updated: "2012-04-05T17:28:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1011/
+    verified: false
+  - number: 1014
+    title: >-
+      Do QSAs and ASVs need to send reports of compliance (ROCs) or scanning results to the PCI Security Standards
+      Council directly?
+    updated: "2012-04-05T17:34:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1014/
+    verified: false
+  - number: 1015
+    title: What are the consequences to my business if I do not comply with the PCI DSS?
+    updated: "2012-04-05T17:36:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1015/
+    verified: false
+  - number: 1017
+    title: How can my organization find assistance in completing the Self-Assessment Questionnaire?
+    updated: "2022-12-20T16:55:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1017/
+    verified: false
+  - number: 1019
+    title: >-
+      If my business was deemed compliant but my system was still breached and payment account data compromised after
+      the fact, what liability would my business incur?
+    updated: "2012-04-05T21:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1019/
+    verified: false
+  - number: 1022
+    title: Do small merchants with limited transaction volumes need comply with PCI DSS?
+    updated: "2015-07-29T18:12:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1022/
+    verified: false
+  - number: 1023
+    title: What are the requirements that have to be satisfied to be in compliance with the PCI Data Security Standard?
+    updated: "2012-04-05T22:11:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1023/
+    verified: false
+  - number: 1024
+    title: Is PCI DSS a global standard?
+    updated: "2012-04-05T22:13:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1024/
+    verified: false
+  - number: 1034
+    title: What are system-level objects?
+    updated: "2022-12-15T18:11:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1034/
+    verified: false
+  - number: 1036
+    title: How can I provide feedback (negative or positive) about my QSA/ASV?
+    updated: "2012-04-06T15:13:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1036/
+    verified: false
+  - number: 1037
+    title: Do hosting providers have responsibility for liabilities/fines?
+    updated: "2012-04-12T23:58:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1037/
+    verified: false
+  - number: 1038
+    title: Does PCI DSS apply to "hot cards," expired, cancelled or invalid payment account numbers?
+    updated: "2022-12-20T18:08:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1038/
+    verified: false
+  - number: 1039
+    title: Does PCI DSS apply to debit cards, debit payments, and debit systems?
+    updated: "2021-11-30T14:54:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1039/
+    verified: false
+  - number: 1042
+    title: Should cardholder data be encrypted while in memory?
+    updated: "2022-12-20T18:11:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1042/
+    verified: false
+  - number: 1043
+    title: Is frame relay considered a private network and are there any encryption requirements?
+    updated: "2012-04-13T00:07:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1043/
+    verified: false
+  - number: 1044
+    title: Do ISPs that provide only internet connection need to comply with the PCI DSS?
+    updated: "2012-04-13T00:08:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1044/
+    verified: false
+  - number: 1045
+    title: Is MPLS considered a private or public network when transmitting cardholder data?
+    updated: "2022-12-20T18:15:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1045/
+    verified: false
+  - number: 1046
+    title: >-
+      Will the PCI Security Standards Council "approve" my organization's implementation of compensating controls in my
+      effort to comply with the PCI DSS?
+    updated: "2012-04-13T00:10:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1046/
+    verified: false
+  - number: 1050
+    title: I make ATMs, what do I need to do for PTS?
+    updated: "2014-01-30T16:36:00Z"
+    standards:
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1050/
+    verified: false
+  - number: 1054
+    title: >-
+      Does the PCI Security Standards Council provide information on security breaches, status of investigations, or PCI
+      DSS compliance status?
+    updated: "2017-03-15T20:14:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1054/
+    verified: false
+  - number: 1055
+    title: Should I complete the Prioritized Approach milestones in sequential order?
+    updated: "2012-11-01T00:24:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1055/
+    verified: false
+  - number: 1060
+    title: >-
+      How would an identified Denial of Service (DoS) vulnerability affect a company's ability to pass a PCI DSS
+      vulnerability scan from an Approved Scanning Vendor (ASV)?
+    updated: "2012-04-15T20:23:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1060/
+    verified: false
+  - number: 1062
+    title: What is meant by a "payment application" in Part 2d of the Attestation of Compliance?
+    updated: "2015-07-29T18:06:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1062/
+    verified: false
+  - number: 1063
+    title: Does SAQ C-VT replace SAQ C?
+    updated: "2012-04-15T20:29:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1063/
+    verified: false
+  - number: 1064
+    title: What is a VT or Virtual Terminal?
+    updated: "2012-04-15T20:31:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1064/
+    verified: false
+  - number: 1065
+    title: >-
+      How are third-party service providers (TPSPs) expected to demonstrate PCI DSS compliance for TPSP services that
+      meet customers’ PCI DSS requirements or may impact the security of a customer’s cardholder data and/or sensitive
+      authentication data?
+    updated: "2024-11-05T15:10:24Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1065/
+    verified: false
+  - number: 1066
+    title: What is an "inactive user account" as used in PCI DSS Requirement 8?
+    updated: "2022-08-16T19:34:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1066/
+    verified: false
+  - number: 1068
+    title: Are digital leased lines considered public or private?
+    updated: "2022-08-16T17:40:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1068/
+    verified: false
+  - number: 1069
+    title: Does PCI DSS apply to paper with cardholder data (for example, receipts, reports, etc.)?
+    updated: "2022-08-16T18:10:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1069/
+    verified: false
+  - number: 1070
+    title: >-
+      Are digital images containing cardholder data and/or sensitive authentication data included in the scope of the
+      PCI DSS?
+    updated: "2022-08-16T18:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1070/
+    verified: false
+  - number: 1071
+    title: Can the full payment card number be displayed within a browser window?
+    updated: "2025-07-22T15:13:39Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1071/
+    verified: false
+  - number: 1073
+    title: Do PCI DSS Requirements apply to Bluetooth technology?
+    updated: "2022-08-16T17:48:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1073/
+    verified: false
+  - number: 1074
+    title: Is intrusion detection required if centralized log correlation is in place?
+    updated: "2022-12-20T18:18:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1074/
+    verified: false
+  - number: 1075
+    title: Is it permissible to use self-decrypting files for encryption to send cardholder data?
+    updated: "2025-07-22T16:26:38Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1075/
+    verified: false
+  - number: 1076
+    title: Is it permissible to use FTP if proper security measures are implemented?
+    updated: "2023-01-10T15:59:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1076/
+    verified: false
+  - number: 1078
+    title: In what circumstances is multi-factor authentication required?
+    updated: "2026-01-21T10:51:34Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1078/
+    verified: false
+  - number: 1079
+    title: What is the definition of "merchant"?
+    updated: "2021-11-30T14:57:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1079/
+    verified: false
+  - number: 1080
+    title: Does PCI DSS Requirement 8.2.2 allow users to share authentication credentials?
+    updated: "2024-09-09T10:45:48Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1080/
+    verified: false
+  - number: 1081
+    title: Does PCI DSS require both database and application logging?
+    updated: "2022-12-20T18:22:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1081/
+    verified: false
+  - number: 1082
+    title: >-
+      If a merchant has multiple processing environments, should the merchant complete multiple SAQ to validate their
+      PCI DSS compliance?
+    updated: "2015-07-29T16:52:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1082/
+    verified: false
+  - number: 1083
+    title: What is the mission of the PCI Security Standards Council?
+    updated: "2012-04-15T21:49:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1083/
+    verified: false
+  - number: 1085
+    title: Can unencrypted PANs be sent over e-mail, instant messaging, SMS, or chat?
+    updated: "2025-08-28T08:55:03Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1085/
+    verified: false
+  - number: 1086
+    title: How does encrypted cardholder data impact PCI DSS scope?
+    updated: "2026-03-30T18:55:13Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1086/
+    verified: false
+  - number: 1087
+    title: For vulnerability scans, what is meant by "quarterly" or "at least once every three months"?
+    updated: "2023-07-06T22:37:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1087/
+    verified: false
+  - number: 1089
+    title: >-
+      How can hashing be used to protect Primary Account Numbers (PAN) and in what circumstances can hashed PANs be
+      considered out of scope for PCI DSS?
+    updated: "2026-03-03T20:52:55Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1089/
+    verified: false
+  - number: 1091
+    title: What are acceptable formats for truncation of primary account numbers?
+    updated: "2022-06-30T18:49:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1091/
+    verified: false
+  - number: 1092
+    title: >-
+      Does PCI DSS apply to merchants who outsource all payment processing operations and never store, process or
+      transmit cardholder data?
+    updated: "2025-06-11T14:54:59Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1092/
+    verified: false
+  - number: 1093
+    title: Do PCI DSS requirements for protecting stored cardholder data apply to mainframes?
+    updated: "2025-06-11T14:55:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1093/
+    verified: false
+  - number: 1094
+    title: >-
+      Will the PCI Security Standards Council be involved in performing forensics investigations as a result of an
+      account data compromise event?
+    updated: "2012-04-15T22:31:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1094/
+    verified: false
+  - number: 1096
+    title: >-
+      When a QSA or ASV is newly approved, who is the contact at the PCI Security Standards Council to request a press
+      release?
+    updated: "2012-04-15T22:34:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1096/
+    verified: false
+  - number: 1115
+    title: How does PCI DSS apply to individual PCs or workstations?
+    updated: "2012-06-05T00:06:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1115/
+    verified: false
+  - number: 1117
+    title: Are truncated Primary Account Numbers (PAN) required to be protected in accordance with PCI DSS?
+    updated: "2021-09-09T19:05:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1117/
+    verified: false
+  - number: 1122
+    title: What is the scope of the PCI Security Standards Council's activities?
+    updated: "2012-07-02T17:44:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1122/
+    verified: false
+  - number: 1123
+    title: In what way does the PCI Security Standards Council make payment card data more secure?
+    updated: "2012-07-02T17:44:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1123/
+    verified: false
+  - number: 1124
+    title: >-
+      PCI DSS provides a common data security standard across all payment brands. Are there any plans to provide a
+      common structure of penalties and/or fines for non-compliance to this standard?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1124/
+    verified: false
+  - number: 1125
+    title: >-
+      Are there any plans for PCI SSC to be a single point of contact for a merchant, financial institute or processor
+      to send a PCI DSS compliance report to?
+    updated: "2012-12-20T22:28:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1125/
+    verified: false
+  - number: 1126
+    title: >-
+      How do I determine whether my business would be required to conduct an independent assessment or a
+      self-assessment?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1126/
+    verified: false
+  - number: 1127
+    title: Is there opportunity to provide feedback on the PCI Council's standards?
+    updated: "2012-07-02T17:44:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1127/
+    verified: false
+  - number: 1130
+    title: Are operating systems that are no longer supported by the vendor non-compliant with the PCI DSS?
+    updated: "2013-06-17T14:54:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1130/
+    verified: false
+  - number: 1131
+    title: Does the council have a mapping between PCI DSS and ISO 27002 (formerly ISO 17799) or other standards?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1131/
+    verified: false
+  - number: 1132
+    title: What is an Attestation of Compliance?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1132/
+    verified: false
+  - number: 1133
+    title: Why are there multiple PCI DSS Self-assessment Questionnaires (SAQs)?
+    updated: "2024-04-23T17:24:54Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1133/
+    verified: false
+  - number: 1134
+    title: What are the steps needed to perform a self assessment to validate compliance with PCI DSS?
+    updated: "2015-07-29T16:55:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1134/
+    verified: false
+  - number: 1135
+    title: Can VLANS be used for network segmentation?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1135/
+    verified: false
+  - number: 1137
+    title: How can I validate if a number is a legitimate credit card number?
+    updated: "2012-07-02T17:44:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1137/
+    verified: false
+  - number: 1138
+    title: Does PCI SSC provide a list of PCI DSS-compliant third-party service providers?
+    updated: "2024-02-28T00:50:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1138/
+    verified: false
+  - number: 1139
+    title: Does PCI DSS allow faxing of payment card numbers?
+    updated: "2025-08-28T08:44:17Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1139/
+    verified: false
+  - number: 1140
+    title: Which Self-assessment Questionnaire (SAQ) should I complete?
+    updated: "2015-07-29T16:56:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1140/
+    verified: false
+  - number: 1142
+    title: How do I contact the payment card brands?
+    updated: "2024-06-21T17:28:28Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1142/
+    verified: false
+  - number: 1146
+    title: What is the difference between masking and truncation?
+    updated: "2025-07-22T16:30:04Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1146/
+    verified: false
+  - number: 1147
+    title: >-
+      What is the purpose of PCI DSS Requirement 8.2.8, which requires users to reauthenticate after 15 minutes of idle
+      time?
+    updated: "2025-11-17T08:31:21Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1147/
+    verified: false
+  - number: 1152
+    title: >-
+      Can entities be PCI DSS compliant if they have performed vulnerability scans at least once every three months, but
+      do not have four "passing" scans?
+    updated: "2024-01-19T21:45:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1152/
+    verified: false
+  - number: 1153
+    title: How does PCI DSS apply to VoIP?
+    updated: "2012-10-02T18:17:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1153/
+    verified: false
+  - number: 1154
+    title: For PCI DSS, can sensitive account data be stored before authorization?
+    updated: "2025-07-22T16:22:30Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1154/
+    verified: false
+  - number: 1155
+    title: >-
+      Which service provider category should I use for Part 2 of the PCI DSS Attestation of Compliance (AOC) for Service
+      Providers?
+    updated: "2015-07-29T17:07:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1155/
+    verified: false
+  - number: 1157
+    title: What should a merchant do if cardholder data is accidentally received via an unintended channel?
+    updated: "2012-10-02T18:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1157/
+    verified: false
+  - number: 1158
+    title: What effect does the use of a PCI-listed P2PE solution have on a merchant's PCI DSS validation?
+    updated: "2024-02-28T00:16:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1158/
+    verified: false
+  - number: 1162
+    title: >-
+      Can merchants use encryption solutions not listed on the PCI Council's website to reduce their PCI DSS validation
+      effort?
+    updated: "2020-04-17T17:58:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1162/
+    verified: false
+  - number: 1163
+    title: >-
+      Is a "P2PE Assessor" required for a merchant's PCI DSS assessment if the merchant uses  a Council-listed P2PE
+      solution?
+    updated: "2024-05-10T14:23:24Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1163/
+    verified: false
+  - number: 1164
+    title: Is the PCI P2PE Standard applicable for merchants that have developed/implemented their own encryption solution?
+    updated: "2020-04-17T17:56:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1164/
+    verified: false
+  - number: 1165
+    title: Are P2PE solution providers required to have their solutions validated and listed by the Council?
+    updated: "2016-06-28T22:20:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1165/
+    verified: false
+  - number: 1168
+    title: >-
+      What assurances does the Council provide regarding the quality of organizations assessing my systems for
+      compliance with the PCI standards?
+    updated: "2012-11-01T00:08:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1168/
+    verified: false
+  - number: 1169
+    title: What are the Council's requirements for QSA and ASV Companies to maintain a Quality Assurance (QA) manual?
+    updated: "2012-10-31T23:59:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1169/
+    verified: false
+  - number: 1170
+    title: How does the Prioritized Approach work?
+    updated: "2012-11-01T00:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1170/
+    verified: false
+  - number: 1171
+    title: Is the Prioritized Approach mandatory?
+    updated: "2012-11-01T00:07:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1171/
+    verified: false
+  - number: 1172
+    title: Does the Prioritized Approach replace the PCI DSS?
+    updated: "2012-11-01T00:02:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1172/
+    verified: false
+  - number: 1176
+    title: How does an organization maintain compliance when a standard changes?
+    updated: "2021-08-17T20:04:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1176/
+    verified: false
+  - number: 1210
+    title: Are audio/voice recordings permitted to contain sensitive authentication data?
+    updated: "2025-06-11T14:56:01Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1210/
+    verified: false
+  - number: 1211
+    title: To whom should media inquiries or requests for interviews about the PCI Security Standard Council be directed?
+    updated: "2013-01-23T00:43:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1211/
+    verified: false
+  - number: 1212
+    title: >-
+      What is the involvement of the PCI SSC on the compliance validation processes for PCI DSS assessments and scan
+      reports?
+    updated: "2013-01-29T15:33:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1212/
+    verified: false
+  - number: 1214
+    title: >-
+      Which PCI standards apply to card manufacturers, embossers, card personalizers, or entities that prepare data for
+      card manufacturing?
+    updated: "2024-01-19T20:58:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1214/
+    verified: false
+  - number: 1215
+    title: What is a PCI DSS Self-Assessment Questionnaire?
+    updated: "2024-04-23T17:19:14Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1215/
+    verified: false
+  - number: 1216
+    title: Does the PCI DSS apply to acquirers?
+    updated: "2013-01-23T01:02:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1216/
+    verified: false
+  - number: 1217
+    title: Does the PCI DSS apply to issuers?
+    updated: "2013-01-23T01:04:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1217/
+    verified: false
+  - number: 1220
+    title: Are compliance certificates recognized for PCI DSS validation?
+    updated: "2023-08-31T13:32:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1220/
+    verified: false
+  - number: 1221
+    title: To which types of service providers does PCI DSS Appendix A1 for Multi-Tenant Service Providers apply?
+    updated: "2025-11-05T09:00:46Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1221/
+    verified: false
+  - number: 1222
+    title: >-
+      Does cardholder name, expiration date, etc. need to be rendered unreadable if stored in conjunction with the PAN
+      (Primary Account Number)?
+    updated: "2025-06-11T14:57:12Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1222/
+    verified: false
+  - number: 1227
+    title: Who are the founders of the PCI Security Standards Council?
+    updated: "2021-11-30T14:59:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1227/
+    verified: false
+  - number: 1229
+    title: What is SAQ C-VT?
+    updated: "2013-02-03T23:09:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1229/
+    verified: false
+  - number: 1233
+    title: How does encrypted cardholder data impact PCI DSS scope for third-party service providers?
+    updated: "2026-03-30T18:42:29Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1233/
+    verified: false
+  - number: 1234
+    title: I have had an external vulnerability scan completed by an ASV &#8211; does this mean I am PCI DSS compliant?
+    updated: "2025-06-11T14:57:26Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1234/
+    verified: false
+  - number: 1235
+    title: >-
+      If a merchant or service provider has internal corporate credit cards used by employees for company purchases like
+      travel or office supplies, are these corporate cards considered "in scope" for PCI DSS?
+    updated: "2013-02-06T02:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1235/
+    verified: false
+  - number: 1246
+    title: Can a QSA that is not also a P2PE Assessor validate an encryption solution meets P2PE Requirements?
+    updated: "2024-05-10T14:15:40Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1246/
+    verified: false
+  - number: 1247
+    title: Who can use SAQ P2PE?
+    updated: "2020-09-21T20:12:00Z"
+    standards:
+      - p2pe
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1247/
+    verified: false
+  - number: 1248
+    title: In P2PE, how do "hybrid" decryption environments differ from "hardware" decryption environments?
+    updated: "2020-04-17T17:43:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1248/
+    verified: false
+  - number: 1251
+    title: What is the process to use previously-deployed POI devices in a PCI P2PE Solution?
+    updated: "2020-04-03T17:03:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1251/
+    verified: false
+  - number: 1252
+    title: Do all PCI DSS requirements apply to every system component?
+    updated: "2025-07-22T19:35:35Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1252/
+    verified: false
+  - number: 1253
+    title: Does hashing of passwords meet the intent of PCI DSS Requirement 8.3.2?
+    updated: "2025-07-22T19:40:35Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1253/
+    verified: false
+  - number: 1257
+    title: >-
+      Can I report on my Prioritized Approach progress instead of producing a Report on Compliance or Attestation of
+      Compliance?
+    updated: "2013-08-08T00:10:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1257/
+    verified: false
+  - number: 1258
+    title: Does PCI SSC endorse specific products to meet PCI DSS requirements?
+    updated: "2013-08-09T23:45:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1258/
+    verified: false
+  - number: 1265
+    title: Can I combine sections from different versions of the PCI DSS?`
+    updated: "2015-05-28T19:15:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1265/
+    verified: false
+  - number: 1266
+    title: >-
+      If an entity is in the middle of a PCI DSS assessment when a new version of the standard is released — should the
+      assessment be started again using the new version?
+    updated: "2023-03-13T23:57:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1266/
+    verified: false
+  - number: 1277
+    title: Are merchants required to meet PCI DSS Requirement 12.9?
+    updated: "2014-06-11T01:15:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1277/
+    verified: false
+  - number: 1280
+    title: Can card verification codes be stored for card-on-file or recurring transactions?
+    updated: "2023-10-09T11:56:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1280/
+    verified: false
+  - number: 1281
+    title: >-
+      Are point-of-interaction devices required to be physically secured (for example, with a cable or tether) to
+      prevent removal or substitution to meet PCI DSS Requirement 9.5?
+    updated: "2025-07-22T19:43:52Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1281/
+    verified: false
+  - number: 1282
+    title: >-
+      Can an entity be PCI DSS compliant if they use a third-party service provider (TPSP) that is validated to a
+      previous version of PCI DSS?
+    updated: "2022-11-10T19:41:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1282/
+    verified: false
+  - number: 1283
+    title: >-
+      How do PCI standards apply to organizations that develop software that runs on a consumer's device (for example, a
+      smartphone, tablet, or laptop) and is used to accept payment card data?
+    updated: "2023-10-09T11:57:00Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1283/
+    verified: false
+  - number: 1284
+    title: Are acquirers considered service providers for the purpose of PCI DSS Requirements 12.8 and 12.9?
+    updated: "2014-07-15T15:05:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1284/
+    verified: false
+  - number: 1285
+    title: Does PCI DSS apply to one-time or single-use PANs?
+    updated: "2021-11-30T14:32:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1285/
+    verified: false
+  - number: 1286
+    title: Does PCI DSS apply to virtual (electronic-only) PANs?
+    updated: "2021-11-30T14:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1286/
+    verified: false
+  - number: 1290
+    title: >-
+      If an entity uses a third-party service provider (TPSP) that has been validated as PCI DSS compliant, is the
+      entity's assessor required to go onsite to the TPSP's location and retest the PCI DSS requirements?
+    updated: "2024-02-27T21:31:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1290/
+    verified: false
+  - number: 1291
+    title: Why is SAQ A-EP used for Direct Post while SAQ A is used for iFrame or URL redirect?
+    updated: "2015-08-14T20:27:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1291/
+    verified: false
+  - number: 1292
+    title: >-
+      Why is there a different approach for Direct Post implementations than for iFrame and URL redirect &#8211; what
+      are the technical differences and how do they impact the security of e-commerce transactions?
+    updated: "2015-08-14T20:31:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1292/
+    verified: false
+  - number: 1293
+    title: >-
+      If a merchant's e-commerce implementation meets the criteria that all elements of payment pages originate from a
+      PCI DSS compliant service provider, is the merchant eligible to complete SAQ A or SAQ A-EP?
+    updated: "2014-06-12T00:47:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1293/
+    verified: false
+  - number: 1300
+    title: How does PCI DSS apply to payment terminals?
+    updated: "2026-03-30T19:02:52Z"
+    standards:
+      - pci-dss
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1300/
+    verified: false
+  - number: 1301
+    title: How should payment terminals be considered during a PCI DSS assessment?
+    updated: "2023-08-25T22:20:00Z"
+    standards:
+      - p2pe
+      - pci-dss
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1301/
+    verified: false
+  - number: 1302
+    title: How does use of an expired PTS device affect my PCI DSS compliance?
+    updated: "2020-03-18T15:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1302/
+    verified: false
+  - number: 1304
+    title: To which devices does PCI DSS Requirement 10.4.2 apply?
+    updated: "2025-07-22T19:45:49Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1304/
+    verified: false
+  - number: 1305
+    title: How do individuals obtain examination accommodation or adjustments for PCI SSC programs?
+    updated: "2025-11-17T10:26:32Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1305/
+    verified: false
+  - number: 1306
+    title: >-
+      Are PCI Forensic Investigators (PFIs) permitted to enter into retainer-type agreements with merchants and service
+      providers?
+    updated: "2017-04-13T18:45:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1306/
+    verified: false
+  - number: 1308
+    title: How can an entity ensure that hashed and truncated versions cannot be correlated?
+    updated: "2025-06-11T14:58:15Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1308/
+    verified: false
+  - number: 1310
+    title: Are entities allowed to request that cardholder data be provided over end-user messaging technologies?
+    updated: "2025-08-28T08:52:20Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1310/
+    verified: false
+  - number: 1311
+    title: Are PFI Companies which are "in remediation" permitted to perform investigations?
+    updated: "2014-12-08T15:08:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1311/
+    verified: false
+  - number: 1312
+    title: How is an entity's PCI DSS compliance impacted by using third-party service providers (TPSPs)?
+    updated: "2024-02-26T22:54:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1312/
+    verified: false
+  - number: 1313
+    title: Can SAQ B-IP be used if cardholder data is transmitted over wireless?
+    updated: "2014-12-08T21:22:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1313/
+    verified: false
+  - number: 1314
+    title: Is storage of encrypted cardholder data considered "cardholder data" per the SAQ eligibility criteria?
+    updated: "2015-01-29T01:33:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1314/
+    verified: false
+  - number: 1315
+    title: Is storage of truncated PAN considered storage of "cardholder data" per the SAQ eligibility criteria?
+    updated: "2015-01-29T01:37:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1315/
+    verified: false
+  - number: 1316
+    title: Are merchants required to perform the "Expected Testing" in the SAQs?
+    updated: "2015-01-29T01:40:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1316/
+    verified: false
+  - number: 1317
+    title: What is meant by "significant change" in PCI DSS?
+    updated: "2023-04-03T22:22:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1317/
+    verified: false
+  - number: 1318
+    title: What is the maximum period of time that cardholder data can be stored?
+    updated: "2025-07-22T19:53:38Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1318/
+    verified: false
+  - number: 1319
+    title: Are merchants allowed to request card-verification codes/values from cardholders?
+    updated: "2025-06-11T14:59:01Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1319/
+    verified: false
+  - number: 1320
+    title: Who do I report insecure merchant behavior to?
+    updated: "2015-01-29T01:48:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1320/
+    verified: false
+  - number: 1321
+    title: Do parent/subsidiary companies validate as a single entity or as separate entities?
+    updated: "2015-01-29T01:51:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1321/
+    verified: false
+  - number: 1322
+    title: What are the expiry dates for PTS POI device approvals?
+    updated: "2024-05-10T13:29:39Z"
+    standards:
+      - pci-dss
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1322/
+    verified: false
+  - number: 1323
+    title: Are disaster-recovery (DR) sites in scope for PCI DSS?
+    updated: "2015-03-03T18:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1323/
+    verified: false
+  - number: 1324
+    title: What changes are PFI companies allowed to make to the PFI Reporting Templates?
+    updated: "2020-05-22T15:17:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1324/
+    verified: false
+  - number: 1325
+    title: Does PCI SSC provide a "PCI DSS Compliant" logo?
+    updated: "2015-04-22T18:15:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1325/
+    verified: false
+  - number: 1326
+    title: How does PCI DSS apply to EMVCo Payment Tokens?
+    updated: "2015-05-05T14:09:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1326/
+    verified: false
+  - number: 1327
+    title: Do PANs need to be masked on cardholder statements sent by issuers to customers?
+    updated: "2022-08-16T19:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1327/
+    verified: false
+  - number: 1328
+    title: Where can I find the current version of PCI DSS?
+    updated: "2024-10-21T10:25:28Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1328/
+    verified: false
+  - number: 1331
+    title: >-
+      Can SAQ eligibility criteria be used as a guide for determining applicability of PCI DSS requirements for merchant
+      assessments documented in a Report on Compliance?
+    updated: "2025-05-23T09:27:57Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1331/
+    verified: false
+  - number: 1332
+    title: Is a merchant website still in scope for PCI DSS if it meets all the criteria for SAQ A?
+    updated: "2015-07-28T23:48:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1332/
+    verified: false
+  - number: 1333
+    title: Can PCI DSS compliance be determined by testing only pre-production environments using test data?
+    updated: "2015-07-28T23:50:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1333/
+    verified: false
+  - number: 1334
+    title: Where can I find unlocked versions of the AOCs and SAQs?
+    updated: "2015-07-28T23:52:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1334/
+    verified: false
+  - number: 1335
+    title: Does PCI DSS apply to bank account data?
+    updated: "2023-06-23T22:11:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1335/
+    verified: false
+  - number: 1338
+    title: What is the difference between POI firmware and additional software that may be present on the POI device?
+    updated: "2015-09-27T04:08:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1338/
+    verified: false
+  - number: 1339
+    title: >-
+      Are POI devices with only PTS-approved firmware (i.e., no additional software) eligible for use in a PCI P2PE
+      solution?
+    updated: "2020-04-03T16:52:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1339/
+    verified: false
+  - number: 1354
+    title: >-
+      Can sensitive information be redacted from the PCI DSS Attestation of Compliance before it is shared with other
+      entities?
+    updated: "2023-04-03T22:18:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1354/
+    verified: false
+  - number: 1356
+    title: What does "Duly Authorized Officer" mean?
+    updated: "2023-06-05T15:53:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1356/
+    verified: false
+  - number: 1358
+    title: Which version of the P2PE Standard should be used for a P2PE assessment?
+    updated: "2024-05-10T14:39:52Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1358/
+    verified: false
+  - number: 1367
+    title: Can PCI-listed P2PE v2.0 applications be used in PCI P2PE v3 solutions/components?
+    updated: "2020-04-17T18:47:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1367/
+    verified: false
+  - number: 1368
+    title: Can PCI-listed P2PE v3 applications be used in PCI P2PE v2 listed solutions/components?
+    updated: "2020-05-14T16:40:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1368/
+    verified: false
+  - number: 1369
+    title: >-
+      Does PCI P2PE allow for partial assessments of third parties with services that will be used in one or more P2PE
+      solutions?
+    updated: "2020-05-15T19:06:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1369/
+    verified: false
+  - number: 1374
+    title: Is Payment Account Reference (PAR) as defined by EMVCo considered PCI Account Data?
+    updated: "2016-01-29T21:51:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1374/
+    verified: false
+  - number: 1375
+    title: >-
+      Can an Attestation of Compliance (AOC) be provided to an assessed entity before the Report on Compliance (ROC) is
+      finalized?
+    updated: "2016-02-11T22:18:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1375/
+    verified: false
+  - number: 1382
+    title: Can a partial PCI DSS assessment be documented in a Report on Compliance (ROC)?
+    updated: "2024-08-01T11:09:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1382/
+    verified: false
+  - number: 1383
+    title: To whom do the PCI Token Service Provider Security Requirements apply?
+    updated: "2016-04-13T22:34:00Z"
+    standards:
+      - tsp
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1383/
+    verified: false
+  - number: 1384
+    title: What is the difference between 'acquiring tokens', 'issuer tokens', and 'Payment Tokens'?
+    updated: "2016-04-13T22:34:00Z"
+    standards:
+      - tsp
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1384/
+    verified: false
+  - number: 1385
+    title: Which types of tokens are addressed by the PCI SSC tokenization documents?
+    updated: "2016-04-13T22:34:00Z"
+    standards:
+      - tsp
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1385/
+    verified: false
+  - number: 1427
+    title: >-
+      Are OEMs and/or hardware/software resellers considered third-party service providers for PCI DSS Requirements 12.8
+      and 12.9?
+    updated: "2025-11-17T08:33:05Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1427/
+    verified: false
+  - number: 1434
+    title: How do PCI PTS-approved POI device expiry dates affect a PCI-listed P2PE solution?
+    updated: "2024-05-10T13:42:03Z"
+    standards:
+      - p2pe
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1434/
+    verified: false
+  - number: 1435
+    title: What is the Council's guidance on the use of SHA-1?
+    updated: "2026-01-21T10:54:20Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1435/
+    verified: false
+  - number: 1436
+    title: Where do I direct questions about complying with PCI standards?
+    updated: "2022-12-15T18:08:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1436/
+    verified: false
+  - number: 1437
+    title: Can PCI DSS be used to protect non-payment card data?
+    updated: "2016-08-10T17:28:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1437/
+    verified: false
+  - number: 1438
+    title: How is the payment page determined for SAQ A merchants using iframe?
+    updated: "2016-09-09T20:03:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1438/
+    verified: false
+  - number: 1439
+    title: How do PCI DSS Requirements 2, 6 and 8 apply to SAQ A merchants
+    updated: "2019-05-16T19:41:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1439/
+    verified: false
+  - number: 1440
+    title: How does PCI DSS Appendix A2 apply after the SSL/early TLS migration deadline?
+    updated: "2018-08-14T17:47:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1440/
+    verified: false
+  - number: 1442
+    title: Can merchants using non-console administrative access be eligible for SAQ B-IP, C-VT, or C?
+    updated: "2016-11-02T19:40:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1442/
+    verified: false
+  - number: 1443
+    title: What is the intent of the SAQ eligibility criteria?
+    updated: "2016-11-02T19:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1443/
+    verified: false
+  - number: 1444
+    title: Can a PFI Company perform subsequent PFI investigations for the same entity?
+    updated: "2024-08-15T07:56:40Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1444/
+    verified: false
+  - number: 1445
+    title: How should QSA assistance with completion of Self-Assessment Questionnaire (SAQs) be documented?
+    updated: "2017-02-07T21:43:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1445/
+    verified: false
+  - number: 1448
+    title: What is meant by "At-Risk Timeframe" and at risk referenced in the Final PFI Report?
+    updated: "2024-09-23T16:16:39Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1448/
+    verified: false
+  - number: 1449
+    title: Is two-step authentication acceptable for PCI DSS Requirement 8.4?
+    updated: "2026-01-21T10:49:46Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1449/
+    verified: false
+  - number: 1450
+    title: Where can I find more information about the Assessment Guidance for Non-listed Encryption Solutions (aka NESA)?
+    updated: "2017-08-16T19:11:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1450/
+    verified: false
+  - number: 1451
+    title: Can PFIs provide reports to their clients before sending the report to the affected payment brands?
+    updated: "2021-11-18T20:10:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1451/
+    verified: false
+  - number: 1452
+    title: How does Triple DEA (TDEA) impact ASV Scan results?
+    updated: "2017-09-18T22:41:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1452/
+    verified: false
+  - number: 1453
+    title: Can a PFI Company provide QSA services to an entity after performing a PFI investigation for that entity?
+    updated: "2022-08-25T21:21:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1453/
+    verified: false
+  - number: 1454
+    title: What is the intent of "administrative access" in PCI DSS?
+    updated: "2017-10-06T22:00:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1454/
+    verified: false
+  - number: 1455
+    title: Does a QSA need to be onsite at the client's premises for all aspects of a PCI DSS assessment?
+    updated: "2018-01-25T21:53:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1455/
+    verified: false
+  - number: 1456
+    title: >-
+      Can PCI SSC revoke a QSA Company's eligibility to participate in the Associate QSA Program due to quality concerns
+      in connection with that program, and not revoke qualification as a QSA Company?
+    updated: "2018-04-23T18:36:00Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1456/
+    verified: false
+  - number: 1457
+    title: >-
+      Are Mobile Payments on COTS (MPoC) solutions, Software-based PIN Entry on COTS (SPoC)™ solutions, or Contactless
+      Payments on COTS (CPoC™) solutions eligible for a P2PE Solution approval?
+    updated: "2024-04-17T16:48:47Z"
+    standards:
+      - p2pe
+      - spoc
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1457/
+    verified: false
+  - number: 1458
+    title: What date should be used for "Date of Report" in the ROC?
+    updated: "2019-07-02T23:08:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1458/
+    verified: false
+  - number: 1460
+    title: Where should reports be sent when the PFI investigation has concluded there is no evidence of a breach?
+    updated: "2018-11-12T20:40:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1460/
+    verified: false
+  - number: 1461
+    title: What are the security considerations for TLS 1.3?
+    updated: "2019-01-04T20:18:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1461/
+    verified: false
+  - number: 1462
+    title: What does "Window of Payment Card Data Storage" mean in the Final PFI Report template?
+    updated: "2019-01-24T23:23:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1462/
+    verified: false
+  - number: 1464
+    title: Does the use of expired PTS POI devices meet eligibility criteria for SAQ B-IP?
+    updated: "2019-03-15T21:11:00Z"
+    standards:
+      - pci-dss
+      - pts-poi
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1464/
+    verified: false
+  - number: 1467
+    title: Can organizations use alternative password management methods to meet PCI DSS Requirement 8?
+    updated: "2019-05-17T17:43:00Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1467/
+    verified: false
+  - number: 1468
+    title: >-
+      Can I have the same assessor company or individual assessor perform a PCI DSS and PIN Assessment for our
+      organization?
+    updated: "2019-09-03T17:25:00Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1468/
+    verified: false
+  - number: 1469
+    title: How do PCI PTS-approved HSM expiry dates affect a PCI-listed P2PE Solution or Component?
+    updated: "2024-05-10T13:50:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1469/
+    verified: false
+  - number: 1470
+    title: Are PFIs required to fill out all the fields in the Final PFI Report?
+    updated: "2019-11-26T20:23:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1470/
+    verified: false
+  - number: 1471
+    title: What does "Servicing Markets" on the QSA listing mean?
+    updated: "2019-11-26T20:42:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1471/
+    verified: false
+  - number: 1472
+    title: >-
+      How can I determine whether a QSA is authorized to perform PCI DSS assessments in all countries that are in scope
+      for my company's PCI DSS assessment?
+    updated: "2019-11-26T20:47:00Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1472/
+    verified: false
+  - number: 1473
+    title: >-
+      What is the role of compliance-accepting entities and assessors in determining the applicability of PCI DSS
+      requirements for merchant and service provider PCI DSS assessments?
+    updated: "2023-03-13T22:31:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1473/
+    verified: false
+  - number: 1474
+    title: Can PCI-listed P2PE v2 components be used as part of a P2PE v3 solution?
+    updated: "2020-04-20T16:17:00Z"
+    standards:
+      - p2pe
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1474/
+    verified: false
+  - number: 1475
+    title: Can PCI-listed P2PE v3 components be used as part of a P2PE v2 solution?
+    updated: "2020-04-20T16:19:00Z"
+    standards:
+      - p2pe
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1475/
+    verified: false
+  - number: 1476
+    title: Which P2PE Program Guide version do I use?
+    updated: "2020-04-20T16:21:00Z"
+    standards:
+      - p2pe
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1476/
+    verified: false
+  - number: 1477
+    title: >-
+      Are software vendors wishing to undergo validation to the PCI Secure Software Lifecycle (Secure SLC) Standard also
+      required to have payment software listed or in the process of being validated to the PCI Secure Software Standard?
+    updated: "2020-05-22T15:31:00Z"
+    standards:
+      - secure-slc
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1477/
+    verified: false
+  - number: 1478
+    title: Can PCI-listed P2PE v3 components be used as part of a P2PE v2 solution?
+    updated: "2020-05-22T15:54:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1478/
+    verified: false
+  - number: 1479
+    title: Can PCI-listed P2PE v2 components be used as part of a P2PE v3 solution?
+    updated: "2020-05-22T16:09:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1479/
+    verified: false
+  - number: 1480
+    title: Which P2PE Program Guide version do I use?
+    updated: "2020-05-22T16:28:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1480/
+    verified: false
+  - number: 1481
+    title: What type of assessor signatures are allowable for PCI SSC attestation documentation?
+    updated: "2020-06-04T13:09:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1481/
+    verified: false
+  - number: 1482
+    title: >-
+      Are P2PE Products (P2PE Solutions, P2PE Components, P2PE Applications) on the P2PE Expired Listings still
+      considered "validated" per the P2PE Program Guide?
+    updated: "2020-10-22T17:01:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1482/
+    verified: false
+  - number: 1483
+    title: >-
+      If a P2PE Solution is on PCI's list of Point-to-Point Encryption Solutions with Expired Validations, does the
+      solution meet the eligibility criteria for SAQ P2PE?
+    updated: "2020-09-21T20:25:00Z"
+    standards:
+      - p2pe
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1483/
+    verified: false
+  - number: 1484
+    title: >-
+      If a P2PE Solution is shown as red or orange on PCI's list of Validated P2PE Solutions, does the solution meet the
+      eligibility criteria for SAQ P2PE?
+    updated: "2020-09-21T20:43:00Z"
+    standards:
+      - p2pe
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1484/
+    verified: false
+  - number: 1485
+    title: What is the meaning of 'initial PCI DSS assessment'?
+    updated: "2024-01-19T21:11:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1485/
+    verified: false
+  - number: 1486
+    title: >-
+      Can the "Compliant but with Legal exception" option in the AOC be used to identify where a testing procedure could
+      not be performed due to a legal constraint?
+    updated: "2020-12-14T19:55:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1486/
+    verified: false
+  - number: 1487
+    title: Can a 3DS entity outsource the hosting and management of its HSMs to a third-party service provider?
+    updated: "2020-12-16T20:36:00Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1487/
+    verified: false
+  - number: 1488
+    title: What types of 3DS components are in scope for Requirement P2-7 in the PCI 3DS Core Security Standard?
+    updated: "2020-12-16T20:45:00Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1488/
+    verified: false
+  - number: 1489
+    title: Is an EMVCo Letter of Approval required prior to conducting a PCI 3DS Assessment?
+    updated: "2020-12-16T21:03:00Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1489/
+    verified: false
+  - number: 1490
+    title: Can a PCI 3DS Assessment result in a finding of "Compliant" if some requirements are not tested?
+    updated: "2020-12-16T21:18:00Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1490/
+    verified: false
+  - number: 1491
+    title: Does PCI DSS define which versions of TLS must be used?
+    updated: "2021-01-13T20:01:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1491/
+    verified: false
+  - number: 1492
+    title: How can an entity meet PCI DSS requirements for PAN masking and truncation if it has migrated to 8-digit BINs?
+    updated: "2024-04-12T12:56:39Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1492/
+    verified: false
+  - number: 1493
+    title: What is the PCI 3DS (3D Secure) Core Security Standard?
+    updated: "2021-04-07T17:53:00Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1493/
+    verified: false
+  - number: 1494
+    title: >-
+      For personnel working from home, is the work-from-home environment considered a "sensitive area" for PCI DSS
+      Requirement 9?
+    updated: "2021-05-20T21:06:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1494/
+    verified: false
+  - number: 1495
+    title: >-
+      Is an assessor required to visit work-from-home environments to determine if personnel are meeting PCI DSS
+      requirements?
+    updated: "2021-05-20T21:03:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1495/
+    verified: false
+  - number: 1496
+    title: Are entities expected to do onsite audits of personnel work-from-home environments?
+    updated: "2021-05-20T20:58:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1496/
+    verified: false
+  - number: 1533
+    title: >-
+      For PCI DSS, why is storage of sensitive authentication data (SAD) after authorization not permitted even when
+      there are no primary account numbers (PANs) in an environment?
+    updated: "2021-07-30T15:41:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1533/
+    verified: false
+  - number: 1536
+    title: What is a compliance-accepting entity?
+    updated: "2021-10-27T20:03:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1536/
+    verified: false
+  - number: 1537
+    title: Are remote assessments permitted for PCI DSS?
+    updated: "2021-10-27T20:06:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1537/
+    verified: false
+  - number: 1538
+    title: What is the process to initiate a software evaluation to the PCI Secure Software Standard?
+    updated: "2021-11-01T18:38:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1538/
+    verified: false
+  - number: 1539
+    title: Who is qualified to perform assessments to the PCI Secure Software Standard?
+    updated: "2021-11-01T18:08:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1539/
+    verified: false
+  - number: 1540
+    title: What software is eligible for validation to the PCI Secure Software Standard?
+    updated: "2021-11-01T18:11:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1540/
+    verified: false
+  - number: 1541
+    title: When must validated payment software be revalidated?
+    updated: "2021-11-01T18:13:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1541/
+    verified: false
+  - number: 1542
+    title: What is the process for PCI Secure SLC Qualification?
+    updated: "2021-11-01T18:16:00Z"
+    standards:
+      - secure-slc
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1542/
+    verified: false
+  - number: 1543
+    title: Who is qualified to perform assessments to the PCI Secure SLC Standard?
+    updated: "2021-11-01T18:19:00Z"
+    standards:
+      - secure-slc
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1543/
+    verified: false
+  - number: 1544
+    title: >-
+      Does PCI SSC provide a list of software vendors whose software development process(es) have been validated to the
+      Secure SLC Standard?
+    updated: "2021-11-01T18:22:00Z"
+    standards:
+      - secure-slc
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1544/
+    verified: false
+  - number: 1545
+    title: Are there prerequisite PCI SSC program requirements to meet before qualifying as an SSF Assessor Company?
+    updated: "2021-11-01T18:24:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1545/
+    verified: false
+  - number: 1546
+    title: Can multiple changes for a Secure Software listing be submitted within a single change submission?
+    updated: "2021-11-01T18:27:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1546/
+    verified: false
+  - number: 1547
+    title: Are currently listed PA-DSS payment applications required to be revalidated using the Secure Software Standard?
+    updated: "2021-11-01T18:32:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1547/
+    verified: false
+  - number: 1548
+    title: >-
+      Are Secure Software Assessors or Secure Software Lifecycle Assessors required to report Continuing Professional
+      Education (CPE) credits to PCI SSC?
+    updated: "2021-11-01T18:33:00Z"
+    standards:
+      - secure-slc
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1548/
+    verified: false
+  - number: 1549
+    title: Is software-as-a-service (SaaS) eligible for Secure Software Standard validation and listing?
+    updated: "2021-11-01T18:35:00Z"
+    standards:
+      - secure-software
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1549/
+    verified: false
+  - number: 1554
+    title: What is a PCI SSC Participating Payment Brand?
+    updated: "2021-11-30T15:36:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1554/
+    verified: false
+  - number: 1561
+    title: What impact does the inclusion of UnionPay in PCI DSS documents have on an entity's PCI DSS assessment?
+    updated: "2022-10-06T20:14:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1561/
+    verified: false
+  - number: 1562
+    title: >-
+      Is a QSA Employee that designs, develops, or implements specific controls for a customer also permitted to assess
+      those same controls?
+    updated: "2022-11-16T02:03:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1562/
+    verified: false
+  - number: 1563
+    title: What should an entity do if its PCI DSS assessment will not be complete prior to that standard's retirement date?
+    updated: "2024-10-21T10:28:42Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1563/
+    verified: false
+  - number: 1564
+    title: >-
+      How does an entity report the results of a PCI DSS assessment for new requirements that are noted in PCI DSS as
+      best practices until a future date?
+    updated: "2023-03-13T23:42:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1564/
+    verified: false
+  - number: 1565
+    title: >-
+      Does an entity's PCI DSS assessment result expire when the standard against which the entity was assessed is
+      retired?
+    updated: "2023-03-13T23:42:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1565/
+    verified: false
+  - number: 1566
+    title: >-
+      Can a Qualified Security Assessor (QSA) ask an auditor from the same company (for example, one conducting a SOC 2
+      or SOC 3 audit) to collect evidence for a PCI DSS assessment?
+    updated: "2023-03-13T23:41:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1566/
+    verified: false
+  - number: 1567
+    title: >-
+      Can a Qualified Security Assessor (QSA) rely on the results from non PCI DSS assessment (for example, a SOC 2 or
+      SOC 3 audit) for a PCI DSS assessment?
+    updated: "2023-03-13T23:40:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1567/
+    verified: false
+  - number: 1568
+    title: Is the PCI DSS Attestation of Compliance intended to be shared?
+    updated: "2023-04-03T22:33:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1568/
+    verified: false
+  - number: 1569
+    title: Is sampling allowed in PCI DSS v4.x?
+    updated: "2026-03-30T19:05:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1569/
+    verified: false
+  - number: 1570
+    title: Does TDEA meet the requirements of "strong cryptography" as defined in PCI DSS?
+    updated: "2023-08-04T22:39:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1570/
+    verified: false
+  - number: 1571
+    title: Is the expectation that any PFI investigation initiated must result in a PFI Final Report?
+    updated: "2024-08-15T08:03:56Z"
+    standards: []
+    mapping_method: excluded
+    source_url: https://www.pcisecuritystandards.org/faqs/1571/
+    verified: false
+  - number: 1572
+    title: >-
+      Can a compensating control be used for requirements with a periodic or defined frequency, where an entity did not
+      perform the activity within the required timeframe?
+    updated: "2025-06-26T19:16:07Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1572/
+    verified: false
+  - number: 1573
+    title: Do PCI DSS requirements for keyed cryptographic hashing apply to previously hashed PANs?
+    updated: "2023-09-11T14:22:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1573/
+    verified: false
+  - number: 1574
+    title: >-
+      If an organization provides software or functionality that runs on a consumer's device (for example, smartphones,
+      tablets, or laptops) and is used to accept payment account data, can the organization store card verification
+      codes for those consumers?
+    updated: "2023-10-09T11:55:00Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1574/
+    verified: false
+  - number: 1575
+    title: Does PCI SSC consider guidance from other standards organizations when making updates to PCI standards?
+    updated: "2023-12-06T21:02:00Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1575/
+    verified: false
+  - number: 1576
+    title: What evidence is a TPSP expected to provide to customers to demonstrate PCI DSS compliance?
+    updated: "2024-02-26T23:41:00Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1576/
+    verified: false
+  - number: 1577
+    title: What does “console access” mean for PCI DSS Requirements 8.4.1 and 8.4.2?
+    updated: "2024-05-08T10:24:04Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1577/
+    verified: false
+  - number: 1578
+    title: >-
+      Can service providers use eligibility criteria from a merchant Self-Assessment Questionnaire (SAQ) to determine
+      applicable PCI DSS requirements for the service provider’s assessment?
+    updated: "2024-06-05T12:15:01Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1578/
+    verified: false
+  - number: 1579
+    title: >-
+      Does PCI DSS apply to service providers that can impact the security of payment account data, if the service
+      provider does not directly store, process, or transmit payment account data?
+    updated: "2024-06-10T13:30:23Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1579/
+    verified: false
+  - number: 1580
+    title: >-
+      What is the scope of a PCI DSS assessment for service providers that can impact the security of payment account
+      data, if the service provider does not directly store, process, or transmit payment account data?
+    updated: "2024-06-10T13:33:59Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1580/
+    verified: false
+  - number: 1581
+    title: >-
+      How does PCI DSS Requirement 6.4.3 apply to 3DS scripts called from a merchant check-out page as part of 3DS
+      processing?
+    updated: "2024-08-15T13:04:37Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1581/
+    verified: false
+  - number: 1582
+    title: >-
+      What is the completion date for PCI DSS assessments documented in a Self-Assessment Questionnaire and its related
+      Attestations of Compliance?
+    updated: "2024-08-15T13:11:05Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1582/
+    verified: false
+  - number: 1583
+    title: >-
+      What is the completion date for PCI DSS assessments documented in a Report on Compliance and its related
+      Attestations of Compliance?
+    updated: "2024-08-15T13:15:53Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1583/
+    verified: false
+  - number: 1584
+    title: >-
+      For PCI DSS, can multi-factor authentication (MFA) implementations indicate the success of a factor prior to
+      presentation of subsequent factors?
+    updated: "2024-09-09T10:35:20Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1584/
+    verified: false
+  - number: 1585
+    title: When should an entity implement PCI DSS requirements noted as best practices until a future date?
+    updated: "2024-10-03T14:25:01Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1585/
+    verified: false
+  - number: 1588
+    title: How does an e-commerce merchant meet the SAQ A eligibility criteria for scripts?
+    updated: "2025-02-28T08:59:54Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1588/
+    verified: false
+  - number: 1589
+    title: Is the cardholder in scope for PCI DSS?
+    updated: "2025-03-20T17:08:21Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1589/
+    verified: false
+  - number: 1590
+    title: Do PCI DSS Requirements 8.3.9 and 8.3.10.1 apply to all system components?
+    updated: "2025-03-26T15:31:46Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1590/
+    verified: false
+  - number: 1591
+    title: >-
+      Why do requirements 8.3.9 and 8.3.10.1 focus on passwords/passphrases used for single-factor authentication, when
+      multi-factor authentication is required for all access into the CDE?
+    updated: "2025-03-26T15:32:04Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1591/
+    verified: false
+  - number: 1592
+    title: >-
+      Are providers of third-party scripts for e-commerce environments considered third-party service providers for PCI
+      DSS Requirements 12.8 and 12.9?
+    updated: "2025-03-26T15:35:57Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1592/
+    verified: false
+  - number: 1593
+    title: How should PCI DSS v4.x requirements noted as superseded by another requirement be reported after 31 March 2025?
+    updated: "2025-03-26T15:36:10Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1593/
+    verified: false
+  - number: 1595
+    title: >-
+      Are passkeys synced across devices, implemented according to the FIDO2 requirements, acceptable for use as
+      phishing-resistant authentication to meet PCI DSS Requirement 8.4.2?
+    updated: "2025-05-14T15:33:03Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1595/
+    verified: false
+  - number: 1596
+    title: >-
+      Is phishing-resistant authentication alone acceptable as multi-factor authentication for PCI DSS Requirements
+      8.4.1 and 8.4.3?
+    updated: "2025-05-14T15:33:16Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1596/
+    verified: false
+  - number: 1597
+    title: >-
+      What are the expectations for entities when assigning risk rankings to vulnerabilities and resolving or addressing
+      those vulnerabilities?
+    updated: "2025-05-28T09:17:10Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1597/
+    verified: false
+  - number: 1598
+    title: >-
+      Are Approved Scanning Vendors and Qualified Security Assessors considered third-party service providers for PCI
+      DSS Requirements 12.8 and 12.9?
+    updated: "2025-06-26T19:20:22Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1598/
+    verified: false
+  - number: 1601
+    title: >-
+      What is the impact if an entity uses a third-party service provider (TPSP) to meet a PCI DSS requirement(s), when
+      that TPSP’s PCI DSS assessment completion date is close to a year ago, as documented in the TPSP’s Attestation of
+      Compliance (AOC)?
+    updated: "2025-11-14T17:11:42Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1601/
+    verified: false
+  - number: 1602
+    title: >-
+      Should entities with enterprise or internal service providers, used to provide internal services to other
+      corporate entities, conduct separate PCI DSS assessments of these service providers or include them as part of
+      each corporate entity’s PCI DSS assessment?
+    updated: "2026-02-03T17:56:23Z"
+    standards:
+      - pci-dss
+    mapping_method: direct
+    source_url: https://www.pcisecuritystandards.org/faqs/1602/
+    verified: false
+  - number: 1603
+    title: Are authentication values from a 3DS transaction considered sensitive authentication data for PCI DSS purposes?
+    updated: "2026-03-30T19:08:27Z"
+    standards:
+      - 3ds-core
+    mapping_method: disambiguated
+    source_url: https://www.pcisecuritystandards.org/faqs/1603/
+    verified: false
+  - number: 1604
+    title: Do ASV scans in SAQ A apply to merchants with webpages that redirect to TPSPs or include TPSPs’ embedded iframes?
+    updated: "2026-06-05T09:15:37Z"
+    standards:
+      - pci-dss
+    mapping_method: inferred
+    source_url: https://www.pcisecuritystandards.org/faqs/1604/
+    verified: false

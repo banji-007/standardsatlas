@@ -18,6 +18,18 @@ export const CATEGORY_TO_SLUG: Record<string, string> = {
 
 const EXCLUDED_CATEGORIES = new Set(['Programs and Certification', 'Case Study', 'Guidance Document']);
 
+// Documents that belong to more than one standard regardless of RSS category routing.
+// The RSS pipeline uses this to push a doc to every listed standard, not just the primary one.
+// Covers: (a) CPP shared-program docs that PCI SSC dual-lists under both Card Production and
+// Programs, and (b) programs-only docs (req_pol, code_of_prof_resp) that would otherwise be
+// dropped by EXCLUDED_CATEGORIES.
+export const CROSS_STANDARD_DOCS: Record<string, string[]> = {
+  cpsa_qual:         ['cpp-logical', 'cpp-physical'],
+  cpsa_prog_guide:   ['cpp-logical', 'cpp-physical'],
+  req_pol:           ['cpp-logical', 'cpp-physical'],
+  code_of_prof_resp: ['cpp-logical', 'cpp-physical'],
+};
+
 // Title keywords that distinguish within ambiguous categories
 const TITLE_DISAMBIGUATORS: [RegExp, string][] = [
   [/secure\s+slc|software\s+lifecycle/i, 'secure-slc'],
@@ -58,16 +70,19 @@ export function resolveStandardSlug(categories: string[], title = ''): string | 
   return null;
 }
 
-const VERSION_PATTERNS: [RegExp, number][] = [
-  [/_v?(\d+\.\d+\.\d+)/, 1],
-  [/_v?(\d+\.\d+)/, 1],
-  [/_(\d{4})/, 1],
+const VERSION_PATTERNS: RegExp[] = [
+  // Negative lookahead (?![0-9.]) stops the match before any continuation digit or dot,
+  // preventing "4.0" from being extracted when the slug actually contains "4.0.1_...".
+  /_v?(\d+\.\d+\.\d+)(?![0-9.])/,  // slug: _v3.1.2 or _3.1.2
+  /\bv(\d+\.\d+\.\d+)(?![0-9.])/,  // title: v3.1.2
+  /_v?(\d+\.\d+)(?![0-9.])/,        // slug: _v3.1 or _3.1
+  /\bv(\d+\.\d+)(?![0-9.])/,        // title: v3.1
 ];
 
-export function inferVersion(slug: string): string | null {
-  for (const [pattern, group] of VERSION_PATTERNS) {
-    const match = slug.match(pattern);
-    if (match) return match[group]!;
+export function inferVersion(s: string): string | null {
+  for (const p of VERSION_PATTERNS) {
+    const m = s.match(p);
+    if (m) return m[1]!;
   }
   return null;
 }

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { FaqEntry } from '../lib/schema';
+import FaqsIsland from '../components/islands/FaqsIsland';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import yaml from 'js-yaml';
+
+const raw = yaml.load(readFileSync(resolve('data/faqs.yaml'), 'utf8')) as { faqs?: FaqEntry[] } | null;
+const allFaqs: FaqEntry[] = raw?.faqs ?? [];
+const faqs = allFaqs.filter(f => f.mapping_method === 'general');
+---
+
+<BaseLayout
+  title="General FAQs"
+  description="PCI SSC frequently asked questions covering topics that span multiple standards or general payment security guidance."
+  canonicalUrl="https://securitystandardsmap.org/faqs"
+>
+  <div class="page-content">
+    <a href="/" class="back-link">← All standards</a>
+
+    <div class="page-header">
+      <h1 class="page-title">General FAQs</h1>
+      <p class="page-sub">
+        Official PCI SSC FAQs that apply across multiple standards or to general payment security topics.
+        Visit individual standard pages for standard-specific FAQs.
+      </p>
+    </div>
+
+    <FaqsIsland faqs={faqs} client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: 73.75rem;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-8);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+    transition: color var(--duration-fast) var(--easing);
+  }
+  .back-link:hover { color: var(--color-accent); }
+
+  .page-header {
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .page-sub {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 48rem;
+    margin: 0;
+  }
+</style>

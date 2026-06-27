@@ -7,7 +7,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import yaml from 'js-yaml';
-import { StandardSchema, RelationshipSchema, ExternalBodySchema } from '../src/lib/schema';
+import { StandardSchema, RelationshipSchema, ExternalBodySchema, FaqsFileSchema, VersionCandidatesFileSchema } from '../src/lib/schema';
 import { ZodError } from 'zod';
 
 const CONTENT_DIR = resolve('src/content/standards');
@@ -136,6 +136,37 @@ function validateExternalBodies(path: string) {
   }
 }
 
+function validateVersionCandidates(path: string) {
+  if (!existsSync(path)) return;
+  const data = yaml.load(readFileSync(path, 'utf8')) as unknown;
+  const result = VersionCandidatesFileSchema.safeParse(data);
+  if (!result.success) {
+    for (const issue of result.error.issues) {
+      err(`version-candidates.yaml: ${issue.path.join('.')}: ${issue.message}`);
+    }
+    return;
+  }
+  process.stdout.write(`  version-candidates.yaml: ${result.data.candidates.length} candidate(s) ✓\n`);
+}
+
+function validateFaqs(path: string) {
+  if (!existsSync(path)) return;
+  const data = yaml.load(readFileSync(path, 'utf8')) as unknown;
+  const result = FaqsFileSchema.safeParse(data);
+  if (!result.success) {
+    for (const issue of result.error.issues) {
+      err(`faqs.yaml: ${issue.path.join('.')}: ${issue.message}`);
+    }
+    return;
+  }
+  const { faqs } = result.data;
+  const unverified = faqs.filter(f => !f.verified).length;
+  const noStandard = faqs.filter(f => f.standards.length === 0).length;
+  if (unverified > 0) warn(`faqs.yaml: ${unverified} unverified FAQ entries`);
+  if (noStandard > 0) warn(`faqs.yaml: ${noStandard} FAQ entries with no standard mapped`);
+  process.stdout.write(`  faqs.yaml: ${faqs.length} entries ✓\n`);
+}
+
 // Run
 console.log('Validating standards …');
 if (existsSync(CONTENT_DIR)) {
@@ -156,6 +187,12 @@ validateRelationships(join(DATA_DIR, 'relationships.yaml'));
 
 console.log('\nValidating external bodies …');
 validateExternalBodies(join(DATA_DIR, 'external-bodies.yaml'));
+
+console.log('\nValidating FAQs …');
+validateFaqs(join(DATA_DIR, 'faqs.yaml'));
+
+console.log('\nValidating version candidates …');
+validateVersionCandidates(join(DATA_DIR, 'version-candidates.yaml'));
 
 console.log(`\n${errors} error(s), ${warnings} warning(s)`);
 if (errors > 0) process.exit(1);

@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import yaml from 'js-yaml';
-import type { Standard, Relationship } from '../src/lib/schema';
+import type { Standard, Relationship, FaqEntry } from '../src/lib/schema';
 
 const CONTENT_DIR = resolve('src/content/standards');
 const DATA_DIR = resolve('data');
@@ -21,6 +21,12 @@ if (existsSync(CONTENT_DIR)) {
     for (const v of data.versions ?? []) collect(v.source_url, `${file}[v${v.version}]`);
     for (const d of data.documents ?? []) collect(d.source_url, `${file}[doc:${d.slug}]`);
   }
+}
+
+const faqPath = join(DATA_DIR, 'faqs.yaml');
+if (existsSync(faqPath)) {
+  const raw = yaml.load(readFileSync(faqPath, 'utf8')) as { faqs?: FaqEntry[] } | null;
+  for (const f of raw?.faqs ?? []) collect(f.source_url, `faqs[${f.number}]`);
 }
 
 const relPath = join(DATA_DIR, 'relationships.yaml');

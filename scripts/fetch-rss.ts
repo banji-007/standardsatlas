@@ -14,6 +14,7 @@ import {
   resolveStandardSlug,
   inferVersion,
   normalizeDocType,
+  CROSS_STANDARD_DOCS,
 } from '../src/lib/rss';
 
 const FEED_URL = 'https://www.pcisecuritystandards.org/rssfeed/?type=document';
@@ -137,9 +138,11 @@ async function main() {
   for (const item of items) {
     const categories = parseCategories(item.category);
     const standardSlug = resolveStandardSlug(categories, item.title);
-    if (!standardSlug) continue;
-
     const docSlug = extractSlugFromLink(item.link);
+    const crossSlugs = CROSS_STANDARD_DOCS[docSlug];
+
+    if (!standardSlug && !crossSlugs) continue;
+
     const version = inferVersion(docSlug) ?? inferVersion(item.title);
     const docType = normalizeDocType(item.description ?? '');
     const published = parseDate(item.pubDate);
@@ -154,8 +157,18 @@ async function main() {
       verified: false,
     };
 
-    if (!byStandard.has(standardSlug)) byStandard.set(standardSlug, []);
-    byStandard.get(standardSlug)!.push(doc);
+    if (standardSlug) {
+      if (!byStandard.has(standardSlug)) byStandard.set(standardSlug, []);
+      byStandard.get(standardSlug)!.push(doc);
+    }
+
+    if (crossSlugs) {
+      for (const slug of crossSlugs) {
+        if (slug === standardSlug) continue;
+        if (!byStandard.has(slug)) byStandard.set(slug, []);
+        byStandard.get(slug)!.push(doc);
+      }
+    }
   }
 
   console.log(`Documents mapped to ${byStandard.size} standards`);
@@ -184,21 +197,10 @@ async function main() {
       console.log(`  Updated: ${slug} (+${docs.filter(d => !existingDocSlugs.has(d.slug)).length} docs)`);
       updated++;
     } else {
-      const stub = {
-        slug,
-        name: slug,
-        status: 'active',
-        source_url: `https://www.pcisecuritystandards.org/standards/${slug.replace(/-/g, '')}`,
-        verified: false,
-        last_verified: null,
-        current_version: null,
-        versions: [],
-        documents: merged,
-      };
-      if (!DRY_RUN) {
-        writeFileSync(join(CONTENT_DIR, `${slug}.yaml`), dumpYaml(stub));
-      }
-      console.log(`  Created: ${slug} (${merged.length} docs)`);
+      // A new standard slug arrived in the feed with no matching YAML.
+      // Creating a stub here would write a guessed source_url, which violates
+      // the sourced-or-it-does-not-ship rule. Flag for manual creation instead.
+      console.warn(`  NEW STANDARD (manual action needed): "${slug}" has no YAML in content/standards/. Create src/content/standards/${slug}.yaml with a verified source_url, then re-run.`);
       created++;
     }
   }

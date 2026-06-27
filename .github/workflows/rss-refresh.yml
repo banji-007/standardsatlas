@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +32,12 @@ jobs:
       - name: Fetch RSS feed
         run: pnpm fetch-rss
 
+      - name: Fetch FAQ feed
+        run: pnpm fetch-faqs
+
+      - name: Check for version candidates
+        run: pnpm check-versions
+
       - name: Emit change feed
         run: |
           if git diff --quiet; then
@@ -45,7 +52,7 @@ jobs:
         run: |
           git config user.name  "securitystandardsmap-bot"
           git config user.email "bot@securitystandardsmap.org"
-          git add src/content/standards/
+          git add src/content/standards/ data/faqs.yaml data/version-candidates.yaml
           git add public/change-feed.json public/change-feed.xml 2>/dev/null || true
           git commit -m "chore: RSS refresh $(date -u +%Y-%m-%d)"
           git push
