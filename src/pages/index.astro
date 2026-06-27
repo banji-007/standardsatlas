@@ -17,10 +17,33 @@ try {
   relationships = raw?.relationships ?? [];
 } catch { /* relationships file may not exist */ }
 
+// Load FAQ Q&A entries and index them by standard slug
+interface FaqEntry { number: number; title: string; updated: string | Date; standards: string[]; mapping_method: string; source_url: string; verified: boolean; }
+const faqsByStandard: Record<string, FaqEntry[]> = {};
+try {
+  const rawFaqs = yaml.load(readFileSync(resolve('data/faqs.yaml'), 'utf8')) as { faqs?: FaqEntry[] } | null;
+  for (const faq of rawFaqs?.faqs ?? []) {
+    for (const slug of faq.standards ?? []) {
+      (faqsByStandard[slug] ??= []).push(faq);
+    }
+  }
+} catch { /* faqs file may not exist yet */ }
+
 // Serialize to plain objects (dates → ISO date strings)
 const appData: AppData = {
   standards: standards.map(entry => {
     const d = entry.data as Standard;
+    const faqDocs = (faqsByStandard[entry.id] ?? []).map(faq => ({
+      slug: `faq-${faq.number}`,
+      title: faq.title,
+      type: 'faq' as const,
+      published: faq.updated instanceof Date
+        ? faq.updated.toISOString().slice(0, 10)
+        : String(faq.updated).slice(0, 10),
+      applies_to_version: null,
+      source_url: faq.source_url ?? null,
+      verified: faq.verified,
+    }));
     return {
       slug: entry.id,
       name: d.name,
@@ -38,15 +61,18 @@ const appData: AppData = {
         source_url: v.source_url ?? null,
         verified: v.verified,
       })),
-      documents: d.documents.map(doc => ({
-        slug: doc.slug,
-        title: doc.title,
-        type: doc.type,
-        published: doc.published?.toISOString().slice(0, 10) ?? null,
-        applies_to_version: doc.applies_to_version ?? null,
-        source_url: doc.source_url ?? null,
-        verified: doc.verified,
-      })),
+      documents: [
+        ...d.documents.map(doc => ({
+          slug: doc.slug,
+          title: doc.title,
+          type: doc.type,
+          published: doc.published?.toISOString().slice(0, 10) ?? null,
+          applies_to_version: doc.applies_to_version ?? null,
+          source_url: doc.source_url ?? null,
+          verified: doc.verified,
+        })),
+        ...faqDocs,
+      ],
     };
   }),
   relationships: relationships.map(r => ({
