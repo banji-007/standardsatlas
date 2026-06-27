@@ -1,0 +1,195 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import yaml from 'js-yaml';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface QueueItem {
+  entity_type: 'standard' | 'faq' | 'version-candidate';
+  id: string;
+  band: 'low' | 'medium';
+  reasons: string[];
+}
+
+interface QueueFile {
+  generated: string;
+  low_count: number;
+  medium_count: number;
+  items: QueueItem[];
+}
+
+function parseReason(text: string): { issue: string; action: string | null; sourceUrl: string | null } {
+  const srcMarker = '. Source: ';
+  const srcIdx = text.lastIndexOf(srcMarker);
+  const sourceUrl = srcIdx !== -1 ? text.slice(srcIdx + srcMarker.length).trim() : null;
+  const body = srcIdx !== -1 ? text.slice(0, srcIdx) : text;
+
+  const actMarker = '. Action: ';
+  const actIdx = body.lastIndexOf(actMarker);
+  const action = actIdx !== -1 ? body.slice(actIdx + actMarker.length) : null;
+  const issue = actIdx !== -1 ? body.slice(0, actIdx) : body;
+
+  return { issue, action, sourceUrl };
+}
+
+function cmsEditLink(item: QueueItem): string {
+  if (item.entity_type === 'standard') return `/admin/#/collections/standards/entries/${item.id}`;
+  if (item.entity_type === 'faq') return '/admin/#/collections/faqs/entries/all_faqs';
+  return '/admin/';
+}
+
+let queue: QueueFile = { generated: '', low_count: 0, medium_count: 0, items: [] };
+try {
+  queue = yaml.load(readFileSync(resolve('data/review-queue.yaml'), 'utf8')) as QueueFile;
+} catch { /* queue not yet generated */ }
+
+const lowItems = queue.items.filter(i => i.band === 'low');
+const mediumItems = queue.items.filter(i => i.band === 'medium');
+const ordered = [...lowItems, ...mediumItems];
+
+function fmtGenerated(iso: string): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hour12: false,
+  }).replace(',', '');
+}
+
+const BAND = {
+  low:    { label: 'Low',    c: '#a83232', bg: '#fbe9e9', border: '#f2c8c8' },
+  medium: { label: 'Medium', c: '#9a6512', bg: '#fbf0db', border: '#e8d5b5' },
+};
+
+const TYPE_LABEL: Record<string, string> = {
+  standard:          'Standard',
+  faq:               'FAQ mapping',
+  'version-candidate': 'Version candidate',
+};
+---
+
+<BaseLayout title="Confidence Review Queue" description="Entities flagged for manual review by confidence band.">
+  <section style="max-width: 860px; margin: 0 auto; padding: 40px 28px 90px;">
+
+    <nav style="display: flex; align-items: center; gap: 8px; margin-bottom: 22px;" aria-label="Breadcrumb">
+      <a href="/admin/" style="font-family: var(--font-mono); font-size: 12px; color: var(--color-text-faint); text-decoration: none; border-bottom: 1px solid var(--color-border);">Admin</a>
+      <span style="color: var(--color-text-faint); font-size: 12px;" aria-hidden="true">›</span>
+      <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted);" aria-current="page">Review queue</span>
+    </nav>
+
+    <div style="margin-bottom: 30px;">
+      <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 30px; letter-spacing: -.02em; margin: 0 0 10px; color: var(--color-text);">
+        Confidence review queue
+      </h1>
+      <p style="font-size: 14px; color: var(--color-text-muted); margin: 0 0 18px; line-height: 1.55; max-width: 640px;">
+        Entities flagged by the automated confidence check. A human must verify each item before it leaves the queue.
+        Approving a standard sets <code style="font-family: var(--font-mono); font-size: 12px; background: var(--color-bg-subtle); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--color-border);">verified: true</code> via the CMS.
+        Approving an FAQ mapping sets its method to <code style="font-family: var(--font-mono); font-size: 12px; background: var(--color-bg-subtle); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--color-border);">direct</code>.
+        Nothing in this portal sets <code style="font-family: var(--font-mono); font-size: 12px; background: var(--color-bg-subtle); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--color-border);">verified: true</code> automatically.
+      </p>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        {queue.generated && (
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-text-faint);">
+            Generated {fmtGenerated(queue.generated)}
+          </span>
+        )}
+        <span style={`font-family: var(--font-mono); font-size: 11.5px; padding: 3px 10px; border-radius: 20px; border: 1px solid ${BAND.low.border}; color: ${BAND.low.c}; background: ${BAND.low.bg};`}>
+          {queue.low_count} low
+        </span>
+        <span style={`font-family: var(--font-mono); font-size: 11.5px; padding: 3px 10px; border-radius: 20px; border: 1px solid ${BAND.medium.border}; color: ${BAND.medium.c}; background: ${BAND.medium.bg};`}>
+          {queue.medium_count} medium
+        </span>
+      </div>
+    </div>
+
+    {ordered.length === 0 && (
+      <div style="padding: 48px; text-align: center; background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); color: var(--color-text-faint); font-size: 14px;">
+        Queue is empty. All entities are verified or confirmed.
+      </div>
+    )}
+
+    {ordered.length > 0 && (
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        {ordered.map(item => {
+          const band = BAND[item.band];
+          const typeLabel = TYPE_LABEL[item.entity_type] ?? item.entity_type;
+          const parsedReasons = item.reasons.map(parseReason);
+          const faqSourceUrl = item.entity_type === 'faq' ? (parsedReasons[0]?.sourceUrl ?? null) : null;
+
+          return (
+            <article
+              aria-label={`${band.label} confidence: ${typeLabel} ${item.id}`}
+              style="background: var(--color-bg-card); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 18px 22px;"
+            >
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;">
+                <span style={`font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: ${band.c}; background: ${band.bg}; border: 1px solid ${band.border}; padding: 3px 9px; border-radius: 20px; flex-shrink: 0;`}>
+                  {band.label}
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--color-text-faint); background: var(--color-bg-subtle); padding: 3px 9px; border-radius: 20px; border: 1px solid var(--color-border); flex-shrink: 0;">
+                  {typeLabel}
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--color-text); flex-shrink: 0;">
+                  {item.id}
+                </span>
+                <div style="margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                  {faqSourceUrl && (
+                    <a
+                      href={faqSourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="font-family: var(--font-mono); font-size: 11.5px; color: var(--color-text-muted); text-decoration: none; border-bottom: 1px solid var(--color-border); padding-bottom: 1px; white-space: nowrap;"
+                    >
+                      Verify on PCI SSC ↗
+                    </a>
+                  )}
+                  <a
+                    href={cmsEditLink(item)}
+                    style="font-family: var(--font-ui); font-size: 12.5px; font-weight: 600; color: var(--color-accent); background: #eef5f4; border: 1px solid #cfe0dd; padding: 6px 13px; border-radius: 8px; text-decoration: none; white-space: nowrap;"
+                  >
+                    Edit in CMS →
+                  </a>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                {parsedReasons.map(({ issue, action, sourceUrl }) => (
+                  <div style="background: var(--color-bg-subtle); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 11px 14px;">
+                    <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.5; margin: 0 0 6px;">
+                      {issue}
+                    </p>
+                    {action && (
+                      <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 5px;">
+                        <span style="font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--color-accent); flex-shrink: 0;">
+                          Action
+                        </span>
+                        <span style="font-size: 12.5px; color: var(--color-text); line-height: 1.4;">
+                          {action}
+                        </span>
+                      </div>
+                    )}
+                    {sourceUrl && (
+                      <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 5px;">
+                        <span style="font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--color-text-faint); flex-shrink: 0;">
+                          Source
+                        </span>
+                        <a
+                          href={sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style="font-family: var(--font-mono); font-size: 11px; color: var(--color-accent); word-break: break-all; text-decoration: none; border-bottom: 1px solid #cfe0dd;"
+                        >
+                          {sourceUrl} ↗
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    )}
+
+  </section>
+</BaseLayout>

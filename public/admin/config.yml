@@ -148,6 +148,40 @@ collections:
               - { label: Source URL, name: source_url, widget: string }
               - { label: Verified, name: verified, widget: boolean, default: false }
 
+  # ── FAQ Mappings ───────────────────────────────────────────────────────────
+  # Editing here is the approval path for FAQ items in the confidence review queue.
+  # Set mapping_method to 'direct' to confirm a mapping and clear it from the queue.
+  - name: faqs
+    label: FAQ Mappings
+    files:
+      - label: All FAQ Entries
+        name: all_faqs
+        file: data/faqs.yaml
+        fields:
+          - label: FAQs
+            name: faqs
+            widget: list
+            fields:
+              - { label: Number, name: number, widget: number }
+              - { label: Title, name: title, widget: string }
+              - { label: Updated, name: updated, widget: string, required: false }
+              - label: Standards
+                name: standards
+                widget: list
+                allow_add: true
+                field: { label: Standard slug, name: item, widget: string }
+              - label: Mapping method
+                name: mapping_method
+                widget: select
+                options:
+                  - { label: "Direct - confirmed match", value: direct }
+                  - { label: "Inferred - needs review", value: inferred }
+                  - { label: "Disambiguated - needs review", value: disambiguated }
+                  - { label: "General - non-specific", value: general }
+                  - { label: "Excluded", value: excluded }
+              - { label: Source URL, name: source_url, widget: string }
+              - { label: Verified, name: verified, widget: boolean, default: false }
+
   # ── External Bodies ────────────────────────────────────────────────────────
   - name: external_bodies
     label: External Bodies
