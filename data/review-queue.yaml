@@ -1,6 +1,6 @@
-generated: "2026-06-27T12:42:33.250Z"
+generated: "2026-06-28T08:40:04.390Z"
 low_count: 0
-medium_count: 56
+medium_count: 55
 items:
   - entity_type: faq
     id: "1050"
@@ -411,16 +411,6 @@ items:
       - >-
         last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
         manual review. Source: https://www.pcisecuritystandards.org/standards/cpoc
-  - entity_type: standard
-    id: cpp-physical
-    band: medium
-    reasons:
-      - >-
-        verified is false; record needs manual review against the official source. Action: verify and set verified:
-        true. Source: https://www.pcisecuritystandards.org/standards/cppphysical
-      - >-
-        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
-        manual review. Source: https://www.pcisecuritystandards.org/standards/cppphysical
   - entity_type: standard
     id: p2pe
     band: medium
