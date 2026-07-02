@@ -5,7 +5,9 @@ source_url: https://www.pcisecuritystandards.org/standards/securesoftware
 verified: false
 last_verified: null
 current_version: "2.0"
-notes: "Review: v2.0 corroborated by secondary sources only (publication 15 January 2026). Confirm against the official Secure Software standard page before verifying."
+notes: >-
+  Review: v2.0 corroborated by secondary sources only (publication 15 January 2026). Confirm against the official Secure
+  Software standard page before verifying.
 versions:
   - version: "2.0"
     published: "2026-01-15"
@@ -32,6 +34,14 @@ versions:
     source_url: https://www.pcisecuritystandards.org/rssfeed/?type=document
     verified: false
 documents:
+  - slug: sec_sware_rov_rep_p2pe_template_v2
+    title: Secure Software ROV Template for P2PE Apps
+    type: template
+    published: "2026-07-01"
+    applies_to_version: null
+    source_url: >-
+      https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_rov_rep_p2pe_template_v2
+    verified: false
   - slug: sec_sware_faqs_v2
     title: Secure Software v2.x Technical FAQs
     type: standard
