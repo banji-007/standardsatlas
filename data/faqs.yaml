@@ -1867,7 +1867,7 @@ faqs:
     verified: false
   - number: 1491
     title: Does PCI DSS define which versions of TLS must be used?
-    updated: "2021-01-13T20:01:00Z"
+    updated: "2026-07-09T13:00:34Z"
     standards:
       - pci-dss
     mapping_method: direct
