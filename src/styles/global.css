@@ -520,6 +520,23 @@ code, .mono {
   border: 1px solid #ece4d4;
 }
 
+/* Static duplicate of .si-trans-legend, rendered as a sibling below the
+   pannable stage instead of absolutely positioned over it. Hidden by
+   default; shown in place of the absolute legend below 640px (task 7). */
+.si-trans-legend-static {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #8a8377;
+  margin-bottom: 14px;
+}
+
+.si-trans-copy-touch {
+  display: none;
+}
+
 /* --- Task 2: header + framework bar, phone breakpoint ---
    Neither header's own footer carries a Source/GitHub link (see
    MOBILE_FINDINGS.md item 7), so the Source link is kept and the brand
@@ -645,5 +662,35 @@ code, .mono {
     width: 100%;
     justify-content: center;
     padding: 10px 14px;
+  }
+}
+
+/* --- Task 7: transitions map --- */
+@media (pointer: coarse) {
+  .si-trans-copy-mouse {
+    display: none;
+  }
+
+  .si-trans-copy-touch {
+    display: inline;
+  }
+}
+
+@media (max-width: 640px) {
+  /* The orb itself is already position:absolute (inline, for its physics
+     placement), which is a valid containing block for this pseudo-element,
+     so no positioning override is needed on the real element. */
+  .si-trans-orb::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+  }
+
+  .si-trans-legend {
+    display: none;
+  }
+
+  .si-trans-legend-static {
+    display: flex;
   }
 }

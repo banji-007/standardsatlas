@@ -603,10 +603,22 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
     complete: { label: 'Complete', c: '#1f7a4d', bg: '#e7f3ec' },
   };
 
+  const legendItems = (
+    <>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#b5562f', display: 'inline-block' }} />converge</span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#9a948b', display: 'inline-block' }} />supersede</span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 0, borderTop: '2px dashed #5a6fd0', display: 'inline-block' }} />associate / planned</span>
+    </>
+  );
+
   return (
     <section className="si-section si-trans-section">
       <h2 style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 24, fontWeight: 600, margin: '0 0 6px', letterSpacing: '-.01em' }}>Transitions &amp; relationships</h2>
-      <p style={{ fontSize: 14, color: '#6b655b', margin: '0 0 22px', maxWidth: 680 }}>How standards supersede, converge into, and align with one another. Each orb is a standard, sized by how many supporting documents it carries. Drag to rearrange, or click to open.</p>
+      <p style={{ fontSize: 14, color: '#6b655b', margin: '0 0 22px', maxWidth: 680 }}>
+        How standards supersede, converge into, and align with one another. Each orb is a standard, sized by how many supporting documents it carries.{' '}
+        <span className="si-trans-copy-mouse">Drag to rearrange, or click to open.</span>
+        <span className="si-trans-copy-touch">Tap an orb to open it.</span>
+      </p>
       <div className="si-trans-stage-wrap">
         <div ref={stageRef} style={{ position: 'relative', width: 800, height: 520, margin: '0 auto' }}>
           {N && edgesRef.current.map((ed, i) => {
@@ -630,10 +642,11 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
           })}
         </div>
         <div className="si-trans-legend">
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#b5562f', display: 'inline-block' }} />converge</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#9a948b', display: 'inline-block' }} />supersede</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 0, borderTop: '2px dashed #5a6fd0', display: 'inline-block' }} />associate / planned</span>
+          {legendItems}
         </div>
+      </div>
+      <div className="si-trans-legend-static">
+        {legendItems}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {relationships.slice().sort((a, b) => String(b.effective_date||'0').localeCompare(String(a.effective_date||'0'))).map(r => {
