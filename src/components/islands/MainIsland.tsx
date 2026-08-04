@@ -696,6 +696,12 @@ function DetailDrawer({ std, relationships, standards, onClose }: { std: StdData
     return () => document.removeEventListener('keydown', handler);
   }, [onClose]);
 
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prevOverflow; };
+  }, []);
+
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(28,24,18,0.42)', zIndex: 40, animation: 'fadeIn .2s ease' }} />

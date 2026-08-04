@@ -537,6 +537,20 @@ code, .mono {
   display: none;
 }
 
+.si-drawer-close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.faq-search-input {
+  font-size: 0.8125rem;
+}
+
+.admin-queue-section {
+  padding: 40px 28px 90px;
+}
+
 /* --- Task 2: header + framework bar, phone breakpoint ---
    Neither header's own footer carries a Source/GitHub link (see
    MOBILE_FINDINGS.md item 7), so the Source link is kept and the brand
@@ -692,5 +706,25 @@ code, .mono {
 
   .si-trans-legend-static {
     display: flex;
+  }
+}
+
+/* --- Task 8: remaining pages / drawer / admin queue --- */
+@media (max-width: 640px) {
+  .si-drawer-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-search-input {
+    font-size: 16px;
+  }
+
+  .faq-show-more-btn {
+    min-height: 44px;
+  }
+
+  .admin-queue-section {
+    padding: 24px 16px 60px;
   }
 }
