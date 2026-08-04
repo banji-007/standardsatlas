@@ -390,7 +390,7 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
                 <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: '#a8a195', letterSpacing: '.02em' }}>{meta}</div>
               </div>
               <div className="si-catalog-row-meta">
-                <div style={{ textAlign: 'right' }}>
+                <div className="si-catalog-row-version">
                   <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 14, color: '#211e19' }}>{s.current_version ? `v${s.current_version}` : 'n/a'}</div>
                   <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: s.verified ? '#1f7a4d' : '#a08f6a', marginTop: 2 }}>{s.verified ? '✓ verified' : 'provisional'}</div>
                 </div>

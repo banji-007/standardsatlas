@@ -360,6 +360,10 @@ code, .mono {
   flex-shrink: 0;
 }
 
+.si-catalog-row-version {
+  text-align: right;
+}
+
 .si-timeline-section {
   max-width: 1180px;
   margin: 0 auto;
@@ -583,5 +587,23 @@ code, .mono {
     display: inline-flex;
     align-items: center;
     padding: 10px 16px;
+  }
+}
+
+/* --- Task 5: catalog card rows --- */
+@media (max-width: 640px) {
+  .si-catalog-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .si-catalog-row-meta {
+    justify-self: start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .si-catalog-row-version {
+    text-align: left;
   }
 }
