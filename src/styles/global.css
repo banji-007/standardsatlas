@@ -551,3 +551,37 @@ code, .mono {
     gap: 8px;
   }
 }
+
+/* --- Task 4: search, filters, tap targets --- */
+.si-catalog-row:active {
+  border-color: #1f5f5b;
+  box-shadow: 0 4px 14px rgba(31, 95, 91, .10);
+  transform: translateY(-1px);
+  background: #fffdf8;
+}
+
+@media (pointer: coarse) {
+  .si-radar-arrows {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .si-search-input {
+    font-size: 16px;
+  }
+
+  .si-sort-select {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 14px;
+  }
+
+  .si-filter-chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+  }
+}
