@@ -118,7 +118,7 @@ function SiteHeader({ view, setView }: { view: string; setView: (v: string) => v
   const navBtn = (v: string, label: string) => {
     const active = view === v;
     return (
-      <button key={v} onClick={() => setView(v)} className="si-header-navbtn" style={{ border: 'none', fontSize: 13.5, fontWeight: active ? 600 : 500, cursor: 'pointer', background: active ? '#fbf7ee' : 'transparent', color: active ? ACCENT : '#6b655b', boxShadow: active ? '0 1px 2px rgba(0,0,0,.08)' : 'none', transition: 'all 150ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+      <button key={v} onClick={() => setView(v)} className="si-header-navbtn" style={{ border: 'none', fontWeight: active ? 600 : 500, cursor: 'pointer', background: active ? '#fbf7ee' : 'transparent', color: active ? ACCENT : '#6b655b', boxShadow: active ? '0 1px 2px rgba(0,0,0,.08)' : 'none', transition: 'all 150ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
         {label}
       </button>
     );
