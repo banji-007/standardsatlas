@@ -377,9 +377,7 @@ code, .mono {
   inset: 0;
   z-index: 60;
   background: #f4efe6;
-  /* env() resolves to 0 without viewport-fit=cover support or a notch, so
-     this is 22px/26px unchanged on desktop and non-notched phones. */
-  padding: calc(22px + env(safe-area-inset-top)) calc(26px + env(safe-area-inset-right)) calc(22px + env(safe-area-inset-bottom)) calc(26px + env(safe-area-inset-left));
+  padding: 22px 26px;
   display: flex;
   flex-direction: column;
 }
