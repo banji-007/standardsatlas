@@ -377,8 +377,6 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
           return (
             <button key={s.slug} onClick={() => onSelect(s.slug)}
               className="si-catalog-row"
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = ACCENT; el.style.boxShadow = '0 4px 14px rgba(31,95,91,.10)'; el.style.transform = 'translateY(-1px)'; el.style.background = '#fffdf8'; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = '#e7e0d2'; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)'; el.style.background = '#fbf7ee'; }}
             >
               <div style={{ minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 4 }}>
@@ -499,10 +497,7 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
             </div>
             <div style={{ position: 'relative', paddingTop: 26 }}>
               {rows.map(({ s, minX, maxX, markers, docMarkers }) => (
-                <div key={s.slug} onClick={() => onSelect(s.slug)} className="si-timeline-row" style={{ height: rowH }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'rgba(31,95,91,0.04)'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
-                >
+                <div key={s.slug} onClick={() => onSelect(s.slug)} className="si-timeline-row" style={{ height: rowH }}>
                   <div className="si-timeline-namecol">
                     <div className="si-tl-name">{GRAPH_LABEL[s.slug] ?? s.name}</div>
                     <div className="si-tl-status">{s.status.replace(/-/g, ' ')}</div>

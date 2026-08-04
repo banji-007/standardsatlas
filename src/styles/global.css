@@ -588,11 +588,30 @@ code, .mono {
 }
 
 /* --- Task 4: search, filters, tap targets --- */
+@media (hover: hover) and (pointer: fine) {
+  .si-catalog-row:hover {
+    border-color: #1f5f5b;
+    box-shadow: 0 4px 14px rgba(31, 95, 91, .10);
+    transform: translateY(-1px);
+    background: #fffdf8;
+  }
+}
+
 .si-catalog-row:active {
   border-color: #1f5f5b;
   box-shadow: 0 4px 14px rgba(31, 95, 91, .10);
   transform: translateY(-1px);
   background: #fffdf8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .si-timeline-row:hover {
+    background: rgba(31, 95, 91, 0.04);
+  }
+}
+
+.si-timeline-row:active {
+  background: rgba(31, 95, 91, 0.04);
 }
 
 @media (pointer: coarse) {
