@@ -93,11 +93,11 @@ export default function FaqsIsland({ faqs }: Props) {
               value={query}
               onChange={e => handleQuery(e.target.value)}
               placeholder={`Search ${faqs.length} FAQs...`}
+              className="faq-search-input"
               style={{
                 width: '100%',
                 boxSizing: 'border-box',
                 padding: '8px 12px',
-                fontSize: '0.8125rem',
                 border: '1px solid var(--color-border)',
                 borderRadius: '8px',
                 background: 'var(--color-bg-card)',
@@ -163,6 +163,7 @@ export default function FaqsIsland({ faqs }: Props) {
               {remaining > 0 && (
                 <button
                   onClick={() => setLimit(l => l + PAGE)}
+                  className="faq-show-more-btn"
                   style={{
                     display: 'block',
                     width: '100%',

@@ -118,28 +118,28 @@ function SiteHeader({ view, setView }: { view: string; setView: (v: string) => v
   const navBtn = (v: string, label: string) => {
     const active = view === v;
     return (
-      <button key={v} onClick={() => setView(v)} style={{ padding: '7px 16px', border: 'none', borderRadius: 8, fontSize: 13.5, fontWeight: active ? 600 : 500, cursor: 'pointer', background: active ? '#fbf7ee' : 'transparent', color: active ? ACCENT : '#6b655b', boxShadow: active ? '0 1px 2px rgba(0,0,0,.08)' : 'none', transition: 'all 150ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+      <button key={v} onClick={() => setView(v)} className="si-header-navbtn" style={{ border: 'none', fontWeight: active ? 600 : 500, cursor: 'pointer', background: active ? '#fbf7ee' : 'transparent', color: active ? ACCENT : '#6b655b', boxShadow: active ? '0 1px 2px rgba(0,0,0,.08)' : 'none', transition: 'all 150ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
         {label}
       </button>
     );
   };
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 30, background: 'rgba(241,236,225,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', borderBottom: '1px solid #e0d9cb' }}>
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '13px 28px', display: 'flex', alignItems: 'center', gap: 22 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 11, flexShrink: 0 }}>
+    <header className="si-header">
+      <div className="si-header-inner">
+        <div className="si-header-brand">
           <div style={{ width: 30, height: 30, borderRadius: 8, background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <div style={{ width: 17, height: 17, borderRadius: '50%', border: '1.5px solid rgba(251,247,238,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fbf7ee' }} />
             </div>
           </div>
-          <span style={{ fontFamily: "'Newsreader',Georgia,serif", fontWeight: 600, fontSize: 17, letterSpacing: '-0.01em' }}>Security Standards Map</span>
+          <span className="si-header-brandtext">Security Standards Map</span>
         </div>
-        <nav style={{ marginLeft: 'auto', display: 'flex', gap: 3, background: '#e6dfd0', padding: 4, borderRadius: 11 }} aria-label="Site sections">
+        <nav className="si-header-nav" aria-label="Site sections">
           {navBtn('catalog', 'Catalog')}
           {navBtn('timeline', 'Timeline')}
           {navBtn('transitions', 'Transitions')}
         </nav>
-        <a href="https://github.com/banji-007/standardsatlas" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12.5, color: '#6b655b', textDecoration: 'none', borderBottom: '1px solid #d3cbbb', paddingBottom: 1, flexShrink: 0 }}>Source</a>
+        <a href="https://github.com/banji-007/standardsatlas" target="_blank" rel="noopener noreferrer" className="si-header-source" style={{ color: '#6b655b', textDecoration: 'none', borderBottom: '1px solid #d3cbbb', paddingBottom: 1 }}>Source</a>
       </div>
     </header>
   );
@@ -152,8 +152,8 @@ function FrameworkBar() {
     { name: 'DORA', live: false }, { name: 'SOC 2', live: false }, { name: 'NIST CSF', live: false },
   ];
   return (
-    <div style={{ borderBottom: '1px solid #e7e0d2', background: '#efe9dd' }}>
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '9px 28px', display: 'flex', alignItems: 'center', gap: 13, overflowX: 'auto' }}>
+    <div className="si-frameworkbar">
+      <div className="si-frameworkbar-inner">
         <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, textTransform: 'uppercase', letterSpacing: '.1em', color: '#9a9384', flexShrink: 0 }}>Framework</span>
         <div style={{ display: 'flex', gap: 7 }}>
           {fws.map(f => (
@@ -172,17 +172,17 @@ function FrameworkBar() {
 function HeroSection({ total, active, sunset, docs, lastVerified }: { total: number; active: number; sunset: number; docs: number; lastVerified: string }) {
   const stat = (val: number, label: string, color?: string) => (
     <div key={label}>
-      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 30, fontWeight: 600, lineHeight: 1, ...(color ? { color } : {}) }}>{val}</div>
+      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 'clamp(20px, 3.5vw + 8px, 30px)', fontWeight: 600, lineHeight: 1, ...(color ? { color } : {}) }}>{val}</div>
       <div style={{ fontSize: 12.5, color: '#8a8377', marginTop: 3, letterSpacing: '.02em' }}>{label}</div>
     </div>
   );
   return (
-    <section style={{ maxWidth: 1180, margin: '0 auto', padding: '46px 28px 6px' }}>
+    <section className="si-section si-hero">
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
         <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#2a9d63', display: 'inline-block', flexShrink: 0 }} />
         <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 12, color: '#6b655b', letterSpacing: '.02em' }}>Independent reference. Last verified {fmt(lastVerified)}.</span>
       </div>
-      <h1 style={{ fontFamily: "'Newsreader',Georgia,serif", fontWeight: 500, fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 16px', maxWidth: 730, color: '#211e19' }}>
+      <h1 style={{ fontFamily: "'Newsreader',Georgia,serif", fontWeight: 500, fontSize: 'clamp(28px, 5vw + 12px, 44px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 16px', maxWidth: 730, color: '#211e19' }}>
         A working map of the PCI security standards.
       </h1>
       <p style={{ fontSize: 16.5, lineHeight: 1.55, color: '#5f594e', maxWidth: 620, margin: '0 0 26px' }}>
@@ -283,18 +283,18 @@ function RadarStrip({ standards, relationships, onSelect }: { standards: StdData
   };
 
   return (
-    <section style={{ maxWidth: 1180, margin: '0 auto', padding: '30px 28px 6px' }}>
-      <div style={{ background: '#fbf7ee', border: '1px solid #e0d9cb', borderRadius: 16, padding: '22px 24px', boxShadow: '0 1px 2px rgba(0,0,0,.03)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+    <section className="si-section si-radar-section">
+      <div className="si-radar-card">
+        <div className="si-radar-head">
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: ACCENT, display: 'inline-block', flexShrink: 0 }} />
           <h2 style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 19, fontWeight: 600, margin: 0, whiteSpace: 'nowrap' }}>Standards radar</h2>
           <span style={{ fontSize: 12.5, color: '#8a8377' }}>upcoming and recent activity</span>
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
+          <div className="si-radar-arrows">
             <button onClick={() => scrollerRef.current?.scrollBy({ left: -264, behavior: 'smooth' })} style={{ width: 30, height: 30, borderRadius: 8, border: '1px solid #ddd5c5', background: '#fffdf8', color: '#6b655b', fontSize: 15, cursor: 'pointer', lineHeight: 1 }}>‹</button>
             <button onClick={() => scrollerRef.current?.scrollBy({ left: 264, behavior: 'smooth' })} style={{ width: 30, height: 30, borderRadius: 8, border: '1px solid #ddd5c5', background: '#fffdf8', color: '#6b655b', fontSize: 15, cursor: 'pointer', lineHeight: 1 }}>›</button>
           </div>
         </div>
-        <div ref={scrollerRef} style={{ display: 'flex', gap: 11, overflowX: 'auto', scrollSnapType: 'x proximity', padding: '4px 2px 10px' }}>
+        <div ref={scrollerRef} className="si-radar-scroller">
           {future.map(card)}
           {future.length > 0 && past.length > 0 && (
             <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7, padding: '6px 8px 2px', scrollSnapAlign: 'start' }}>
@@ -334,32 +334,31 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
 
   const present = Array.from(new Set(standards.map(s => s.status)));
   const chip = (active: boolean, c?: string, bg?: string): React.CSSProperties => ({
-    padding: '6px 13px', borderRadius: 20, border: `1px solid ${active ? (c || ACCENT) : '#ddd5c5'}`,
+    border: `1px solid ${active ? (c || ACCENT) : '#ddd5c5'}`,
     background: active ? (bg || '#e8f0ef') : '#fbf7ee', color: active ? (c || ACCENT) : '#6b655b',
-    fontSize: 12.5, fontWeight: active ? 600 : 500, cursor: 'pointer', whiteSpace: 'nowrap' as const,
-    transition: 'all 120ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif",
+    fontWeight: active ? 600 : 500, cursor: 'pointer',
   });
   const totalDocs = standards.reduce((a, s) => a + s.documents.length, 0);
 
   return (
     <div>
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '26px 28px 4px' }}>
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ position: 'relative', flex: 1, minWidth: 220 }}>
+      <section className="si-section si-catalog-toprow">
+        <div className="si-search-row">
+          <div className="si-search-box">
             <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: '#a8a195', fontSize: 14 }}>⌕</span>
-            <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search standards, families, keywords…" style={{ width: '100%', padding: '11px 14px 11px 34px', border: '1px solid #ddd5c5', borderRadius: 10, background: '#fbf7ee', fontSize: 14, color: '#211e19', outline: 'none', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }} />
+            <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search standards, families, keywords…" className="si-search-input" />
           </div>
-          <select value={sort} onChange={e => setSort(e.target.value)} style={{ padding: '11px 14px', border: '1px solid #ddd5c5', borderRadius: 10, background: '#fbf7ee', fontSize: 13.5, color: '#211e19', cursor: 'pointer', outline: 'none', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+          <select value={sort} onChange={e => setSort(e.target.value)} className="si-sort-select">
             <option value="name">Sort: A–Z</option>
             <option value="status">Sort: Status</option>
             <option value="recent">Sort: Most recent release</option>
             <option value="docs">Sort: Most documents</option>
           </select>
         </div>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 14 }}>
+        <div className="si-filter-chips">
           {[{ label: 'All', value: 'All' }, ...present.map(k => ({ label: SM[k]?.label ?? k, value: k }))].map(o => {
             const m = o.value !== 'All' ? SM[o.value] : null;
-            return <button key={o.value} onClick={() => setStatusFilter(o.value)} style={chip(statusFilter === o.value, m?.c, m?.bg)}>{o.label}</button>;
+            return <button key={o.value} onClick={() => setStatusFilter(o.value)} className="si-filter-chip" style={chip(statusFilter === o.value, m?.c, m?.bg)}>{o.label}</button>;
           })}
         </div>
         <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11.5, color: '#a08f6a', marginTop: 16, letterSpacing: '.03em' }}>
@@ -367,7 +366,7 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
         </div>
       </section>
 
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '10px 28px 80px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <section className="si-section si-catalog-list-section">
         {list.map(s => {
           const m = SM[s.status] || SM['active'];
           const rc = relCount(s.slug);
@@ -377,9 +376,7 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
           if (rc) meta += ` · ${rc} transition${rc > 1 ? 's' : ''}`;
           return (
             <button key={s.slug} onClick={() => onSelect(s.slug)}
-              style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 18, alignItems: 'center', textAlign: 'left', width: '100%', background: '#fbf7ee', border: '1px solid #e7e0d2', borderRadius: 13, padding: '16px 22px', cursor: 'pointer', transition: 'border-color 150ms, box-shadow 150ms, transform 120ms', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = ACCENT; el.style.boxShadow = '0 4px 14px rgba(31,95,91,.10)'; el.style.transform = 'translateY(-1px)'; el.style.background = '#fffdf8'; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = '#e7e0d2'; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)'; el.style.background = '#fbf7ee'; }}
+              className="si-catalog-row"
             >
               <div style={{ minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 4 }}>
@@ -390,8 +387,8 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
                 <div style={{ fontSize: 13.5, color: '#6b655b', lineHeight: 1.45, marginBottom: 6 }}>{firstSentence(s.notes) || s.name}</div>
                 <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: '#a8a195', letterSpacing: '.02em' }}>{meta}</div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, justifySelf: 'end', flexShrink: 0 }}>
-                <div style={{ textAlign: 'right' }}>
+              <div className="si-catalog-row-meta">
+                <div className="si-catalog-row-version">
                   <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 14, color: '#211e19' }}>{s.current_version ? `v${s.current_version}` : 'n/a'}</div>
                   <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: s.verified ? '#1f7a4d' : '#a08f6a', marginTop: 2 }}>{s.verified ? '✓ verified' : 'provisional'}</div>
                 </div>
@@ -450,10 +447,8 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
     return { s, minX, maxX, markers, docMarkers };
   });
 
-  const wrapStyle: React.CSSProperties = tlFull ? { position: 'fixed', inset: 0, zIndex: 60, background: '#f4efe6', padding: '22px 26px', display: 'flex', flexDirection: 'column' } : { maxWidth: 1180, margin: '0 auto', padding: '34px 28px 90px' };
-
   return (
-    <section style={wrapStyle}>
+    <section className={tlFull ? 'si-timeline-section--full' : 'si-section si-timeline-section'}>
       {!tlFull && <>
         <h2 style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 24, fontWeight: 600, margin: '0 0 6px', letterSpacing: '-.01em' }}>Cross-family version timeline</h2>
         <p style={{ fontSize: 14, color: '#6b655b', margin: '0 0 18px', maxWidth: 680 }}>Verified version releases across every standard, 2016–2028. Diamonds mark scheduled sunsets; the line marks today.</p>
@@ -477,7 +472,7 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
               })}
             </div>
           )}
-          <button onClick={() => setTlFull(!tlFull)} style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 14px', borderRadius: 10, border: `1px solid ${tlFull ? ACCENT : '#ddd5c5'}`, background: tlFull ? '#eef5f4' : '#fbf7ee', color: tlFull ? ACCENT : '#6b655b', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: "'IBM Plex Sans',system-ui,sans-serif" }}>
+          <button onClick={() => setTlFull(!tlFull)} className="si-tl-fullscreen-btn" style={{ border: `1px solid ${tlFull ? ACCENT : '#ddd5c5'}`, background: tlFull ? '#eef5f4' : '#fbf7ee', color: tlFull ? ACCENT : '#6b655b' }}>
             {tlFull ? '✕ Exit full screen' : '⛶ Full screen'}
           </button>
         </div>
@@ -488,35 +483,32 @@ function TimelineView({ standards, showDocs, setShowDocs, docTypes, setDocTypes,
           {showDocs && docTypeSet.has('faq') && <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 5, height: 5, borderRadius: '50%', background: DT['faq'].c, opacity: 0.55, display: 'inline-block' }} />FAQ update</span>}
           <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 2, height: 13, background: ACCENT, display: 'inline-block' }} />today</span>
         </div>
-        <div style={{ border: '1px solid #e0d9cb', borderRadius: 14, background: '#fbf7ee', padding: 20, overflowX: 'auto', ...(tlFull ? { flex: 1, overflowY: 'auto' } : {}) }}>
-          <div style={{ position: 'relative', minWidth: tlFull ? 1080 : 840 }}>
+        <div className={tlFull ? 'si-timeline-plot-wrap si-timeline-plot-wrap--full' : 'si-timeline-plot-wrap'}>
+          <div className={tlFull ? 'si-timeline-inner si-timeline-inner--full' : 'si-timeline-inner'}>
             <div style={{ position: 'absolute', left: 172, right: 24, top: 0, bottom: 14, pointerEvents: 'none' }}>
               {YEARS.map(y => { const x = (y - 2016) / 12 * 100; return (
                 <div key={y} style={{ display: 'contents' }}>
                   <div style={{ position: 'absolute', left: `${x}%`, top: 22, bottom: 0, width: 1, background: '#efe6d3' }} />
-                  <div style={{ position: 'absolute', left: `${x}%`, top: 0, transform: 'translateX(-50%)', fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: '#a8a195' }}>{y}</div>
+                  <div className="si-tl-year" style={{ left: `${x}%` }}>{y}</div>
                 </div>
               ); })}
               <div style={{ position: 'absolute', left: `${todayX}%`, top: 20, bottom: 0, width: 2, background: ACCENT, opacity: 0.7 }} />
-              <div style={{ position: 'absolute', left: `${todayX}%`, top: 4, transform: 'translateX(-50%)', fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, color: ACCENT, fontWeight: 500 }}>today</div>
+              <div className="si-tl-today-label" style={{ left: `${todayX}%` }}>today</div>
             </div>
             <div style={{ position: 'relative', paddingTop: 26 }}>
               {rows.map(({ s, minX, maxX, markers, docMarkers }) => (
-                <div key={s.slug} onClick={() => onSelect(s.slug)} style={{ display: 'flex', alignItems: 'center', height: rowH, borderRadius: 8, cursor: 'pointer' }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'rgba(31,95,91,0.04)'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
-                >
-                  <div style={{ width: 172, flexShrink: 0, paddingRight: 14, overflow: 'hidden' }}>
-                    <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 14.5, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{GRAPH_LABEL[s.slug] ?? s.name}</div>
-                    <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '.04em', color: '#a8a195', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.status.replace(/-/g, ' ')}</div>
+                <div key={s.slug} onClick={() => onSelect(s.slug)} className="si-timeline-row" style={{ height: rowH }}>
+                  <div className="si-timeline-namecol">
+                    <div className="si-tl-name">{GRAPH_LABEL[s.slug] ?? s.name}</div>
+                    <div className="si-tl-status">{s.status.replace(/-/g, ' ')}</div>
                   </div>
-                  <div style={{ position: 'relative', flex: 1, marginRight: 24, height: '100%' }}>
+                  <div className="si-timeline-track">
                     {docMarkers.map((dm, i) => <div key={i} style={dm} />)}
                     {markers.length > 1 && <div style={{ position: 'absolute', top: vCenter, left: `${minX}%`, width: `${maxX - minX}%`, height: 2, background: '#e2dac9', transform: 'translateY(-50%)' }} />}
                     {markers.map((p, i) => (
                       <div key={i} style={{ position: 'absolute', left: `${p.x}%`, top: vCenter, transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {p.sunset ? <div style={{ width: 10, height: 10, background: '#d39314', transform: 'rotate(45deg)' }} /> : <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#fff', border: `2px solid ${ACCENT}` }} />}
-                        {p.label && <div style={{ position: 'absolute', top: p.up ? -17 : 12, fontFamily: "'IBM Plex Mono',monospace", fontSize: 8.5, color: '#a8a195', whiteSpace: 'nowrap', background: 'rgba(251,247,238,0.9)', padding: '0 2px', borderRadius: 2 }}>{p.label}</div>}
+                        {p.label && <div className="si-tl-version-label" style={{ top: p.up ? -17 : 12 }}>{p.label}</div>}
                       </div>
                     ))}
                   </div>
@@ -606,11 +598,23 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
     complete: { label: 'Complete', c: '#1f7a4d', bg: '#e7f3ec' },
   };
 
+  const legendItems = (
+    <>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#b5562f', display: 'inline-block' }} />converge</span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#9a948b', display: 'inline-block' }} />supersede</span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 0, borderTop: '2px dashed #5a6fd0', display: 'inline-block' }} />associate / planned</span>
+    </>
+  );
+
   return (
-    <section style={{ maxWidth: 1180, margin: '0 auto', padding: '34px 28px 90px' }}>
+    <section className="si-section si-trans-section">
       <h2 style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 24, fontWeight: 600, margin: '0 0 6px', letterSpacing: '-.01em' }}>Transitions &amp; relationships</h2>
-      <p style={{ fontSize: 14, color: '#6b655b', margin: '0 0 22px', maxWidth: 680 }}>How standards supersede, converge into, and align with one another. Each orb is a standard, sized by how many supporting documents it carries. Drag to rearrange, or click to open.</p>
-      <div style={{ border: '1px solid #e0d9cb', borderRadius: 16, background: '#fbf7ee', padding: 10, marginBottom: 14, position: 'relative', overflowX: 'auto' }}>
+      <p style={{ fontSize: 14, color: '#6b655b', margin: '0 0 22px', maxWidth: 680 }}>
+        How standards supersede, converge into, and align with one another. Each orb is a standard, sized by how many supporting documents it carries.{' '}
+        <span className="si-trans-copy-mouse">Drag to rearrange, or click to open.</span>
+        <span className="si-trans-copy-touch">Tap an orb to open it.</span>
+      </p>
+      <div className="si-trans-stage-wrap">
         <div ref={stageRef} style={{ position: 'relative', width: 800, height: 520, margin: '0 auto' }}>
           {N && edgesRef.current.map((ed, i) => {
             const a = N[idxRef.current[ed.from]], b = N[idxRef.current[ed.to]]; if (!a || !b) return null;
@@ -622,6 +626,7 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
             const s = standards.find(x => x.slug === p.slug)!; const m = SM[s.status] || SM['active'];
             return (
               <div key={p.slug}
+                className="si-trans-orb"
                 onMouseDown={e => { e.preventDefault(); dragRef.current = i; movedRef.current = false; }}
                 onClick={() => { if (movedRef.current) { movedRef.current = false; return; } onSelect(p.slug); }}
                 title={s.name}
@@ -631,11 +636,12 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
             );
           })}
         </div>
-        <div style={{ position: 'absolute', left: 18, bottom: 14, display: 'flex', flexDirection: 'column', gap: 5, fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: '#8a8377', background: 'rgba(251,247,238,0.85)', padding: '8px 11px', borderRadius: 9, border: '1px solid #ece4d4' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#b5562f', display: 'inline-block' }} />converge</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 2, background: '#9a948b', display: 'inline-block' }} />supersede</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 0, borderTop: '2px dashed #5a6fd0', display: 'inline-block' }} />associate / planned</span>
+        <div className="si-trans-legend">
+          {legendItems}
         </div>
+      </div>
+      <div className="si-trans-legend-static">
+        {legendItems}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {relationships.slice().sort((a, b) => String(b.effective_date||'0').localeCompare(String(a.effective_date||'0'))).map(r => {
@@ -695,7 +701,7 @@ function DetailDrawer({ std, relationships, standards, onClose }: { std: StdData
               <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, textTransform: 'uppercase', letterSpacing: '.07em', color: '#8a8377', marginBottom: 6 }}>{std.status.replace(/-/g, ' ')}</div>
               <h2 style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 24, fontWeight: 600, margin: '0 0 4px', letterSpacing: '-.01em' }}>{std.name}</h2>
             </div>
-            <button onClick={onClose} aria-label="Close drawer" style={{ flexShrink: 0, width: 32, height: 32, borderRadius: 8, border: '1px solid #e0d9cb', background: '#fbf7ee', color: '#6b655b', fontSize: 16, cursor: 'pointer', lineHeight: 1 }}>✕</button>
+            <button onClick={onClose} aria-label="Close drawer" className="si-drawer-close" style={{ borderRadius: 8, border: '1px solid #e0d9cb', background: '#fbf7ee', color: '#6b655b', fontSize: 16, cursor: 'pointer', lineHeight: 1 }}>✕</button>
           </div>
           <span style={{ fontSize: 12, fontWeight: 600, color: m.c, background: m.bg, padding: '5px 12px', borderRadius: 7, display: 'inline-block' }}>{m.label}</span>
         </div>

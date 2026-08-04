@@ -147,3 +147,601 @@ code, .mono {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+/* ==========================================================================
+   Responsive breakpoints (mobile optimisation pass)
+   CSS custom properties cannot be used inside media query conditions, so
+   breakpoints are literals. Declared once here — reuse these exact numbers
+   in every @media rule across this file and any scoped <style> block:
+     640px  — phone breakpoint (already used by src/pages/standard/[slug].astro)
+     900px  — tablet-scale breakpoint, added sparingly
+   ========================================================================== */
+
+/* --- MainIsland.tsx layout, extracted from inline styles (task 1) ---
+   Base rules below reproduce the previous inline values exactly; no
+   responsive behaviour is introduced here. Media queries are added on top
+   of these classes by later tasks. */
+
+.si-section {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.si-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(241, 236, 225, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e0d9cb;
+}
+
+.si-header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 13px 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.si-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.si-header-brandtext {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.si-header-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 3px;
+  background: #e6dfd0;
+  padding: 4px;
+  border-radius: 11px;
+}
+
+.si-header-navbtn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+}
+
+.si-header-source {
+  font-size: 12.5px;
+  flex-shrink: 0;
+}
+
+.si-frameworkbar {
+  border-bottom: 1px solid #e7e0d2;
+  background: #efe9dd;
+}
+
+.si-frameworkbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 9px 28px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  overflow-x: auto;
+}
+
+.si-hero {
+  padding: 46px 28px 6px;
+}
+
+.si-radar-section {
+  padding: 30px 28px 6px;
+}
+
+.si-radar-card {
+  background: #fbf7ee;
+  border: 1px solid #e0d9cb;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+}
+
+.si-radar-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.si-radar-arrows {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.si-radar-scroller {
+  display: flex;
+  gap: 11px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding: 4px 2px 10px;
+}
+
+.si-catalog-toprow {
+  padding: 26px 28px 4px;
+}
+
+.si-search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.si-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.si-search-input {
+  width: 100%;
+  padding: 11px 14px 11px 34px;
+  border: 1px solid #ddd5c5;
+  border-radius: 10px;
+  background: #fbf7ee;
+  font-size: 14px;
+  color: #211e19;
+  outline: none;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-sort-select {
+  padding: 11px 14px;
+  border: 1px solid #ddd5c5;
+  border-radius: 10px;
+  background: #fbf7ee;
+  font-size: 13.5px;
+  color: #211e19;
+  cursor: pointer;
+  outline: none;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.si-filter-chip {
+  padding: 6px 13px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  white-space: nowrap;
+  transition: all 120ms;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-catalog-list-section {
+  padding: 10px 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.si-catalog-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  background: #fbf7ee;
+  border: 1px solid #e7e0d2;
+  border-radius: 13px;
+  padding: 16px 22px;
+  cursor: pointer;
+  transition: border-color 150ms, box-shadow 150ms, transform 120ms;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-catalog-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
+  flex-shrink: 0;
+}
+
+.si-catalog-row-version {
+  text-align: right;
+}
+
+.si-timeline-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 28px 90px;
+}
+
+.si-timeline-section--full {
+  max-width: none;
+  margin: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #f4efe6;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+.si-timeline-plot-wrap {
+  border: 1px solid #e0d9cb;
+  border-radius: 14px;
+  background: #fbf7ee;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.si-timeline-plot-wrap--full {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.si-timeline-inner {
+  position: relative;
+  min-width: 840px;
+}
+
+.si-timeline-inner--full {
+  min-width: 1080px;
+}
+
+.si-timeline-row {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.si-timeline-namecol {
+  width: 172px;
+  flex-shrink: 0;
+  padding-right: 14px;
+  overflow: hidden;
+}
+
+.si-timeline-track {
+  position: relative;
+  flex: 1;
+  margin-right: 24px;
+  height: 100%;
+}
+
+.si-trans-section {
+  padding: 34px 28px 90px;
+}
+
+.si-trans-stage-wrap {
+  border: 1px solid #e0d9cb;
+  border-radius: 16px;
+  background: #fbf7ee;
+  padding: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow-x: auto;
+}
+
+.si-tl-name {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.si-tl-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #a8a195;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.si-tl-version-label {
+  position: absolute;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  color: #a8a195;
+  white-space: nowrap;
+  background: rgba(251, 247, 238, 0.9);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.si-tl-year {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #a8a195;
+}
+
+.si-tl-fullscreen-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-tl-today-label {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  color: #1f5f5b;
+  font-weight: 500;
+}
+
+.si-trans-legend {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #8a8377;
+  background: rgba(251, 247, 238, 0.85);
+  padding: 8px 11px;
+  border-radius: 9px;
+  border: 1px solid #ece4d4;
+}
+
+/* Static duplicate of .si-trans-legend, rendered as a sibling below the
+   pannable stage instead of absolutely positioned over it. Hidden by
+   default; shown in place of the absolute legend below 640px (task 7). */
+.si-trans-legend-static {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #8a8377;
+  margin-bottom: 14px;
+}
+
+.si-trans-copy-touch {
+  display: none;
+}
+
+.si-drawer-close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.faq-search-input {
+  font-size: 0.8125rem;
+}
+
+.admin-queue-section {
+  padding: 40px 28px 90px;
+}
+
+/* --- Task 2: header + framework bar, phone breakpoint ---
+   Neither header's own footer carries a Source/GitHub link (see
+   MOBILE_FINDINGS.md item 7), so the Source link is kept and the brand
+   text is what shrinks away. flex-wrap is the overflow safety net if the
+   three nav pills plus Source still don't fit a given phone's font
+   metrics; it costs a second header row, never a horizontal scrollbar. */
+@media (max-width: 640px) {
+  .si-header-inner {
+    padding: 10px 14px;
+    gap: 8px;
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  .si-header-brandtext {
+    display: none;
+  }
+
+  .si-header-nav {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .si-header-navbtn {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .si-header-source {
+    font-size: 11.5px;
+  }
+
+  .si-frameworkbar-inner {
+    padding: 8px 14px;
+    gap: 8px;
+  }
+}
+
+/* --- Task 4: search, filters, tap targets --- */
+@media (hover: hover) and (pointer: fine) {
+  .si-catalog-row:hover {
+    border-color: #1f5f5b;
+    box-shadow: 0 4px 14px rgba(31, 95, 91, .10);
+    transform: translateY(-1px);
+    background: #fffdf8;
+  }
+}
+
+.si-catalog-row:active {
+  border-color: #1f5f5b;
+  box-shadow: 0 4px 14px rgba(31, 95, 91, .10);
+  transform: translateY(-1px);
+  background: #fffdf8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .si-timeline-row:hover {
+    background: rgba(31, 95, 91, 0.04);
+  }
+}
+
+.si-timeline-row:active {
+  background: rgba(31, 95, 91, 0.04);
+}
+
+@media (pointer: coarse) {
+  .si-radar-arrows {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .si-search-input {
+    font-size: 16px;
+  }
+
+  .si-sort-select {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 14px;
+  }
+
+  .si-filter-chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+  }
+}
+
+/* --- Task 5: catalog card rows --- */
+@media (max-width: 640px) {
+  .si-catalog-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .si-catalog-row-meta {
+    justify-self: start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .si-catalog-row-version {
+    text-align: left;
+  }
+}
+
+/* --- Task 6: timeline view --- */
+@media (max-width: 640px) {
+  .si-timeline-namecol {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #fbf7ee;
+    border-right: 1px solid #e0d9cb;
+  }
+
+  .si-tl-name {
+    font-size: 15.5px;
+  }
+
+  .si-tl-status {
+    font-size: 11px;
+  }
+
+  .si-tl-version-label {
+    font-size: 10px;
+  }
+
+  .si-tl-year {
+    font-size: 11.5px;
+  }
+
+  .si-tl-today-label {
+    font-size: 11px;
+  }
+
+  .si-tl-fullscreen-btn {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
+  }
+}
+
+/* --- Task 7: transitions map --- */
+@media (pointer: coarse) {
+  .si-trans-copy-mouse {
+    display: none;
+  }
+
+  .si-trans-copy-touch {
+    display: inline;
+  }
+}
+
+@media (max-width: 640px) {
+  /* The orb itself is already position:absolute (inline, for its physics
+     placement), which is a valid containing block for this pseudo-element,
+     so no positioning override is needed on the real element. */
+  .si-trans-orb::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+  }
+
+  .si-trans-legend {
+    display: none;
+  }
+
+  .si-trans-legend-static {
+    display: flex;
+  }
+}
+
+/* --- Task 8: remaining pages / drawer / admin queue --- */
+@media (max-width: 640px) {
+  .si-drawer-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-search-input {
+    font-size: 16px;
+  }
+
+  .faq-show-more-btn {
+    min-height: 44px;
+  }
+
+  .admin-queue-section {
+    padding: 24px 16px 60px;
+  }
+}
