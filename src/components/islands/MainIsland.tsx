@@ -172,7 +172,7 @@ function FrameworkBar() {
 function HeroSection({ total, active, sunset, docs, lastVerified }: { total: number; active: number; sunset: number; docs: number; lastVerified: string }) {
   const stat = (val: number, label: string, color?: string) => (
     <div key={label}>
-      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 30, fontWeight: 600, lineHeight: 1, ...(color ? { color } : {}) }}>{val}</div>
+      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 'clamp(20px, 3.5vw + 8px, 30px)', fontWeight: 600, lineHeight: 1, ...(color ? { color } : {}) }}>{val}</div>
       <div style={{ fontSize: 12.5, color: '#8a8377', marginTop: 3, letterSpacing: '.02em' }}>{label}</div>
     </div>
   );
@@ -182,7 +182,7 @@ function HeroSection({ total, active, sunset, docs, lastVerified }: { total: num
         <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#2a9d63', display: 'inline-block', flexShrink: 0 }} />
         <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 12, color: '#6b655b', letterSpacing: '.02em' }}>Independent reference. Last verified {fmt(lastVerified)}.</span>
       </div>
-      <h1 style={{ fontFamily: "'Newsreader',Georgia,serif", fontWeight: 500, fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 16px', maxWidth: 730, color: '#211e19' }}>
+      <h1 style={{ fontFamily: "'Newsreader',Georgia,serif", fontWeight: 500, fontSize: 'clamp(28px, 5vw + 12px, 44px)', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 16px', maxWidth: 730, color: '#211e19' }}>
         A working map of the PCI security standards.
       </h1>
       <p style={{ fontSize: 16.5, lineHeight: 1.55, color: '#5f594e', maxWidth: 620, margin: '0 0 26px' }}>
