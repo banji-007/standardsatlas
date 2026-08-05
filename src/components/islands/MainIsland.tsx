@@ -534,6 +534,8 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
   const stageRef  = useRef<HTMLDivElement | null>(null);
   const movedRef  = useRef(false);
   const keRef     = useRef(0);
+  const activeRef = useRef(false);
+  const wakeRef   = useRef<() => void>(() => {});
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
@@ -550,6 +552,12 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
 
   useEffect(() => {
     let rafId: number;
+    const wake = () => {
+      if (activeRef.current) return;
+      activeRef.current = true;
+      rafId = requestAnimationFrame(step);
+    };
+    wakeRef.current = wake;
     const step = () => {
       const N = nodesRef.current; if (!N) { rafId = requestAnimationFrame(step); return; }
       let ke = 0;
@@ -571,18 +579,24 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
         a.x += a.vx; a.y += a.vy; a.x = Math.max(a.r+10, Math.min(790-a.r, a.x)); a.y = Math.max(a.r+10, Math.min(510-a.r, a.y)); ke += a.vx*a.vx + a.vy*a.vy;
       }
       keRef.current = ke;
-      if (ke > 0.04 || dragRef.current !== null) setFrame(n => n + 1);
+      const settled = ke <= 0.04 && dragRef.current === null;
+      setFrame(n => n + 1);
+      if (settled) { activeRef.current = false; return; }
       rafId = requestAnimationFrame(step);
     };
-    rafId = requestAnimationFrame(step);
+    wake();
     const onMove = (e: MouseEvent) => {
       if (dragRef.current === null || !stageRef.current || !nodesRef.current) return;
       const r = stageRef.current.getBoundingClientRect(), n = nodesRef.current[dragRef.current];
-      if (n) { n.x = (e.clientX - r.left) / r.width * 800; n.y = (e.clientY - r.top) / r.height * 520; n.vx = 0; n.vy = 0; movedRef.current = true; setFrame(n => n + 1); }
+      if (n) { n.x = (e.clientX - r.left) / r.width * 800; n.y = (e.clientY - r.top) / r.height * 520; n.vx = 0; n.vy = 0; movedRef.current = true; setFrame(n => n + 1); wake(); }
     };
     const onUp = () => { dragRef.current = null; };
     window.addEventListener('mousemove', onMove); window.addEventListener('mouseup', onUp);
-    return () => { cancelAnimationFrame(rafId); window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp); };
+    return () => {
+      activeRef.current = false;
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp);
+    };
   }, []);
 
   void frame;
@@ -627,7 +641,7 @@ function TransitionsView({ standards, relationships, onSelect }: { standards: St
             return (
               <div key={p.slug}
                 className="si-trans-orb"
-                onMouseDown={e => { e.preventDefault(); dragRef.current = i; movedRef.current = false; }}
+                onMouseDown={e => { e.preventDefault(); dragRef.current = i; movedRef.current = false; wakeRef.current(); }}
                 onClick={() => { if (movedRef.current) { movedRef.current = false; return; } onSelect(p.slug); }}
                 title={s.name}
                 style={{ position: 'absolute', left: p.x-p.r, top: p.y-p.r, width: p.r*2, height: p.r*2, borderRadius: '50%', background: m.bg, border: `2px solid ${m.c}`, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'grab', boxShadow: '0 1px 3px rgba(0,0,0,.08)', userSelect: 'none' }}>
