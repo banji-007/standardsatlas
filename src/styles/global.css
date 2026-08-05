@@ -147,15 +147,18 @@ code, .mono {
    every mobile/desktop split (Today vs Catalog on /, and the Timeline
    and Map mobile renderers). Falls back to a plain media query when
    data-vp was never set (JS disabled), so content is never hidden
-   outright. */
+   outright. display:contents (not display:block) makes the toggle safe
+   inside flex/grid parents too — no extra box breaks sibling layout,
+   e.g. a sort <select> that needs to sit as a direct flex item in one
+   variant's row. */
 [data-vp-show] { display: none; }
-html[data-vp="mobile"] [data-vp-show="mobile"] { display: block; }
-html[data-vp="desktop"] [data-vp-show="desktop"] { display: block; }
+html[data-vp="mobile"] [data-vp-show="mobile"] { display: contents; }
+html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
 @media (max-width: 640px) {
-  html:not([data-vp]) [data-vp-show="mobile"] { display: block; }
+  html:not([data-vp]) [data-vp-show="mobile"] { display: contents; }
 }
 @media (min-width: 641px) {
-  html:not([data-vp]) [data-vp-show="desktop"] { display: block; }
+  html:not([data-vp]) [data-vp-show="desktop"] { display: contents; }
 }
 
 /* Drawer slide-in animation */
@@ -354,11 +357,54 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: block; }
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
+.si-catalog-result-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 12px;
+  margin-top: 16px;
+}
+
+.si-catalog-result-sort {
+  margin-left: auto;
+}
+
 .si-catalog-list-section {
   padding: 10px 28px 80px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Task 2: mobile Standards tab, concept spacing (tighter side padding
+   and card padding than the desktop-derived defaults above), status
+   badge moved up to the top line next to the dot instead of sitting in
+   a separate bottom-right column (see CatalogIsland.tsx's mobile row for
+   why this needed a second render rather than a pure CSS reflow: the
+   badge changes which line and which sibling group it belongs to, not
+   just its position within one). */
+.si-catalog-list-section-mobile {
+  padding: 10px 16px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.si-catalog-row-mobile {
+  text-align: left;
+  width: 100%;
+  background: #fbf7ee;
+  border: 1px solid #e7e0d2;
+  border-radius: 13px;
+  padding: 14px 15px;
+  cursor: pointer;
+  display: block;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-catalog-row-mobile:active {
+  background: #fffdf8;
 }
 
 .si-catalog-row {
