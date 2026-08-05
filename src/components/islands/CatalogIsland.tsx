@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ErrorBoundary, DetailDrawer, DetailSheet, SM, monthsAway, relTime, fmt, firstSentence, ACCENT, buildRadar, EV_META } from './shared';
+import { ErrorBoundary, DetailDrawer, DetailSheet, SM, GRAPH_LABEL, monthsAway, relTime, fmt, firstSentence, ACCENT, buildRadar, EV_META } from './shared';
 import type { AppData, StdData, RelData, RadarEvent } from './shared';
 
 function RadarStrip({ standards, relationships, onSelect }: { standards: StdData[]; relationships: RelData[]; onSelect: (slug: string) => void }) {
@@ -175,7 +175,7 @@ function CatalogView({ standards, relationships, query, setQuery, statusFilter, 
                     <span style={{ fontSize: 10.5, fontWeight: 600, color: m.c, background: m.bg, padding: '4px 9px', borderRadius: 7, whiteSpace: 'nowrap' }}>{m.label}</span>
                   </span>
                 </div>
-                <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 18, fontWeight: 600, letterSpacing: '-.01em', marginBottom: 4 }}>{s.name}</div>
+                <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 18, fontWeight: 600, letterSpacing: '-.01em', marginBottom: 4 }}>{GRAPH_LABEL[s.slug] ?? s.name}</div>
                 {showDescription && <div style={{ fontSize: 13, color: '#6b655b', lineHeight: 1.45, maxHeight: 38, overflow: 'hidden' }}>{description}</div>}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 9 }}>
                   <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 12, color: '#211e19' }}>{s.current_version ? `v${s.current_version}` : 'n/a'}</span>

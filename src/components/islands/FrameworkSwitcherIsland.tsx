@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useSheetA11y, useDragToDismiss } from './shared';
 
 const FRAMEWORKS = [
-  { name: 'PCI DSS', live: true },
+  { name: 'PCI', live: true },
   { name: 'ISO 27001', live: false },
   { name: 'DORA', live: false },
   { name: 'SOC 2', live: false },
@@ -68,7 +68,7 @@ export default function FrameworkSwitcherIsland() {
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <span>PCI DSS</span>
+        <span>PCI</span>
         <span aria-hidden="true" className="mobile-fw-caret">▾</span>
       </button>
       {open && <FrameworkSheet onClose={() => setOpen(false)} />}
