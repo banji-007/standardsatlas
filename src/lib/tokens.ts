@@ -12,6 +12,7 @@ export const tokens = {
     borderSubtle: '#e7e0d2',
     accent: '#1f5f5b',
     accentHover: '#174d4a',
+    accentSoft: '#eef5f4',
     scrim: 'rgba(28, 24, 18, 0.42)',
   },
   radius: {

@@ -96,10 +96,10 @@ const tabs = [
           <span class="site-name">Security Standards Map</span>
         </a>
         <nav class="site-nav" aria-label="Site sections">
-          <a href="/" class="nav-tab">Catalog</a>
-          <a href="/timeline" class="nav-tab">Timeline</a>
-          <a href="/map" class="nav-tab">Transitions</a>
-          <a href="/faqs" class="nav-tab">FAQs</a>
+          <a href="/" class="nav-tab" aria-current={isTab('/') ? 'page' : undefined}>Catalog</a>
+          <a href="/timeline" class="nav-tab" aria-current={isTab('/timeline') ? 'page' : undefined}>Timeline</a>
+          <a href="/map" class="nav-tab" aria-current={isTab('/map') ? 'page' : undefined}>Transitions</a>
+          <a href="/faqs" class="nav-tab" aria-current={isTab('/faqs') ? 'page' : undefined}>FAQs</a>
         </nav>
         <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
       </div>
@@ -120,11 +120,23 @@ const tabs = [
     <nav class="tab-bar" aria-label="Primary">
       {tabs.map(t => (
         <a href={t.href} class="tab-bar-btn" aria-current={isTab(t.href) ? 'page' : undefined}>
-          <span class={`tab-bar-icon tab-bar-icon--${t.icon}`} aria-hidden="true">
-            {t.icon === 'standards' && (<span class="ic-lines"><i></i><i></i><i></i></span>)}
-            {t.icon === 'map' && (<span class="ic-map"><i class="ic-map-a"></i><i class="ic-map-b"></i><i class="ic-map-c"></i></span>)}
-            {t.icon === 'timeline' && (<span class="ic-tl"><i class="ic-tl-rail"></i><i class="ic-tl-a"></i><i class="ic-tl-b"></i></span>)}
-            {t.icon === 'faqs' && (<span class="ic-faq"><i class="ic-faq-body"></i><i class="ic-faq-tail"></i></span>)}
+          <span class="tab-bar-pill">
+            <span class="tab-bar-icon" aria-hidden="true">
+              {t.icon === 'standards' && (<span class="ic-lines"><i></i><i></i><i></i></span>)}
+              {t.icon === 'map' && (
+                <span class="ic-map">
+                  <i class="ic-map-a"></i><i class="ic-map-b"></i><i class="ic-map-c"></i>
+                  <i class="ic-map-link-l"></i><i class="ic-map-link-r"></i>
+                </span>
+              )}
+              {t.icon === 'timeline' && (
+                <span class="ic-tl">
+                  <i class="ic-tl-rail"></i><i class="ic-tl-a"></i><i class="ic-tl-b"></i>
+                  <i class="ic-tl-tick-a"></i><i class="ic-tl-tick-b"></i>
+                </span>
+              )}
+              {t.icon === 'faqs' && (<span class="ic-faq"><i class="ic-faq-body"></i><i class="ic-faq-tail"></i></span>)}
+            </span>
           </span>
           <span class="tab-bar-label">{t.label}</span>
         </a>
@@ -220,6 +232,13 @@ const tabs = [
   }
 
   .nav-tab:hover { color: var(--color-text); background: rgba(251,247,238,0.5); }
+
+  .nav-tab[aria-current='page'] {
+    background: var(--color-bg-card);
+    color: var(--color-accent);
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
 
   .github-link {
     font-size: 12.5px;
@@ -320,11 +339,33 @@ const tabs = [
     color: var(--color-text-faint);
     font-family: var(--font-ui);
     font-weight: 500;
+    transition: color 150ms;
   }
 
   .tab-bar-btn[aria-current='page'] {
     color: var(--color-accent);
     font-weight: 600;
+  }
+
+  /* Wraps the glyph only (not the label below it); gets a soft accent
+     background pill when its tab is the current route, per the concept's
+     tabBarStyle. Radius uses --radius-tab (10px, from tokens.css) rather
+     than the concept's hardcoded 14px, since the concept's own :root
+     already declares --tabR: 10px for this and the 14px inline value was
+     the mockup drifting from its own token, not a value worth copying. */
+  .tab-bar-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 26px;
+    border-radius: var(--radius-tab);
+    background: transparent;
+    transition: background 180ms;
+  }
+
+  .tab-bar-btn[aria-current='page'] .tab-bar-pill {
+    background: var(--color-accent-soft);
   }
 
   .tab-bar-label {
@@ -344,27 +385,35 @@ const tabs = [
     justify-content: center;
   }
 
-  /* Standards: three left-aligned bars */
+  /* Standards: three left-aligned bars, 17/12/15px, stacked with 3px gaps */
   .ic-lines { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; width: 17px; }
   .ic-lines i { display: block; height: 1.8px; border-radius: 1px; background: currentColor; }
   .ic-lines i:nth-child(1) { width: 17px; }
   .ic-lines i:nth-child(2) { width: 12px; }
   .ic-lines i:nth-child(3) { width: 15px; }
 
-  /* Map: three orbs in a loose triangle */
+  /* Map: three orbs (5.5px) in a loose triangle, joined by two faint
+     diagonal links at ±22deg */
   .ic-map { position: relative; width: 17px; height: 17px; }
-  .ic-map i { position: absolute; width: 5.5px; height: 5.5px; border-radius: 50%; background: currentColor; }
+  .ic-map i { position: absolute; background: currentColor; }
+  .ic-map-a, .ic-map-b, .ic-map-c { width: 5.5px; height: 5.5px; border-radius: 50%; }
   .ic-map-a { left: 6px; top: 0; }
   .ic-map-b { left: 0; bottom: 0; }
   .ic-map-c { right: 0; bottom: 0; }
+  .ic-map-link-l, .ic-map-link-r { top: 5px; width: 1.4px; height: 7px; opacity: 0.5; }
+  .ic-map-link-l { left: 3.5px; transform: rotate(22deg); }
+  .ic-map-link-r { right: 3.5px; transform: rotate(-22deg); }
 
-  /* Timeline: vertical rail with two markers */
+  /* Timeline: vertical rail, a filled marker above and an outlined marker
+     below, and two faint horizontal ticks on the right */
   .ic-tl { position: relative; width: 17px; height: 17px; }
   .ic-tl-rail { position: absolute; left: 4px; top: 0; bottom: 0; width: 1.5px; background: currentColor; opacity: 0.55; }
   .ic-tl-a { position: absolute; left: 1.5px; top: 1px; width: 6.5px; height: 6.5px; border-radius: 50%; background: currentColor; }
   .ic-tl-b { position: absolute; left: 1.5px; bottom: 1px; width: 6.5px; height: 6.5px; border-radius: 50%; border: 1.6px solid currentColor; background: transparent; }
+  .ic-tl-tick-a { position: absolute; right: 0; top: 2.5px; width: 6px; height: 1.6px; background: currentColor; opacity: 0.55; }
+  .ic-tl-tick-b { position: absolute; right: 0; bottom: 3.5px; width: 4px; height: 1.6px; background: currentColor; opacity: 0.55; }
 
-  /* FAQs: chat bubble */
+  /* FAQs: chat bubble, rounded-rect body with a rotated-square tail */
   .ic-faq { position: relative; width: 17px; height: 17px; }
   .ic-faq-body { position: absolute; left: 0; top: 2px; width: 17px; height: 11.5px; border: 1.6px solid currentColor; border-radius: 3.5px; }
   .ic-faq-tail { position: absolute; left: 3.5px; bottom: 0.5px; width: 4px; height: 4px; background: currentColor; transform: rotate(45deg); }
