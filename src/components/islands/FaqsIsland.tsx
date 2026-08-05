@@ -20,7 +20,7 @@ function fmtDate(iso: string | null): string {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 }
 
-export default function FaqsIsland({ faqs }: Props) {
+function FaqsDesktopView({ faqs }: Props) {
   const [open, setOpen]   = useState(false);
   const [query, setQuery] = useState('');
   const [limit, setLimit] = useState(PAGE);
@@ -193,5 +193,89 @@ export default function FaqsIsland({ faqs }: Props) {
         </div>
       )}
     </section>
+  );
+}
+
+/* Task 6: concept's mobile FAQ tab is a flat, always-open list (no accordion) with a
+   search bar and a result-count line above it, entries shown as two-line cards (meta
+   row, then title on its own line) instead of the desktop's single truncated row. */
+function FaqsMobileView({ faqs }: Props) {
+  const [query, setQuery] = useState('');
+  const [limit, setLimit] = useState(PAGE);
+  const inputId = useId();
+
+  const q = query.trim().toLowerCase();
+  const filtered = q ? faqs.filter(f => f.title.toLowerCase().includes(q)) : faqs;
+  const visible  = filtered.slice(0, limit);
+  const remaining = filtered.length - limit;
+
+  function handleQuery(v: string) {
+    setQuery(v);
+    setLimit(PAGE);
+  }
+
+  return (
+    <section className="si-faqm-section">
+      <div className="si-faqm-searchwrap">
+        <span aria-hidden="true" className="si-faqm-searchicon">⌕</span>
+        <label htmlFor={inputId} className="si-faqm-sr-label">Search FAQs</label>
+        <input
+          id={inputId}
+          type="search"
+          value={query}
+          onChange={e => handleQuery(e.target.value)}
+          placeholder={`Search ${faqs.length} FAQs`}
+          className="si-faqm-search"
+        />
+      </div>
+
+      <div className="mono si-faqm-count">
+        {filtered.length} {filtered.length === 1 ? 'entry' : 'entries'}{q ? ` matching "${query}"` : ''}
+      </div>
+
+      {filtered.length === 0 ? (
+        <div className="si-faqm-empty">No FAQ entries match.</div>
+      ) : (
+        <>
+          <div className="si-faqm-list">
+            {visible.map(faq => {
+              const needsConfirm = faq.mapping_method === 'disambiguated' || faq.mapping_method === 'inferred';
+              return (
+                <a key={faq.number} href={faq.source_url} target="_blank" rel="noopener noreferrer" className="si-faqm-row">
+                  <div className="si-faqm-row-meta">
+                    <span className="mono si-faqm-num">#{faq.number}</span>
+                    {faq.updated && <span className="mono si-faqm-date">{fmtDate(faq.updated)}</span>}
+                    {needsConfirm && (
+                      <span title="Standard mapping resolved by title keyword -- confirm before citing" className="mono si-faqm-flag">~</span>
+                    )}
+                    <span aria-hidden="true" className="si-faqm-arrow">↗</span>
+                  </div>
+                  <div className="si-faqm-title">{faq.title}</div>
+                </a>
+              );
+            })}
+          </div>
+
+          {remaining > 0 && (
+            <button onClick={() => setLimit(l => l + PAGE)} className="si-faqm-more">
+              Show {Math.min(PAGE, remaining)} more ({remaining} remaining)
+            </button>
+          )}
+
+          <p className="mono si-faqm-source">
+            source: <a href="https://www.pcisecuritystandards.org/faqs/" target="_blank" rel="noopener noreferrer">pcisecuritystandards.org/faqs ↗</a>
+          </p>
+        </>
+      )}
+    </section>
+  );
+}
+
+export default function FaqsIsland({ faqs }: Props) {
+  return (
+    <>
+      <div data-vp-show="desktop"><FaqsDesktopView faqs={faqs} /></div>
+      <div data-vp-show="mobile"><FaqsMobileView faqs={faqs} /></div>
+    </>
   );
 }

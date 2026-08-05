@@ -1399,6 +1399,143 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
   font-size: 0.8125rem;
 }
 
+/* Task 6: mobile FAQs tab, concept treatment (flat always-open list,
+   two-line cards) applied to the existing /faqs route and data. */
+.si-faqm-section {
+  padding: 8px 16px 40px;
+}
+
+.si-faqm-searchwrap {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.si-faqm-searchicon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-faint);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.si-faqm-sr-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.si-faqm-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px 11px 33px;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  outline: none;
+  font-size: 16px;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.si-faqm-count {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  letter-spacing: 0.03em;
+  margin-bottom: 11px;
+}
+
+.si-faqm-empty {
+  text-align: center;
+  padding: 44px 20px;
+  color: var(--color-text-faint);
+  font-size: 14px;
+}
+
+.si-faqm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: #ece4d4;
+  border: 1px solid #ece4d4;
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.si-faqm-row {
+  display: block;
+  background: var(--color-bg-card);
+  padding: 13px 15px;
+  text-decoration: none;
+}
+
+.si-faqm-row:active {
+  background: #fffdf8;
+}
+
+.si-faqm-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 6px;
+}
+
+.si-faqm-num {
+  font-size: 10px;
+  color: var(--color-text-faint);
+  letter-spacing: 0.04em;
+  margin-right: auto;
+}
+
+.si-faqm-date {
+  font-size: 9.5px;
+  color: var(--color-text-faint);
+}
+
+.si-faqm-flag {
+  font-size: 10px;
+  color: #9a6512;
+  cursor: help;
+}
+
+.si-faqm-arrow {
+  color: #bdb4a2;
+  font-size: 11px;
+}
+
+.si-faqm-title {
+  font-size: 13.5px;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.si-faqm-more {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border-radius: 11px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.si-faqm-source {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--color-text-faint);
+}
+
+.si-faqm-source a {
+  color: var(--color-accent);
+}
+
 .admin-queue-section {
   padding: 40px 28px 90px;
 }
