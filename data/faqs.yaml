@@ -1285,7 +1285,7 @@ faqs:
     title: >-
       Can SAQ eligibility criteria be used as a guide for determining applicability of PCI DSS requirements for merchant
       assessments documented in a Report on Compliance?
-    updated: "2025-05-23T09:27:57Z"
+    updated: "2026-08-04T09:25:00Z"
     standards:
       - pci-dss
     mapping_method: direct
