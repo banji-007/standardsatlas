@@ -8,16 +8,18 @@ const frameworks = [
 ];
 ---
 
-<div class="si-frameworkbar">
-  <div class="si-frameworkbar-inner">
-    <span class="fw-label">Framework</span>
-    <div class="fw-list">
-      {frameworks.map(f => (
-        <div class:list={['fw-pill', { 'fw-pill--live': f.live }]}>
-          {f.name}
-          <span class:list={['fw-tag', { 'fw-tag--live': f.live }]}>{f.live ? 'Live' : 'Soon'}</span>
-        </div>
-      ))}
+<div data-vp-show="desktop">
+  <div class="si-frameworkbar">
+    <div class="si-frameworkbar-inner">
+      <span class="fw-label">Framework</span>
+      <div class="fw-list">
+        {frameworks.map(f => (
+          <div class:list={['fw-pill', { 'fw-pill--live': f.live }]}>
+            {f.name}
+            <span class:list={['fw-tag', { 'fw-tag--live': f.live }]}>{f.live ? 'Live' : 'Soon'}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </div>

@@ -1389,6 +1389,104 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
   text-decoration: none;
 }
 
+/* Task 7: framework-switcher pill + sheet, mounted from
+   FrameworkSwitcherIsland.tsx. The sheet reuses .si-sheet, .si-sheet-scrim,
+   .si-sheet-grab, .si-sheet-grab-bar and .si-sheet-close from Task 5 rather
+   than duplicating them -- this is a second, shorter sheet built on the
+   same base, not a new sheet mechanism. */
+.mobile-fw-pill {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg-card);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mobile-fw-caret {
+  font-size: 8px;
+  opacity: 0.75;
+}
+
+.si-fwsheet {
+  max-height: none;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.si-fwsheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 20px 0;
+}
+
+.si-fwsheet-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.si-fwsheet-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 4px 20px 16px;
+}
+
+.si-fwsheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 20px 26px;
+}
+
+.si-fwsheet-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 11px;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-card);
+}
+
+.si-fwsheet-row--live {
+  border-color: var(--color-accent);
+}
+
+.si-fwsheet-name {
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.si-fwsheet-tag {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: var(--color-border-subtle);
+  color: var(--color-text-faint);
+}
+
+.si-fwsheet-tag--live {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
 .si-drawer-close {
   flex-shrink: 0;
   width: 32px;

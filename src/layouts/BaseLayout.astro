@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FrameworkSwitcherIsland from '../components/islands/FrameworkSwitcherIsland';
 
 interface Props {
   title: string;
@@ -86,25 +87,41 @@ const tabs = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="site-header-inner">
-        <a href="/" class="site-brand" aria-label="PCI Security Standards Map home">
+    <div data-vp-show="desktop">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <a href="/" class="site-brand" aria-label="PCI Security Standards Map home">
+            <div class="logo-icon" aria-hidden="true">
+              <div class="logo-ring">
+                <div class="logo-dot"></div>
+              </div>
+            </div>
+            <span class="site-name">Security Standards Map</span>
+          </a>
+          <nav class="site-nav" aria-label="Site sections">
+            <a href="/" class="nav-tab" aria-current={isTab('/') ? 'page' : undefined}>Catalog</a>
+            <a href="/timeline" class="nav-tab" aria-current={isTab('/timeline') ? 'page' : undefined}>Timeline</a>
+            <a href="/map" class="nav-tab" aria-current={isTab('/map') ? 'page' : undefined}>Transitions</a>
+            <a href="/faqs" class="nav-tab" aria-current={isTab('/faqs') ? 'page' : undefined}>FAQs</a>
+          </nav>
+          <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
+        </div>
+      </header>
+    </div>
+
+    <div data-vp-show="mobile">
+      <header class="mobile-header">
+        <a href="/" class="mobile-brand" aria-label="PCI Security Standards Map home">
           <div class="logo-icon" aria-hidden="true">
             <div class="logo-ring">
               <div class="logo-dot"></div>
             </div>
           </div>
-          <span class="site-name">Security Standards Map</span>
+          <span class="mobile-site-name">Security Standards Map</span>
         </a>
-        <nav class="site-nav" aria-label="Site sections">
-          <a href="/" class="nav-tab" aria-current={isTab('/') ? 'page' : undefined}>Catalog</a>
-          <a href="/timeline" class="nav-tab" aria-current={isTab('/timeline') ? 'page' : undefined}>Timeline</a>
-          <a href="/map" class="nav-tab" aria-current={isTab('/map') ? 'page' : undefined}>Transitions</a>
-          <a href="/faqs" class="nav-tab" aria-current={isTab('/faqs') ? 'page' : undefined}>FAQs</a>
-        </nav>
-        <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
-      </div>
-    </header>
+        <FrameworkSwitcherIsland client:load />
+      </header>
+    </div>
 
     <main class="page-main">
       <slot />
@@ -270,31 +287,52 @@ const tabs = [
     line-height: 1.6;
   }
 
-  /* Task 2 (mobile remediation) / routing task: phone breakpoint (640px,
-     see src/styles/global.css for the canonical breakpoint doc). Neither
-     this footer nor the old per-view header carried a Source link
-     (MOBILE_FINDINGS.md item 7), so the Source link stays and the brand
-     text is what shrinks away. .site-nav is hidden below the breakpoint:
-     the bottom .tab-bar is the mobile equivalent of these same four
-     routes, so showing both would be redundant navigation. */
-  @media (max-width: 640px) {
-    .site-header-inner {
-      padding: 10px 14px;
-      gap: 8px;
-    }
-
-    .site-name {
-      display: none;
-    }
-
-    .site-nav {
-      display: none;
-    }
-
-    .github-link {
-      font-size: 11.5px;
-    }
+  /* Task 7: compact mobile header (data-vp-show="mobile" sibling of
+     .site-header above), replacing the desktop header + persistent
+     FrameworkBar strip below 640px with a single row: logo, wordmark, and
+     one framework-switcher pill that opens a sheet (see
+     FrameworkSwitcherIsland.tsx). The desktop header's own <640px overrides
+     that used to live here are gone: .site-header no longer renders below
+     640px at all now that it's gated by [data-vp-show="desktop"], so those
+     rules had become unreachable. */
+  .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(241, 236, 225, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
   }
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .mobile-site-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* .mobile-fw-pill / .mobile-fw-caret are rendered inside
+     FrameworkSwitcherIsland.tsx (a React island), so their rules live in
+     global.css alongside every other island-rendered element's styles --
+     Astro's scoped <style> here only reaches markup this template renders
+     directly, not markup React mounts into it. */
 
   /* Bottom tab bar: mobile-only primary nav, mirrors .site-nav's four
      routes. Hidden above the phone breakpoint; .site-nav remains the

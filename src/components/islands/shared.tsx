@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useId } from 'react';
+import { createPortal } from 'react-dom';
 import type { Doc, StdData, RelData } from '../../lib/appTypes';
 
 // Shared with MapIsland.tsx's physics-loop guard; duplicated rather than
@@ -10,6 +11,83 @@ function isMobileViewport(): boolean {
 }
 
 export type { Doc, Ver, StdData, RelData, AppData } from '../../lib/appTypes';
+
+// Shared by every mobile bottom sheet (DetailSheet, FrameworkSwitcherIsland's
+// sheet): dialog semantics that are easy to get subtly wrong twice --
+// focus-on-open, a manual focus trap, Escape, and an iOS-safe scroll lock via
+// position:fixed with restoration. Callers mount this only while their sheet
+// is actually in the tree (matching DetailSheet's own original lifecycle),
+// so the effect's mount/unmount already brackets "sheet open"/"sheet closed".
+export function useSheetA11y(
+  sheetRef: React.RefObject<HTMLElement | null>,
+  closeBtnRef: React.RefObject<HTMLButtonElement | null>,
+  onClose: () => void,
+) {
+  useEffect(() => {
+    if (!isMobileViewport()) return; // both variants are always mounted; only the visible one may touch focus/scroll
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+
+    const getFocusable = () => Array.from(
+      sheetRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), select, textarea, input, [tabindex]:not([tabindex="-1"])') ?? []
+    );
+    (closeBtnRef.current ?? getFocusable()[0])?.focus({ preventScroll: true });
+
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key !== 'Tab') return;
+      const list = getFocusable();
+      if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeydown);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      window.scrollTo(0, scrollY);
+      previouslyFocused?.focus({ preventScroll: true });
+    };
+  }, [onClose]);
+}
+
+// Shared drag-to-dismiss for the same sheets: tracks vertical drag distance
+// from the grab handle and closes past a threshold, snapping back otherwise.
+export function useDragToDismiss(onClose: () => void, threshold = 110) {
+  const dragStartY = useRef<number | null>(null);
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  const onGrab = (e: React.MouseEvent | React.TouchEvent) => {
+    const t = 'touches' in e ? e.touches[0] : e;
+    dragStartY.current = t.clientY;
+    setDragging(true);
+    const onMove = (ev: MouseEvent | TouchEvent) => {
+      const p = 'touches' in ev ? ev.touches[0] : ev;
+      const dy = Math.max(0, p.clientY - (dragStartY.current ?? p.clientY));
+      setDragY(dy);
+    };
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('touchmove', onMove); window.removeEventListener('touchend', onUp);
+      setDragging(false);
+      setDragY(dy => { if (dy > threshold) onClose(); return 0; });
+    };
+    window.addEventListener('mousemove', onMove); window.addEventListener('mouseup', onUp);
+    window.addEventListener('touchmove', onMove, { passive: true }); window.addEventListener('touchend', onUp);
+  };
+
+  return { dragY, dragging, onGrab };
+}
 
 export class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { err: string | null }> {
   state = { err: null };
@@ -390,66 +468,14 @@ export function DetailSheet({ std, relationships, standards, onClose }: { std: S
   const headingId = useId();
   const sheetRef = useRef<HTMLElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
-  const dragStartY = useRef<number | null>(null);
-  const [dragY, setDragY] = useState(0);
-  const [dragging, setDragging] = useState(false);
+  useSheetA11y(sheetRef, closeBtnRef, onClose);
+  const { dragY, dragging, onGrab } = useDragToDismiss(onClose);
 
-  useEffect(() => {
-    if (!isMobileViewport()) return; // both variants are always mounted; only the visible one may touch focus/scroll
-    const previouslyFocused = document.activeElement as HTMLElement | null;
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-
-    const getFocusable = () => Array.from(
-      sheetRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), select, textarea, input, [tabindex]:not([tabindex="-1"])') ?? []
-    );
-    (closeBtnRef.current ?? getFocusable()[0])?.focus({ preventScroll: true });
-
-    const onKeydown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { onClose(); return; }
-      if (e.key !== 'Tab') return;
-      const list = getFocusable();
-      if (!list.length) return;
-      const first = list[0], last = list[list.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', onKeydown);
-
-    return () => {
-      document.removeEventListener('keydown', onKeydown);
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      window.scrollTo(0, scrollY);
-      previouslyFocused?.focus({ preventScroll: true });
-    };
-  }, [onClose]);
-
-  const onGrab = (e: React.MouseEvent | React.TouchEvent) => {
-    const t = 'touches' in e ? e.touches[0] : e;
-    dragStartY.current = t.clientY;
-    setDragging(true);
-    const onMove = (ev: MouseEvent | TouchEvent) => {
-      const p = 'touches' in ev ? ev.touches[0] : ev;
-      const dy = Math.max(0, p.clientY - (dragStartY.current ?? p.clientY));
-      setDragY(dy);
-    };
-    const onUp = () => {
-      window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp);
-      window.removeEventListener('touchmove', onMove); window.removeEventListener('touchend', onUp);
-      setDragging(false);
-      setDragY(dy => { if (dy > 110) onClose(); return 0; });
-    };
-    window.addEventListener('mousemove', onMove); window.addEventListener('mouseup', onUp);
-    window.addEventListener('touchmove', onMove, { passive: true }); window.addEventListener('touchend', onUp);
-  };
-
-  return (
+  // Portalled to document.body: any ancestor an island happens to mount under
+  // (e.g. a header with backdrop-filter, which creates a containing block for
+  // position:fixed the same way transform/filter do) would otherwise anchor
+  // this sheet to that ancestor's box instead of the viewport.
+  return createPortal(
     <>
       <div onClick={onClose} aria-hidden="true" className="si-sheet-scrim" />
       <aside
@@ -579,6 +605,7 @@ export function DetailSheet({ std, relationships, standards, onClose }: { std: S
           )}
         </div>
       </aside>
-    </>
+    </>,
+    document.body
   );
 }
