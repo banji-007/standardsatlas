@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import FrameworkBar from '../components/FrameworkBar.astro';
 import CatalogIsland from '../components/islands/CatalogIsland';
-import TodayFeedIsland from '../components/islands/TodayFeedIsland';
 import { getAppData } from '../lib/appData';
 
 const appData = await getAppData();
@@ -13,15 +12,11 @@ const docs = appData.standards.reduce((a, s) => a + s.documents.length, 0);
 ---
 
 <BaseLayout
-  title="PCI Security Standards Map"
-  description="An independent, citeable reference to the PCI security standards landscape: every current standard, its version lineage, status, supporting guidance, and sunset dates."
+  title="Standards"
+  description="Every PCI security standard: status, current version, supporting documents and FAQs. Searchable and sortable."
+  canonicalUrl="https://securitystandardsmap.org/standards"
 >
   <FrameworkBar />
   <Hero total={appData.standards.length} active={active} sunset={sunset} docs={docs} lastVerified={appData.lastVerified} />
-  <div data-vp-show="mobile">
-    <TodayFeedIsland data={appData} client:load />
-  </div>
-  <div data-vp-show="desktop">
-    <CatalogIsland data={appData} client:load />
-  </div>
+  <CatalogIsland data={appData} client:load />
 </BaseLayout>

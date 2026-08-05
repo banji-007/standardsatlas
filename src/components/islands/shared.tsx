@@ -101,6 +101,66 @@ export function firstSentence(text?: string): string {
   return (m ? m[0] : text).trim();
 }
 
+// --- radar / feed events, shared by desktop RadarStrip and mobile Today ---
+// link is optional; when set, clicking the card navigates to that URL instead of opening a drawer.
+export interface RadarEvent { slug: string; name: string; type: string; date: string; note: string; link?: string; }
+
+export const EV_META: Record<string, { c: string; bg: string }> = {
+  'New version':  { c: '#1f5f5b', bg: '#e6f0ef' },
+  'FAQ updates':  { c: '#7a4f8e', bg: '#f1ebf4' },
+  'New guidance': { c: '#3a4f9e', bg: '#e9ecfb' }, 'New bulletin':{ c: '#9a6512', bg: '#fbf0db' },
+  'Sunset':       { c: '#9a6512', bg: '#fbf0db' }, 'Convergence': { c: '#b5562f', bg: '#f7e7df' },
+  'Superseded':   { c: '#6b6760', bg: '#ece9e3' }, 'Alignment':   { c: '#3a4f9e', bg: '#e9ecfb' },
+  'Under review': { c: '#3a4f9e', bg: '#e9ecfb' },
+};
+
+export function buildRadar(standards: StdData[], relationships: RelData[]): RadarEvent[] {
+  const now = new Date();
+  const cutoff = `${now.getFullYear() - 2}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const events: RadarEvent[] = [];
+
+  standards.forEach(s => {
+    s.versions.forEach(v => {
+      if (v.published) events.push({ slug: s.slug, name: s.name, type: 'New version', date: v.published, note: `Version ${v.version} published.` });
+      if (v.retired && v.status === 'sunset-scheduled') events.push({ slug: s.slug, name: s.name, type: 'Sunset', date: v.retired, note: `v${v.version} scheduled to sunset.` });
+    });
+    if (s.status === 'under-review') events.push({ slug: s.slug, name: s.name, type: 'Under review', date: s.last_verified || '', note: 'Standard under active development and review.' });
+    // FAQs are excluded here; they are aggregated below to avoid flooding the radar.
+    const nd = s.documents.filter(d => d.published && d.published >= cutoff && d.type !== 'faq')
+      .sort((a, b) => String(b.published).localeCompare(String(a.published)))[0];
+    if (nd?.published) {
+      const t = nd.type === 'guidance' ? 'New guidance' : nd.type === 'bulletin' ? 'New bulletin' : null;
+      if (t) events.push({ slug: s.slug, name: s.name, type: t, date: nd.published, note: nd.title.slice(0, 82) + (nd.title.length > 82 ? '…' : '') });
+    }
+  });
+
+  relationships.forEach(r => {
+    if (!r.effective_date) return;
+    const t = r.type === 'converge' ? 'Convergence' : r.type === 'supersede' ? 'Superseded' : 'Alignment';
+    events.push({ slug: r.from, name: standards.find(s => s.slug === r.from)?.name ?? r.from, type: t, date: r.effective_date, note: r.description ? r.description.split(/;|\.\s/)[0] + '.' : '' });
+  });
+
+  // Aggregate all recent FAQ documents across standards into a single card.
+  const recentFaqs = standards.flatMap(s =>
+    s.documents.filter(d => d.type === 'faq' && d.published && d.published >= cutoff)
+  );
+  if (recentFaqs.length > 0) {
+    const latest = recentFaqs.slice().sort((a, b) => String(b.published).localeCompare(String(a.published)))[0]!;
+    events.push({
+      slug: '_faqs',
+      name: 'FAQ activity',
+      type: 'FAQ updates',
+      date: latest.published!,
+      note: `${recentFaqs.length} FAQ${recentFaqs.length > 1 ? 's' : ''} updated in this period.`,
+      link: '/faqs',
+    });
+  }
+
+  const seen = new Set<string>();
+  return events.filter(e => e.date >= cutoff).sort((a, b) => b.date.localeCompare(a.date))
+    .filter(e => { const k = e.slug + e.type + e.date; if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 12);
+}
+
 // --- DetailDrawer (desktop) ---
 export function DetailDrawer({ std, relationships, standards, onClose }: { std: StdData; relationships: RelData[]; standards: StdData[]; onClose: () => void }) {
   const m = SM[std.status] || SM['active'];

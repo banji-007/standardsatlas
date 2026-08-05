@@ -24,7 +24,8 @@ const path = Astro.url.pathname;
 const isTab = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
 
 const tabs = [
-  { href: '/', label: 'Standards', icon: 'standards' as const },
+  { href: '/', label: 'Today', icon: 'today' as const },
+  { href: '/standards', label: 'Standards', icon: 'standards' as const },
   { href: '/map', label: 'Map', icon: 'map' as const },
   { href: '/timeline', label: 'Timeline', icon: 'timeline' as const },
   { href: '/faqs', label: 'FAQs', icon: 'faqs' as const },
@@ -122,6 +123,7 @@ const tabs = [
         <a href={t.href} class="tab-bar-btn" aria-current={isTab(t.href) ? 'page' : undefined}>
           <span class="tab-bar-pill">
             <span class="tab-bar-icon" aria-hidden="true">
+              {t.icon === 'today' && (<span class="ic-today"><i class="ic-today-ring"></i><i class="ic-today-dot"></i></span>)}
               {t.icon === 'standards' && (<span class="ic-lines"><i></i><i></i><i></i></span>)}
               {t.icon === 'map' && (
                 <span class="ic-map">
@@ -384,6 +386,11 @@ const tabs = [
     align-items: center;
     justify-content: center;
   }
+
+  /* Today: a ring with a filled center dot */
+  .ic-today { position: relative; width: 17px; height: 17px; }
+  .ic-today-ring { position: absolute; inset: 0; border-radius: 50%; border: 1.6px solid currentColor; }
+  .ic-today-dot { position: absolute; left: 50%; top: 50%; width: 5.5px; height: 5.5px; margin: -2.75px 0 0 -2.75px; border-radius: 50%; background: currentColor; }
 
   /* Standards: three left-aligned bars, 17/12/15px, stacked with 3px gaps */
   .ic-lines { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; width: 17px; }
