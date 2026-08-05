@@ -129,6 +129,11 @@ export function relTime(d: string): string {
   return ma > 0 ? `in ${ma} mo` : ma < 0 ? `${Math.abs(ma)} mo ago` : 'this month';
 }
 
+export function abbrev(s?: string): string {
+  const w = String(s || '').replace(/PCI\s*/, '').split(/\s+/);
+  return w.length > 1 ? w.map(x => x[0]).join('').slice(0, 4).toUpperCase() : String(s).slice(0, 4).toUpperCase();
+}
+
 export function firstSentence(text?: string): string {
   if (!text) return '';
   const m = text.match(/^.*?[.!?](\s|$)/);
