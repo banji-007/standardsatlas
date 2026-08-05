@@ -60,6 +60,11 @@
   --radius: 10px;
   --radius-lg: 13px;
   --radius-xl: 16px;
+  --radius-sheet: 22px; /* mobile bottom sheet corner radius */
+  --radius-tab: 10px; /* mobile tab bar active-pill radius */
+
+  /* Overlay */
+  --color-scrim: rgba(28, 24, 18, 0.42);
 
   /* Motion */
   --duration-fast: 150ms;

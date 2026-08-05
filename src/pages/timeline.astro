@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import FrameworkBar from '../components/FrameworkBar.astro';
-import CatalogIsland from '../components/islands/CatalogIsland';
+import VersionTimelineIsland from '../components/islands/VersionTimelineIsland';
 import { getAppData } from '../lib/appData';
 
 const appData = await getAppData();
@@ -12,10 +12,11 @@ const docs = appData.standards.reduce((a, s) => a + s.documents.length, 0);
 ---
 
 <BaseLayout
-  title="PCI Security Standards Map"
-  description="An independent, citeable reference to the PCI security standards landscape: every current standard, its version lineage, status, supporting guidance, and sunset dates."
+  title="Cross-family version timeline"
+  description="Verified version releases across every PCI security standard, 2016 to 2028, with scheduled sunsets and retirements."
+  canonicalUrl="https://securitystandardsmap.org/timeline"
 >
   <FrameworkBar />
   <Hero total={appData.standards.length} active={active} sunset={sunset} docs={docs} lastVerified={appData.lastVerified} />
-  <CatalogIsland data={appData} client:load />
+  <VersionTimelineIsland data={appData} client:load />
 </BaseLayout>

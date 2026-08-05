@@ -1,0 +1,114 @@
+---
+import { tokens } from '../lib/tokens';
+
+interface Props {
+  total: number;
+  active: number;
+  sunset: number;
+  docs: number;
+  lastVerified: string;
+}
+
+const { total, active, sunset, docs, lastVerified } = Astro.props;
+
+function fmt(d: string | null): string {
+  if (!d) return 'TBD';
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const p = String(d).split('-');
+  return MONTHS[(+p[1] || 1) - 1] + ' ' + p[0];
+}
+---
+
+<section class="si-section si-hero">
+  <div class="hero-verified">
+    <span class="hero-dot" aria-hidden="true"></span>
+    <span class="mono hero-verified-text">Independent reference. Last verified {fmt(lastVerified)}.</span>
+  </div>
+  <h1 class="hero-title">A working map of the PCI security standards.</h1>
+  <p class="hero-sub">
+    Version history, the supporting documents and FAQs behind each standard, and how standards supersede and converge over time. Sourced to the official PCI SSC site.
+  </p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">{total}</div>
+      <div class="hero-stat-label">standards tracked</div>
+    </div>
+    <div>
+      <div class="hero-stat-num" style={`color:${tokens.status.active}`}>{active}</div>
+      <div class="hero-stat-label">currently active</div>
+    </div>
+    <div>
+      <div class="hero-stat-num" style={`color:${tokens.status['sunset-scheduled']}`}>{sunset}</div>
+      <div class="hero-stat-label">in sunset / review</div>
+    </div>
+    <div>
+      <div class="hero-stat-num" style={`color:${tokens.status['under-review']}`}>{docs}</div>
+      <div class="hero-stat-label">supporting documents</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-verified {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .hero-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-active-dot);
+    flex-shrink: 0;
+  }
+
+  .hero-verified-text {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(28px, 5vw + 12px, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    max-width: 730px;
+    color: var(--color-text);
+  }
+
+  .hero-sub {
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 620px;
+    margin: 0 0 26px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+  }
+
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 3.5vw + 8px, 30px);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .hero-stat-label {
+    font-size: 12.5px;
+    color: var(--color-text-faint);
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+</style>

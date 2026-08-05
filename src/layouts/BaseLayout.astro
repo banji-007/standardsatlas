@@ -6,8 +6,6 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
-  /** When true the header is omitted — the island provides its own. */
-  fullPage?: boolean;
 }
 
 const {
@@ -15,13 +13,22 @@ const {
   description = 'An independent, citeable reference to the PCI security standards landscape: every current standard, its version lineage, status, supporting guidance, and sunset dates.',
   canonicalUrl = Astro.url.href,
   ogType = 'website',
-  fullPage = false,
 } = Astro.props;
 
 const siteUrl = 'https://securitystandardsmap.org';
 const fullTitle = title === 'PCI Security Standards Map'
   ? title
   : `${title} | PCI Security Standards Map`;
+
+const path = Astro.url.pathname;
+const isTab = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+
+const tabs = [
+  { href: '/', label: 'Standards', icon: 'standards' as const },
+  { href: '/map', label: 'Map', icon: 'map' as const },
+  { href: '/timeline', label: 'Timeline', icon: 'timeline' as const },
+  { href: '/faqs', label: 'FAQs', icon: 'faqs' as const },
+];
 ---
 
 <html lang="en">
@@ -29,6 +36,16 @@ const fullTitle = title === 'PCI Security Standards Map'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      (function () {
+        var mq = window.matchMedia('(max-width: 640px)');
+        function apply() {
+          document.documentElement.setAttribute('data-vp', mq.matches ? 'mobile' : 'desktop');
+        }
+        apply();
+        mq.addEventListener('change', apply);
+      })();
+    </script>
     {import.meta.env.DEV && (
       <script is:inline type="module">
         import RefreshRuntime from "/@react-refresh";
@@ -68,41 +85,51 @@ const fullTitle = title === 'PCI Security Standards Map'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    {!fullPage && (
-      <header class="site-header">
-        <div class="site-header-inner">
-          <a href="/" class="site-brand" aria-label="PCI Security Standards Map home">
-            <div class="logo-icon" aria-hidden="true">
-              <div class="logo-ring">
-                <div class="logo-dot"></div>
-              </div>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/" class="site-brand" aria-label="PCI Security Standards Map home">
+          <div class="logo-icon" aria-hidden="true">
+            <div class="logo-ring">
+              <div class="logo-dot"></div>
             </div>
-            <span class="site-name">Security Standards Map</span>
-          </a>
-          <nav class="site-nav" aria-label="Site sections">
-            <a href="/" class="nav-tab">Catalog</a>
-            <a href="/?view=timeline" class="nav-tab">Timeline</a>
-            <a href="/?view=transitions" class="nav-tab">Transitions</a>
-            <a href="/faqs" class="nav-tab">FAQs</a>
-          </nav>
-          <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
-        </div>
-      </header>
-    )}
+          </div>
+          <span class="site-name">Security Standards Map</span>
+        </a>
+        <nav class="site-nav" aria-label="Site sections">
+          <a href="/" class="nav-tab">Catalog</a>
+          <a href="/timeline" class="nav-tab">Timeline</a>
+          <a href="/map" class="nav-tab">Transitions</a>
+          <a href="/faqs" class="nav-tab">FAQs</a>
+        </nav>
+        <a href="https://github.com/banji-007/standardsatlas" class="github-link" target="_blank" rel="noopener noreferrer">Source</a>
+      </div>
+    </header>
 
-    <main class:list={[{ 'page-main': !fullPage }]}>
+    <main class="page-main">
       <slot />
     </main>
 
-    {!fullPage && (
-      <footer class="site-footer">
-        <div class="site-footer-inner">
-          Independent project, not affiliated with or endorsed by PCI SSC.
-          PCI, PCI DSS, and related marks are trademarks of PCI Security Standards Council LLC.
-          Data: CC BY 4.0 &middot; Code: MIT.
-        </div>
-      </footer>
-    )}
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        Independent project, not affiliated with or endorsed by PCI SSC.
+        PCI, PCI DSS, and related marks are trademarks of PCI Security Standards Council LLC.
+        Data: CC BY 4.0 &middot; Code: MIT.
+      </div>
+    </footer>
+
+    <nav class="tab-bar" aria-label="Primary">
+      {tabs.map(t => (
+        <a href={t.href} class="tab-bar-btn" aria-current={isTab(t.href) ? 'page' : undefined}>
+          <span class={`tab-bar-icon tab-bar-icon--${t.icon}`} aria-hidden="true">
+            {t.icon === 'standards' && (<span class="ic-lines"><i></i><i></i><i></i></span>)}
+            {t.icon === 'map' && (<span class="ic-map"><i class="ic-map-a"></i><i class="ic-map-b"></i><i class="ic-map-c"></i></span>)}
+            {t.icon === 'timeline' && (<span class="ic-tl"><i class="ic-tl-rail"></i><i class="ic-tl-a"></i><i class="ic-tl-b"></i></span>)}
+            {t.icon === 'faqs' && (<span class="ic-faq"><i class="ic-faq-body"></i><i class="ic-faq-tail"></i></span>)}
+          </span>
+          <span class="tab-bar-label">{t.label}</span>
+        </a>
+      ))}
+    </nav>
   </body>
 </html>
 
@@ -222,17 +249,17 @@ const fullTitle = title === 'PCI Security Standards Map'
     line-height: 1.6;
   }
 
-  /* Task 2: phone breakpoint (640px, see src/styles/global.css for the
-     canonical breakpoint doc). Neither this footer nor MainIsland's own
-     footer carries a Source link (MOBILE_FINDINGS.md item 7), so the
-     Source link stays and the brand text is what shrinks away. flex-wrap
-     is the overflow safety net for the four nav tabs plus Source. */
+  /* Task 2 (mobile remediation) / routing task: phone breakpoint (640px,
+     see src/styles/global.css for the canonical breakpoint doc). Neither
+     this footer nor the old per-view header carried a Source link
+     (MOBILE_FINDINGS.md item 7), so the Source link stays and the brand
+     text is what shrinks away. .site-nav is hidden below the breakpoint:
+     the bottom .tab-bar is the mobile equivalent of these same four
+     routes, so showing both would be redundant navigation. */
   @media (max-width: 640px) {
     .site-header-inner {
       padding: 10px 14px;
       gap: 8px;
-      flex-wrap: wrap;
-      row-gap: 6px;
     }
 
     .site-name {
@@ -240,17 +267,105 @@ const fullTitle = title === 'PCI Security Standards Map'
     }
 
     .site-nav {
-      flex-wrap: wrap;
-      row-gap: 4px;
-    }
-
-    .nav-tab {
-      padding: 7px 9px;
-      font-size: 12px;
+      display: none;
     }
 
     .github-link {
       font-size: 11.5px;
     }
   }
+
+  /* Bottom tab bar: mobile-only primary nav, mirrors .site-nav's four
+     routes. Hidden above the phone breakpoint; .site-nav remains the
+     desktop nav unchanged. */
+  .tab-bar {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .page-main {
+      padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .site-footer {
+      padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .tab-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      display: flex;
+      align-items: stretch;
+      gap: 2px;
+      padding: 4px 4px calc(4px + env(safe-area-inset-bottom, 0px));
+      background: var(--color-bg-card);
+      border-top: 1px solid var(--color-border);
+    }
+  }
+
+  .tab-bar-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 0 6px;
+    text-decoration: none;
+    color: var(--color-text-faint);
+    font-family: var(--font-ui);
+    font-weight: 500;
+  }
+
+  .tab-bar-btn[aria-current='page'] {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .tab-bar-label {
+    font-size: 9.5px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .tab-bar-icon {
+    width: 17px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Standards: three left-aligned bars */
+  .ic-lines { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; width: 17px; }
+  .ic-lines i { display: block; height: 1.8px; border-radius: 1px; background: currentColor; }
+  .ic-lines i:nth-child(1) { width: 17px; }
+  .ic-lines i:nth-child(2) { width: 12px; }
+  .ic-lines i:nth-child(3) { width: 15px; }
+
+  /* Map: three orbs in a loose triangle */
+  .ic-map { position: relative; width: 17px; height: 17px; }
+  .ic-map i { position: absolute; width: 5.5px; height: 5.5px; border-radius: 50%; background: currentColor; }
+  .ic-map-a { left: 6px; top: 0; }
+  .ic-map-b { left: 0; bottom: 0; }
+  .ic-map-c { right: 0; bottom: 0; }
+
+  /* Timeline: vertical rail with two markers */
+  .ic-tl { position: relative; width: 17px; height: 17px; }
+  .ic-tl-rail { position: absolute; left: 4px; top: 0; bottom: 0; width: 1.5px; background: currentColor; opacity: 0.55; }
+  .ic-tl-a { position: absolute; left: 1.5px; top: 1px; width: 6.5px; height: 6.5px; border-radius: 50%; background: currentColor; }
+  .ic-tl-b { position: absolute; left: 1.5px; bottom: 1px; width: 6.5px; height: 6.5px; border-radius: 50%; border: 1.6px solid currentColor; background: transparent; }
+
+  /* FAQs: chat bubble */
+  .ic-faq { position: relative; width: 17px; height: 17px; }
+  .ic-faq-body { position: absolute; left: 0; top: 2px; width: 17px; height: 11.5px; border: 1.6px solid currentColor; border-radius: 3.5px; }
+  .ic-faq-tail { position: absolute; left: 3.5px; bottom: 0.5px; width: 4px; height: 4px; background: currentColor; transform: rotate(45deg); }
 </style>

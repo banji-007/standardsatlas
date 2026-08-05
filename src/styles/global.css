@@ -167,59 +167,6 @@ code, .mono {
   margin: 0 auto;
 }
 
-.si-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: rgba(241, 236, 225, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e0d9cb;
-}
-
-.si-header-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 13px 28px;
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-.si-header-brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  flex-shrink: 0;
-}
-
-.si-header-brandtext {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: -0.01em;
-}
-
-.si-header-nav {
-  margin-left: auto;
-  display: flex;
-  gap: 3px;
-  background: #e6dfd0;
-  padding: 4px;
-  border-radius: 11px;
-}
-
-.si-header-navbtn {
-  padding: 7px 16px;
-  border-radius: 8px;
-  font-size: 13.5px;
-}
-
-.si-header-source {
-  font-size: 12.5px;
-  flex-shrink: 0;
-}
-
 .si-frameworkbar {
   border-bottom: 1px solid #e7e0d2;
   background: #efe9dd;
@@ -549,38 +496,12 @@ code, .mono {
   padding: 40px 28px 90px;
 }
 
-/* --- Task 2: header + framework bar, phone breakpoint ---
-   Neither header's own footer carries a Source/GitHub link (see
-   MOBILE_FINDINGS.md item 7), so the Source link is kept and the brand
-   text is what shrinks away. flex-wrap is the overflow safety net if the
-   three nav pills plus Source still don't fit a given phone's font
-   metrics; it costs a second header row, never a horizontal scrollbar. */
+/* --- Task 2: framework bar, phone breakpoint ---
+   The header itself is now BaseLayout's single .site-header (see its
+   scoped <style> for that breakpoint); MainIsland's own duplicate header
+   was retired when Catalog/Map/Timeline became real routes (routing
+   task) since every route now shares one header via BaseLayout. */
 @media (max-width: 640px) {
-  .si-header-inner {
-    padding: 10px 14px;
-    gap: 8px;
-    flex-wrap: wrap;
-    row-gap: 6px;
-  }
-
-  .si-header-brandtext {
-    display: none;
-  }
-
-  .si-header-nav {
-    flex-wrap: wrap;
-    row-gap: 4px;
-  }
-
-  .si-header-navbtn {
-    padding: 7px 9px;
-    font-size: 12px;
-  }
-
-  .si-header-source {
-    font-size: 11.5px;
-  }
-
   .si-frameworkbar-inner {
     padding: 8px 14px;
     gap: 8px;

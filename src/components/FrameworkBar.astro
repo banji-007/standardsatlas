@@ -1,0 +1,79 @@
+---
+const frameworks = [
+  { name: 'PCI DSS', live: true },
+  { name: 'ISO 27001', live: false },
+  { name: 'DORA', live: false },
+  { name: 'SOC 2', live: false },
+  { name: 'NIST CSF', live: false },
+];
+---
+
+<div class="si-frameworkbar">
+  <div class="si-frameworkbar-inner">
+    <span class="fw-label">Framework</span>
+    <div class="fw-list">
+      {frameworks.map(f => (
+        <div class:list={['fw-pill', { 'fw-pill--live': f.live }]}>
+          {f.name}
+          <span class:list={['fw-tag', { 'fw-tag--live': f.live }]}>{f.live ? 'Live' : 'Soon'}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .fw-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9a9384;
+    flex-shrink: 0;
+  }
+
+  .fw-list {
+    display: flex;
+    gap: 7px;
+  }
+
+  .fw-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px;
+    border-radius: 8px;
+    border: 1px solid #ddd5c5;
+    background: transparent;
+    color: #a39a89;
+    font-size: 12.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+    cursor: not-allowed;
+  }
+
+  .fw-pill--live {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #fbf7ee;
+    font-weight: 600;
+    cursor: default;
+  }
+
+  .fw-tag {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: #e2dac9;
+    color: #a39a89;
+  }
+
+  .fw-tag--live {
+    background: rgba(251, 247, 238, 0.2);
+    color: #cde6e2;
+  }
+</style>
