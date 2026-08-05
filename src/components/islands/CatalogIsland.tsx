@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ErrorBoundary, DetailDrawer, SM, monthsAway, relTime, fmt, firstSentence, ACCENT, buildRadar, EV_META } from './shared';
+import { ErrorBoundary, DetailDrawer, DetailSheet, SM, monthsAway, relTime, fmt, firstSentence, ACCENT, buildRadar, EV_META } from './shared';
 import type { AppData, StdData, RelData, RadarEvent } from './shared';
 
 function RadarStrip({ standards, relationships, onSelect }: { standards: StdData[]; relationships: RelData[]; onSelect: (slug: string) => void }) {
@@ -206,7 +206,12 @@ export default function CatalogIsland({ data, initialSelected }: { data: AppData
       <>
         <RadarStrip standards={standards} relationships={relationships} onSelect={setSelected} />
         <CatalogView standards={standards} relationships={relationships} query={query} setQuery={setQuery} statusFilter={statusFilter} setStatusFilter={setStatusFilter} sort={sort} setSort={setSort} onSelect={setSelected} />
-        {selectedStd && <DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} />}
+        {selectedStd && (
+          <>
+            <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+          </>
+        )}
       </>
     </ErrorBoundary>
   );

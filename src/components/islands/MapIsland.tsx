@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ErrorBoundary, DetailDrawer, SM, GRAPH_LABEL, RT, RS, fmt, abbrev } from './shared';
+import { ErrorBoundary, DetailDrawer, DetailSheet, SM, GRAPH_LABEL, RT, RS, fmt, abbrev } from './shared';
 import type { AppData, StdData, RelData } from './shared';
 
 interface PhysNode { slug: string; x: number; y: number; vx: number; vy: number; r: number; }
@@ -434,6 +434,18 @@ export default function MapIsland({ data, initialSelected }: { data: AppData; in
   const [focusM, setFocusM] = useState(defaultFocus);
   const [trailM, setTrailM] = useState<string[]>(defaultFocus ? [defaultFocus] : []);
 
+  // Deep-link support for Task 5's detail-sheet "Map" jump button
+  // (/map?standard=slug). Starts unread (matching SSR exactly) and picks
+  // up the param post-mount, same reasoning as Task 3's version: reading
+  // window.location.search during the initial render would disagree with
+  // the static server-rendered HTML and reopen the hydration-mismatch
+  // problem Task 1 solved.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('standard');
+    if (slug && standards.some(s => s.slug === slug)) { setFocusM(slug); setTrailM([slug]); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ErrorBoundary>
       <>
@@ -443,7 +455,12 @@ export default function MapIsland({ data, initialSelected }: { data: AppData; in
         <div data-vp-show="mobile">
           <MapMobileView standards={standards} relationships={relationships} focus={focusM} setFocus={setFocusM} trail={trailM} setTrail={setTrailM} onSelect={setSelected} />
         </div>
-        {selectedStd && <DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} />}
+        {selectedStd && (
+          <>
+            <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+          </>
+        )}
       </>
     </ErrorBoundary>
   );

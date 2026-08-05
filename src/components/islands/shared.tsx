@@ -1,5 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState, useId } from 'react';
 import type { Doc, StdData, RelData } from '../../lib/appTypes';
+
+// Shared with MapIsland.tsx's physics-loop guard; duplicated rather than
+// imported cross-file to keep shared.tsx dependency-free of any one
+// island, matching how each island already owns its own copy of small
+// viewport checks in this port.
+function isMobileViewport(): boolean {
+  return typeof document !== 'undefined' && document.documentElement.getAttribute('data-vp') === 'mobile';
+}
 
 export type { Doc, Ver, StdData, RelData, AppData } from '../../lib/appTypes';
 
@@ -336,6 +344,239 @@ export function DetailDrawer({ std, relationships, standards, onClose }: { std: 
           <a href={std.source_url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 13, color: ACCENT, textDecoration: 'none', border: '1px solid #cfe0dd', background: '#eef5f4', padding: '9px 15px', borderRadius: 9 }}>
             View official standard page ↗
           </a>
+        </div>
+      </aside>
+    </>
+  );
+}
+
+// --- DetailSheet (mobile): the same content as DetailDrawer, as a
+// bottom sheet with real dialog semantics. Independent computation
+// rather than sharing DetailDrawer's internals, deliberately: Task 5
+// requires "desktop drawer unchanged," and refactoring DetailDrawer to
+// share logic with this — even behaviour-preservingly — is a needless
+// risk to that bar for a few dozen duplicated lines. Both read the same
+// std/relationships/standards inputs directly, so there's no risk of the
+// two drifting apart on what they show, only on incidental layout code.
+//
+// This also closes the scroll-lock issue from the mobile-remediation
+// pass (commit fc01059, "Revert drawer body-scroll-lock effect"): that
+// attempt used document.body.style.overflow = 'hidden', which doesn't
+// reliably lock scroll on iOS Safari and (worse) applied unconditionally
+// on desktop too, since it wasn't gated by viewport. This uses
+// position:fixed with scroll-position restoration, exactly what that
+// commit's message said proper conformance would need, and it's gated
+// by isMobileViewport() so it can never touch desktop's scroll at all.
+export function DetailSheet({ std, relationships, standards, onClose }: { std: StdData; relationships: RelData[]; standards: StdData[]; onClose: () => void }) {
+  const m = SM[std.status] || SM['active'];
+  const versions = std.versions.slice().sort((a, b) => String(b.published || '0').localeCompare(String(a.published || '0')));
+  const rels = relationships.filter(r => r.from === std.slug || (Array.isArray(r.to) ? r.to.includes(std.slug) : r.to === std.slug));
+  const groups: Record<string, Doc[]> = {};
+  std.documents.forEach(d => { (groups[d.type] = groups[d.type] || []).push(d); });
+  const docGroups = Object.keys(groups).sort((a, b) => (DT[a]?.order ?? 9) - (DT[b]?.order ?? 9)).map(type => ({
+    type, label: DT[type]?.label ?? type, meta: DT[type] || { c: '#6b6760', bg: '#ece9e3' },
+    items: groups[type].slice().sort((a, b) => String(b.published || '0').localeCompare(String(a.published || '0'))),
+  }));
+  const tagMap: Record<string, { t: string; c: string; bg: string }> = {
+    active: { t: 'current', c: '#1f7a4d', bg: '#e7f3ec' },
+    'sunset-scheduled': { t: 'sunset', c: '#9a6512', bg: '#fbf0db' },
+    retired: { t: 'retired', c: '#6b6760', bg: '#ece9e3' },
+  };
+  // Concept used notes: sel.notes || sel.name here, the exact bug fixed
+  // in the catalog rows (Task 2) and flagged for this component
+  // specifically before this task started. Do not reintroduce it.
+  const showNotes = std.notes && std.notes !== std.name;
+
+  const headingId = useId();
+  const sheetRef = useRef<HTMLElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const dragStartY = useRef<number | null>(null);
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  useEffect(() => {
+    if (!isMobileViewport()) return; // both variants are always mounted; only the visible one may touch focus/scroll
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+
+    const getFocusable = () => Array.from(
+      sheetRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), select, textarea, input, [tabindex]:not([tabindex="-1"])') ?? []
+    );
+    (closeBtnRef.current ?? getFocusable()[0])?.focus({ preventScroll: true });
+
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key !== 'Tab') return;
+      const list = getFocusable();
+      if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeydown);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      window.scrollTo(0, scrollY);
+      previouslyFocused?.focus({ preventScroll: true });
+    };
+  }, [onClose]);
+
+  const onGrab = (e: React.MouseEvent | React.TouchEvent) => {
+    const t = 'touches' in e ? e.touches[0] : e;
+    dragStartY.current = t.clientY;
+    setDragging(true);
+    const onMove = (ev: MouseEvent | TouchEvent) => {
+      const p = 'touches' in ev ? ev.touches[0] : ev;
+      const dy = Math.max(0, p.clientY - (dragStartY.current ?? p.clientY));
+      setDragY(dy);
+    };
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('touchmove', onMove); window.removeEventListener('touchend', onUp);
+      setDragging(false);
+      setDragY(dy => { if (dy > 110) onClose(); return 0; });
+    };
+    window.addEventListener('mousemove', onMove); window.addEventListener('mouseup', onUp);
+    window.addEventListener('touchmove', onMove, { passive: true }); window.addEventListener('touchend', onUp);
+  };
+
+  return (
+    <>
+      <div onClick={onClose} aria-hidden="true" className="si-sheet-scrim" />
+      <aside
+        ref={sheetRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={headingId}
+        className="si-sheet"
+        style={{
+          transform: `translateY(${dragY}px)`,
+          transition: dragging ? 'none' : 'transform var(--duration-base) cubic-bezier(.2,.8,.2,1)',
+        }}
+      >
+        <div onMouseDown={onGrab} onTouchStart={onGrab} className="si-sheet-grab">
+          <div className="si-sheet-grab-bar" />
+        </div>
+        <div className="si-sheet-header">
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div className="mono si-sheet-status">{std.status.replace(/-/g, ' ')}</div>
+            <h2 id={headingId} className="si-sheet-title">{std.name}</h2>
+          </div>
+          <button ref={closeBtnRef} onClick={onClose} aria-label="Close" className="si-sheet-close">✕</button>
+        </div>
+        <span className="si-sheet-badge" style={{ color: m.c, background: m.bg }}>{m.label}</span>
+
+        <div className="si-sheet-body">
+          {showNotes && <p className="si-sheet-notes">{std.notes}</p>}
+
+          <div className="si-sheet-facts">
+            {[
+              { label: 'Current version', value: std.current_version ? `v${std.current_version}` : 'In development', mono: true, color: undefined },
+              { label: 'Verification', value: std.verified ? '✓ Verified' : 'Provisional', mono: false, color: std.verified ? '#1f7a4d' : '#a08f6a' },
+              { label: 'Last verified', value: fmt(std.last_verified), mono: false, color: undefined },
+              { label: 'Documents', value: String(std.documents.length), mono: true, color: undefined },
+            ].map(f => (
+              <div key={f.label} className="si-sheet-fact">
+                <div className="mono si-sheet-fact-label">{f.label}</div>
+                <div style={{ ...(f.mono ? { fontFamily: "'IBM Plex Mono',monospace", fontSize: 13.5 } : { fontSize: 13 }), color: f.color ?? '#211e19', ...(f.color ? { fontWeight: 500 } : {}) }}>{f.value}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="si-sheet-quicklinks">
+            <a href={std.source_url} target="_blank" rel="noopener noreferrer" className="si-sheet-primary-link">Official page ↗</a>
+            <a href={`/timeline?standard=${std.slug}`} className="si-sheet-secondary-link">Timeline</a>
+            <a href={`/map?standard=${std.slug}`} className="si-sheet-secondary-link">Map</a>
+          </div>
+
+          <div className="mono si-sheet-section-label">Version lineage</div>
+          {versions.length > 0 ? (
+            <div style={{ position: 'relative', paddingLeft: 4, marginBottom: 26 }}>
+              {versions.map((v, i) => {
+                const tg = tagMap[v.status] || tagMap['active'], isCur = v.status === 'active', dot = SM[v.status]?.dot ?? '#2a9d63';
+                return (
+                  <div key={v.version} style={{ display: 'flex', gap: 13, paddingBottom: 16 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                      <div style={{ width: 11, height: 11, borderRadius: '50%', background: isCur ? dot : '#fff', border: `2px solid ${isCur ? dot : '#cfc6b4'}`, flexShrink: 0, marginTop: 2 }} />
+                      {i < versions.length - 1 && <div style={{ width: 1.5, flex: 1, background: '#e2dac9', marginTop: 4, minHeight: 10 }} />}
+                    </div>
+                    <div style={{ paddingTop: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+                        <span className="mono" style={{ fontSize: 13, fontWeight: 500, color: '#211e19' }}>v{v.version}</span>
+                        <span className="mono" style={{ fontSize: 11, color: '#a08f6a' }}>{fmt(v.published)}</span>
+                        <span className="mono" style={{ fontSize: 9, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.04em', color: tg.c, background: tg.bg, padding: '2px 7px', borderRadius: 5 }}>{tg.t}</span>
+                      </div>
+                      <div style={{ fontSize: 12.5, color: '#6b655b', marginTop: 3, lineHeight: 1.45 }}>
+                        {v.retired ? `Retired ${fmt(v.retired)}${v.verified ? ' · verified' : ''}` : isCur ? `Current version${v.verified ? ' · verified' : ''}` : v.verified ? 'Verified' : ''}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div style={{ fontSize: 13, color: '#a08f6a', marginBottom: 26, padding: '13px 15px', background: '#fbf7ee', border: '1px dashed #e0d9cb', borderRadius: 11 }}>No published versions yet. Standard still in development.</div>
+          )}
+
+          {rels.length > 0 && (
+            <div style={{ marginBottom: 26 }}>
+              <div className="mono si-sheet-section-label">Transitions</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+                {rels.map(r => {
+                  const isFrom = r.from === std.slug;
+                  const others = (isFrom ? (Array.isArray(r.to) ? r.to : [r.to]) : [r.from]).map(t => standards.find(s => s.slug === t)?.name ?? t).join(', ');
+                  const phrase = r.type === 'supersede' ? (isFrom ? 'Superseded by' : 'Supersedes') : r.type === 'converge' ? (isFrom ? 'Converges into' : 'Convergence from') : 'Aligns with';
+                  const rt = RT[r.type] || RT.associate;
+                  return (
+                    <div key={r.id} style={{ background: '#fbf7ee', border: '1px solid #ece4d4', borderRadius: 11, padding: '12px 14px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+                        <span className="mono" style={{ fontSize: 9, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.04em', color: rt.c, background: rt.bg, padding: '3px 8px', borderRadius: 5, whiteSpace: 'nowrap' }}>{phrase}</span>
+                        <span style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 14.5, fontWeight: 600 }}>{others}</span>
+                        <span className="mono" style={{ marginLeft: 'auto', fontSize: 10, color: '#a08f6a' }}>{r.effective_date ? fmt(r.effective_date) : 'TBD'}</span>
+                      </div>
+                      {r.description && <div style={{ fontSize: 12.5, color: '#6b655b', lineHeight: 1.5 }}>{r.description}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 12 }}>
+            <div className="mono si-sheet-section-label" style={{ margin: 0 }}>Supporting documents</div>
+            <div className="mono" style={{ fontSize: 10.5, color: '#a08f6a' }}>{std.documents.length} total</div>
+          </div>
+          {docGroups.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {docGroups.map(g => (
+                <div key={g.type}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 9 }}>
+                    <span className="mono" style={{ fontSize: 9.5, fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: g.meta.c, background: g.meta.bg, padding: '3px 9px', borderRadius: 6 }}>{g.label}</span>
+                    <span className="mono" style={{ fontSize: 10, color: '#b3aa99' }}>{g.items.length}</span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: '#ece4d4', border: '1px solid #ece4d4', borderRadius: 10, overflow: 'hidden' }}>
+                    {g.items.map(doc => (
+                      <a key={doc.slug} href={doc.source_url ?? '#'} target="_blank" rel="noopener noreferrer" className="si-sheet-doclink">
+                        <span style={{ flexShrink: 0, width: 14, textAlign: 'center', fontSize: 11, color: doc.verified ? '#1f7a4d' : '#cabfa9' }}>{doc.verified ? '✓' : '·'}</span>
+                        <span style={{ flex: 1, fontSize: 12.5, color: '#3f3a31', lineHeight: 1.4, minWidth: 0 }}>{doc.title}</span>
+                        <span className="mono" style={{ fontSize: 10, color: '#b3aa99', whiteSpace: 'nowrap' }}>{fmt(doc.published)}</span>
+                        <span style={{ color: '#bdb4a2', fontSize: 10 }}>↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </aside>
     </>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ErrorBoundary, DetailDrawer, buildRadar, EV_META, monthsAway, relTime, fmt } from './shared';
+import { ErrorBoundary, DetailDrawer, DetailSheet, buildRadar, EV_META, monthsAway, relTime, fmt } from './shared';
 import type { AppData, RadarEvent } from './shared';
 
 function FeedCard({ e, onSelect }: { e: RadarEvent; onSelect: (slug: string) => void }) {
@@ -61,7 +61,12 @@ export default function TodayFeedIsland({ data, initialSelected }: { data: AppDa
             </div>
           </div>
         </section>
-        {selectedStd && <DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} />}
+        {selectedStd && (
+          <>
+            <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+          </>
+        )}
       </>
     </ErrorBoundary>
   );

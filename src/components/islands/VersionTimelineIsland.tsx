@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ErrorBoundary, DetailDrawer, SM, DT, RT, GRAPH_LABEL, ACCENT, toX, fmt, buildTimelineEvents } from './shared';
+import React, { useState, useEffect } from 'react';
+import { ErrorBoundary, DetailDrawer, DetailSheet, SM, DT, RT, GRAPH_LABEL, ACCENT, toX, fmt, buildTimelineEvents } from './shared';
 import type { AppData, StdData, RelData, TimelineEvent } from './shared';
 
 const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -291,12 +291,10 @@ export default function VersionTimelineIsland({ data, initialSelected }: { data:
   // Mobile renderer's own state: independent of the desktop plot's state
   // above (different shape entirely — a bool + open-months list vs.
   // docTypes/tlFull), same pattern as Today/Catalog on /. tlStandardM
-  // starts null (matching SSR) rather than reading any URL param at
-  // init, so there's nothing here that could disagree with the
-  // server-rendered HTML and trigger a hydration warning; Task 5's
-  // detail-sheet "Timeline" jump button is what will drive this once it
-  // exists, most likely via a plain setState call rather than a URL
-  // param round-trip.
+  // starts null (matching SSR); Task 5's detail-sheet "Timeline" jump
+  // button drives it via ?standard= (see the effect below), read
+  // post-mount rather than during the initial render for the same
+  // hydration-safety reason as MapIsland's equivalent effect.
   const [tlDocsM, setTlDocsM]         = useState(false);
   const [tlOpenM, setTlOpenM]         = useState<string[]>([]);
   const [tlStandardM, setTlStandardM] = useState<string | null>(null);
@@ -304,6 +302,12 @@ export default function VersionTimelineIsland({ data, initialSelected }: { data:
   if (!data) return <div style={{ padding: 40, color: 'red', fontFamily: 'monospace' }}>Error: props.data is undefined</div>;
   const { standards, relationships } = data;
   const selectedStd = standards.find(s => s.slug === selected) ?? null;
+
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('standard');
+    if (slug && standards.some(s => s.slug === slug)) setTlStandardM(slug);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ErrorBoundary>
@@ -314,7 +318,12 @@ export default function VersionTimelineIsland({ data, initialSelected }: { data:
         <div data-vp-show="mobile">
           <TimelineMobileView standards={standards} relationships={relationships} tlDocs={tlDocsM} setTlDocs={setTlDocsM} tlOpen={tlOpenM} setTlOpen={setTlOpenM} tlStandard={tlStandardM} setTlStandard={setTlStandardM} onSelect={setSelected} />
         </div>
-        {selectedStd && <DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} />}
+        {selectedStd && (
+          <>
+            <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+          </>
+        )}
       </>
     </ErrorBoundary>
   );
