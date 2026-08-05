@@ -228,7 +228,12 @@ export function firstSentence(text?: string): string {
 
 // --- radar / feed events, shared by desktop RadarStrip and mobile Today ---
 // link is optional; when set, clicking the card navigates to that URL instead of opening a drawer.
-export interface RadarEvent { slug: string; name: string; type: string; date: string; note: string; link?: string; }
+// short is additive: RadarStrip (desktop, and shown unconditionally on mobile too --
+// it predates this port and was never gated by data-vp-show) keeps reading `name`
+// unchanged; only Today's FeedCard (mobile-only, new this port) reads `short`,
+// matching the concept's own feed builder, which used its mock data's short field
+// instead of the full name for these same cards.
+export interface RadarEvent { slug: string; name: string; short: string; type: string; date: string; note: string; link?: string; }
 
 export const EV_META: Record<string, { c: string; bg: string }> = {
   'New version':  { c: '#1f5f5b', bg: '#e6f0ef' },
@@ -245,24 +250,26 @@ export function buildRadar(standards: StdData[], relationships: RelData[]): Rada
   const events: RadarEvent[] = [];
 
   standards.forEach(s => {
+    const short = GRAPH_LABEL[s.slug] ?? s.name;
     s.versions.forEach(v => {
-      if (v.published) events.push({ slug: s.slug, name: s.name, type: 'New version', date: v.published, note: `Version ${v.version} published.` });
-      if (v.retired && v.status === 'sunset-scheduled') events.push({ slug: s.slug, name: s.name, type: 'Sunset', date: v.retired, note: `v${v.version} scheduled to sunset.` });
+      if (v.published) events.push({ slug: s.slug, name: s.name, short, type: 'New version', date: v.published, note: `Version ${v.version} published.` });
+      if (v.retired && v.status === 'sunset-scheduled') events.push({ slug: s.slug, name: s.name, short, type: 'Sunset', date: v.retired, note: `v${v.version} scheduled to sunset.` });
     });
-    if (s.status === 'under-review') events.push({ slug: s.slug, name: s.name, type: 'Under review', date: s.last_verified || '', note: 'Standard under active development and review.' });
+    if (s.status === 'under-review') events.push({ slug: s.slug, name: s.name, short, type: 'Under review', date: s.last_verified || '', note: 'Standard under active development and review.' });
     // FAQs are excluded here; they are aggregated below to avoid flooding the radar.
     const nd = s.documents.filter(d => d.published && d.published >= cutoff && d.type !== 'faq')
       .sort((a, b) => String(b.published).localeCompare(String(a.published)))[0];
     if (nd?.published) {
       const t = nd.type === 'guidance' ? 'New guidance' : nd.type === 'bulletin' ? 'New bulletin' : null;
-      if (t) events.push({ slug: s.slug, name: s.name, type: t, date: nd.published, note: nd.title.slice(0, 82) + (nd.title.length > 82 ? '…' : '') });
+      if (t) events.push({ slug: s.slug, name: s.name, short, type: t, date: nd.published, note: nd.title.slice(0, 82) + (nd.title.length > 82 ? '…' : '') });
     }
   });
 
   relationships.forEach(r => {
     if (!r.effective_date) return;
     const t = r.type === 'converge' ? 'Convergence' : r.type === 'supersede' ? 'Superseded' : 'Alignment';
-    events.push({ slug: r.from, name: standards.find(s => s.slug === r.from)?.name ?? r.from, type: t, date: r.effective_date, note: r.description ? r.description.split(/;|\.\s/)[0] + '.' : '' });
+    const fromName = standards.find(s => s.slug === r.from)?.name ?? r.from;
+    events.push({ slug: r.from, name: fromName, short: GRAPH_LABEL[r.from] ?? fromName, type: t, date: r.effective_date, note: r.description ? r.description.split(/;|\.\s/)[0] + '.' : '' });
   });
 
   // Aggregate all recent FAQ documents across standards into a single card.
@@ -274,6 +281,7 @@ export function buildRadar(standards: StdData[], relationships: RelData[]): Rada
     events.push({
       slug: '_faqs',
       name: 'FAQ activity',
+      short: 'FAQ activity',
       type: 'FAQ updates',
       date: latest.published!,
       note: `${recentFaqs.length} FAQ${recentFaqs.length > 1 ? 's' : ''} updated in this period.`,

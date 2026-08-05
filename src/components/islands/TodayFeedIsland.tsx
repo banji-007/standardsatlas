@@ -12,7 +12,7 @@ function FeedCard({ e, onSelect }: { e: RadarEvent; onSelect: (slug: string) => 
         <span style={{ fontSize: 9.5, fontWeight: 600, letterSpacing: '.06em', textTransform: 'uppercase', color: m.c, background: m.bg, padding: '4px 8px', borderRadius: 6, whiteSpace: 'nowrap' }}>{e.type}</span>
         <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: '#a08f6a', marginLeft: 'auto', whiteSpace: 'nowrap' }}>{fmt(e.date)}</span>
       </div>
-      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 16.5, fontWeight: 600, letterSpacing: '-.01em' }}>{e.name}</div>
+      <div style={{ fontFamily: "'Newsreader',Georgia,serif", fontSize: 16.5, fontWeight: 600, letterSpacing: '-.01em' }}>{e.short}</div>
       <div style={{ fontSize: 13, color: '#6b655b', lineHeight: 1.45 }}>{e.note}</div>
       <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: up ? m.c : '#a08f6a' }}>{relTime(e.date)}</div>
     </button>
