@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useId } from 'react';
-import { GRAPH_LABEL } from './shared';
+import { GRAPH_LABEL, DT } from './shared';
 
 export interface FaqItem {
   number: number;
@@ -288,12 +288,14 @@ function FaqsMobileView({ faqs, allFaqs }: Props) {
           <div className="si-faqm-list">
             {visible.map(faq => {
               const needsConfirm = faq.mapping_method === 'disambiguated' || faq.mapping_method === 'inferred';
-              const scopeLabel = scope === 'All' ? (faq.standards[0] ? (GRAPH_LABEL[faq.standards[0]] ?? faq.standards[0]) : 'General') : null;
+              const scopeSlug = faq.standards[0] ?? null;
+              const scopeLabel = scopeSlug ? (GRAPH_LABEL[scopeSlug] ?? scopeSlug) : 'General';
+              const scopeMeta = scopeSlug ? DT.faq : DT.template;
               return (
                 <a key={faq.number} href={faq.source_url} target="_blank" rel="noopener noreferrer" className="si-faqm-row">
                   <div className="si-faqm-row-meta">
                     <span className="mono si-faqm-num">#{faq.number}</span>
-                    {scopeLabel && <span className="mono si-faqm-scopetag">{scopeLabel}</span>}
+                    <span className="mono si-faqm-scopetag" style={{ color: scopeMeta.c, background: scopeMeta.bg }}>{scopeLabel}</span>
                     {faq.updated && <span className="mono si-faqm-date">{fmtDate(faq.updated)}</span>}
                     {needsConfirm && (
                       <span title="Standard mapping resolved by title keyword -- confirm before citing" className="mono si-faqm-flag">~</span>

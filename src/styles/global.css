@@ -1603,10 +1603,9 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
 
 .si-faqm-scopetag {
   font-size: 9px;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-accent);
-  background: var(--color-accent-soft);
   padding: 2px 7px;
   border-radius: 5px;
   white-space: nowrap;
