@@ -1539,6 +1539,19 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
+/* Task 8: scope-chip row (All / General / per-standard), horizontally
+   scrollable since there can be up to 19 chips -- .si-filter-chip (Task 2)
+   supplies the individual chip look, this only supplies the scrolling row,
+   since .si-filter-chips itself wraps instead of scrolling (fine for the
+   Standards tab's fixed 5-item set, wrong here). */
+.si-faqm-chips {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  margin: 0 -16px 12px;
+  padding: 0 16px 3px;
+}
+
 .si-faqm-count {
   font-size: 11px;
   color: var(--color-text-faint);
@@ -1586,6 +1599,17 @@ html[data-vp="desktop"] [data-vp-show="desktop"] { display: contents; }
   color: var(--color-text-faint);
   letter-spacing: 0.04em;
   margin-right: auto;
+}
+
+.si-faqm-scopetag {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  padding: 2px 7px;
+  border-radius: 5px;
+  white-space: nowrap;
 }
 
 .si-faqm-date {

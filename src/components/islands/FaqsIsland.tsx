@@ -1,15 +1,18 @@
-import { useState, useId } from 'react';
+import React, { useEffect, useState, useId } from 'react';
+import { GRAPH_LABEL } from './shared';
 
 export interface FaqItem {
   number: number;
   title: string;
   updated: string | null;
+  standards: string[];
   mapping_method: 'direct' | 'disambiguated' | 'inferred' | 'general' | 'excluded';
   source_url: string;
 }
 
 interface Props {
   faqs: FaqItem[];
+  allFaqs?: FaqItem[];
 }
 
 const PAGE = 20;
@@ -196,21 +199,58 @@ function FaqsDesktopView({ faqs }: Props) {
   );
 }
 
+function chipStyle(active: boolean): React.CSSProperties {
+  return active
+    ? { border: '1px solid var(--color-accent)', background: 'var(--color-accent)', color: 'var(--color-bg-card)', fontWeight: 600 }
+    : { border: '1px solid var(--color-border)', background: 'var(--color-bg-card)', color: 'var(--color-text-muted)' };
+}
+
 /* Task 6: concept's mobile FAQ tab is a flat, always-open list (no accordion) with a
    search bar and a result-count line above it, entries shown as two-line cards (meta
-   row, then title on its own line) instead of the desktop's single truncated row. */
-function FaqsMobileView({ faqs }: Props) {
+   row, then title on its own line) instead of the desktop's single truncated row.
+   Task 8: widened from the desktop accordion's general-only 7 entries to the full
+   in-scope index (allFaqs, everything but mapping_method 'excluded'), filterable by
+   scope chips -- All / General / per-standard -- matching the concept's structure,
+   which browses all 284 entries rather than only the general ones. */
+function FaqsMobileView({ faqs, allFaqs }: Props) {
+  const source = allFaqs ?? faqs;
   const [query, setQuery] = useState('');
   const [limit, setLimit] = useState(PAGE);
+  const [scope, setScope] = useState('All');
   const inputId = useId();
 
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('standard');
+    if (slug && source.some(f => f.standards.includes(slug))) setScope(slug);
+  }, []);
+
+  const scopeCounts: Record<string, number> = {};
+  source.forEach(f => f.standards.forEach(slug => { scopeCounts[slug] = (scopeCounts[slug] || 0) + 1; }));
+  const generalCount = source.filter(f => f.mapping_method === 'general').length;
+  const chips = [
+    { value: 'All', label: `All ${source.length}` },
+    { value: '__general', label: `General ${generalCount}` },
+    ...Object.keys(scopeCounts)
+      .sort((a, b) => scopeCounts[b] - scopeCounts[a])
+      .map(slug => ({ value: slug, label: `${GRAPH_LABEL[slug] ?? slug} ${scopeCounts[slug]}` })),
+  ];
+
+  const scoped = scope === 'All' ? source
+    : scope === '__general' ? source.filter(f => f.mapping_method === 'general')
+    : source.filter(f => f.standards.includes(scope));
+
   const q = query.trim().toLowerCase();
-  const filtered = q ? faqs.filter(f => f.title.toLowerCase().includes(q)) : faqs;
+  const filtered = q ? scoped.filter(f => f.title.toLowerCase().includes(q)) : scoped;
   const visible  = filtered.slice(0, limit);
   const remaining = filtered.length - limit;
 
   function handleQuery(v: string) {
     setQuery(v);
+    setLimit(PAGE);
+  }
+
+  function handleScope(v: string) {
+    setScope(v);
     setLimit(PAGE);
   }
 
@@ -224,9 +264,17 @@ function FaqsMobileView({ faqs }: Props) {
           type="search"
           value={query}
           onChange={e => handleQuery(e.target.value)}
-          placeholder={`Search ${faqs.length} FAQs`}
+          placeholder={`Search ${source.length} FAQs`}
           className="si-faqm-search"
         />
+      </div>
+
+      <div className="si-faqm-chips">
+        {chips.map(c => (
+          <button key={c.value} onClick={() => handleScope(c.value)} className="si-filter-chip" style={chipStyle(scope === c.value)}>
+            {c.label}
+          </button>
+        ))}
       </div>
 
       <div className="mono si-faqm-count">
@@ -240,10 +288,12 @@ function FaqsMobileView({ faqs }: Props) {
           <div className="si-faqm-list">
             {visible.map(faq => {
               const needsConfirm = faq.mapping_method === 'disambiguated' || faq.mapping_method === 'inferred';
+              const scopeLabel = scope === 'All' ? (faq.standards[0] ? (GRAPH_LABEL[faq.standards[0]] ?? faq.standards[0]) : 'General') : null;
               return (
                 <a key={faq.number} href={faq.source_url} target="_blank" rel="noopener noreferrer" className="si-faqm-row">
                   <div className="si-faqm-row-meta">
                     <span className="mono si-faqm-num">#{faq.number}</span>
+                    {scopeLabel && <span className="mono si-faqm-scopetag">{scopeLabel}</span>}
                     {faq.updated && <span className="mono si-faqm-date">{fmtDate(faq.updated)}</span>}
                     {needsConfirm && (
                       <span title="Standard mapping resolved by title keyword -- confirm before citing" className="mono si-faqm-flag">~</span>
@@ -271,11 +321,11 @@ function FaqsMobileView({ faqs }: Props) {
   );
 }
 
-export default function FaqsIsland({ faqs }: Props) {
+export default function FaqsIsland({ faqs, allFaqs }: Props) {
   return (
     <>
       <div data-vp-show="desktop"><FaqsDesktopView faqs={faqs} /></div>
-      <div data-vp-show="mobile"><FaqsMobileView faqs={faqs} /></div>
+      <div data-vp-show="mobile"><FaqsMobileView faqs={faqs} allFaqs={allFaqs} /></div>
     </>
   );
 }

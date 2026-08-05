@@ -300,7 +300,7 @@ export default function VersionTimelineIsland({ data, initialSelected }: { data:
   const [tlStandardM, setTlStandardM] = useState<string | null>(null);
 
   if (!data) return <div style={{ padding: 40, color: 'red', fontFamily: 'monospace' }}>Error: props.data is undefined</div>;
-  const { standards, relationships } = data;
+  const { standards, relationships, faqs } = data;
   const selectedStd = standards.find(s => s.slug === selected) ?? null;
 
   useEffect(() => {
@@ -321,7 +321,7 @@ export default function VersionTimelineIsland({ data, initialSelected }: { data:
         {selectedStd && (
           <>
             <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
-            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} faqs={faqs} onClose={() => setSelected(null)} /></div>
           </>
         )}
       </>

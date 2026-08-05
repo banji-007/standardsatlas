@@ -42,8 +42,18 @@ export interface RelData {
   verified: boolean;
 }
 
+export interface FaqData {
+  number: number;
+  title: string;
+  updated: string | null;
+  standards: string[];
+  mapping_method: 'direct' | 'disambiguated' | 'inferred' | 'general' | 'excluded';
+  source_url: string;
+}
+
 export interface AppData {
   standards: StdData[];
   relationships: RelData[];
+  faqs: FaqData[];
   lastVerified: string;
 }

@@ -198,7 +198,7 @@ export default function CatalogIsland({ data, initialSelected }: { data: AppData
   const [selected, setSelected]       = useState<string | null>(initialSelected ?? null);
 
   if (!data) return <div style={{ padding: 40, color: 'red', fontFamily: 'monospace' }}>Error: props.data is undefined</div>;
-  const { standards, relationships } = data;
+  const { standards, relationships, faqs } = data;
   const selectedStd = standards.find(s => s.slug === selected) ?? null;
 
   return (
@@ -209,7 +209,7 @@ export default function CatalogIsland({ data, initialSelected }: { data: AppData
         {selectedStd && (
           <>
             <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
-            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} faqs={faqs} onClose={() => setSelected(null)} /></div>
           </>
         )}
       </>

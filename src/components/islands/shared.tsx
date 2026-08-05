@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useId } from 'react';
 import { createPortal } from 'react-dom';
-import type { Doc, StdData, RelData } from '../../lib/appTypes';
+import type { Doc, StdData, RelData, FaqData } from '../../lib/appTypes';
 
 // Shared with MapIsland.tsx's physics-loop guard; duplicated rather than
 // imported cross-file to keep shared.tsx dependency-free of any one
@@ -10,7 +10,7 @@ function isMobileViewport(): boolean {
   return typeof document !== 'undefined' && document.documentElement.getAttribute('data-vp') === 'mobile';
 }
 
-export type { Doc, Ver, StdData, RelData, AppData } from '../../lib/appTypes';
+export type { Doc, Ver, StdData, RelData, FaqData, AppData } from '../../lib/appTypes';
 
 // Shared by every mobile bottom sheet (DetailSheet, FrameworkSwitcherIsland's
 // sheet): dialog semantics that are easy to get subtly wrong twice --
@@ -445,10 +445,17 @@ export function DetailDrawer({ std, relationships, standards, onClose }: { std: 
 // position:fixed with scroll-position restoration, exactly what that
 // commit's message said proper conformance would need, and it's gated
 // by isMobileViewport() so it can never touch desktop's scroll at all.
-export function DetailSheet({ std, relationships, standards, onClose }: { std: StdData; relationships: RelData[]; standards: StdData[]; onClose: () => void }) {
+export function DetailSheet({ std, relationships, standards, faqs, onClose }: { std: StdData; relationships: RelData[]; standards: StdData[]; faqs: FaqData[]; onClose: () => void }) {
   const m = SM[std.status] || SM['active'];
   const versions = std.versions.slice().sort((a, b) => String(b.published || '0').localeCompare(String(a.published || '0')));
   const rels = relationships.filter(r => r.from === std.slug || (Array.isArray(r.to) ? r.to.includes(std.slug) : r.to === std.slug));
+  // Task 8: a dedicated top-4 preview + jump to the full searchable FAQ tab,
+  // matching the concept's detail.faqs/onAllFaqs. This is additive: the
+  // pre-existing "Supporting documents" group below already lists every
+  // individual FAQ mapped to this standard too (appData.ts synthesizes them
+  // in as type:'faq' documents, a behavior that predates this port) -- not
+  // touching that, so there's some overlap, but no regression either.
+  const myFaqs = faqs.filter(f => f.standards.includes(std.slug)).sort((a, b) => String(b.updated || '').localeCompare(String(a.updated || '')));
   const groups: Record<string, Doc[]> = {};
   std.documents.forEach(d => { (groups[d.type] = groups[d.type] || []).push(d); });
   const docGroups = Object.keys(groups).sort((a, b) => (DT[a]?.order ?? 9) - (DT[b]?.order ?? 9)).map(type => ({
@@ -574,6 +581,29 @@ export function DetailSheet({ std, relationships, standards, onClose }: { std: S
                   );
                 })}
               </div>
+            </div>
+          )}
+
+          {myFaqs.length > 0 && (
+            <div style={{ marginBottom: 26 }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 12 }}>
+                <div className="mono si-sheet-section-label" style={{ margin: 0 }}>FAQs</div>
+                <div className="mono" style={{ fontSize: 10.5, color: '#a08f6a' }}>{myFaqs.length} mapped</div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: '#ece4d4', border: '1px solid #ece4d4', borderRadius: 11, overflow: 'hidden' }}>
+                {myFaqs.slice(0, 4).map(f => (
+                  <a key={f.number} href={f.source_url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'flex-start', gap: 9, background: '#fbf7ee', padding: '11px 13px', textDecoration: 'none' }}>
+                    <span className="mono" style={{ fontSize: 9.5, color: '#a08f6a', flexShrink: 0, paddingTop: 1 }}>#{f.number}</span>
+                    <span style={{ flex: 1, fontSize: 12.5, color: '#3f3a31', lineHeight: 1.4, minWidth: 0 }}>{f.title}</span>
+                    <span style={{ color: '#bdb4a2', fontSize: 10, flexShrink: 0 }}>↗</span>
+                  </a>
+                ))}
+              </div>
+              {myFaqs.length > 4 && (
+                <a href={`/faqs?standard=${std.slug}`} className="si-sheet-secondary-link" style={{ display: 'flex', width: '100%', boxSizing: 'border-box', marginTop: 9 }}>
+                  See all {myFaqs.length} FAQs
+                </a>
+              )}
             </div>
           )}
 

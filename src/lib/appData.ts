@@ -14,15 +14,18 @@ export async function getAppData(): Promise<AppData> {
     relationships = raw?.relationships ?? [];
   } catch { /* relationships file may not exist */ }
 
-  const faqsByStandard: Record<string, FaqEntry[]> = {};
+  let allFaqs: FaqEntry[] = [];
   try {
     const rawFaqs = yaml.load(readFileSync(resolve('data/faqs.yaml'), 'utf8')) as { faqs?: FaqEntry[] } | null;
-    for (const faq of rawFaqs?.faqs ?? []) {
-      for (const slug of faq.standards ?? []) {
-        (faqsByStandard[slug] ??= []).push(faq);
-      }
-    }
+    allFaqs = rawFaqs?.faqs ?? [];
   } catch { /* faqs file may not exist yet */ }
+
+  const faqsByStandard: Record<string, FaqEntry[]> = {};
+  for (const faq of allFaqs) {
+    for (const slug of faq.standards ?? []) {
+      (faqsByStandard[slug] ??= []).push(faq);
+    }
+  }
 
   const appData: AppData = {
     standards: standards.map(entry => {
@@ -80,6 +83,16 @@ export async function getAppData(): Promise<AppData> {
       source_url: r.source_url,
       verified: r.verified,
     })),
+    faqs: allFaqs
+      .filter(faq => faq.mapping_method !== 'excluded')
+      .map(faq => ({
+        number: faq.number,
+        title: faq.title,
+        updated: faq.updated,
+        standards: faq.standards ?? [],
+        mapping_method: faq.mapping_method,
+        source_url: faq.source_url,
+      })),
     lastVerified: standards
       .flatMap(s => (s.data as Standard).last_verified ? [(s.data as Standard).last_verified!] : [])
       .sort((a, b) => b.getTime() - a.getTime())[0]

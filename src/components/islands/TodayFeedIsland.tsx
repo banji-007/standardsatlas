@@ -22,7 +22,7 @@ function FeedCard({ e, onSelect }: { e: RadarEvent; onSelect: (slug: string) => 
 export default function TodayFeedIsland({ data, initialSelected }: { data: AppData; initialSelected?: string | null }) {
   const [selected, setSelected] = useState<string | null>(initialSelected ?? null);
   if (!data) return <div style={{ padding: 40, color: 'red', fontFamily: 'monospace' }}>Error: props.data is undefined</div>;
-  const { standards, relationships } = data;
+  const { standards, relationships, faqs } = data;
   const selectedStd = standards.find(s => s.slug === selected) ?? null;
 
   const events = buildRadar(standards, relationships);
@@ -64,7 +64,7 @@ export default function TodayFeedIsland({ data, initialSelected }: { data: AppDa
         {selectedStd && (
           <>
             <div data-vp-show="desktop"><DetailDrawer std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
-            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} onClose={() => setSelected(null)} /></div>
+            <div data-vp-show="mobile"><DetailSheet std={selectedStd} relationships={relationships} standards={standards} faqs={faqs} onClose={() => setSelected(null)} /></div>
           </>
         )}
       </>

@@ -7,8 +7,13 @@ import { resolve } from 'node:path';
 import yaml from 'js-yaml';
 
 const raw = yaml.load(readFileSync(resolve('data/faqs.yaml'), 'utf8')) as { faqs?: FaqEntry[] } | null;
-const allFaqs: FaqEntry[] = raw?.faqs ?? [];
-const faqs = allFaqs.filter(f => f.mapping_method === 'general');
+const everyFaq: FaqEntry[] = raw?.faqs ?? [];
+const faqs = everyFaq.filter(f => f.mapping_method === 'general');
+// Task 8: the mobile view (FaqsMobileView) browses the full in-scope index
+// with scope chips, matching the concept's FAQ tab; the desktop accordion
+// above keeps consuming `faqs` (general-only) exactly as before, byte for
+// byte -- only the mobile-only prop below widens.
+const allFaqs = everyFaq.filter(f => f.mapping_method !== 'excluded');
 ---
 
 <BaseLayout
@@ -27,7 +32,7 @@ const faqs = allFaqs.filter(f => f.mapping_method === 'general');
       </p>
     </div>
 
-    <FaqsIsland faqs={faqs} client:load />
+    <FaqsIsland faqs={faqs} allFaqs={allFaqs} client:load />
   </div>
 </BaseLayout>
 
