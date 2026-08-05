@@ -84,6 +84,40 @@ export function toX(d: string): number {
   return Math.max(0, Math.min(100, (v - 2016) / 12 * 100));
 }
 
+// --- timeline events, shared by desktop's plot and mobile's vertical list ---
+// Desktop derives per-standard marker x-positions directly from
+// s.versions/relationships (fused with pixel-layout concerns: toX(),
+// doc-marker pixel-proximity bucketing for the plot). Mobile needs a
+// flat, chronologically-sorted feed instead. Rather than force both
+// through one shape (risking the desktop-pixel-parity bar for a
+// refactor with no behavioural upside), this is the one place genuinely
+// shared: which versions/relationships count as a timeline event and
+// what their date/label are. Both renderers read directly from
+// s.versions / relationships (the real source data) beyond this, so
+// there's no risk of the underlying facts drifting between them even
+// though the presentation code paths are separate.
+export interface TimelineEvent { date: string; kind: 'version' | 'sunset' | 'transition'; slug: string; short: string; label: string; }
+
+export function buildTimelineEvents(standards: StdData[], relationships: RelData[]): TimelineEvent[] {
+  const events: TimelineEvent[] = [];
+  standards.forEach(s => {
+    const short = GRAPH_LABEL[s.slug] ?? s.name;
+    s.versions.forEach(v => {
+      if (v.published) events.push({ date: v.published, kind: 'version', slug: s.slug, short, label: `Version ${v.version} published` });
+      if (v.retired) events.push({ date: v.retired, kind: 'sunset', slug: s.slug, short, label: `v${v.version}${v.status === 'retired' ? ' retired' : ' sunset'}` });
+    });
+  });
+  relationships.forEach(r => {
+    if (!r.effective_date) return;
+    const from = standards.find(s => s.slug === r.from);
+    if (!from) return;
+    const tos = (Array.isArray(r.to) ? r.to : [r.to]).map(t => GRAPH_LABEL[t] ?? standards.find(s => s.slug === t)?.name ?? t).join(' + ');
+    const verb = r.type === 'converge' ? 'Converges into ' : r.type === 'supersede' ? 'Superseded by ' : 'Aligns with ';
+    events.push({ date: r.effective_date, kind: 'transition', slug: r.from, short: GRAPH_LABEL[from.slug] ?? from.name, label: verb + tos });
+  });
+  return events;
+}
+
 export function monthsAway(d: string): number {
   const p = String(d).split('-');
   const now = new Date();
