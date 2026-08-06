@@ -1,5 +1,7 @@
 slug: kmo
 name: Key Management Operations (KMO)
+short: KMO
+family: PIN & Key
 status: under-review
 source_url: https://blog.pcisecuritystandards.org/request-for-comments-pci-key-management-operations-kmo-v1.0-standard
 verified: true

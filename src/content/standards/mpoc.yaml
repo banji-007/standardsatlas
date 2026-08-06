@@ -1,5 +1,7 @@
 slug: mpoc
 name: Mobile Payments on COTS (MPoC)
+short: MPoC
+family: Mobile Acceptance
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/mpoc/
 verified: true

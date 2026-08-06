@@ -1,5 +1,7 @@
 slug: cpoc
 name: Contactless Payments on COTS (CPoC)
+short: CPoC
+family: Mobile Acceptance
 status: sunset-scheduled
 source_url: https://www.pcisecuritystandards.org/standards/cpoc
 verified: false

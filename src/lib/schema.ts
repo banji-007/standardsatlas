@@ -48,6 +48,8 @@ export const DocumentSchema = z.object({
 export const StandardSchema = z.object({
   slug: z.string(),
   name: z.string(),
+  short: z.string(),
+  family: z.string(),
   status: StatusSchema,
   source_url: z.string().url(),
   verified: z.boolean(),

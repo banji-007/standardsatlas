@@ -98,6 +98,11 @@ const docGroupOrder = ['standard','guidance','faq','saq','template','supplementa
   canonicalUrl={`https://securitystandardsmap.org/standard/${slug}`}
   ogType="article"
 >
+  <script is:inline define:vars={{ slug }}>
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      location.replace('/?tab=standards&open=' + encodeURIComponent(slug));
+    }
+  </script>
   <div class="page-content">
 
     {hasProvisional && (

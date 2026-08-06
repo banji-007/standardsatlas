@@ -16,6 +16,11 @@ const faqs = allFaqs.filter(f => f.mapping_method === 'general');
   description="PCI SSC frequently asked questions covering topics that span multiple standards or general payment security guidance."
   canonicalUrl="https://securitystandardsmap.org/faqs"
 >
+  <script is:inline>
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      location.replace('/?tab=faqs');
+    }
+  </script>
   <div class="page-content">
     <a href="/" class="back-link">← All standards</a>
 

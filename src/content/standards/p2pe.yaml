@@ -1,5 +1,7 @@
 slug: p2pe
 name: Point-to-Point Encryption (P2PE)
+short: P2PE
+family: Encryption
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/p2pe
 verified: false

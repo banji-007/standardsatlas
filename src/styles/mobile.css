@@ -1,0 +1,127 @@
+/* Mobile app shell (Today / Standards / Map / Timeline / FAQs).
+   Everything here is scoped under .pcia-mobile so it can never affect the
+   desktop MainIsland tree. Colors reuse tokens.css where a matching token
+   already exists; the finer-grained tokens below (surface2, raise, line2,
+   ink2/3/4, onAccent, scrim, accentSoft) only exist in the mobile design and
+   are defined locally rather than added to the shared :root. */
+
+.pcia-mobile {
+  --pcia-bg: var(--color-bg);
+  --pcia-surface: var(--color-bg-card);
+  --pcia-surface2: #f7f2e8;
+  --pcia-raise: #fffdf8;
+  --pcia-line: var(--color-border);
+  --pcia-line2: var(--color-border-subtle);
+  --pcia-ink: var(--color-text);
+  --pcia-ink2: var(--color-text-muted);
+  --pcia-ink3: var(--color-text-faint);
+  --pcia-ink4: #a8a195;
+  --pcia-accent: var(--color-accent);
+  --pcia-accent-soft: #eef5f4;
+  --pcia-on-accent: var(--color-bg-card);
+  --pcia-scrim: rgba(28, 24, 18, 0.42);
+  --pcia-sheet-radius: 20px;
+
+  font-family: var(--font-ui);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pcia-mobile input,
+.pcia-mobile select,
+.pcia-mobile button,
+.pcia-mobile textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+.pcia-mobile input::placeholder {
+  color: var(--pcia-ink4);
+}
+
+.pcia-mobile ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcia-mobile,
+  .pcia-mobile * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Respect real device safe areas (notch / home-indicator gesture bar) now
+   that the mocked status bar and home indicator from the design are gone. */
+.pcia-mobile-header {
+  padding-top: max(8px, env(safe-area-inset-top));
+}
+
+.pcia-mobile-tabbar {
+  padding-bottom: max(2px, env(safe-area-inset-bottom));
+}
+
+@keyframes pcia-sheetUp {
+  from { transform: translateY(102%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes pcia-fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pcia-popIn {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pcia-stageInA {
+  from { transform: translateX(var(--pcia-dx, 54px)); opacity: .15; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes pcia-stageInB {
+  from { transform: translateX(var(--pcia-dx, 54px)); opacity: .15; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pcia-orbInA {
+  from { transform: scale(.3); opacity: 0; }
+  60%  { opacity: 1; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes pcia-orbInB {
+  from { transform: scale(.3); opacity: 0; }
+  60%  { opacity: 1; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pcia-fadeInA {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pcia-fadeInB {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pcia-focusInA {
+  from { transform: scale(.82); opacity: .35; }
+  70%  { transform: scale(1.035); }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes pcia-focusInB {
+  from { transform: scale(.82); opacity: .35; }
+  70%  { transform: scale(1.035); }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pcia-riseA {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pcia-riseB {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

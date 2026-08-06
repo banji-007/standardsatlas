@@ -1,5 +1,7 @@
 slug: 3ds-sdk
 name: PCI 3DS SDK Security Standard
+short: PCI 3DS SDK
+family: 3-D Secure
 status: sunset-scheduled
 source_url: https://www.pcisecuritystandards.org/standards/3dssdk
 verified: false

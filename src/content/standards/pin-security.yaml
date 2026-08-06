@@ -1,5 +1,7 @@
 slug: pin-security
 name: PIN Security Requirements
+short: PIN Security
+family: PIN & Key
 status: active
 source_url: https://www.pcisecuritystandards.org/standards/pinsecurity
 verified: true
