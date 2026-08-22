@@ -16,6 +16,7 @@ import {
   normalizeDocType,
   CROSS_STANDARD_DOCS,
 } from '../src/lib/rss';
+import { fetchWithRetry } from './lib/fetch-retry';
 
 const FEED_URL = 'https://www.pcisecuritystandards.org/rssfeed/?type=document';
 const CONTENT_DIR = resolve('src/content/standards');
@@ -41,10 +42,9 @@ interface DraftDocument {
 }
 
 async function fetchFeed(): Promise<RssItem[]> {
-  const res = await fetch(FEED_URL, {
+  const res = await fetchWithRetry(FEED_URL, {
     headers: { 'User-Agent': 'securitystandardsmap-bot/1.0 (https://securitystandardsmap.org)' },
   });
-  if (!res.ok) throw new Error(`Feed fetch failed: ${res.status} ${res.statusText}`);
   const xml = await res.text();
 
   const parser = new XMLParser({ isArray: (name) => name === 'item' || name === 'category' });
