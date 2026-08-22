@@ -10,6 +10,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import yaml from 'js-yaml';
 import { parseFaqCategories, resolveFaq, type FaqMappingMethod } from '../src/lib/faq';
+import { fetchWithRetry } from './lib/fetch-retry';
 
 const FEED_URL  = 'https://www.pcisecuritystandards.org/rssfeed/?type=faq';
 const FAQ_FILE  = resolve('data/faqs.yaml');
@@ -27,10 +28,9 @@ interface FaqEntry {
 }
 
 async function fetchFeed(): Promise<Record<string, unknown>[]> {
-  const res = await fetch(FEED_URL, {
+  const res = await fetchWithRetry(FEED_URL, {
     headers: { 'User-Agent': 'securitystandardsmap-bot/1.0 (https://securitystandardsmap.org)' },
   });
-  if (!res.ok) throw new Error(`Feed fetch failed: ${res.status} ${res.statusText}`);
   const xml = await res.text();
   const parser = new XMLParser({ isArray: (name) => name === 'item' || name === 'category' });
   return (parser.parse(xml)?.rss?.channel?.item ?? []) as Record<string, unknown>[];
