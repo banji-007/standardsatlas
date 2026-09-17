@@ -6,9 +6,9 @@ status: active
 source_url: https://www.pcisecuritystandards.org/standards/cpplogical
 verified: true
 last_verified: "2026-06-27"
-current_version: "3.0.1"
+current_version: 3.0.1
 versions:
-  - version: "3.0.1"
+  - version: 3.0.1
     published: "2022-06-30"
     retired: null
     status: active
@@ -23,6 +23,13 @@ versions:
       https://www.pcisecuritystandards.org/about_us/press_releases/pci-security-standards-council-updates-card-production-and-provisioning-security-standard/
     verified: true
 documents:
+  - slug: qual-ind-rec-cert-guide
+    title: PCI Assessor Program Qualifying Industry-Recognized Certifications Guide
+    type: guidance
+    published: "2026-09-16"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=card_production&document=qual-ind-rec-cert-guide
+    verified: false
   - slug: pci_card_production_technical_faqs
     title: Card Production and Provisioning Technical FAQs
     type: faq
@@ -65,8 +72,7 @@ documents:
     type: guidance
     published: "2023-08-02"
     applies_to_version: null
-    source_url: >-
-      https://www.pcisecuritystandards.org/document_library/?category=programs&document=req_pol
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=programs&document=req_pol
     verified: false
   - slug: pci_card_production_summary_changes
     title: Card Production Summary of Changes
@@ -80,7 +86,7 @@ documents:
     title: Card Production and Provisioning Logical Security Requirements
     type: standard
     published: "2022-06-30"
-    applies_to_version: "3.0.1"
+    applies_to_version: 3.0.1
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=card_production&document=pci_card_production__prov_logical_security_requirements
     verified: false
@@ -97,6 +103,5 @@ documents:
     type: guidance
     published: "2014-12-01"
     applies_to_version: null
-    source_url: >-
-      https://www.pcisecuritystandards.org/document_library/?category=programs&document=code_of_prof_resp
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=programs&document=code_of_prof_resp
     verified: false
