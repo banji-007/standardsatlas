@@ -80,6 +80,13 @@ documents:
     source_url: >-
       https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=secure_software_change_impact_template
     verified: false
+  - slug: sec_sware_change_impact
+    title: Secure Software Change Impact Template
+    type: template
+    published: "2026-02-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=sware_sec&document=sec_sware_change_impact
+    verified: false
   - slug: sec_sware_reqs_procs
     title: Secure Software Standard
     type: standard
