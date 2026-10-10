@@ -2407,3 +2407,10 @@ faqs:
     mapping_method: inferred
     source_url: https://www.pcisecuritystandards.org/faqs/1604/
     verified: false
+  - number: 1605
+    title: Which date format should be used when completing PCI SSC documents that request dates?
+    updated: "2026-10-09T15:02:29Z"
+    standards: []
+    mapping_method: general
+    source_url: https://www.pcisecuritystandards.org/faqs/1605/
+    verified: false
