@@ -1,7 +1,40 @@
-generated: "2026-10-30T11:50:39.899Z"
-low_count: 0
-medium_count: 55
+generated: "2026-10-31T11:24:04.889Z"
+low_count: 3
+medium_count: 53
 items:
+  - entity_type: standard
+    id: 3ds-sdk
+    band: low
+    reasons:
+      - >-
+        status is 'sunset-scheduled' but no version has a future retired date. Action: add a future retired date or
+        update status. Source: https://www.pcisecuritystandards.org/standards/3dssdk
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/3dssdk
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/3dssdk
+  - entity_type: standard
+    id: cpoc
+    band: low
+    reasons:
+      - >-
+        status is 'sunset-scheduled' but no version has a future retired date. Action: add a future retired date or
+        update status. Source: https://www.pcisecuritystandards.org/standards/cpoc
+      - >-
+        verified is false; record needs manual review against the official source. Action: verify and set verified:
+        true. Source: https://www.pcisecuritystandards.org/standards/cpoc
+      - >-
+        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
+        manual review. Source: https://www.pcisecuritystandards.org/standards/cpoc
+  - entity_type: standard
+    id: spoc
+    band: low
+    reasons:
+      - >-
+        status is 'sunset-scheduled' but no version has a future retired date. Action: add a future retired date or
+        update status. Source: https://www.pcisecuritystandards.org/standards/spoc
   - entity_type: faq
     id: "1050"
     band: medium
@@ -391,26 +424,6 @@ items:
       - >-
         last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
         manual review. Source: https://www.pcisecuritystandards.org/standards/3dscore
-  - entity_type: standard
-    id: 3ds-sdk
-    band: medium
-    reasons:
-      - >-
-        verified is false; record needs manual review against the official source. Action: verify and set verified:
-        true. Source: https://www.pcisecuritystandards.org/standards/3dssdk
-      - >-
-        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
-        manual review. Source: https://www.pcisecuritystandards.org/standards/3dssdk
-  - entity_type: standard
-    id: cpoc
-    band: medium
-    reasons:
-      - >-
-        verified is false; record needs manual review against the official source. Action: verify and set verified:
-        true. Source: https://www.pcisecuritystandards.org/standards/cpoc
-      - >-
-        last_verified is null; no record of when this entry was last reviewed. Action: set last_verified after the next
-        manual review. Source: https://www.pcisecuritystandards.org/standards/cpoc
   - entity_type: standard
     id: p2pe
     band: medium
