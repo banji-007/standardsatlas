@@ -30,6 +30,13 @@ versions:
     source_url: https://blog.pcisecuritystandards.org/retirement-of-pci-dss-v3-2-1
     verified: true
 documents:
+  - slug: understanding-pci-dss-sp
+    title: Understanding PCI DSS Service Providers
+    type: guidance
+    published: "2026-11-10"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=understanding-pci-dss-sp
+    verified: false
   - slug: guidance_comp_ctrls
     title: Guidance for Compensating Controls and the Customized Approach
     type: guidance
