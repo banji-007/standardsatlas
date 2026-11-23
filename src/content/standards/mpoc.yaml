@@ -24,6 +24,13 @@ versions:
     source_url: https://www.pcisecuritystandards.org/standards/mpoc/
     verified: true
 documents:
+  - slug: mpoc_pg
+    title: Mobile Payments on COTS (MPoC®) Program Guide
+    type: guidance
+    published: "2026-11-23"
+    applies_to_version: null
+    source_url: https://www.pcisecuritystandards.org/document_library/?category=mpoc&document=mpoc_pg
+    verified: false
   - slug: mpoc_am_aov_int_rep-v1
     title: MPoC Integration Report
     type: guidance

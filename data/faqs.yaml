@@ -521,8 +521,8 @@ faqs:
     source_url: https://www.pcisecuritystandards.org/faqs/1130/
     verified: false
   - number: 1131
-    title: Does the council have a mapping between PCI DSS and ISO 27002 (formerly ISO 17799) or other standards?
-    updated: "2012-07-02T17:44:00Z"
+    title: Does PCI SSC provide mappings between PCI standards and other industry frameworks, regulations, or standards?
+    updated: "2026-11-23T07:50:19Z"
     standards:
       - pci-dss
     mapping_method: direct
